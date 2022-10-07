@@ -58,7 +58,7 @@ public class Player {
         if (card.Costs > _ressource) {
             return;
         }
-
+        _ressource = _ressource - card.Costs;
         _handCards.RemoveAt(index);
         // Update Card Deck UI
         //replace with Global enemy
@@ -69,5 +69,31 @@ public class Player {
 
         _health = _health + card.Health;
         _schild = _schild + card.Schild;
+    }
+
+
+    public void TakeDmg(int dmg) {
+
+        if (_schild > 0) {
+            if (_schild > dmg) {
+                _schild = _schild - dmg;
+                dmg = 0;
+            }
+            else {
+                dmg = dmg - _schild;
+                _schild = 0;
+            }
+        }
+
+        _health = _health - dmg;
+
+        if (_health <= 0) {
+
+            PlayerDeath();
+        }
+    }
+
+    public void PlayerDeath() {
+
     }
 }
