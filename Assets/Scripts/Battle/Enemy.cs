@@ -12,13 +12,14 @@ public class Enemy {
     [SerializeField] private ElementEnum _element;
     [SerializeField] private Sprite _sprite;
     [SerializeField] private List<EnemySkill> _skillList;
-
-    public Player player;
+    
+    private Player _player;
 
     public int EnemyHealth => _health;
     public int EnemyMaxHealth => _maxHealth;
 
     public static event Action enemyTurnDone; 
+    public static event Action<float, float> updateEnemyHealthUI;
 
     public void TakeDmg(int dmg) {
 
@@ -34,6 +35,8 @@ public class Enemy {
         }
 
         _health = _health - dmg;
+        
+        updateEnemyHealthUI?.Invoke(_health, _maxHealth);
 
         if (_health <= 0) {
             EnemyDeath();
@@ -54,7 +57,9 @@ public class Enemy {
                 usedSkill = true;
 
                 int dmg = Random.Range(skill.MinAttack, skill.MaxAttack);
-                player.TakeDmg(dmg);
+                _player.TakeDmg(dmg);
+                
+                Debug.Log("Enemy Attacks Player!");
 
                 int schildValue = Random.Range(skill.MinSchild, skill.MaxSchild);
                 _schild = _schild + schildValue;

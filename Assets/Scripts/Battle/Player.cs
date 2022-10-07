@@ -24,6 +24,9 @@ public class Player {
     public int PlayerMaxHealth => _maxHealth;
     public int PlayerEnergy => _ressource;
     public int PlayerMaxEnergy => _maxRessource;
+
+    public static event Action<float, float> updatePlayerHealthUI; 
+    public static event Action<float, float> updatePlayerEnergyUI;
     
     public Player(GameDeck gameDeck) {
         _gameDeck = gameDeck;
@@ -49,6 +52,7 @@ public class Player {
     }
     public void ResetRessource() {
         _ressource = _maxRessource;
+        UpdateEnergyUI();
     }
 
     public void StartTurn() {
@@ -68,6 +72,9 @@ public class Player {
             return;
         }
         _ressource = _ressource - card.Costs;
+
+        UpdateEnergyUI();
+        
         _handCards.RemoveAt(index);
         
         // Update Card Deck UI
@@ -95,6 +102,8 @@ public class Player {
 
         _health = _health - dmg;
 
+        UpdateHealthUI();
+
         if (_health <= 0) {
 
             PlayerDeath();
@@ -104,4 +113,16 @@ public class Player {
     public void PlayerDeath() {
 
     }
+
+    private void UpdateHealthUI()
+    {
+        updatePlayerHealthUI?.Invoke(_health, _maxHealth);
+    }
+
+    private void UpdateEnergyUI()
+    {
+        updatePlayerEnergyUI?.Invoke(_ressource, _maxRessource);
+    }
+    
+    
 }

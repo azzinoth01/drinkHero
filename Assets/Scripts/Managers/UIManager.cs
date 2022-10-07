@@ -25,12 +25,18 @@ public class UIManager : MonoBehaviour
     {
         TurnManager.togglePlayerUiControls += TogglePlayerUIControls;
         TurnManager.updateDebugText += UpdateDebugText;
+        Player.updatePlayerHealthUI += UpdatePlayerHealthBar;
+        Player.updatePlayerEnergyUI += UpdatePlayerEnergyBar;
+        Enemy.updateEnemyHealthUI += UpdateEnemyHealthBar;
     }
 
     private void OnDisable()
     {
         TurnManager.togglePlayerUiControls -= TogglePlayerUIControls;
         TurnManager.updateDebugText -= UpdateDebugText;
+        Player.updatePlayerHealthUI -= UpdatePlayerHealthBar;
+        Player.updatePlayerEnergyUI -= UpdatePlayerEnergyBar;
+        Enemy.updateEnemyHealthUI -= UpdateEnemyHealthBar;
     }
 
     void Start()

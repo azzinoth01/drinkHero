@@ -22,14 +22,14 @@ public class TurnManager : MonoBehaviour
 
     private void OnEnable()
     {
+        Enemy.enemyTurnDone += EndEnemyTurn;
+        
         _player = _playerObject.PlayerReference;
         _enemy = _enemyObject.enemy;
     }
 
     private void Start()
     {
-        Enemy.enemyTurnDone += EndEnemyTurn;
-        
         _turnState = TurnState.Start;
         StartCoroutine(InitCombat());
     }
