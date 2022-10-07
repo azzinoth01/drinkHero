@@ -4,6 +4,5 @@ public class Hero {
     private int attack;
     private int schild;
     private int health;
-    private
 
 }
