@@ -15,4 +15,66 @@ public class Card {
     [SerializeField] private ElementEnum _element;
     [SerializeField] private Sprite _sprite;
 
+    public int Attack {
+        get {
+            return _attack;
+        }
+
+
+    }
+
+    public int Schild {
+        get {
+            return _schild;
+        }
+
+
+    }
+
+    public int Health {
+        get {
+            return _health;
+        }
+
+
+    }
+
+    public string Text {
+        get {
+            return _text;
+        }
+
+    }
+
+    public int Costs {
+        get {
+            return _costs;
+        }
+
+
+    }
+
+    public ElementEnum Element {
+        get {
+            return _element;
+        }
+
+
+    }
+
+    public Sprite Sprite {
+        get {
+            return _sprite;
+        }
+
+
+    }
+
+    public string Name {
+        get {
+            return _name;
+        }
+
+
+    }
 }

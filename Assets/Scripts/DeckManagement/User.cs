@@ -13,4 +13,11 @@ public class User {
     [SerializeField] private List<Hero> _heroList;
     [SerializeField] private List<Deck> _deckList;
     [SerializeField] private Sprite _sprite;
+
+    public List<Deck> DeckList {
+        get {
+            return _deckList;
+        }
+
+    }
 }
