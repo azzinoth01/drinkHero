@@ -20,6 +20,29 @@ public class Hero {
 
     }
 
+    public int Attack {
+        get {
+            return _attack;
+        }
+
+
+    }
+
+    public int Schild {
+        get {
+            return _schild;
+        }
+
+
+    }
+
+    public int Health {
+        get {
+            return _health;
+        }
+
+
+    }
 
     public Hero() {
         _cardList = new List<Card>();
