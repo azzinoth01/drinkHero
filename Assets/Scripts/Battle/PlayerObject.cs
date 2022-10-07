@@ -3,14 +3,13 @@ using UnityEngine;
 public class PlayerObject : MonoBehaviour {
 
     [SerializeField] private Player _player;
-
+    public Player PlayerReference => _player;
 
     //remove after prototype
     public UserObject testUserField;
     public EnemyObject testEnemyField;
 
-
-
+    
     // Start is called before the first frame update
     void Start() {
 

@@ -19,5 +19,6 @@ public class PlayerCardUI : MonoBehaviour
     {
         _card = card;
         _sprite = _card.Sprite;
+        _costText.SetText(_card.Costs.ToString());
     }
 }

@@ -12,11 +12,15 @@ public class Player {
     [SerializeField] private int _ressource;
 
     [SerializeField] private List<Card> _handCards;
+    public List<Card> HandCards => _handCards;
+    
     [SerializeField] private GameDeck _gameDeck;
     [SerializeField] private Sprite _sprite;
-
-
+    
     public Enemy enemy;
+
+    public int PlayerHealth => _health;
+    public int PlayerEnergy => _ressource;
 
     public Player(GameDeck gameDeck) {
         _gameDeck = gameDeck;
@@ -50,9 +54,7 @@ public class Player {
     }
 
     public void PlayHandCard(int index) {
-
-
-
+        
         Card card = _handCards[index];
 
         if (card.Costs > _ressource) {
@@ -60,11 +62,10 @@ public class Player {
         }
         _ressource = _ressource - card.Costs;
         _handCards.RemoveAt(index);
+        
         // Update Card Deck UI
         //replace with Global enemy
-
-
-
+        
         enemy.TakeDmg(card.Attack);
 
         _health = _health + card.Health;

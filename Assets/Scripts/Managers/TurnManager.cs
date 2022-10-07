@@ -12,19 +12,12 @@ public class TurnManager : MonoBehaviour
 
     private bool _playerTurn;
     
-    // Start is called before the first frame update
     void Start()
     {
         
         _playerTurn = true;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     private void HandleTurn()
     {
         // determine whose turn it is

@@ -14,6 +14,8 @@ public class Enemy {
 
     public Player player;
 
+    public int EnemyHealth => _health;
+    
     public void TakeDmg(int dmg) {
 
         if (_schild > 0) {
