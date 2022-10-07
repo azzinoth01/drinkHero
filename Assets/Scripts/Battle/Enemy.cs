@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,6 +10,7 @@ public class Enemy {
     [SerializeField] private int _attack;
     [SerializeField] private ElementEnum _element;
     [SerializeField] private Sprite _sprite;
+    [SerializeField] private List<EnemySkill> _skillList;
 
     public Player player;
 
@@ -38,8 +40,34 @@ public class Enemy {
     }
 
     public void EnemyTurn() {
-        int dmg = Random.Range(_attack, _attack + 3);
-        player.TakeDmg(dmg);
+        bool usedSkill = false;
+        for (int i = 0; i < _skillList.Count;) {
+            EnemySkill skill = _skillList[i];
+
+            if (skill.CurrentCooldown == 0 && usedSkill == false) {
+                usedSkill = true;
+
+                int dmg = Random.Range(skill.MinAttack, skill.MaxAttack);
+                player.TakeDmg(dmg);
+
+                int schildValue = Random.Range(skill.MinSchild, skill.MaxSchild);
+                _schild = _schild + schildValue;
+
+                int healthValue = Random.Range(skill.MinHealth, skill.MaxHealth);
+                _health = _health + healthValue;
+
+                skill.StartCooldown();
+            }
+            else {
+                skill.CooldownTick();
+            }
+
+            i = i + 1;
+        }
+
+
+
+
 
         EndEnemyTurn();
     }
