@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
-    private int health;
-    private int schild;
-    private int attack;
-    private ElementEnum element;
+[Serializable]
+public class Enemy {
+    [SerializeField] private int _health;
+    [SerializeField] private int _schild;
+    [SerializeField] private int _attack;
+    [SerializeField] private ElementEnum _element;
+    [SerializeField] private Sprite _sprite;
 }

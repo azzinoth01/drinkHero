@@ -1,4 +1,16 @@
+using System;
+using UnityEngine;
+
+[Serializable]
 public class HeroSlot {
-    private Hero hero;
-    private uint slotID;
+    [SerializeField] private Hero _hero;
+    [SerializeField] private uint _slotID;
+
+    public Hero Hero {
+        get {
+            return _hero;
+        }
+
+
+    }
 }

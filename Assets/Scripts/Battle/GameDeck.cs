@@ -1,18 +1,21 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameDeck : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+[Serializable]
+public class GameDeck {
+    [SerializeField] private List<Card> _scrapedCardList;
+    [SerializeField] private List<Card> _remainingCardList;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+    GameDeck(Deck deck) {
+        _scrapedCardList = new List<Card>();
+        _remainingCardList = new List<Card>();
+
+        foreach (HeroSlot heroSlot in deck.HeroSlotList) {
+            foreach (Card card in heroSlot.Hero.CardList) {
+                _remainingCardList.Add(card);
+            }
+        }
     }
 }
