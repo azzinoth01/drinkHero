@@ -58,7 +58,7 @@ public class Player {
         if (card.Costs > _ressource) {
             return;
         }
-
+        _ressource = _ressource - card.Costs;
         _handCards.RemoveAt(index);
 
         //replace with Global enemy
