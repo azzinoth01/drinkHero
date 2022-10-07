@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,15 +16,30 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _playerHandUI;
 
     [SerializeField] private List<PlayerCardUI> _currentPlayerHand;
-    [SerializeField] private TextMeshProUGUI _playerHealthLabelText, _playerEnergyLabelText, _enemyHealthLabelText;
-    
+    [SerializeField] private TextMeshProUGUI _playerHealthLabelText, _playerEnergyLabelText, _enemyHealthLabelText, _debugText;
+    [SerializeField] private Image _playerHealthBar, _playerEnergyBar, _enemyHealthBar;
+
+    [SerializeField] private Button _endTurnButton;
+
+    private void OnEnable()
+    {
+        TurnManager.togglePlayerUiControls += TogglePlayerUIControls;
+        TurnManager.updateDebugText += UpdateDebugText;
+    }
+
+    private void OnDisable()
+    {
+        TurnManager.togglePlayerUiControls -= TogglePlayerUIControls;
+        TurnManager.updateDebugText -= UpdateDebugText;
+    }
+
     void Start()
     {
         _player = _playerObject.PlayerReference;
         _enemy = _enemyObject.enemy;
         
         GetHandCards();
-        UpdateUIValues();
+        InitUIValues();
     }
 
     private void GetHandCards()
@@ -55,10 +72,48 @@ public class UIManager : MonoBehaviour
         Destroy(cardUIGameObject);
     }
 
-    private void UpdateUIValues()
+    private void InitUIValues()
     {
-        _playerHealthLabelText.SetText(_player.PlayerHealth.ToString());
-        _playerEnergyLabelText.SetText(_player.PlayerEnergy.ToString());
-        _enemyHealthLabelText.SetText(_enemy.EnemyHealth.ToString());
+        UpdatePlayerHealthBar(_player.PlayerHealth, _player.PlayerMaxHealth);
+        UpdatePlayerEnergyBar(_player.PlayerEnergy, _player.PlayerMaxEnergy);
+        UpdateEnemyHealthBar(_enemy.EnemyHealth, _enemy.EnemyMaxHealth);
+    }
+
+    private void UpdatePlayerHealthBar(float currentValue, float maxValue)
+    {
+        UpdateBarDisplay(currentValue, maxValue, _playerHealthLabelText, _playerHealthBar);
+    }
+    
+    private void UpdatePlayerEnergyBar(float currentValue, float maxValue)
+    {
+        UpdateBarDisplay(currentValue, maxValue, _playerEnergyLabelText, _playerEnergyBar);
+    }
+    
+    private void UpdateEnemyHealthBar(float currentValue, float maxValue)
+    {
+        UpdateBarDisplay(currentValue, maxValue, _enemyHealthLabelText, _enemyHealthBar);
+    }
+    
+    private static void UpdateBarDisplay(float currentValue, float maxValue, TextMeshProUGUI label, Image bar)
+    {
+        label.SetText(currentValue.ToString());
+        // TODO: 100 should be replace with a max value
+        bar.fillAmount = currentValue / maxValue;
+    }
+
+    private void TogglePlayerUIControls(bool state)
+    {
+        // get all cards currently held and toggle their state 
+        foreach (var cardButton in _currentPlayerHand)
+        {
+            cardButton.GetComponent<Button>().interactable = state;
+        }
+        
+        _endTurnButton.interactable = state;
+    }
+
+    private void UpdateDebugText(string text)
+    {
+        _debugText.SetText(text);
     }
 }

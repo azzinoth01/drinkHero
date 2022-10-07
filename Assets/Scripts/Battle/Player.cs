@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player {
     [SerializeField] private string _name;
     [SerializeField] private int _health;
+    [SerializeField] private int _maxHealth;
     [SerializeField] private int _schild;
     [SerializeField] private int _attack;
     [SerializeField] private int _maxRessource;
@@ -20,8 +21,10 @@ public class Player {
     public Enemy enemy;
 
     public int PlayerHealth => _health;
+    public int PlayerMaxHealth => _maxHealth;
     public int PlayerEnergy => _ressource;
-
+    public int PlayerMaxEnergy => _maxRessource;
+    
     public Player(GameDeck gameDeck) {
         _gameDeck = gameDeck;
         _handCards = new List<Card>();
@@ -49,7 +52,11 @@ public class Player {
     }
 
     public void StartTurn() {
-        _handCards.Add(_gameDeck.DrawCard());
+        // Check for # of hand cards > 5, if true dont draw
+        if (_handCards.Count < 5)
+        {
+            _handCards.Add(_gameDeck.DrawCard());
+        }
         ResetRessource();
     }
 
@@ -64,7 +71,7 @@ public class Player {
         _handCards.RemoveAt(index);
         
         // Update Card Deck UI
-        //replace with Global enemy
+        // replace with Global enemy
         
         enemy.TakeDmg(card.Attack);
 

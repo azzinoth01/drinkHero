@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class Enemy {
     [SerializeField] private int _health;
+    [SerializeField] private int _maxHealth;
     [SerializeField] private int _schild;
     [SerializeField] private int _attack;
     [SerializeField] private ElementEnum _element;
@@ -15,7 +16,10 @@ public class Enemy {
     public Player player;
 
     public int EnemyHealth => _health;
-    
+    public int EnemyMaxHealth => _maxHealth;
+
+    public static event Action enemyTurnDone; 
+
     public void TakeDmg(int dmg) {
 
         if (_schild > 0) {
@@ -66,15 +70,11 @@ public class Enemy {
 
             i = i + 1;
         }
-
-
-
-
-
+        
         EndEnemyTurn();
     }
 
     public void EndEnemyTurn() {
-
+        enemyTurnDone?.Invoke();
     }
 }
