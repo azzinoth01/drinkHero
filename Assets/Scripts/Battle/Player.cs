@@ -10,17 +10,21 @@ public class Player {
     [SerializeField] private int _attack;
     [SerializeField] private int _maxRessource;
     [SerializeField] private int _ressource;
-    [SerializeField] private int _maxHandCards;
+
     [SerializeField] private List<Card> _handCards;
     [SerializeField] private GameDeck _gameDeck;
     [SerializeField] private Sprite _sprite;
 
 
+    public Enemy enemy;
+
     public Player(GameDeck gameDeck) {
         _gameDeck = gameDeck;
         _handCards = new List<Card>();
 
-        for (int i = 0; i < _maxHandCards;) {
+
+        //define max handcards globaly
+        for (int i = 0; i < 5;) {
 
             _handCards.Add(_gameDeck.DrawCard());
 
@@ -30,6 +34,11 @@ public class Player {
         foreach (HeroSlot heroSlot in _gameDeck.Deck.HeroSlotList) {
             _health = _health + heroSlot.Hero.Health;
         }
+
+        //define max base ressources globaly
+
+        _maxRessource = 10;
+        _ressource = 10;
     }
     public void ResetRessource() {
         _ressource = _maxRessource;
@@ -41,14 +50,22 @@ public class Player {
     }
 
     public void PlayHandCard(int index) {
+
+
+
         Card card = _handCards[index];
+
+        if (card.Costs > _ressource) {
+            return;
+        }
+
         _handCards.RemoveAt(index);
 
         //replace with Global enemy
-        Enemy e = new Enemy();
 
 
-        e.TakeDmg(card.Attack);
+
+        enemy.TakeDmg(card.Attack);
 
         _health = _health + card.Health;
         _schild = _schild + card.Schild;
