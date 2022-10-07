@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public class Enemy {
@@ -9,7 +10,7 @@ public class Enemy {
     [SerializeField] private ElementEnum _element;
     [SerializeField] private Sprite _sprite;
 
-
+    public Player player;
 
     public void TakeDmg(int dmg) {
 
@@ -33,6 +34,17 @@ public class Enemy {
 
 
     public void EnemyDeath() {
+
+    }
+
+    public void EnemyTurn() {
+        int dmg = Random.Range(_attack, _attack + 3);
+        player.TakeDmg(dmg);
+
+        EndEnemyTurn();
+    }
+
+    public void EndEnemyTurn() {
 
     }
 }
