@@ -60,7 +60,7 @@ public class Player {
         }
 
         _handCards.RemoveAt(index);
-
+        // Update Card Deck UI
         //replace with Global enemy
 
 

@@ -10,7 +10,6 @@ public class Enemy {
     [SerializeField] private Sprite _sprite;
 
 
-
     public void TakeDmg(int dmg) {
 
         if (_schild > 0) {
