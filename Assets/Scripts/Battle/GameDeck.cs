@@ -38,10 +38,13 @@ public class GameDeck {
             }
             _scrapedCardList.Clear();
         }
-
-
+        
+        // Check for no cards left in stack, if true dont draw
+        
         i = Random.Range(0, i);
 
+        Debug.Log(i);
+        
         Card returnCard = _remainingCardList[i];
         _remainingCardList.RemoveAt(i);
 

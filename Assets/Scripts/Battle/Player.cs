@@ -6,18 +6,28 @@ using UnityEngine;
 public class Player {
     [SerializeField] private string _name;
     [SerializeField] private int _health;
+    [SerializeField] private int _maxHealth;
     [SerializeField] private int _schild;
     [SerializeField] private int _attack;
     [SerializeField] private int _maxRessource;
     [SerializeField] private int _ressource;
 
     [SerializeField] private List<Card> _handCards;
+    public List<Card> HandCards => _handCards;
+    
     [SerializeField] private GameDeck _gameDeck;
     [SerializeField] private Sprite _sprite;
-
-
+    
     public Enemy enemy;
 
+    public int PlayerHealth => _health;
+    public int PlayerMaxHealth => _maxHealth;
+    public int PlayerEnergy => _ressource;
+    public int PlayerMaxEnergy => _maxRessource;
+
+    public static event Action<float, float> updatePlayerHealthUI; 
+    public static event Action<float, float> updatePlayerEnergyUI;
+    
     public Player(GameDeck gameDeck) {
         _gameDeck = gameDeck;
         _handCards = new List<Card>();
@@ -42,29 +52,34 @@ public class Player {
     }
     public void ResetRessource() {
         _ressource = _maxRessource;
+        UpdateEnergyUI();
     }
 
     public void StartTurn() {
-        _handCards.Add(_gameDeck.DrawCard());
+        // Check for # of hand cards > 5, if true dont draw
+        if (_handCards.Count < 5)
+        {
+            _handCards.Add(_gameDeck.DrawCard());
+        }
         ResetRessource();
     }
 
     public void PlayHandCard(int index) {
-
-
-
+        
         Card card = _handCards[index];
 
         if (card.Costs > _ressource) {
             return;
         }
         _ressource = _ressource - card.Costs;
+
+        UpdateEnergyUI();
+        
         _handCards.RemoveAt(index);
-
-        //replace with Global enemy
-
-
-
+        
+        // Update Card Deck UI
+        // replace with Global enemy
+        
         enemy.TakeDmg(card.Attack);
 
         _health = _health + card.Health;
@@ -87,6 +102,8 @@ public class Player {
 
         _health = _health - dmg;
 
+        UpdateHealthUI();
+
         if (_health <= 0) {
 
             PlayerDeath();
@@ -96,4 +113,16 @@ public class Player {
     public void PlayerDeath() {
 
     }
+
+    private void UpdateHealthUI()
+    {
+        updatePlayerHealthUI?.Invoke(_health, _maxHealth);
+    }
+
+    private void UpdateEnergyUI()
+    {
+        updatePlayerEnergyUI?.Invoke(_ressource, _maxRessource);
+    }
+    
+    
 }
