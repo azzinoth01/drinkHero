@@ -1,17 +1,19 @@
 using System;
+using UnityEngine;
 
 [Serializable]
 public class EnemySkill {
-    private int _minAttack;
-    private int _minSchild;
-    private int _minHealth;
+    [SerializeField] private string _name;
+    [SerializeField] private int _minAttack;
+    [SerializeField] private int _minSchild;
+    [SerializeField] private int _minHealth;
 
-    private int _maxAttack;
-    private int _maxSchild;
-    private int _maxHealth;
+    [SerializeField] private int _maxAttack;
+    [SerializeField] private int _maxSchild;
+    [SerializeField] private int _maxHealth;
 
-    private int _cooldown;
-    private int _currentCooldown;
+    [SerializeField] private int _cooldown;
+    [SerializeField] private int _currentCooldown;
 
     public int MinAttack {
         get {

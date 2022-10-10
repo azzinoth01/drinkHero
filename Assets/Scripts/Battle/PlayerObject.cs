@@ -3,13 +3,15 @@ using UnityEngine;
 public class PlayerObject : MonoBehaviour {
 
     [SerializeField] private Player _player;
+
+    //pls name getter/setter after priate variables for better readability example: private variable _player getter/setter Player
     public Player PlayerReference => _player;
 
     //remove after prototype
     public UserObject testUserField;
     public EnemyObject testEnemyField;
 
-    
+
     // Start is called before the first frame update
     void Start() {
 
@@ -17,7 +19,7 @@ public class PlayerObject : MonoBehaviour {
 
         GameDeck gameDeck = new GameDeck(deck);
         _player = new Player(gameDeck);
-        _player.enemy = testEnemyField.enemy;
+
 
     }
 

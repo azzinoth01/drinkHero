@@ -5,4 +5,6 @@ using UnityEngine;
 public class GameLoop {
     [SerializeField] private uint _turn;
     [SerializeField] private bool _playerTurn;
+
+
 }

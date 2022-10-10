@@ -14,20 +14,21 @@ public class Player {
 
     [SerializeField] private List<Card> _handCards;
     public List<Card> HandCards => _handCards;
-    
+
     [SerializeField] private GameDeck _gameDeck;
     [SerializeField] private Sprite _sprite;
-    
-    public Enemy enemy;
+
+    //public Enemy enemy;
 
     public int PlayerHealth => _health;
     public int PlayerMaxHealth => _maxHealth;
     public int PlayerEnergy => _ressource;
     public int PlayerMaxEnergy => _maxRessource;
 
-    public static event Action<float, float> updatePlayerHealthUI; 
+    public static event Action<float, float> updatePlayerHealthUI;
     public static event Action<float, float> updatePlayerEnergyUI;
-    
+    public static event Action updateHandCardUI;
+
     public Player(GameDeck gameDeck) {
         _gameDeck = gameDeck;
         _handCards = new List<Card>();
@@ -42,9 +43,9 @@ public class Player {
         }
 
         foreach (HeroSlot heroSlot in _gameDeck.Deck.HeroSlotList) {
-            _health = _health + heroSlot.Hero.Health;
+            _maxHealth = _maxHealth + heroSlot.Hero.Health;
         }
-
+        _health = _maxHealth;
         //define max base ressources globaly
 
         _maxRessource = 10;
@@ -57,15 +58,19 @@ public class Player {
 
     public void StartTurn() {
         // Check for # of hand cards > 5, if true dont draw
-        if (_handCards.Count < 5)
-        {
+
+        //draw until 5 cards
+
+        for (int i = _handCards.Count; i < 5;) {
             _handCards.Add(_gameDeck.DrawCard());
+            i = i + 1;
         }
+        updateHandCardUI?.Invoke();
         ResetRessource();
     }
 
     public void PlayHandCard(int index) {
-        
+
         Card card = _handCards[index];
 
         if (card.Costs > _ressource) {
@@ -73,17 +78,19 @@ public class Player {
         }
         _ressource = _ressource - card.Costs;
 
-        UpdateEnergyUI();
-        
-        _handCards.RemoveAt(index);
-        
-        // Update Card Deck UI
-        // replace with Global enemy
-        
-        enemy.TakeDmg(card.Attack);
+
+        GlobalGameInfos.Instance.EnemyObject.enemy.TakeDmg(card.Attack);
 
         _health = _health + card.Health;
         _schild = _schild + card.Schild;
+
+
+
+        _gameDeck.ScrapCard(card);
+        _handCards.RemoveAt(index);
+
+        UpdateHealthUI();
+        UpdateEnergyUI();
     }
 
 
@@ -114,15 +121,13 @@ public class Player {
 
     }
 
-    private void UpdateHealthUI()
-    {
+    private void UpdateHealthUI() {
         updatePlayerHealthUI?.Invoke(_health, _maxHealth);
     }
 
-    private void UpdateEnergyUI()
-    {
+    private void UpdateEnergyUI() {
         updatePlayerEnergyUI?.Invoke(_ressource, _maxRessource);
     }
-    
-    
+
+
 }
