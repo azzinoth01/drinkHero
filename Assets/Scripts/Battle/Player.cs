@@ -7,7 +7,7 @@ public class Player {
     [SerializeField] private string _name;
     [SerializeField] private int _health;
     [SerializeField] private int _maxHealth;
-    [SerializeField] private int _schild;
+    [SerializeField] private int _shield;
     [SerializeField] private int _attack;
     [SerializeField] private int _maxRessource;
     [SerializeField] private int _ressource;
@@ -16,17 +16,17 @@ public class Player {
     public List<Card> HandCards => _handCards;
 
     [SerializeField] private GameDeck _gameDeck;
-    [SerializeField] private Sprite _sprite;
-
-    //public Enemy enemy;
 
     public int PlayerHealth => _health;
     public int PlayerMaxHealth => _maxHealth;
     public int PlayerEnergy => _ressource;
     public int PlayerMaxEnergy => _maxRessource;
+    
+    public int PlayerShield => _shield;
 
     public static event Action<float, float> updatePlayerHealthUI;
     public static event Action<float, float> updatePlayerEnergyUI;
+    public static event Action<int> updatePlayerShieldUI;
     public static event Action updateHandCardUI;
 
     public Player(GameDeck gameDeck) {
@@ -51,14 +51,13 @@ public class Player {
         _maxRessource = 10;
         _ressource = 10;
     }
+    
     public void ResetRessource() {
         _ressource = _maxRessource;
         UpdateEnergyUI();
     }
 
     public void StartTurn() {
-        // Check for # of hand cards > 5, if true dont draw
-
         //draw until 5 cards
 
         for (int i = _handCards.Count; i < 5;) {
@@ -77,39 +76,65 @@ public class Player {
             return;
         }
         _ressource = _ressource - card.Costs;
-
-
+        
         GlobalGameInfos.Instance.EnemyObject.enemy.TakeDmg(card.Attack);
 
-        _health = _health + card.Health;
-        _schild = _schild + card.Schild;
+        // if (_health + card.Health >= _maxHealth)
+        // {
+        //     _health = _maxHealth;
+        // }
+        // else if (_health + card.Health <= _maxHealth)
+        // {
+        //     _health += card.Health;
+        // }
 
-
-
+        if (_shield + card.Shield < 0)
+        {
+            _shield = 0;
+        }
+        else
+        {
+            _shield += card.Shield;
+        }
+        
         _gameDeck.ScrapCard(card);
         _handCards.RemoveAt(index);
 
         UpdateHealthUI();
         UpdateEnergyUI();
+        UpdateShieldUI();
     }
 
 
     public void TakeDmg(int dmg) {
 
-        if (_schild > 0) {
-            if (_schild > dmg) {
-                _schild = _schild - dmg;
+        if (_shield > 0) {
+            if (_shield > dmg) {
+                _shield = _shield - dmg;
                 dmg = 0;
+                
+                // Update Shield Counter UI
             }
             else {
-                dmg = dmg - _schild;
-                _schild = 0;
+                dmg = dmg - _shield;
+                _shield = 0;
+                
+                // Update Shield Counter UI
             }
+            UpdateShieldUI();
         }
 
-        _health = _health - dmg;
+        if (_health - dmg < 0)
+        {
+            _health = 0;
+        }
+        else
+        {
+            _health -= dmg;
+        }
 
         UpdateHealthUI();
+
 
         if (_health <= 0) {
 
@@ -129,5 +154,8 @@ public class Player {
         updatePlayerEnergyUI?.Invoke(_ressource, _maxRessource);
     }
 
-
+    private void UpdateShieldUI()
+    {
+        updatePlayerShieldUI?.Invoke(_shield);
+    }
 }

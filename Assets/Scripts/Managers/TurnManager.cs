@@ -74,7 +74,7 @@ public class TurnManager : MonoBehaviour {
         updateDebugText?.Invoke("Player Turn!");
         yield return new WaitForSeconds(1f);
 
-        GlobalGameInfos.Instance.PlayerObject.PlayerReference.StartTurn();
+        GlobalGameInfos.Instance.PlayerObject.Player.StartTurn();
 
         //_player.StartTurn();
     }

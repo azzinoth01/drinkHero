@@ -6,7 +6,7 @@ public class Card {
     [SerializeField] private string _name;
     [SerializeField] private uint _iD;
     [SerializeField] private int _attack;
-    [SerializeField] private int _schild;
+    [SerializeField] private int _shield;
     [SerializeField] private int _health;
     [SerializeField] private string _text;
     [SerializeField] private int _costs;
@@ -23,9 +23,9 @@ public class Card {
 
     }
 
-    public int Schild {
+    public int Shield {
         get {
-            return _schild;
+            return _shield;
         }
 
 

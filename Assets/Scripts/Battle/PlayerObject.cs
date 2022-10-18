@@ -4,14 +4,11 @@ public class PlayerObject : MonoBehaviour {
 
     [SerializeField] private Player _player;
 
-    //pls name getter/setter after priate variables for better readability example: private variable _player getter/setter Player
-    public Player PlayerReference => _player;
+    public Player Player => _player;
 
     //remove after prototype
     public UserObject testUserField;
-    public EnemyObject testEnemyField;
-
-
+    
     // Start is called before the first frame update
     void Start() {
 
@@ -22,12 +19,6 @@ public class PlayerObject : MonoBehaviour {
 
 
     }
-
-    // Update is called once per frame
-    void Update() {
-
-    }
-
 
     [ContextMenu("play Card 0")]
     public void PlayCardZero() {
@@ -53,6 +44,4 @@ public class PlayerObject : MonoBehaviour {
     public void DrawCard() {
         _player.StartTurn();
     }
-
-
 }
