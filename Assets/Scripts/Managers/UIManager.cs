@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour {
 
     [SerializeField] private GameObject _playerCardUIPrefab;
     [SerializeField] private GameObject _playerHandUI;
+    [SerializeField] private GameObject _playerOptionsPanel;
 
     [SerializeField] private List<PlayerCardUI> _currentPlayerHand;
     [SerializeField] private TextMeshProUGUI _playerHealthLabelText, _playerEnergyLabelText, _enemyHealthLabelText, 
@@ -144,5 +145,15 @@ public class UIManager : MonoBehaviour {
 
     private void UpdateDebugText(string text) {
         _debugText.SetText(text);
+    }
+
+    public void ShowOptionsPanel()
+    {
+        _playerOptionsPanel.SetActive(true);
+    }
+    
+    public void HideOptionsPanel()
+    {
+        _playerOptionsPanel.SetActive(false);
     }
 }
