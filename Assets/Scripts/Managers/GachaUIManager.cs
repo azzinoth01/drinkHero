@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class GachaUIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void LoadMainMenuScene()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SceneLoader.Load(SceneLoader.GameScene.MainMenu);
     }
 }
