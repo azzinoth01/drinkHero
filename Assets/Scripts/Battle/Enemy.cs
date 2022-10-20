@@ -49,7 +49,7 @@ public class Enemy {
     }
 
     public void EnemyTurn() {
-        GlobalGameInfos.Instance.SendDataToServer("Enemy Turn");
+        GlobalGameInfos.Instance.SendDataToServer("Enemy Turn Started");
         bool usedSkill = false;
         for (int i = 0; i < _skillList.Count;) {
             EnemySkill skill = _skillList[i];
