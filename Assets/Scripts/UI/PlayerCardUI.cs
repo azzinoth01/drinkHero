@@ -22,9 +22,9 @@ public class PlayerCardUI : MonoBehaviour {
             _typeText.SetText("Damage");
             _valueText.SetText(_card.Attack.ToString());
         }
-        else if (_card.Schild != 0) {
+        else if (_card.Shield != 0) {
             _typeText.SetText("Schild");
-            _valueText.SetText(_card.Schild.ToString());
+            _valueText.SetText(_card.Shield.ToString());
         }
         else if (_card.Health != 0) {
             _typeText.SetText("Health");
