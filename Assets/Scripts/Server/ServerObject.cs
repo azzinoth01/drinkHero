@@ -10,10 +10,6 @@ public class ServerObject : MonoBehaviour {
         _server.StartServer();
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
 
 
 }

@@ -20,7 +20,9 @@ public class EnemySkill {
             return _minAttack;
         }
 
-
+        set {
+            _minAttack = value;
+        }
     }
 
     public int MinSchild {
@@ -28,7 +30,9 @@ public class EnemySkill {
             return _minSchild;
         }
 
-
+        set {
+            _minSchild = value;
+        }
     }
 
     public int MinHealth {
@@ -36,6 +40,9 @@ public class EnemySkill {
             return _minHealth;
         }
 
+        set {
+            _minHealth = value;
+        }
     }
 
     public int MaxAttack {
@@ -43,6 +50,9 @@ public class EnemySkill {
             return _maxAttack;
         }
 
+        set {
+            _maxAttack = value;
+        }
     }
 
     public int MaxSchild {
@@ -50,7 +60,9 @@ public class EnemySkill {
             return _maxSchild;
         }
 
-
+        set {
+            _maxSchild = value;
+        }
     }
 
     public int MaxHealth {
@@ -58,15 +70,9 @@ public class EnemySkill {
             return _maxHealth;
         }
 
-
-    }
-
-    public int CurrentCooldown {
-        get {
-            return _currentCooldown;
+        set {
+            _maxHealth = value;
         }
-
-
     }
 
     public int Cooldown {
@@ -74,7 +80,29 @@ public class EnemySkill {
             return _cooldown;
         }
 
+        set {
+            _cooldown = value;
+        }
+    }
 
+    public int CurrentCooldown {
+        get {
+            return _currentCooldown;
+        }
+
+        set {
+            _currentCooldown = value;
+        }
+    }
+
+    public string Name {
+        get {
+            return _name;
+        }
+
+        set {
+            _name = value;
+        }
     }
 
     public void CooldownTick() {

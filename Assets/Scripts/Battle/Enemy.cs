@@ -49,6 +49,7 @@ public class Enemy {
     }
 
     public void EnemyTurn() {
+        GlobalGameInfos.Instance.SendDataToServer("Enemy Turn");
         bool usedSkill = false;
         for (int i = 0; i < _skillList.Count;) {
             EnemySkill skill = _skillList[i];
@@ -68,6 +69,14 @@ public class Enemy {
                 _health = _health + healthValue;
 
                 skill.StartCooldown();
+
+                EnemySkill logskill = new EnemySkill();
+                logskill.MinAttack = skill.MinAttack;
+                logskill.MinHealth = skill.MinHealth;
+                logskill.MinSchild = skill.MinSchild;
+
+                GlobalGameInfos.Instance.SendDataToServer(logskill);
+
             }
             else {
                 skill.CooldownTick();
@@ -75,7 +84,7 @@ public class Enemy {
 
             i = i + 1;
         }
-
+        GlobalGameInfos.Instance.SendDataToServer("Enemy Turn End");
         EndEnemyTurn();
     }
 

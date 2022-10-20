@@ -1,3 +1,5 @@
+using System;
+using System.Buffers.Binary;
 using System.Net.Sockets;
 using UnityEngine;
 
@@ -71,19 +73,38 @@ public class GlobalGameInfos : MonoBehaviour {
         _client = new TcpClient("localhost", port);
         _stream = _client.GetStream();
 
-        byte[] data = System.Text.Encoding.UTF8.GetBytes("Start");
-        _stream.Write(data, 0, data.Length);
+        SendDataToServer("Start");
+
+        //byte[] data = System.Text.Encoding.UTF8.GetBytes("Start");
+        //_stream.Write(data, 0, data.Length);
 
     }
 
-    public void SendDataToServer(Card card) {
-        string text = JsonUtility.ToJson(card);
+    public void SendDataToServer<T>(T card) {
+
+        Packet packet = new Packet();
+
+        packet.SetData(card);
+
+        string text = JsonUtility.ToJson(packet);
+
+        int size = text.Length;
 
 
+
+        Byte[] sizeByte = new byte[4];
+
+        BinaryPrimitives.WriteInt32BigEndian(sizeByte, size);
 
         byte[] data = System.Text.Encoding.UTF8.GetBytes(text);
 
-        _stream.Write(data, 0, data.Length);
+        byte[] combinedData = new byte[sizeByte.Length + data.Length];
+
+        System.Buffer.BlockCopy(sizeByte, 0, combinedData, 0, sizeByte.Length);
+        System.Buffer.BlockCopy(data, 0, combinedData, 4, data.Length);
+
+
+        _stream.Write(combinedData, 0, combinedData.Length);
 
     }
 
