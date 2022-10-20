@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour {
+public class BattleUIManager : MonoBehaviour {
 
     [SerializeField] private GameObject _playerCardUIPrefab;
     [SerializeField] private GameObject _playerHandUI;
@@ -155,5 +155,10 @@ public class UIManager : MonoBehaviour {
     public void HideOptionsPanel()
     {
         _playerOptionsPanel.SetActive(false);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneLoader.Load(SceneLoader.GameScene.MainMenu);
     }
 }

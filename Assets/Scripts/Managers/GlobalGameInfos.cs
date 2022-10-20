@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GlobalGameInfos : MonoBehaviour {
     private static GlobalGameInfos _instance;
@@ -11,8 +12,6 @@ public class GlobalGameInfos : MonoBehaviour {
         get {
             return _instance;
         }
-
-
     }
 
     public PlayerObject PlayerObject {
@@ -44,15 +43,9 @@ public class GlobalGameInfos : MonoBehaviour {
             _userObject = value;
         }
     }
-
-
-
-
-
-    private void Awake() {
+    
+    private void Awake()
+    {
         _instance = this;
     }
-
-
-
 }

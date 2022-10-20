@@ -1467,8 +1467,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1186994856}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: 
+        m_TargetAssemblyTypeName: BattleUIManager, Assembly-CSharp
+        m_MethodName: ReturnToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2059,7 +2059,7 @@ GameObject:
   - component: {fileID: 1186994857}
   - component: {fileID: 1186994856}
   m_Layer: 0
-  m_Name: UIManager
+  m_Name: BattleUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3408,6 +3408,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1186994856}
+    - target: {fileID: 1265147655082415663, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -5.0000153
+      objectReference: {fileID: 0}
     - target: {fileID: 1265147655166177842, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
