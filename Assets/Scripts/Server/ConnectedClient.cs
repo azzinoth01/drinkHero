@@ -89,12 +89,12 @@ public class ConnectedClient {
 
                     if (packet.ClassName == typeof(Card).ToString()) {
                         Card card = JsonUtility.FromJson<Card>(packet.Data);
-                        string cardText = "Card played \r\n" + "Costs " + card.Costs + "\r\n" + "Attack " + card.Attack + "\r\n" + "Schild " + card.Schild + "\r\n" + "Health " + card.Health + "\r\n";
+                        string cardText = "Card played \r\n" + "Costs " + card.Costs + "\r\n" + "Attack " + card.Attack + "\r\n" + "Schild " + card.Shield + "\r\n" + "Health " + card.Health + "\r\n";
                         Debug.LogError(cardText);
                     }
                     else if (packet.ClassName == typeof(EnemySkill).ToString()) {
                         EnemySkill skill = JsonUtility.FromJson<EnemySkill>(packet.Data);
-                        string enemySkill = "Enemy Turn \r\n" + "Attack " + skill.MinAttack + "\r\n" + "Schild " + skill.MinSchild + "\r\n" + "Health " + skill.MinHealth + "\r\n";
+                        string enemySkill = "Enemy Turn \r\n" + "Attack " + skill.MinAttack + "\r\n" + "Schild " + skill.MinSchield + "\r\n" + "Health " + skill.MinHealth + "\r\n";
                         Debug.LogError(enemySkill);
                     }
                     else if (packet.ClassName == typeof(string).ToString()) {

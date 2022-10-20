@@ -5,11 +5,11 @@ using UnityEngine;
 public class EnemySkill {
     [SerializeField] private string _name;
     [SerializeField] private int _minAttack;
-    [SerializeField] private int _minSchild;
+    [SerializeField] private int _minSchield;
     [SerializeField] private int _minHealth;
 
     [SerializeField] private int _maxAttack;
-    [SerializeField] private int _maxSchild;
+    [SerializeField] private int _maxSchield;
     [SerializeField] private int _maxHealth;
 
     [SerializeField] private int _cooldown;
@@ -25,13 +25,13 @@ public class EnemySkill {
         }
     }
 
-    public int MinSchild {
+    public int MinSchield {
         get {
-            return _minSchild;
+            return _minSchield;
         }
 
         set {
-            _minSchild = value;
+            _minSchield = value;
         }
     }
 
@@ -55,13 +55,13 @@ public class EnemySkill {
         }
     }
 
-    public int MaxSchild {
+    public int MaxSchield {
         get {
-            return _maxSchild;
+            return _maxSchield;
         }
 
         set {
-            _maxSchild = value;
+            _maxSchield = value;
         }
     }
 
