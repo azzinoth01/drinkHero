@@ -5,11 +5,11 @@ using UnityEngine;
 public class EnemySkill {
     [SerializeField] private string _name;
     [SerializeField] private int _minAttack;
-    [SerializeField] private int _minSchild;
+    [SerializeField] private int _minSchield;
     [SerializeField] private int _minHealth;
 
     [SerializeField] private int _maxAttack;
-    [SerializeField] private int _maxSchild;
+    [SerializeField] private int _maxSchield;
     [SerializeField] private int _maxHealth;
 
     [SerializeField] private int _cooldown;
@@ -20,15 +20,19 @@ public class EnemySkill {
             return _minAttack;
         }
 
-
+        set {
+            _minAttack = value;
+        }
     }
 
-    public int MinSchild {
+    public int MinSchield {
         get {
-            return _minSchild;
+            return _minSchield;
         }
 
-
+        set {
+            _minSchield = value;
+        }
     }
 
     public int MinHealth {
@@ -36,6 +40,9 @@ public class EnemySkill {
             return _minHealth;
         }
 
+        set {
+            _minHealth = value;
+        }
     }
 
     public int MaxAttack {
@@ -43,14 +50,19 @@ public class EnemySkill {
             return _maxAttack;
         }
 
+        set {
+            _maxAttack = value;
+        }
     }
 
-    public int MaxSchild {
+    public int MaxSchield {
         get {
-            return _maxSchild;
+            return _maxSchield;
         }
 
-
+        set {
+            _maxSchield = value;
+        }
     }
 
     public int MaxHealth {
@@ -58,15 +70,9 @@ public class EnemySkill {
             return _maxHealth;
         }
 
-
-    }
-
-    public int CurrentCooldown {
-        get {
-            return _currentCooldown;
+        set {
+            _maxHealth = value;
         }
-
-
     }
 
     public int Cooldown {
@@ -74,7 +80,29 @@ public class EnemySkill {
             return _cooldown;
         }
 
+        set {
+            _cooldown = value;
+        }
+    }
 
+    public int CurrentCooldown {
+        get {
+            return _currentCooldown;
+        }
+
+        set {
+            _currentCooldown = value;
+        }
+    }
+
+    public string Name {
+        get {
+            return _name;
+        }
+
+        set {
+            _name = value;
+        }
     }
 
     public void CooldownTick() {
