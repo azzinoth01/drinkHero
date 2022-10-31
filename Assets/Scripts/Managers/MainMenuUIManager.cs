@@ -13,9 +13,9 @@ public class MainMenuUIManager : MonoBehaviour
         SceneLoader.Load(SceneLoader.GameScene.BattleScene);
     }
     
-    public void LoadMainMenuScene()
+    public void LoadGachaMenuScene()
     {
-        SceneLoader.Load(SceneLoader.GameScene.MainMenu);
+        SceneLoader.Load(SceneLoader.GameScene.GachaMenu);
     }
     
     public void ShowOptionsPanel()
