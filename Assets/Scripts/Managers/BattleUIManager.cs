@@ -10,7 +10,8 @@ public class BattleUIManager : MonoBehaviour {
     [SerializeField] private GameObject _playerOptionsPanel;
 
     [SerializeField] private List<PlayerCardUI> _currentPlayerHand;
-    [SerializeField] private TextMeshProUGUI _playerHealthLabelText, _playerEnergyLabelText, _enemyHealthLabelText, 
+    [SerializeField]
+    private TextMeshProUGUI _playerHealthLabelText, _playerEnergyLabelText, _enemyHealthLabelText,
         _debugText, _playerShieldCount, _enemyShieldCount;
     [SerializeField] private Image _playerHealthBar, _playerEnergyBar, _enemyHealthBar;
 
@@ -39,11 +40,11 @@ public class BattleUIManager : MonoBehaviour {
     }
 
     void Start() {
-        
+
         UpdateHandCards();
         InitUIValues();
     }
-    
+
     private void AddHandCard(Card card) {
         var newCard = Instantiate(_playerCardUIPrefab, _playerHandUI.transform.position,
             Quaternion.identity, _playerHandUI.transform);
@@ -95,7 +96,7 @@ public class BattleUIManager : MonoBehaviour {
         UpdatePlayerHealthBar(GlobalGameInfos.Instance.PlayerObject.Player.PlayerHealth, GlobalGameInfos.Instance.PlayerObject.Player.PlayerMaxHealth);
         UpdatePlayerEnergyBar(GlobalGameInfos.Instance.PlayerObject.Player.PlayerEnergy, GlobalGameInfos.Instance.PlayerObject.Player.PlayerMaxEnergy);
         UpdatePlayerShieldCounter(GlobalGameInfos.Instance.PlayerObject.Player.PlayerShield);
-        
+
         UpdateEnemyHealthBar(GlobalGameInfos.Instance.EnemyObject.enemy.EnemyHealth, GlobalGameInfos.Instance.EnemyObject.enemy.EnemyMaxHealth);
         UpdateEnemyShieldCounter(GlobalGameInfos.Instance.EnemyObject.enemy.EnemyShield);
     }
@@ -112,28 +113,27 @@ public class BattleUIManager : MonoBehaviour {
         UpdateBarDisplay(currentValue, maxValue, _enemyHealthLabelText, _enemyHealthBar);
     }
 
-    private static void UpdateBarDisplay(float currentValue, float maxValue, TextMeshProUGUI label, Image bar) 
-    {
+    private static void UpdateBarDisplay(float currentValue, float maxValue, TextMeshProUGUI label, Image bar) {
         Debug.Log($"Bar Display Updated. Current Value: {currentValue} MaxValue {maxValue}");
         label.SetText(currentValue.ToString());
         bar.fillAmount = currentValue / maxValue;
     }
 
-    private void UpdateEnemyShieldCounter(int value)
-    {
-        UpdateShieldCounterDisplay(_enemyShieldCount, value);    
+    private void UpdateEnemyShieldCounter(int value) {
+        UpdateShieldCounterDisplay(_enemyShieldCount, value);
     }
-    
-    private void UpdatePlayerShieldCounter(int value)
-    {
-        UpdateShieldCounterDisplay(_playerShieldCount, value);    
+
+    private void UpdatePlayerShieldCounter(int value) {
+        UpdateShieldCounterDisplay(_playerShieldCount, value);
     }
-    
-    private void UpdateShieldCounterDisplay(TextMeshProUGUI counterText, int value)
-    {
-        counterText.SetText(value.ToString());   
+
+    private void UpdateShieldCounterDisplay(TextMeshProUGUI counterText, int value) {
+        if (counterText != null) {
+            counterText.SetText(value.ToString());
+        }
+
     }
-    
+
     private void TogglePlayerUIControls(bool state) {
         // get all cards currently held and toggle their state 
         foreach (var cardButton in _currentPlayerHand) {
@@ -147,13 +147,11 @@ public class BattleUIManager : MonoBehaviour {
         _debugText.SetText(text);
     }
 
-    public void ShowOptionsPanel()
-    {
+    public void ShowOptionsPanel() {
         _playerOptionsPanel.SetActive(true);
     }
-    
-    public void HideOptionsPanel()
-    {
+
+    public void HideOptionsPanel() {
         _playerOptionsPanel.SetActive(false);
     }
 
