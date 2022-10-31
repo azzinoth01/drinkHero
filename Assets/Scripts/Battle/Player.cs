@@ -75,6 +75,9 @@ public class Player {
         if (card.Costs > _ressource) {
             return;
         }
+
+        GlobalGameInfos.Instance.SendDataToServer(card);
+
         _ressource = _ressource - card.Costs;
         
         GlobalGameInfos.Instance.EnemyObject.enemy.TakeDmg(card.Attack);
