@@ -44,7 +44,7 @@ public class Enemy {
         else {
             _health -= dmg;
         }
-
+        
         UpdateEnemyHealthUI();
 
         if (_health <= 0) {

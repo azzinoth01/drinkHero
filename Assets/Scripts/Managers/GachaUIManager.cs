@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class GachaUIManager : MonoBehaviour
 {
-
     [SerializeField] private RectTransform _disclaimerPanel, _helpPanel;
     
     public void LoadMainMenuScene()
     {
-        SceneLoader.Load(SceneLoader.GameScene.MainMenu);
+        SceneLoader.Load(GameScene.MainMenu);
     }
 
     public void ShowHelpPanel()

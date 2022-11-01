@@ -9,6 +9,7 @@ public class SceneLoaderCallback : MonoBehaviour
     
     private void Update()
     {
+        // TODO: explain
         if (_isFirstUpdate)
         {
             _isFirstUpdate = false;

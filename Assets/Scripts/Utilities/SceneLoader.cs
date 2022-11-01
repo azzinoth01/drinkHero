@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,14 +11,6 @@ public static class SceneLoader
     private class SceneLoaderDummy : MonoBehaviour
     {
         // Dummy class used to start loading coroutine    
-    }
-    
-    public enum GameScene
-    {
-        LoadingScene,
-        MainMenu,
-        BattleScene,
-        GachaMenu
     }
 
     private static Action onLoaderCallback; 
@@ -51,12 +42,16 @@ public static class SceneLoader
     private static IEnumerator LoadSceneAsync(GameScene gameScene)
     {
         yield return null;
+        
+        //TODO: dont use string based lookup
         asyncOperation = SceneManager.LoadSceneAsync(gameScene.ToString());
 
         while (!asyncOperation.isDone)
         {
             yield return null;
         }
+
+        yield return new WaitForSeconds(0.5f);
     }
 
     public static float GetLoadingProgress()

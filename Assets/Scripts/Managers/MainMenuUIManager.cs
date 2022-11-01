@@ -7,15 +7,14 @@ public class MainMenuUIManager : MonoBehaviour
 {
     [SerializeField] private GameObject _playerOptionsPanel;
     
-    
     public void LoadBattleScene()
     {
-        SceneLoader.Load(SceneLoader.GameScene.BattleScene);
+        SceneLoader.Load(GameScene.BattleScene);
     }
     
     public void LoadGachaMenuScene()
     {
-        SceneLoader.Load(SceneLoader.GameScene.GachaMenu);
+        SceneLoader.Load(GameScene.GachaMenu);
     }
     
     public void ShowOptionsPanel()

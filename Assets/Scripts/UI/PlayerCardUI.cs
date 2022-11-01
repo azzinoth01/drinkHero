@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerCardUI : MonoBehaviour {
     private Card _card;
 
-    [SerializeField] private TextMeshProUGUI _costText;
+    [field: SerializeField] public TextMeshProUGUI CostText { get; }
     [SerializeField] private TextMeshProUGUI _valueText;
     [SerializeField] private TextMeshProUGUI _typeText;
 
@@ -16,7 +16,7 @@ public class PlayerCardUI : MonoBehaviour {
     public void SetDisplayValues(Card card) {
         _card = card;
         _sprite = _card.Sprite;
-        _costText.SetText(_card.Costs.ToString());
+        CostText.SetText(_card.Costs.ToString());
 
         if (_card.Attack != 0) {
             _typeText.SetText("Damage");
@@ -30,6 +30,5 @@ public class PlayerCardUI : MonoBehaviour {
             _typeText.SetText("Health");
             _valueText.SetText(_card.Health.ToString());
         }
-
     }
 }

@@ -3541,6 +3541,10 @@ PrefabInstance:
       propertyPath: enemy._shield
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5626899109704554698, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
+      propertyPath: enemy._maxHealth
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6880171207486711353, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
       propertyPath: m_Name
       value: EnemyObject
