@@ -26,6 +26,8 @@ public class ConnectedClient {
         _readPos = 0;
         _copyPos = 0;
         _byteSizeOfLastData = 0;
+
+
     }
 
     public Socket Connection {
@@ -34,6 +36,10 @@ public class ConnectedClient {
         }
 
 
+    }
+
+    public void CloseConnection() {
+        _connection.Close();
     }
 
     public void ReadConnection() {
