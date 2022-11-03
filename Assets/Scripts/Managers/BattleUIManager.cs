@@ -17,6 +17,7 @@ public class BattleUIManager : MonoBehaviour {
 
     [SerializeField] private Button _endTurnButton;
 
+    //TODO: maybe refactor..
     private void OnEnable() {
         TurnManager.togglePlayerUiControls += TogglePlayerUIControls;
         TurnManager.updateDebugText += UpdateDebugText;
@@ -114,7 +115,6 @@ public class BattleUIManager : MonoBehaviour {
     }
 
     private static void UpdateBarDisplay(float currentValue, float maxValue, TextMeshProUGUI label, Image bar) {
-        Debug.Log($"Bar Display Updated. Current Value: {currentValue} MaxValue {maxValue}");
         label.SetText(currentValue.ToString());
         bar.fillAmount = currentValue / maxValue;
     }
@@ -131,7 +131,6 @@ public class BattleUIManager : MonoBehaviour {
         if (counterText != null) {
             counterText.SetText(value.ToString());
         }
-
     }
 
     private void TogglePlayerUIControls(bool state) {
@@ -157,6 +156,6 @@ public class BattleUIManager : MonoBehaviour {
 
     public void ReturnToMainMenu()
     {
-        SceneLoader.Load(SceneLoader.GameScene.MainMenu);
+        SceneLoader.Load(GameScene.MainMenu);
     }
 }

@@ -3,36 +3,15 @@ using System.Collections;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour {
-    //[SerializeField] private PlayerObject _playerObject;
-    //private Player _player;
-
-    //[SerializeField] private EnemyObject _enemyObject;
-    //private Enemy _enemy;
-
+    
     private bool _playerTurn;
-
-    public enum TurnState {
-        Start, PlayerTurn, EnemyTurn, Win, Lost
-    }
-
     private TurnState _turnState;
-
-
-
 
     public static event Action<bool> togglePlayerUiControls;
     public static event Action<string> updateDebugText;
 
-
-
-
     private void OnEnable() {
         Enemy.enemyTurnDone += EndEnemyTurn;
-
-        //_player = _playerObject.PlayerReference;
-        //_enemy = _enemyObject.enemy;
-
-
     }
 
     private void Start() {
@@ -43,22 +22,7 @@ public class TurnManager : MonoBehaviour {
     private void OnDisable() {
         Enemy.enemyTurnDone -= EndEnemyTurn;
     }
-
-    private void HandleTurn() {
-        switch (_turnState) {
-            case TurnState.Start:
-                break;
-            case TurnState.PlayerTurn:
-                break;
-            case TurnState.EnemyTurn:
-                break;
-            case TurnState.Lost:
-                break;
-            case TurnState.Win:
-                break;
-        }
-    }
-
+    
     private IEnumerator InitCombat() {
         updateDebugText?.Invoke("Combat Initiated!");
         yield return new WaitForSeconds(1f);
@@ -75,8 +39,6 @@ public class TurnManager : MonoBehaviour {
         yield return new WaitForSeconds(1f);
 
         GlobalGameInfos.Instance.PlayerObject.Player.StartTurn();
-
-        //_player.StartTurn();
     }
 
     private IEnumerator EnemyTurn() {
