@@ -1,6 +1,9 @@
+
+
+using Mono.Data.Sqlite;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
+
 
 
 public class AddEnemyDataToDatabase : MonoBehaviour {
@@ -12,7 +15,10 @@ public class AddEnemyDataToDatabase : MonoBehaviour {
     public List<EnemyDatabase> databaseList;
 
     [ContextMenu("Add Data to Database")]
-    public void TestDatabase() {
+    public void InsertDatabaseItem() {
+
+
+
 
         _connectionString = Application.dataPath;
 
@@ -22,13 +28,24 @@ public class AddEnemyDataToDatabase : MonoBehaviour {
 
         _connectionString = _connectionString + "/" + databaseName;
 
-        SQLiteConnection dbCon = new SQLiteConnection(_connectionString);
+        _connectionString = "URI=file:" + _connectionString;
 
-        dataToAdd.Db = dbCon;
+        SqliteConnection con = new SqliteConnection(_connectionString);
 
-        dataToAdd.InsertDatabaseItem();
 
-        dbCon.Close();
+
+
+        con.Open();
+
+        DatabaseManager.Db = con;
+
+        DatabaseManager.InsertDatabaseItem(dataToAdd);
+
+
+        con.Close();
+
+
+
 
     }
 
@@ -42,16 +59,23 @@ public class AddEnemyDataToDatabase : MonoBehaviour {
 
         _connectionString = _connectionString + "/" + databaseName;
 
-        SQLiteConnection dbCon = new SQLiteConnection(_connectionString);
+        _connectionString = "URI=file:" + _connectionString;
 
-        DatabaseItem database = new DatabaseItem();
-        database.Db = dbCon;
-
-        databaseList = database.GetDatabaseItemList<EnemyDatabase>();
+        SqliteConnection con = new SqliteConnection(_connectionString);
 
 
 
-        dbCon.Close();
+
+        con.Open();
+
+        DatabaseManager.Db = con;
+
+
+        databaseList = DatabaseManager.GetDatabaseList<EnemyDatabase>();
+
+
+
+        con.Close();
     }
     [ContextMenu("Update Database List")]
     public void UpdateDatabaseList() {
@@ -63,13 +87,23 @@ public class AddEnemyDataToDatabase : MonoBehaviour {
 
         _connectionString = _connectionString + "/" + databaseName;
 
-        SQLiteConnection dbCon = new SQLiteConnection(_connectionString);
+        _connectionString = "URI=file:" + _connectionString;
+
+        SqliteConnection con = new SqliteConnection(_connectionString);
+
+
+
+
+        con.Open();
+
+        DatabaseManager.Db = con;
+
 
         foreach (EnemyDatabase data in databaseList) {
-            data.Db = dbCon;
-            data.UpdateDatabaseItem();
+            Debug.Log(data);
+            DatabaseManager.UpdateDatabaseItem(data);
         }
 
-        dbCon.Close();
+        con.Close();
     }
 }

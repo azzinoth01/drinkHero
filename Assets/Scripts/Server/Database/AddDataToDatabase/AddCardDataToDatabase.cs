@@ -1,5 +1,8 @@
+
+
+using Mono.Data.Sqlite;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
+
 using UnityEngine;
 
 public class AddCardDataToDatabase : MonoBehaviour {
@@ -10,7 +13,7 @@ public class AddCardDataToDatabase : MonoBehaviour {
     public List<CardDatabase> databaseList;
 
     [ContextMenu("Add Data to Database")]
-    public void TestDatabase() {
+    public void InsertDatabaseItem() {
 
         _connectionString = Application.dataPath;
 
@@ -20,13 +23,15 @@ public class AddCardDataToDatabase : MonoBehaviour {
 
         _connectionString = _connectionString + "/" + databaseName;
 
-        SQLiteConnection dbCon = new SQLiteConnection(_connectionString);
+        _connectionString = "URI=file:" + _connectionString;
 
-        dataToAdd.Db = dbCon;
+        SqliteConnection con = new SqliteConnection(_connectionString);
 
-        dataToAdd.InsertDatabaseItem();
+        DatabaseManager.Db = con;
+        con.Open();
+        DatabaseManager.InsertDatabaseItem(dataToAdd);
 
-        dbCon.Close();
+        con.Close();
 
     }
 
@@ -40,17 +45,19 @@ public class AddCardDataToDatabase : MonoBehaviour {
 
         _connectionString = _connectionString + "/" + databaseName;
 
-        SQLiteConnection dbCon = new SQLiteConnection(_connectionString);
+        _connectionString = "URI=file:" + _connectionString;
+
+        SqliteConnection con = new SqliteConnection(_connectionString);
+        con.Open();
+
+        DatabaseManager.Db = con;
 
 
-        DatabaseItem database = new DatabaseItem();
-        database.Db = dbCon;
-
-        databaseList = database.GetDatabaseItemList<CardDatabase>();
+        databaseList = DatabaseManager.GetDatabaseList<CardDatabase>();
 
 
 
-        dbCon.Close();
+        con.Close();
     }
     [ContextMenu("Update Database List")]
     public void UpdateDatabaseList() {
@@ -62,13 +69,17 @@ public class AddCardDataToDatabase : MonoBehaviour {
 
         _connectionString = _connectionString + "/" + databaseName;
 
-        SQLiteConnection dbCon = new SQLiteConnection(_connectionString);
+        _connectionString = "URI=file:" + _connectionString;
+
+        SqliteConnection con = new SqliteConnection(_connectionString);
+        con.Open();
+        DatabaseManager.Db = con;
 
         foreach (CardDatabase data in databaseList) {
-            data.Db = dbCon;
-            data.UpdateDatabaseItem();
+            DatabaseManager.UpdateDatabaseItem(data);
+
         }
 
-        dbCon.Close();
+        con.Close();
     }
 }

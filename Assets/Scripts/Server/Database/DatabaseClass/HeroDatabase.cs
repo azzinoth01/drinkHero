@@ -1,20 +1,22 @@
+
 using System;
-using Unity.VisualScripting.Dependencies.Sqlite;
+using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable, Table("Hero")]
 public class HeroDatabase : DatabaseItem {
-    private int _id;
-    private int _shield;
-    private int _health;
-    private string _spritePath;
-    private string _name;
+    [SerializeField] private long _id;
+    [SerializeField] private int _shield;
+    [SerializeField] private int _health;
+    [SerializeField] private string _spritePath;
+    [SerializeField] private string _name;
+    [NonSerialized] private List<CardToHero> _cardList;
 
 
 
 
-
-    [Column("ID"), PrimaryKey, AutoIncrement]
-    public int Id {
+    [Column("ID"), PrimaryKey]
+    public long Id {
         get {
             return _id;
         }
@@ -62,6 +64,14 @@ public class HeroDatabase : DatabaseItem {
         set {
             _name = value;
         }
+    }
+
+    public List<CardToHero> CardList {
+        get {
+            _cardList = DatabaseManager.GetDatabaseList<CardToHero>("RefHero", _id);
+            return _cardList;
+        }
+
     }
 
     public HeroDatabase() {

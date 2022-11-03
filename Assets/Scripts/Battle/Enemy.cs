@@ -72,7 +72,7 @@ public class Enemy {
 
                 Debug.Log("Enemy Attacks Player!");
 
-                int schildValue = Random.Range(skill.MinSchield, skill.MaxSchield);
+                int schildValue = Random.Range(skill.MinShield, skill.MaxSchield);
                 _shield = _shield + schildValue;
 
                 int healthValue = Random.Range(skill.MinHealth, skill.MaxHealth);
@@ -80,10 +80,12 @@ public class Enemy {
 
                 skill.StartCooldown();
 
+
+                // server
                 EnemySkill logskill = new EnemySkill();
                 logskill.MinAttack = skill.MinAttack;
                 logskill.MinHealth = skill.MinHealth;
-                logskill.MinSchield = skill.MinSchield;
+                logskill.MinShield = skill.MinShield;
 
                 GlobalGameInfos.Instance.SendDataToServer(logskill);
 

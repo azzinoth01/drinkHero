@@ -1,21 +1,24 @@
+
+
 using System;
-using Unity.VisualScripting.Dependencies.Sqlite;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Table("Card"), Serializable]
 public class CardDatabase : DatabaseItem {
-    [SerializeField] private int _id;
+    [SerializeField] private long _id;
     [SerializeField] private string _name;
     [SerializeField] private int _attack;
     [SerializeField] private int _shield;
     [SerializeField] private int _health;
     [SerializeField] private int _cost;
     [SerializeField] private string _spritePath;
-    [SerializeField] private int? _refUpgradeTo;
-    private CardDatabase _upgradeTo;
+    [SerializeField] private string _refUpgradeTo;
+    [NonSerialized] private CardDatabase _upgradeTo;
+    [NonSerialized] private List<CardToHero> _heroList;
 
-    [Column("ID"), PrimaryKey, AutoIncrement]
-    public int Id {
+    [Column("ID"), PrimaryKey]
+    public long Id {
         get {
             return _id;
         }
@@ -85,7 +88,7 @@ public class CardDatabase : DatabaseItem {
         }
     }
     [Column("RefUpgradeTo")]
-    public int? RefUpgradeTo {
+    public string RefUpgradeTo {
         get {
             return _refUpgradeTo;
         }
@@ -103,7 +106,7 @@ public class CardDatabase : DatabaseItem {
             if (_refUpgradeTo == null) {
                 return null;
             }
-            _upgradeTo = GetDatabaseItem<CardDatabase>((int)_refUpgradeTo);
+            _upgradeTo = DatabaseManager.GetDatabaseItem<CardDatabase>(long.Parse(_refUpgradeTo));
             return _upgradeTo;
 
         }
@@ -113,52 +116,26 @@ public class CardDatabase : DatabaseItem {
                 _refUpgradeTo = null;
             }
             else {
-                _refUpgradeTo = value.Id;
+                _refUpgradeTo = value.Id.ToString();
             }
 
             _upgradeTo = value;
         }
     }
 
+    public List<CardToHero> HeroList {
+        get {
+            _heroList = DatabaseManager.GetDatabaseList<CardToHero>("RefCard", _id);
+            return _heroList;
+        }
+
+
+    }
+
     public CardDatabase() {
 
     }
 
-    //public void InsertIntoDatabase(SQLiteConnection db) {
-
-    //    db.Insert(this);
-
-    //}
-
-
-    //public static List<CardDatabase> GetCardFromDatabase(SQLiteConnection db) {
-
-
-    //    string sqlCommand = "SELECT * FROM Card";
-
-    //    SQLiteCommand command = db.CreateCommand(sqlCommand);
-
-
-    //    List<CardDatabase> list = command.ExecuteQuery<CardDatabase>();
-    //    foreach (CardDatabase c in list) {
-    //        c.ResolveReferenzKeys(db);
-    //    }
-
-
-    //    return list;
-    //}
-
-    //public static CardDatabase GetCardFromDatabase(SQLiteConnection db, int id) {
-
-
-    //    return db.Find<CardDatabase>(id);
-    //}
-
-    //public void UpdateDatabaseValues(SQLiteConnection db) {
-
-
-    //    db.Update(this);
-    //}
 
 
 }
