@@ -4,10 +4,8 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [Serializable]
-public class Enemy {
-    [SerializeField] private int _health;
-    [SerializeField] private int _maxHealth;
-    [SerializeField] private int _shield;
+public class Enemy : Character {
+
     [SerializeField] private int _attack;
     [SerializeField] private ElementEnum _element;
     [SerializeField] private Sprite _sprite;
@@ -15,10 +13,8 @@ public class Enemy {
 
     public static event Action<int> updateEnemyShieldUI;
 
-    public int EnemyHealth => _health;
-    public int EnemyMaxHealth => _maxHealth;
 
-    public int EnemyShield => _shield;
+
 
     public static event Action enemyTurnDone;
     public static event Action<float, float> updateEnemyHealthUI;
@@ -44,7 +40,7 @@ public class Enemy {
         else {
             _health -= dmg;
         }
-        
+
         UpdateEnemyHealthUI();
 
         if (_health <= 0) {

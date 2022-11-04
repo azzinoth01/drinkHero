@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Player {
+public class Player : Character {
     [SerializeField] private string _name;
-    [SerializeField] private int _health;
-    [SerializeField] private int _maxHealth;
-    [SerializeField] private int _shield;
+
     [SerializeField] private int _attack;
     [SerializeField] private int _maxRessource;
     [SerializeField] private int _ressource;
@@ -17,8 +15,6 @@ public class Player {
 
     [SerializeField] private GameDeck _gameDeck;
 
-    public int PlayerHealth => _health;
-    public int PlayerMaxHealth => _maxHealth;
     public int PlayerEnergy => _ressource;
     public int PlayerMaxEnergy => _maxRessource;
 
