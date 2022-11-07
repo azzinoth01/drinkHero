@@ -3,6 +3,9 @@ using UnityEngine;
 public class EnemyObject : MonoBehaviour
 {
     public Enemy enemy;
+
+
+}
     [SerializeField] private SimpleAudioEvent _enemyDamageSound;
     [SerializeField] private SimpleAudioEvent _enemyDamageShieldedSound;
 

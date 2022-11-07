@@ -106,6 +106,13 @@ public class BattleUIManager : MonoBehaviour
         UpdateHandCards();
     }
 
+    private void InitUIValues() {
+        UpdatePlayerHealthBar(GlobalGameInfos.Instance.PlayerObject.Player.Health, GlobalGameInfos.Instance.PlayerObject.Player.MaxHealth);
+        UpdatePlayerEnergyBar(GlobalGameInfos.Instance.PlayerObject.Player.PlayerEnergy, GlobalGameInfos.Instance.PlayerObject.Player.PlayerMaxEnergy);
+        UpdatePlayerShieldCounter(GlobalGameInfos.Instance.PlayerObject.Player.Shield);
+
+        UpdateEnemyHealthBar(GlobalGameInfos.Instance.EnemyObject.enemy.Health, GlobalGameInfos.Instance.EnemyObject.enemy.MaxHealth);
+        UpdateEnemyShieldCounter(GlobalGameInfos.Instance.EnemyObject.enemy.Shield);
     private void InitUIValues()
     {
         UpdatePlayerHealthBar(GlobalGameInfos.Instance.PlayerObject.Player.PlayerHealth,
@@ -180,6 +187,7 @@ public class BattleUIManager : MonoBehaviour
         _playerOptionsPanel.SetActive(false);
     }
 
+    public void ReturnToMainMenu() {
     public void ReturnToMainMenu()
     {
         PlayAudioFeedback(_clickButtonSound);

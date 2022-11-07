@@ -4,6 +4,8 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [Serializable]
+public class Enemy : Character {
+
 public class Enemy
 {
     [SerializeField] private int _health;
@@ -16,10 +18,8 @@ public class Enemy
 
     public static event Action<int> updateEnemyShieldUI;
 
-    public int EnemyHealth => _health;
-    public int EnemyMaxHealth => _maxHealth;
 
-    public int EnemyShield => _shield;
+
 
     public static event Action enemyTurnDone;
     public static event Action enemyDamageReceived;
@@ -51,6 +51,7 @@ public class Enemy
             _health = 0;
         else
             _health -= dmg;
+        }
 
         if (lastShield > _shield) enemyDamageShielded?.Invoke();
 
@@ -85,6 +86,7 @@ public class Enemy
 
                 Debug.Log("Enemy Attacks Player!");
 
+                int schildValue = Random.Range(skill.MinShield, skill.MaxSchield);
                 var schildValue = Random.Range(skill.MinSchield, skill.MaxSchield);
                 _shield = _shield + schildValue;
 
@@ -93,10 +95,13 @@ public class Enemy
 
                 skill.StartCooldown();
 
+
+                // server
+                EnemySkill logskill = new EnemySkill();
                 var logskill = new EnemySkill();
                 logskill.MinAttack = skill.MinAttack;
                 logskill.MinHealth = skill.MinHealth;
-                logskill.MinSchield = skill.MinSchield;
+                logskill.MinShield = skill.MinShield;
 
                 GlobalGameInfos.Instance.SendDataToServer(logskill);
             }

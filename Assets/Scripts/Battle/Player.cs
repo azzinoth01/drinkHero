@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
+public class Player : Character {
 public class Player
 {
     [SerializeField] private string _name;
-    [SerializeField] private int _health;
-    [SerializeField] private int _maxHealth;
-    [SerializeField] private int _shield;
+
     [SerializeField] private int _attack;
     [SerializeField] private int _maxRessource;
     [SerializeField] private int _ressource;
@@ -18,8 +17,6 @@ public class Player
 
     [SerializeField] private GameDeck _gameDeck;
 
-    public int PlayerHealth => _health;
-    public int PlayerMaxHealth => _maxHealth;
     public int PlayerEnergy => _ressource;
     public int PlayerMaxEnergy => _maxRessource;
 
@@ -57,6 +54,7 @@ public class Player
         _ressource = 10;
     }
 
+    public void ResetRessource() {
     public void ResetRessource()
     {
         _ressource = _maxRessource;
@@ -86,6 +84,17 @@ public class Player
 
         GlobalGameInfos.Instance.SendDataToServer(card);
 
+        _ressource = _ressource - card.Costs;
+
+        GlobalGameInfos.Instance.EnemyObject.enemy.TakeDmg(card.Attack);
+
+
+        if (_shield + card.Shield < 0) {
+            _shield = 0;
+        }
+        else {
+            _shield += card.Shield;
+        }
         _ressource -= card.Costs;
 
         GlobalGameInfos.Instance.EnemyObject.enemy.TakeDmg(card.Attack);
@@ -134,16 +143,24 @@ public class Player
             {
                 _shield -= dmg;
                 dmg = 0;
+
+                // Update Shield Counter UI
             }
             else
             {
                 dmg -= _shield;
                 _shield = 0;
+
+                // Update Shield Counter UI
             }
 
             UpdateShieldUI();
         }
 
+        if (_health - dmg < 0) {
+            _health = 0;
+        }
+        else {
         if (_health - dmg < 0)
             _health = 0;
         else
@@ -171,8 +188,7 @@ public class Player
         updatePlayerEnergyUI?.Invoke(_ressource, _maxRessource);
     }
 
-    private void UpdateShieldUI()
-    {
+    private void UpdateShieldUI() {
         updatePlayerShieldUI?.Invoke(_shield);
     }
 }

@@ -79,11 +79,11 @@ public class GlobalGameInfos : MonoBehaviour {
 
     }
 
-    public void SendDataToServer<T>(T card) {
+    public void SendDataToServer<T>(T item) {
 
         Packet packet = new Packet();
 
-        packet.SetData(card);
+        packet.SetData(item);
 
         string text = JsonUtility.ToJson(packet);
 
