@@ -10,6 +10,10 @@ public class ServerObject : MonoBehaviour {
         _server.StartServer();
     }
 
+    private void OnDisable() {
+        _server.CloseServer();
+    }
+
 
 
 }

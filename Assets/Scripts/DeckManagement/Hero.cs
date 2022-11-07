@@ -7,7 +7,7 @@ public class Hero {
     [SerializeField] private string _name;
     [SerializeField] private uint _iD;
     [SerializeField] private int _attack;
-    [SerializeField] private int _schild;
+    [SerializeField] private int _shield;
     [SerializeField] private int _health;
     [SerializeField] private List<Card> _cardList;
     [SerializeField] private ElementEnum _element;
@@ -28,9 +28,9 @@ public class Hero {
 
     }
 
-    public int Schild {
+    public int Shield {
         get {
-            return _schild;
+            return _shield;
         }
 
 

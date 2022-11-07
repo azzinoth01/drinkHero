@@ -26,6 +26,8 @@ public class ConnectedClient {
         _readPos = 0;
         _copyPos = 0;
         _byteSizeOfLastData = 0;
+
+
     }
 
     public Socket Connection {
@@ -36,10 +38,12 @@ public class ConnectedClient {
 
     }
 
+    public void CloseConnection() {
+        _connection.Close();
+    }
+
     public void ReadConnection() {
-        //DateTime currentTime = DateTime.Now;
-        //_deltaTime = (currentTime - _lastTime).TotalMilliseconds;
-        //_lastTime = currentTime;
+
 
         Byte[] receive = new byte[1024];
 
@@ -49,10 +53,7 @@ public class ConnectedClient {
 
 
         if (bytesReceived == 0) {
-            //_timeoutCheck = _timeoutCheck + (float)_deltaTime;
-            //if (_connection.ReceiveTimeout < _timeoutCheck) {
-            //    _connection.Close();
-            //}
+
         }
         else {
             _readPos = 0;
@@ -94,7 +95,7 @@ public class ConnectedClient {
                     }
                     else if (packet.ClassName == typeof(EnemySkill).ToString()) {
                         EnemySkill skill = JsonUtility.FromJson<EnemySkill>(packet.Data);
-                        string enemySkill = "Enemy Turn \r\n" + "Attack " + skill.MinAttack + "\r\n" + "Schild " + skill.MinSchield + "\r\n" + "Health " + skill.MinHealth + "\r\n";
+                        string enemySkill = "Enemy Turn \r\n" + "Attack " + skill.MinAttack + "\r\n" + "Schild " + skill.MinShield + "\r\n" + "Health " + skill.MinHealth + "\r\n";
                         Debug.LogError(enemySkill);
                     }
                     else if (packet.ClassName == typeof(string).ToString()) {
@@ -103,97 +104,6 @@ public class ConnectedClient {
                     }
                 }
             }
-
-
-
-
-
-            //while (bytesReceived > 0) {
-            //    string sBuffer;
-            //    int readpos = 0;
-            //    if (_byteSizeOfLastData <= 0) {
-            //        byte[] toint = new byte[4];
-            //        System.Buffer.BlockCopy(receive, readpos, toint, 0, 4);
-            //        _byteSizeOfLastData = BinaryPrimitives.ReadInt32BigEndian(toint);
-            //        bytesReceived = bytesReceived - 4;
-            //        readpos = readpos + 4;
-
-
-            //        if (_byteSizeOfLastData >= bytesReceived) {
-            //            sBuffer = Encoding.UTF8.GetString(receive, readpos, bytesReceived);
-            //            _byteSizeOfLastData = _byteSizeOfLastData - bytesReceived;
-            //            bytesReceived = bytesReceived - bytesReceived;
-            //        }
-            //        else if (_byteSizeOfLastData < bytesReceived) {
-            //            sBuffer = Encoding.UTF8.GetString(receive, readpos, _byteSizeOfLastData);
-            //            bytesReceived = bytesReceived - _byteSizeOfLastData;
-            //            readpos = readpos + _byteSizeOfLastData;
-            //            _byteSizeOfLastData = _byteSizeOfLastData - _byteSizeOfLastData;
-
-            //        }
-            //    }
-            //}
-
-            //if (finisehdRecievData == true) {
-            //    byte[] toint = new byte[4];
-            //    System.Buffer.BlockCopy(receive, 0, toint, 0, 4);
-            //    _byteSizeOfLastData = BinaryPrimitives.ReadInt32BigEndian(toint);
-
-            //    //byteSizeOfLastData = BitConverter.ToInt32(receive, 0);
-            //    sBuffer = Encoding.UTF8.GetString(receive, 4, _byteSizeOfLastData);
-
-            //    _byteSizeOfLastData = _byteSizeOfLastData - (bytesReceived - 4);
-            //    if (0 >= _byteSizeOfLastData) {
-            //        finisehdRecievData = true;
-            //    }
-            //    else {
-
-            //        finisehdRecievData = false;
-            //    }
-            //}
-            //else {
-            //    sBuffer = Encoding.UTF8.GetString(receive, 0, bytesReceived);
-            //    _byteSizeOfLastData = _byteSizeOfLastData - bytesReceived;
-            //    if (0 >= _byteSizeOfLastData) {
-            //        finisehdRecievData = true;
-            //    }
-
-            //}
-            //_recievedData = _recievedData + sBuffer;
-
-            //if (finisehdRecievData == true) {
-            //    Packet packet = JsonUtility.FromJson<Packet>(_recievedData);
-            //    _recievedData = "";
-
-            //    if (packet.ClassName == typeof(Card).ToString()) {
-            //        Card card = JsonUtility.FromJson<Card>(packet.Data);
-            //        string cardText = "Card played \r\n" + "Costs " + card.Costs + "\r\n" + "Attack " + card.Attack + "\r\n" + "Schild " + card.Schild + "\r\n" + "Health " + card.Health + "\r\n";
-            //        Debug.LogError(cardText);
-            //    }
-            //    else if (packet.ClassName == typeof(EnemySkill).ToString()) {
-            //        EnemySkill skill = JsonUtility.FromJson<EnemySkill>(packet.Data);
-            //        string enemySkill = "Enemy Turn \r\n" + "Attack " + skill.MinAttack + "\r\n" + "Schild " + skill.MinSchild + "\r\n" + "Health " + skill.MinHealth + "\r\n";
-            //    }
-            //    else if (packet.ClassName == typeof(string).ToString()) {
-            //        string s = packet.Data;
-            //        Debug.LogError(s);
-            //    }
-            //}
-
-            //if (sBuffer == "Start") {
-            //    Debug.LogError(sBuffer + "\r\n");
-            //    return;
-            //}
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,20 +1,46 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class EnemySkill {
+
+[Table("EnemySkill"), Serializable]
+public class EnemySkillDatabase : DatabaseItem {
+
+
+
+    [SerializeField] private long _id;
     [SerializeField] private string _name;
     [SerializeField] private int _minAttack;
     [SerializeField] private int _minShield;
     [SerializeField] private int _minHealth;
-
     [SerializeField] private int _maxAttack;
-    [SerializeField] private int _maxSchield;
+    [SerializeField] private int _maxShield;
     [SerializeField] private int _maxHealth;
-
     [SerializeField] private int _cooldown;
-    [SerializeField] private int _currentCooldown;
 
+    [NonSerialized] private List<EnemyToEnemySkill> _enemyToEnemySkills;
+
+    [Column("ID"), PrimaryKey]
+    public long Id {
+        get {
+            return _id;
+        }
+
+        set {
+            _id = value;
+        }
+    }
+    [Column("Name")]
+    public string Name {
+        get {
+            return _name;
+        }
+
+        set {
+            _name = value;
+        }
+    }
+    [Column("MinAttack")]
     public int MinAttack {
         get {
             return _minAttack;
@@ -24,7 +50,7 @@ public class EnemySkill {
             _minAttack = value;
         }
     }
-
+    [Column("MinShield")]
     public int MinShield {
         get {
             return _minShield;
@@ -34,7 +60,7 @@ public class EnemySkill {
             _minShield = value;
         }
     }
-
+    [Column("MinHealth")]
     public int MinHealth {
         get {
             return _minHealth;
@@ -44,7 +70,7 @@ public class EnemySkill {
             _minHealth = value;
         }
     }
-
+    [Column("MaxAttack")]
     public int MaxAttack {
         get {
             return _maxAttack;
@@ -54,17 +80,17 @@ public class EnemySkill {
             _maxAttack = value;
         }
     }
-
-    public int MaxSchield {
+    [Column("MaxShield")]
+    public int MaxShield {
         get {
-            return _maxSchield;
+            return _maxShield;
         }
 
         set {
-            _maxSchield = value;
+            _maxShield = value;
         }
     }
-
+    [Column("MaxHealth")]
     public int MaxHealth {
         get {
             return _maxHealth;
@@ -74,7 +100,7 @@ public class EnemySkill {
             _maxHealth = value;
         }
     }
-
+    [Column("Cooldown")]
     public int Cooldown {
         get {
             return _cooldown;
@@ -85,37 +111,21 @@ public class EnemySkill {
         }
     }
 
-    public int CurrentCooldown {
+    public List<EnemyToEnemySkill> EnemyToEnemySkills {
         get {
-            return _currentCooldown;
+            _enemyToEnemySkills = DatabaseManager.GetDatabaseList<EnemyToEnemySkill>("RefEnemySkill", _id);
+            return _enemyToEnemySkills;
         }
 
-        set {
-            _currentCooldown = value;
-        }
+
     }
 
-    public string Name {
-        get {
-            return _name;
-        }
+    public EnemySkillDatabase() {
 
-        set {
-            _name = value;
-        }
     }
 
 
 
-    public void CooldownTick() {
-        if (CurrentCooldown == 0) {
-            return;
-        }
-        _currentCooldown = _currentCooldown - 1;
-
-    }
-
-    public void StartCooldown() {
-        _currentCooldown = Cooldown;
-    }
 }
+
+

@@ -4,11 +4,8 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [Serializable]
-public class Enemy
-{
-    [SerializeField] private int _health;
-    [SerializeField] private int _maxHealth;
-    [SerializeField] private int _shield;
+public class Enemy : Character {
+
     [SerializeField] private int _attack;
     [SerializeField] private ElementEnum _element;
     [SerializeField] private Sprite _sprite;
@@ -16,30 +13,20 @@ public class Enemy
 
     public static event Action<int> updateEnemyShieldUI;
 
-    public int EnemyHealth => _health;
-    public int EnemyMaxHealth => _maxHealth;
 
-    public int EnemyShield => _shield;
+
 
     public static event Action enemyTurnDone;
-    public static event Action enemyDamageReceived;
-    public static event Action enemyDamageShielded;
     public static event Action<float, float> updateEnemyHealthUI;
 
-    public void TakeDmg(int dmg)
-    {
-        var lastHealth = _health;
-        var lastShield = _shield;
+    public void TakeDmg(int dmg) {
 
-        if (_shield > 0)
-        {
-            if (_shield > dmg)
-            {
+        if (_shield > 0) {
+            if (_shield > dmg) {
                 _shield = _shield - dmg;
                 dmg = 0;
             }
-            else
-            {
+            else {
                 dmg = dmg - _shield;
                 _shield = 0;
             }
@@ -47,83 +34,77 @@ public class Enemy
             UpdateEnemyShieldUI();
         }
 
-        if (_health - dmg < 0)
+        if (_health - dmg < 0) {
             _health = 0;
-        else
+        }
+        else {
             _health -= dmg;
-
-        if (lastShield > _shield) enemyDamageShielded?.Invoke();
-
-        if (lastHealth > _health) enemyDamageReceived?.Invoke();
+        }
 
         UpdateEnemyHealthUI();
 
-        if (_health <= 0) EnemyDeath();
+        if (_health <= 0) {
+            EnemyDeath();
+        }
     }
 
 
-    public void EnemyDeath()
-    {
+    public void EnemyDeath() {
         // Invoke Win State or spawn next enemy
         // hand out exp whatever
     }
 
-    public void EnemyTurn()
-    {
+    public void EnemyTurn() {
         GlobalGameInfos.Instance.SendDataToServer("Enemy Turn Started");
-        var usedSkill = false;
-        for (var i = 0; i < _skillList.Count;)
-        {
-            var skill = _skillList[i];
+        bool usedSkill = false;
+        for (int i = 0; i < _skillList.Count;) {
+            EnemySkill skill = _skillList[i];
 
-            if (skill.CurrentCooldown == 0 && usedSkill == false)
-            {
+            if (skill.CurrentCooldown == 0 && usedSkill == false) {
                 usedSkill = true;
 
-                var dmg = Random.Range(skill.MinAttack, skill.MaxAttack);
+                int dmg = Random.Range(skill.MinAttack, skill.MaxAttack);
                 GlobalGameInfos.Instance.PlayerObject.Player.TakeDmg(dmg);
 
                 Debug.Log("Enemy Attacks Player!");
 
-                var schildValue = Random.Range(skill.MinSchield, skill.MaxSchield);
+                int schildValue = Random.Range(skill.MinShield, skill.MaxSchield);
                 _shield = _shield + schildValue;
 
-                var healthValue = Random.Range(skill.MinHealth, skill.MaxHealth);
+                int healthValue = Random.Range(skill.MinHealth, skill.MaxHealth);
                 _health = _health + healthValue;
 
                 skill.StartCooldown();
 
-                var logskill = new EnemySkill();
+
+                // server
+                EnemySkill logskill = new EnemySkill();
                 logskill.MinAttack = skill.MinAttack;
                 logskill.MinHealth = skill.MinHealth;
-                logskill.MinSchield = skill.MinSchield;
+                logskill.MinShield = skill.MinShield;
 
                 GlobalGameInfos.Instance.SendDataToServer(logskill);
+
             }
-            else
-            {
+            else {
                 skill.CooldownTick();
             }
 
             i = i + 1;
         }
-
         GlobalGameInfos.Instance.SendDataToServer("Enemy Turn End");
         EndEnemyTurn();
     }
 
-    public void EndEnemyTurn()
-    {
+    public void EndEnemyTurn() {
         enemyTurnDone?.Invoke();
     }
 
-    private void UpdateEnemyShieldUI()
-    {
+    private void UpdateEnemyShieldUI() {
         updateEnemyShieldUI?.Invoke(_shield);
     }
 
-    private void UpdateEnemyHealthUI()
-    {
+    private void UpdateEnemyHealthUI() {
         updateEnemyHealthUI?.Invoke(_health, _maxHealth);
     }
 }
