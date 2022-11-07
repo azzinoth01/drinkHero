@@ -5,10 +5,13 @@ using UnityEngine.UI;
 public class PlayerCardUI : MonoBehaviour {
     private Card _card;
 
-    [field: SerializeField] public TextMeshProUGUI CostText { get; }
+    [SerializeField] private TextMeshProUGUI _costText;
+    public TextMeshProUGUI CostText => _costText;
+    
     [SerializeField] private TextMeshProUGUI _valueText;
     [SerializeField] private TextMeshProUGUI _typeText;
-
+    [SerializeField] private SimpleAudioEvent _clickOnCardSound;
+    
     private Image _cardImage;
     private int _id;
     private Sprite _sprite;
@@ -30,5 +33,10 @@ public class PlayerCardUI : MonoBehaviour {
             _typeText.SetText("Health");
             _valueText.SetText(_card.Health.ToString());
         }
+    }
+
+    public void ClickCard()
+    {
+        GlobalAudioManager.Instance.Play(_clickOnCardSound);
     }
 }

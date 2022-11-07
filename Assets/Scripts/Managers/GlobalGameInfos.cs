@@ -13,7 +13,6 @@ public class GlobalGameInfos : MonoBehaviour {
     [SerializeField] public int port = 6969;
     [SerializeField] public string host = "localhost";
 
-
     public TcpClient _client;
     public NetworkStream _stream;
 

@@ -1,13 +1,18 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [CreateAssetMenu(menuName = "Audio Events/Simple")]
 public class SimpleAudioEvent : AudioEvent
 {
     public AudioClip[] clips;
-
-    [MinMaxRange(0, 1)] public RangedFloat volumeRange;
-
     [MinMaxRange(0, 2)] public RangedFloat pitchRange;
+
+    private AudioSource _source;
+    
+    private void Awake()
+    {
+    }
 
     public override void Play(AudioSource source)
     {
