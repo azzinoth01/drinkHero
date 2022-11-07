@@ -25,6 +25,8 @@ public class Player : Character {
     public static event Action<int> updatePlayerShieldUI;
     public static event Action updateHandCardUI;
 
+    public static event Action playerDamageReceived, playerDamageBlocked, playerHealed, playerShieldUp;
+
     public Player(GameDeck gameDeck) {
         _gameDeck = gameDeck;
         _handCards = new List<Card>();
@@ -64,8 +66,10 @@ public class Player : Character {
         ResetRessource();
     }
 
-    public void PlayHandCard(int index) {
-
+    public void PlayHandCard(int index)
+    {
+        int lastShield = _shield; 
+        
         Card card = _handCards[index];
 
         if (card.Costs > _ressource) {
@@ -74,7 +78,7 @@ public class Player : Character {
 
         GlobalGameInfos.Instance.SendDataToServer(card);
 
-        _ressource = _ressource - card.Costs;
+        _ressource -= card.Costs;
 
         GlobalGameInfos.Instance.EnemyObject.enemy.TakeDmg(card.Attack);
 
@@ -84,8 +88,12 @@ public class Player : Character {
         }
         else {
             _shield += card.Shield;
+            
+            if(lastShield < _shield) playerShieldUp?.Invoke();
         }
 
+        if(card.Health > 0) Heal(card.Health);
+        
         _gameDeck.ScrapCard(card);
         _handCards.RemoveAt(index);
 
@@ -94,22 +102,29 @@ public class Player : Character {
         UpdateShieldUI();
     }
 
+    public void Heal(int amount)
+    {
+        if (_health + amount > _maxHealth) _health = _maxHealth;
+        else _health += amount;
+        
+        playerHealed?.Invoke();
+    }
 
-    public void TakeDmg(int dmg) {
-
+    public void TakeDmg(int dmg)
+    {
+        int lastHealth = _health;
+        
         if (_shield > 0) {
             if (_shield > dmg) {
                 _shield = _shield - dmg;
                 dmg = 0;
-
-                // Update Shield Counter UI
             }
             else {
                 dmg = dmg - _shield;
                 _shield = 0;
-
-                // Update Shield Counter UI
             }
+            
+            playerDamageBlocked?.Invoke();
             UpdateShieldUI();
         }
 
@@ -120,9 +135,10 @@ public class Player : Character {
             _health -= dmg;
         }
 
+        if(_health < lastHealth) playerDamageReceived?.Invoke();
+        
         UpdateHealthUI();
-
-
+        
         if (_health <= 0) {
 
             PlayerDeath();

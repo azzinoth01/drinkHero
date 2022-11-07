@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,15 +13,13 @@ public class Enemy : Character {
     [SerializeField] private List<EnemySkill> _skillList;
 
     public static event Action<int> updateEnemyShieldUI;
-
-
-
-
     public static event Action enemyTurnDone;
+    public static event Action enemyDamageReceived, enemyDamageBlocked, enemyHealed, enemyShieldUp; 
     public static event Action<float, float> updateEnemyHealthUI;
 
-    public void TakeDmg(int dmg) {
-
+    public void TakeDmg(int dmg)
+    {
+        int lastHealth = _health;
         if (_shield > 0) {
             if (_shield > dmg) {
                 _shield = _shield - dmg;
@@ -30,7 +29,7 @@ public class Enemy : Character {
                 dmg = dmg - _shield;
                 _shield = 0;
             }
-
+            enemyDamageBlocked?.Invoke();
             UpdateEnemyShieldUI();
         }
 
@@ -41,6 +40,8 @@ public class Enemy : Character {
             _health -= dmg;
         }
 
+        if(_health < lastHealth) enemyDamageReceived?.Invoke();
+        
         UpdateEnemyHealthUI();
 
         if (_health <= 0) {

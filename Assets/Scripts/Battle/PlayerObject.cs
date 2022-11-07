@@ -4,20 +4,17 @@ using UnityEngine;
 public class PlayerObject : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] private SimpleAudioEvent _playerDamageSound;
-    [SerializeField] private SimpleAudioEvent _playerDamageShieldedSound;
-    [SerializeField] private SimpleAudioEvent _playerhealedSound;
-    [SerializeField] private SimpleAudioEvent _playerShieldUpSound;
+    [SerializeField] private SimpleAudioEvent _playerDamageSound, _playerDamageBlockedSound, _playerhealedSound, _playerShieldUpSound;
     
     public Player Player => _player;
 
     //remove after prototype
     public UserObject testUserField;
 
-    private void Awake()
+    private void OnEnable()
     {
         Player.playerDamageReceived += PlayerDamageFeedback;
-        Player.playerDamageShielded += PlayerDamageShieldedFeedback;
+        Player.playerDamageBlocked += PlayerDamageBlockedFeedback;
         Player.playerHealed += PlayerHealedFeedback;
         Player.playerShieldUp += PlayerShieldUpFeedback;
     }
@@ -25,7 +22,7 @@ public class PlayerObject : MonoBehaviour
     private void OnDisable()
     {
         Player.playerDamageReceived -= PlayerDamageFeedback;
-        Player.playerDamageShielded -= PlayerDamageShieldedFeedback;
+        Player.playerDamageBlocked -= PlayerDamageBlockedFeedback;
         Player.playerHealed -= PlayerHealedFeedback;
         Player.playerShieldUp -= PlayerShieldUpFeedback;
     }
@@ -44,20 +41,18 @@ public class PlayerObject : MonoBehaviour
         GlobalAudioManager.Instance.Play(_playerDamageSound);
     }
 
-    private void PlayerDamageShieldedFeedback()
+    private void PlayerDamageBlockedFeedback()
     {
-        GlobalAudioManager.Instance.Play(_playerDamageShieldedSound);
+        GlobalAudioManager.Instance.Play(_playerDamageBlockedSound);
     }
     
     private void PlayerHealedFeedback()
     {
-        Debug.Log("Player Healed!");
         GlobalAudioManager.Instance.Play(_playerhealedSound);
     }
     
     private void PlayerShieldUpFeedback()
     {
-        Debug.Log("Player Shield!");
         GlobalAudioManager.Instance.Play(_playerShieldUpSound);
     }
 

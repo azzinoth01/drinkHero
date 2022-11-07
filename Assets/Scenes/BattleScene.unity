@@ -2101,7 +2101,6 @@ MonoBehaviour:
   _playerEnergyBar: {fileID: 1161264481}
   _enemyHealthBar: {fileID: 488367299}
   _endTurnButton: {fileID: 1194378435}
-  _clickButtonSound: {fileID: 11400000, guid: 6980aa9b63027044a8dec653c5252fa3, type: 2}
 --- !u!4 &1186994857
 Transform:
   m_ObjectHideFlags: 0
@@ -2609,6 +2608,10 @@ PrefabInstance:
       propertyPath: _player._maxRessource
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 730611756988826683, guid: 5bbe02e416a4df449a92c90fcf4dc895, type: 3}
+      propertyPath: _playerDamageBlockedSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 0127b8d873bcda447805ef1d4cf7136e, type: 2}
     - target: {fileID: 730611756988826683, guid: 5bbe02e416a4df449a92c90fcf4dc895, type: 3}
       propertyPath: _player._playerDamageSound
       value: 
@@ -3649,6 +3652,22 @@ PrefabInstance:
       propertyPath: _enemyDamageSound
       value: 
       objectReference: {fileID: 11400000, guid: bad3d2e4718b0504fa15cd5ef3eed15f, type: 2}
+    - target: {fileID: 5626899109704554698, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
+      propertyPath: _enemyHealedSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 6027430e5123374419724e1af086e44d, type: 2}
+    - target: {fileID: 5626899109704554698, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
+      propertyPath: _enemyDamagedSound
+      value: 
+      objectReference: {fileID: 11400000, guid: bad3d2e4718b0504fa15cd5ef3eed15f, type: 2}
+    - target: {fileID: 5626899109704554698, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
+      propertyPath: _enemyShielUpSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c212eb3408341541819b260f19af00c, type: 2}
+    - target: {fileID: 5626899109704554698, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
+      propertyPath: _enemyDamageBlockedSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 0127b8d873bcda447805ef1d4cf7136e, type: 2}
     - target: {fileID: 5626899109704554698, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
       propertyPath: _enemyDamageShieldedSound
       value: 
