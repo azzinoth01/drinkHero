@@ -1,7 +1,9 @@
 
 
 using Mono.Data.Sqlite;
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 
@@ -105,5 +107,26 @@ public class AddEnemyDataToDatabase : MonoBehaviour {
         }
 
         con.Close();
+    }
+
+    [ContextMenu("test")]
+    public void Test() {
+
+#if SERVER
+        Type[] types = Assembly.GetExecutingAssembly().GetTypes();
+
+
+        foreach (Type type in types) {
+            Debug.Log(type.Name);
+
+
+        }
+
+#else
+         Debug.Log("NO Server");
+        
+#endif
+
+
     }
 }

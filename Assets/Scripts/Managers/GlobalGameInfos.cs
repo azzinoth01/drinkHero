@@ -82,6 +82,10 @@ public class GlobalGameInfos : MonoBehaviour {
 
     public void SendDataToServer<T>(T item) {
 
+        if (_client == null || _client.Connected == false) {
+            return;
+        }
+
         Packet packet = new Packet();
 
         packet.SetData(item);
@@ -109,9 +113,11 @@ public class GlobalGameInfos : MonoBehaviour {
     }
 
     private void StopServerConnection() {
+        if (_client != null) {
+            _stream.Close();
+            _client.Close();
+        }
 
-        _stream.Close();
-        _client.Close();
     }
 
 }
