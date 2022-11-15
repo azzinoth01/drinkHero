@@ -345,11 +345,31 @@ MonoBehaviour:
   databaseName: DrinkHeroDatabase.db
   dataToAdd:
     _id: 0
-    _shield: 0
-    _health: 0
+    _shield: 3
+    _health: 20
     _spritePath: 
-    _name: 
-  databaseList: []
+    _name: heroName4
+  databaseList:
+  - _id: 1
+    _shield: 1
+    _health: 2
+    _spritePath: SpritePath
+    _name: Name
+  - _id: 2
+    _shield: 1
+    _health: 2
+    _spritePath: SpritePath
+    _name: Name
+  - _id: 3
+    _shield: 5
+    _health: 10
+    _spritePath: 
+    _name: heroName1
+  - _id: 4
+    _shield: 3
+    _health: 20
+    _spritePath: 
+    _name: heroName4
 --- !u!4 &854547836
 Transform:
   m_ObjectHideFlags: 0

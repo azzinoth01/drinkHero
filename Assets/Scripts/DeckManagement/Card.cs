@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -14,6 +15,8 @@ public class Card {
     [SerializeField] private uint _upgradeCosts;
     [SerializeField] private ElementEnum _element;
     [SerializeField] private Sprite _sprite;
+    [SerializeField] private List<BuffHealOverTime> _statusEffects;
+
 
     public int Attack {
         get {
@@ -73,6 +76,14 @@ public class Card {
     public string Name {
         get {
             return _name;
+        }
+
+
+    }
+
+    public List<BuffHealOverTime> StatusEffects {
+        get {
+            return _statusEffects;
         }
 
 

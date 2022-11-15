@@ -46,14 +46,28 @@ public class Player : Character {
 
         _maxRessource = 10;
         _ressource = 10;
+
+        _buffList = new List<Buff>();
+        _debuffList = new List<Debuff>();
     }
 
     public void ResetRessource() {
         _ressource = _maxRessource;
-        UpdateEnergyUI();
+        //UpdateEnergyUI();
     }
 
     public void StartTurn() {
+        for (int i = 0; i < _buffList.Count;) {
+            _buffList[i].ActivateStatusEffect(this, ActivationTimeEnum.turnStartActive);
+            if (_buffList[i].CheckIfEffectIsOver()) {
+                _buffList.RemoveAt(i);
+            }
+            else {
+                i = i + 1;
+            }
+        }
+
+
         //draw until 5 cards
 
         for (int i = _handCards.Count; i < 5;) {
@@ -62,6 +76,9 @@ public class Player : Character {
         }
         updateHandCardUI?.Invoke();
         ResetRessource();
+
+        UpdateUI();
+
     }
 
     public void PlayHandCard(int index) {
@@ -72,7 +89,7 @@ public class Player : Character {
             return;
         }
 
-        GlobalGameInfos.Instance.SendDataToServer(card);
+
 
         _ressource = _ressource - card.Costs;
 
@@ -85,6 +102,15 @@ public class Player : Character {
         else {
             _shield += card.Shield;
         }
+
+        if (card.StatusEffects != null && card.StatusEffects.Count > 0) {
+            foreach (Buff buff in card.StatusEffects) {
+                Buff b = (Buff)buff.Clone();
+                _buffList.Add(b);
+            }
+        }
+
+
 
         _gameDeck.ScrapCard(card);
         _handCards.RemoveAt(index);
@@ -131,6 +157,12 @@ public class Player : Character {
 
     public void PlayerDeath() {
 
+    }
+
+    private void UpdateUI() {
+        UpdateEnergyUI();
+        UpdateHealthUI();
+        UpdateShieldUI();
     }
 
     private void UpdateHealthUI() {
