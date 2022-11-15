@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerCardUI : MonoBehaviour {
     private Card _card;
 
-    [field: SerializeField] public TextMeshProUGUI CostText { get; }
+    [SerializeField] public TextMeshProUGUI CostText;
     [SerializeField] private TextMeshProUGUI _valueText;
     [SerializeField] private TextMeshProUGUI _typeText;
 
