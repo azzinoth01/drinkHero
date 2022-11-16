@@ -23,7 +23,7 @@ public class Player : Character {
     public static event Action<float, float> updatePlayerHealthUI;
     public static event Action<float, float> updatePlayerEnergyUI;
     public static event Action<int> updatePlayerShieldUI;
-    public static event Action updateHandCardUI;
+    public static event Action updateHandCardUI, playerDamageReceived, playerDamageBlocked, playerHealed, playerShieldUp;
 
     public Player(GameDeck gameDeck) {
         _gameDeck = gameDeck;
