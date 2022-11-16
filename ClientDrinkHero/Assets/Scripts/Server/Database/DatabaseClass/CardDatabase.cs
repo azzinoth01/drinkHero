@@ -125,7 +125,13 @@ public class CardDatabase : DatabaseItem {
 
     public List<CardToHero> HeroList {
         get {
+#if SERVER
             _heroList = DatabaseManager.GetDatabaseList<CardToHero>("RefCard", _id);
+#else
+
+#endif
+
+            //GlobalGameInfos.
             return _heroList;
         }
 

@@ -50,7 +50,7 @@ public class ConnectedClient {
     public void ReadConnection() {
 
         char[] buffer = new char[1024];
-        int readCount = _streamReader.Read(buffer);
+        int readCount = _streamReader.Read(buffer, 0, 1024);
 
         if (readCount > 0) {
 

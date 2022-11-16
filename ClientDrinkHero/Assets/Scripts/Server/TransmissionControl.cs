@@ -31,6 +31,15 @@ public static class TransmissionControl {
 
     }
 
+
+    public static bool CheckIfDataIsEmpty(string message, out string remainingMessage) {
+
+        Match match = RegexPatterns.CheckDataIsEmpty.Match(message);
+
+        remainingMessage = message.Substring(match.Index + match.Length);
+
+        return match.Success;
+    }
     public static string GetMessageObject(string message, out string remainingMessage) {
 
         Match match = RegexPatterns.GetCompleteMessage.Match(message);

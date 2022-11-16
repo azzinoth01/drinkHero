@@ -59,9 +59,21 @@ public class GlobalGameInfos : MonoBehaviour {
         }
     }
 
+    public StreamReader Reader {
+        get {
+            return _reader;
+        }
 
 
+    }
 
+    public StreamWriter Writer {
+        get {
+            return _writer;
+        }
+
+
+    }
 
     private void Awake() {
         _instance = this;
@@ -82,8 +94,9 @@ public class GlobalGameInfos : MonoBehaviour {
         SendDataToServer("Start");
 
 
-
+        StartCoroutine(testing());
     }
+
 
     public void SendDataToServer<T>(T item) {
 

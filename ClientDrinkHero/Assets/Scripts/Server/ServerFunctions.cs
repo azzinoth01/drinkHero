@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
-using UnityEngine;
 
 public static class ServerFunctions {
 
@@ -68,6 +68,7 @@ public static class ServerFunctions {
         List<HeroDatabase> heroes = DatabaseManager.GetDatabaseList<HeroDatabase>(key, id);
 
         string data = CreateTransmissionString<HeroDatabase>(heroes);
+
         stream.Write(data);
     }
     [ServerFunction("GetCardToHero")]
@@ -163,6 +164,7 @@ public static class ServerFunctions {
     }
     [ServerFunction("SendMessage")]
     public static void SendMessage(StreamWriter stream, string message) {
-        Debug.LogError(message);
+        //Debug.LogError(message);
+        Console.Write(message + "\r\n");
     }
 }

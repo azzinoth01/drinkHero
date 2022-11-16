@@ -10,6 +10,7 @@ public static class RegexPatterns {
     public static Regex GetCompleteMessage = new Regex("OBJECT(?<=(?<!\\\\)OBJECT)[\\s\\S]*?(?=(?<!\\\\)(END))END");
     public static Regex GetCallFunctionName = new Regex("(?<=(?<!\\\\)COMMAND)[\\s\\S]*?(?=(?<!\\\\)(PARAMETER|END))");
     public static Regex GetCallFunctionParameter = new Regex("(?<=(?<!\\\\)PARAMETER)[\\s\\S]*?(?=(?<!\\\\)(END))");
+    public static Regex CheckDataIsEmpty = new Regex("(?=(?<!\\\\)(END))END");
 
 
 
