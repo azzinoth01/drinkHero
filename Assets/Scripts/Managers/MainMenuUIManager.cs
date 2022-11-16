@@ -7,9 +7,9 @@ public class MainMenuUIManager : MonoBehaviour
 {
     [SerializeField] private GameObject _playerOptionsPanel;
 
-    public void LoadBattleScene()
+    public void LoadBuilderScene()
     {
-        SceneLoader.Load(GameScene.BattleScene);
+        SceneLoader.Load(GameScene.DeckBuilder);
     }
 
     public void LoadGachaMenuScene()
