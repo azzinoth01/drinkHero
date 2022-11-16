@@ -1,3 +1,4 @@
+using Mono.Data.Sqlite;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
@@ -18,6 +19,25 @@ public class DrinkHeroServer {
     private static bool _isConnected;
 
     public void StartServer() {
+
+        string connectionString = Application.dataPath;
+
+        int pos = connectionString.LastIndexOf("/");
+
+        connectionString = connectionString.Substring(0, pos);
+
+        connectionString = connectionString + "/" + "DrinkHeroDatabase.db";
+
+        connectionString = "URI=file:" + connectionString;
+
+        SqliteConnection databaseConnection = new SqliteConnection(connectionString);
+
+        databaseConnection.Open();
+        DatabaseManager.Db = databaseConnection;
+
+
+
+
         _connectionList = new List<ConnectedClient>();
         _listener = new TcpListener(IPAddress.Any, _port);
         _isListen = true;

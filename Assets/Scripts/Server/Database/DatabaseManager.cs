@@ -90,7 +90,7 @@ public static class DatabaseManager {
         }
     }
 
-    private static TableMapping GetTableMapping<T>() {
+    public static TableMapping GetTableMapping<T>() {
         if (_tableMapping == null) {
             _tableMapping = new Dictionary<string, TableMapping>();
         }
