@@ -46,7 +46,7 @@ public class CardToHero : DatabaseItem {
             _refHero = value;
         }
     }
-
+#if SERVER
     public CardDatabase Card {
         get {
             if (_refCard == null) {
@@ -67,7 +67,7 @@ public class CardToHero : DatabaseItem {
             _card = value;
         }
     }
-#if SERVER
+
     public HeroDatabase Hero {
         get {
             if (_refHero == null) {
@@ -94,7 +94,7 @@ public class CardToHero : DatabaseItem {
     public CardDatabase GetCard(out bool waitOnData) {
         if (_card == null && _cardRequested == DataRequestStatusEnum.NotRequested) {
             _cardRequested = DataRequestStatusEnum.Requested;
-            ClientFunctions.GetCardDatabaseByKeyPair("ID\"" + _refHero + "\"");
+            ClientFunctions.GetCardDatabaseByKeyPair("ID\"" + _refCard + "\"");
             WriteBackData writeBackData = new WriteBackData(this, GetType().GetMethod(nameof(SetCard)), typeof(CardDatabase));
             GlobalGameInfos.writeServerDataTo.Enqueue(writeBackData);
 

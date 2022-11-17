@@ -116,6 +116,7 @@ public class Card : ICascadable, IWaitingOnServer {
 
 
         _iD = _cardData.Id;
+        _name = _cardData.Name;
         _attack = _cardData.Attack;
         _costs = _cardData.Cost;
         _health = _cardData.Health;

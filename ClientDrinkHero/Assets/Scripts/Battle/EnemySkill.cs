@@ -204,4 +204,9 @@ public class EnemySkill : IWaitingOnServer, ICascadable {
         }
 
     }
+
+    public EnemySkill() {
+        _cascadables = new List<ICascadable>();
+    }
+
 }

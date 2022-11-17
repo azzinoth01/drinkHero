@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816fd2bbadf86864e92aefe65a0a7f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CostText: {fileID: 5995649209521695685}
+  _costText: {fileID: 113808499964272255}
   _valueText: {fileID: 2991318122635647265}
   _typeText: {fileID: 113808499964272255}
   _clickOnCardSound: {fileID: 11400000, guid: 110ebf90b55afeb43b20237870eed601, type: 2}

@@ -142,6 +142,11 @@ public class Player : Character {
         else {
             _shield += card.Shield;
         }
+        _health = _health + card.Health;
+        if (_health > _maxHealth) {
+            _health = _maxHealth;
+        }
+
 
         if (card.StatusEffects != null && card.StatusEffects.Count > 0) {
             foreach (Buff buff in card.StatusEffects) {
@@ -220,7 +225,7 @@ public class Player : Character {
     public override void Cascade(ICascadable causedBy, PropertyInfo changedProperty = null, object changedValue = null) {
 
         if (causedBy is Hero || causedBy is Card) {
-
+            ResetPlayer();
         }
         base.Cascade(causedBy, changedProperty, changedValue);
     }
