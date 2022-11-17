@@ -110,7 +110,7 @@ public class EnemySkillDatabase : DatabaseItem {
             _cooldown = value;
         }
     }
-
+#if SERVER
     public List<EnemyToEnemySkill> EnemyToEnemySkills {
         get {
             _enemyToEnemySkills = DatabaseManager.GetDatabaseList<EnemyToEnemySkill>("RefEnemySkill", _id);
@@ -119,7 +119,7 @@ public class EnemySkillDatabase : DatabaseItem {
 
 
     }
-
+#endif
     public EnemySkillDatabase() {
 
     }

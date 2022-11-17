@@ -50,17 +50,28 @@ public class ConnectedClient {
     public void ReadConnection() {
 
         char[] buffer = new char[1024];
-        int readCount = _streamReader.Read(buffer, 0, 1024);
+        int readCount = 0;
+        if (_stream.DataAvailable == false) {
+            //Console.Write("Can not Read\r\n");
+        }
+        else {
+            readCount = _streamReader.Read(buffer, 0, 1024);
+        }
+
+        //int readCount = _connection.Receive(buffer, 0, buffer.Length, 0);
 
         if (readCount > 0) {
-
+            //_recievedData = _recievedData + Encoding.UTF8.GetString(buffer, 0, readCount);
             _recievedData = _recievedData + new string(buffer, 0, readCount);
+            //Console.Write(_recievedData + "\r\n");
         }
 
         if (_recievedData == "" || _recievedData == null) {
             return;
         }
         string message = TransmissionControl.GetMessageObject(_recievedData, out _recievedData);
+
+
 
         if (message == "" || message == null) {
             return;
@@ -72,7 +83,9 @@ public class ConnectedClient {
             return;
         }
         else if (isCommand == true) {
+            Console.Write(message + "\r\n");
             TransmissionControl.CommandMessage(_streamWriter, message);
+
         }
         else {
             //check what data type is to be recieved

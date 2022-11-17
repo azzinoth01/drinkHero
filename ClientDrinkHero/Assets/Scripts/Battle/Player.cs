@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 [Serializable]
@@ -20,36 +21,75 @@ public class Player : Character {
 
     public int PlayerShield => _shield;
 
+    public GameDeck GameDeck {
+        get {
+            return _gameDeck;
+        }
+
+        set {
+            if (_gameDeck != null) {
+                _gameDeck.Cascadables.Remove(this);
+            }
+            _gameDeck = value;
+            if (_gameDeck != null) {
+                _gameDeck.Cascadables.Add(this);
+                ResetPlayer();
+            }
+        }
+    }
+
     public static event Action<float, float> updatePlayerHealthUI;
     public static event Action<float, float> updatePlayerEnergyUI;
     public static event Action<int> updatePlayerShieldUI;
     public static event Action updateHandCardUI;
 
-    public Player(GameDeck gameDeck) {
-        _gameDeck = gameDeck;
+    public Player(GameDeck gameDeck) : base() {
+        GameDeck = gameDeck;
+        ResetPlayer();
+
+    }
+
+    public Player() : base() {
+
+    }
+
+    private void ResetPlayer() {
+        if (_gameDeck != null) {
+            _handCards = new List<Card>();
+            _gameDeck.RecreateDeck();
+
+            //define max handcards globaly
+            for (int i = 0; i < 5;) {
+
+                _handCards.Add(_gameDeck.DrawCard());
+
+                i = i + 1;
+            }
+
+            foreach (HeroSlot heroSlot in _gameDeck.Deck.HeroSlotList) {
+                _maxHealth = _maxHealth + heroSlot.Hero.Health;
+            }
+            _health = _maxHealth;
+            //define max base ressources globaly
+
+            _maxRessource = 10;
+            _ressource = 10;
+        }
+
+    }
+
+    public override void Clear() {
+
+        base.Clear();
+        _name = null;
+        _attack = 0;
+        _maxRessource = 10;
+        _ressource = 0;
+        _gameDeck = null;
         _handCards = new List<Card>();
 
-
-        //define max handcards globaly
-        for (int i = 0; i < 5;) {
-
-            _handCards.Add(_gameDeck.DrawCard());
-
-            i = i + 1;
-        }
-
-        foreach (HeroSlot heroSlot in _gameDeck.Deck.HeroSlotList) {
-            _maxHealth = _maxHealth + heroSlot.Hero.Health;
-        }
-        _health = _maxHealth;
-        //define max base ressources globaly
-
-        _maxRessource = 10;
-        _ressource = 10;
-
-        _buffList = new List<Buff>();
-        _debuffList = new List<Debuff>();
     }
+
 
     public void ResetRessource() {
         _ressource = _maxRessource;
@@ -175,5 +215,13 @@ public class Player : Character {
 
     private void UpdateShieldUI() {
         updatePlayerShieldUI?.Invoke(_shield);
+    }
+
+    public override void Cascade(ICascadable causedBy, PropertyInfo changedProperty = null, object changedValue = null) {
+
+        if (causedBy is Hero || causedBy is Card) {
+
+        }
+        base.Cascade(causedBy, changedProperty, changedValue);
     }
 }

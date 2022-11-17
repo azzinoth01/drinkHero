@@ -36,6 +36,7 @@
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\ServerFunctionAttribute.cs" Link="ServerFunctionAttribute.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\ServerFunctions.cs" Link="ServerFunctions.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\TransmissionControl.cs" Link="TransmissionControl.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Utilities\DataRequestStatusEnum.cs" Link="DataRequestStatusEnum.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

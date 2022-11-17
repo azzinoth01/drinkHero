@@ -7,18 +7,18 @@ public class PlayerObject : MonoBehaviour {
     public Player Player => _player;
 
     //remove after prototype
-    public UserObject testUserField;
-    
+    //public UserObject testUserField;
+
     // Start is called before the first frame update
-    void Start() {
+    //void Start() {
 
-        Deck deck = testUserField.Users.DeckList[0];
+    //    Deck deck = testUserField.Users.DeckList[0];
 
-        GameDeck gameDeck = new GameDeck(deck);
-        _player = new Player(gameDeck);
+    //    GameDeck gameDeck = new GameDeck(deck);
+    //    _player = new Player(gameDeck);
 
 
-    }
+    //}
 
     [ContextMenu("play Card 0")]
     public void PlayCardZero() {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -10,6 +11,8 @@ public class EnemyToEnemySkill : DatabaseItem {
     [NonSerialized] private EnemyDatabase _enemy;
     [NonSerialized] private EnemySkillDatabase _enemySkill;
 
+    private DataRequestStatusEnum _requestedEnemySkills;
+
     [Column("ID"), PrimaryKey]
     public long Id {
         get {
@@ -20,8 +23,8 @@ public class EnemyToEnemySkill : DatabaseItem {
             _id = value;
         }
     }
-    [Column("RefCard")]
-    public string RefCard {
+    [Column("RefEnemy")]
+    public string RefEnemy {
         get {
             return _refEnemy;
         }
@@ -30,8 +33,8 @@ public class EnemyToEnemySkill : DatabaseItem {
             _refEnemy = value;
         }
     }
-    [Column("RefHero")]
-    public string RefHero {
+    [Column("RefEnemySkill")]
+    public string RefEnemySkill {
         get {
             return _refEnemySkill;
         }
@@ -61,7 +64,7 @@ public class EnemyToEnemySkill : DatabaseItem {
             _enemy = value;
         }
     }
-
+#if SERVER
     public EnemySkillDatabase EnemySkill {
         get {
             if (_refEnemySkill == null) {
@@ -81,9 +84,32 @@ public class EnemyToEnemySkill : DatabaseItem {
             _enemySkill = value;
         }
     }
+#endif
+#if CLIENT
+    public EnemySkillDatabase GetEnemySkill(out bool waitOnData) {
+        if (_enemySkill == null && _requestedEnemySkills == DataRequestStatusEnum.NotRequested) {
+            _requestedEnemySkills = DataRequestStatusEnum.Requested;
+            ClientFunctions.GetEnemySkillByKeyPair("ID\"" + _refEnemySkill + "\"");
+            WriteBackData writeBackData = new WriteBackData(this, GetType().GetMethod(nameof(SetEnemySkill)), typeof(EnemySkillDatabase));
+            GlobalGameInfos.writeServerDataTo.Enqueue(writeBackData);
 
+        }
+        else if (_requestedEnemySkills == DataRequestStatusEnum.Recieved) {
+            waitOnData = false;
+            return _enemySkill;
+        }
+        waitOnData = true;
+        return null;
+    }
+
+    public void SetEnemySkill(List<EnemySkillDatabase> list) {
+        _enemySkill = list[0];
+        _requestedEnemySkills = DataRequestStatusEnum.Recieved;
+    }
+
+#endif
     public EnemyToEnemySkill() {
-
+        _requestedEnemySkills = DataRequestStatusEnum.NotRequested;
     }
 
 }

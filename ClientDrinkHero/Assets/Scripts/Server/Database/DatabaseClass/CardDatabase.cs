@@ -100,7 +100,7 @@ public class CardDatabase : DatabaseItem {
         }
     }
 
-
+#if SERVER
     public CardDatabase UpgradeTo {
         get {
             if (_refUpgradeTo == null) {
@@ -122,24 +122,22 @@ public class CardDatabase : DatabaseItem {
             _upgradeTo = value;
         }
     }
-
+#endif
+#if SERVER
     public List<CardToHero> HeroList {
         get {
-#if SERVER
+
             _heroList = DatabaseManager.GetDatabaseList<CardToHero>("RefCard", _id);
-#else
 
-#endif
-
-            //GlobalGameInfos.
             return _heroList;
         }
 
 
     }
+#endif
 
     public CardDatabase() {
-
+        _refUpgradeTo = "";
     }
 
 

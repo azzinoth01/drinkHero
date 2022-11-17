@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 
 using System.Reflection;
+using System.Text;
 using UnityEngine;
 
 public static class DatabaseManager {
@@ -91,21 +92,21 @@ public static class DatabaseManager {
     }
 
     public static TableMapping GetTableMapping<T>() {
+
+        return GetTableMapping(typeof(T));
+    }
+    public static TableMapping GetTableMapping(Type type) {
         if (_tableMapping == null) {
             _tableMapping = new Dictionary<string, TableMapping>();
         }
 
-        Type type = typeof(T);
-
-
-
-        if (_tableMapping.TryGetValue(nameof(type), out TableMapping mapping)) {
+        if (_tableMapping.TryGetValue(type.Name, out TableMapping mapping)) {
 
         }
         else {
             mapping = new TableMapping(type);
 
-            _tableMapping.Add(nameof(type), mapping);
+            _tableMapping.Add(type.Name, mapping);
         }
         return mapping;
     }
@@ -167,7 +168,7 @@ public static class DatabaseManager {
 
         TableMapping mapping = GetTableMapping<T>();
 
-        string sqlCommand = "SELECT * FROM " + mapping.TableName + " WHERE " + foreigenKey + " = " + keyValue;
+        string sqlCommand = "SELECT * FROM " + mapping.TableName + " WHERE " + foreigenKey.Trim() + " = " + keyValue;
 
         SqliteCommand command = _db.CreateCommand();
 

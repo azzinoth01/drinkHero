@@ -1115,7 +1115,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 844075958}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3014df2617c67f4483a12309e436125, type: 3}
   m_Name: 
@@ -3323,6 +3323,10 @@ PrefabInstance:
       propertyPath: _enemyObject
       value: 
       objectReference: {fileID: 1004845375}
+    - target: {fileID: 287980286352838640, guid: 14182c6601e5fa54e9ab3d120097f087, type: 3}
+      propertyPath: _turnManager
+      value: 
+      objectReference: {fileID: 844075959}
     - target: {fileID: 287980286352838640, guid: 14182c6601e5fa54e9ab3d120097f087, type: 3}
       propertyPath: _playerObject
       value: 

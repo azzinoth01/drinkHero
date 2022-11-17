@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 [Serializable, Table("Hero")]
@@ -12,6 +13,7 @@ public class HeroDatabase : DatabaseItem {
     [SerializeField] private string _name;
     [NonSerialized] private List<CardToHero> _cardList;
 
+    private DataRequestStatusEnum _cardListRequested;
 
 
 
@@ -66,16 +68,45 @@ public class HeroDatabase : DatabaseItem {
         }
     }
 
+#if SERVER
+
     public List<CardToHero> CardList {
         get {
             _cardList = DatabaseManager.GetDatabaseList<CardToHero>("RefHero", _id);
+
+
+
             return _cardList;
         }
 
     }
 
-    public HeroDatabase() {
+#endif
+#if CLIENT
+    public List<CardToHero> GetCardList(out bool waitOnData) {
+        if (_cardList == null && _cardListRequested == DataRequestStatusEnum.NotRequested) {
+            _cardListRequested = DataRequestStatusEnum.Requested;
+            ClientFunctions.GetCardToHeroByKeyPair("RefHero\"" + _id.ToString() + "\"");
+            WriteBackData writeBackData = new WriteBackData(this, GetType().GetMethod(nameof(SetCardList)), typeof(CardToHero));
+            GlobalGameInfos.writeServerDataTo.Enqueue(writeBackData);
 
+        }
+        else if (_cardListRequested == DataRequestStatusEnum.Recieved) {
+            waitOnData = false;
+            return _cardList;
+        }
+        waitOnData = true;
+        return null;
+    }
+
+    public void SetCardList(List<CardToHero> list) {
+        _cardList = list;
+        _cardListRequested = DataRequestStatusEnum.Recieved;
+    }
+
+#endif
+    public HeroDatabase() {
+        _cardListRequested = DataRequestStatusEnum.NotRequested;
     }
 
 

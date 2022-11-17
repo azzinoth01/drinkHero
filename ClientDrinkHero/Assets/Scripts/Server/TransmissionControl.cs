@@ -107,6 +107,53 @@ public static class TransmissionControl {
         }
         return itemList;
     }
+    public static List<object> GetObjectData(string message, Type objectType) {
+
+
+        List<object> itemList = new List<object>();
+
+
+
+        MatchCollection matches = RegexPatterns.GetValueMessage.Matches(message);
+        TableMapping mapping = DatabaseManager.GetTableMapping(objectType);
+        foreach (Match match in matches) {
+            object item = Activator.CreateInstance(objectType);
+
+            string value = match.Value;
+
+            string[] splitString = RegexPatterns.SplitValue.Split(value);
+
+            foreach (string parameter in splitString) {
+                string parameterName = RegexPatterns.PropertyName.Match(parameter).Value;
+                string parameterValue = RegexPatterns.PropertyValue.Match(parameter).Value;
+
+                if (mapping.ColumnsMapping.TryGetValue(parameterName, out string property)) {
+                    PropertyInfo info = item.GetType().GetProperty(property);
+                    if (info != null) {
+                        Type type = info.PropertyType;
+
+                        if (type == typeof(int)) {
+                            info.SetValue(item, int.Parse(parameterValue));
+                        }
+                        else if (type == typeof(long)) {
+                            info.SetValue(item, long.Parse(parameterValue));
+                        }
+                        else if (type == typeof(float)) {
+                            info.SetValue(item, float.Parse(parameterValue));
+                        }
+                        else if (type == typeof(string)) {
+                            info.SetValue(item, parameterValue);
+                        }
+                        else if (type == typeof(bool)) {
+                            info.SetValue(item, bool.Parse(parameterValue));
+                        }
+                    }
+                }
+            }
+            itemList.Add(item);
+        }
+        return itemList;
+    }
 
 
     public static void CommandMessage(StreamWriter stream, string message) {

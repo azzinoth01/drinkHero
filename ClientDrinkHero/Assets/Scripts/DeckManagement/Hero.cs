@@ -1,21 +1,30 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
 
 [Serializable]
-public class Hero {
+public class Hero : ICascadable, IWaitingOnServer {
     [SerializeField] private string _name;
-    [SerializeField] private uint _iD;
+    [SerializeField] private long _iD;
     [SerializeField] private int _attack;
     [SerializeField] private int _shield;
     [SerializeField] private int _health;
-    [SerializeField] private List<Card> _cardList;
+    [SerializeField] private Dictionary<long, Card> _cardList;
     [SerializeField] private ElementEnum _element;
     [SerializeField] private Sprite _sprite;
 
-    public List<Card> CardList {
+    private List<ICascadable> _cascadables;
+    private bool _isWaitingOnServer;
+
+    private HeroDatabase _heroData;
+
+    public Dictionary<long, Card> CardList {
         get {
             return _cardList;
+
+
         }
 
     }
@@ -44,7 +53,100 @@ public class Hero {
 
     }
 
+    public List<ICascadable> Cascadables {
+        get {
+            return _cascadables;
+        }
+
+        set {
+            _cascadables = value;
+        }
+    }
+
+    public HeroDatabase HeroData {
+        get {
+            return _heroData;
+        }
+
+        set {
+            _heroData = value;
+            if (_heroData != null) {
+                if (ConvertHeroDatabase() == false) {
+                    GlobalGameInfos.Instance.WaitOnServerObjects.Add(this);
+                }
+
+            }
+        }
+    }
+
+    public bool ConvertHeroDatabase() {
+        if (_heroData == null) {
+            return false;
+        }
+        _iD = _heroData.Id;
+        _name = _heroData.Name;
+        _health = _heroData.Health;
+        _shield = _heroData.Shield;
+        List<CardToHero> cardToHeroes = _heroData.GetCardList(out _isWaitingOnServer);
+
+        if (_isWaitingOnServer) {
+            return false;
+        }
+
+        foreach (CardToHero cardToHero in cardToHeroes) {
+            bool waitOn = false;
+            long id = long.Parse(cardToHero.RefCard);
+            if (_cardList.TryGetValue(id, out Card card)) {
+
+                card.CardData = cardToHero.GetCard(out waitOn);
+
+            }
+            else {
+                card = new Card();
+                card.ID = id;
+                card.CardData = cardToHero.GetCard(out waitOn);
+                _cardList.AddWithCascading(id, card, this);
+            }
+
+            _isWaitingOnServer = _isWaitingOnServer | waitOn;
+        }
+        if (_isWaitingOnServer) {
+            return false;
+        }
+
+        Cascade(this);
+
+        return true;
+    }
+
+    public bool IsWaitingOnServer {
+        get {
+            return _isWaitingOnServer;
+        }
+
+        set {
+            _isWaitingOnServer = value;
+        }
+    }
+
     public Hero() {
-        _cardList = new List<Card>();
+        _cardList = new Dictionary<long, Card>();
+        _cascadables = new List<ICascadable>();
+    }
+
+    public void Cascade(ICascadable causedBy, PropertyInfo changedProperty = null, object changedValue = null) {
+        if (causedBy == null) {
+            causedBy = this;
+        }
+        foreach (ICascadable cascadable in Cascadables) {
+            cascadable.Cascade(causedBy, changedProperty, changedValue);
+        }
+
+    }
+
+    public bool GetUpdateFromServer() {
+
+
+        return ConvertHeroDatabase();
     }
 }

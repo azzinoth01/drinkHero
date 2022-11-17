@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 [Serializable]
-public class EnemySkill {
+public class EnemySkill : IWaitingOnServer, ICascadable {
+    private long _id;
     [SerializeField] private string _name;
     [SerializeField] private int _minAttack;
     [SerializeField] private int _minShield;
@@ -14,6 +17,11 @@ public class EnemySkill {
 
     [SerializeField] private int _cooldown;
     [SerializeField] private int _currentCooldown;
+
+    private EnemySkillDatabase _enemySkillData;
+
+    private List<ICascadable> _cascadables;
+    private bool _isWaitingOnServer;
 
     public int MinAttack {
         get {
@@ -105,7 +113,71 @@ public class EnemySkill {
         }
     }
 
+    public EnemySkillDatabase EnemySkillData {
+        get {
+            return _enemySkillData;
+        }
 
+        set {
+            _enemySkillData = value;
+            if (_enemySkillData != null) {
+                if (ConvertEnemySkillData() == false) {
+                    GlobalGameInfos.Instance.WaitOnServerObjects.Add(this);
+                }
+            }
+
+        }
+    }
+
+    public long Id {
+        get {
+            return _id;
+        }
+
+        set {
+            _id = value;
+        }
+    }
+
+    public bool IsWaitingOnServer {
+        get {
+            return _isWaitingOnServer;
+        }
+
+        set {
+            _isWaitingOnServer = value;
+        }
+    }
+
+    public List<ICascadable> Cascadables {
+        get {
+            return _cascadables;
+        }
+
+        set {
+            _cascadables = value;
+        }
+    }
+
+    private bool ConvertEnemySkillData() {
+
+        if (_enemySkillData == null) {
+            return false;
+        }
+
+        _id = _enemySkillData.Id;
+        _name = _enemySkillData.Name;
+        _minAttack = _enemySkillData.MinAttack;
+        _maxAttack = _enemySkillData.MaxAttack;
+        _minHealth = _enemySkillData.MinHealth;
+        _maxHealth = _enemySkillData.MaxHealth;
+        _minShield = _enemySkillData.MinShield;
+        _maxSchield = _enemySkillData.MaxShield;
+
+        Cascade(this);
+
+        return true;
+    }
 
     public void CooldownTick() {
         if (CurrentCooldown == 0) {
@@ -117,5 +189,19 @@ public class EnemySkill {
 
     public void StartCooldown() {
         _currentCooldown = Cooldown;
+    }
+
+    public bool GetUpdateFromServer() {
+        return ConvertEnemySkillData();
+    }
+
+    public void Cascade(ICascadable causedBy, PropertyInfo changedProperty = null, object changedValue = null) {
+        if (causedBy == null) {
+            causedBy = this;
+        }
+        foreach (ICascadable cascadable in Cascadables) {
+            cascadable.Cascade(causedBy, changedProperty, changedValue);
+        }
+
     }
 }

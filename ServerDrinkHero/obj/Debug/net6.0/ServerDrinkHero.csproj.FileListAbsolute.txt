@@ -10,7 +10,6 @@ C:\Users\Markus\Documents\git_managed_projects\drinkHero\ServerDrinkHero\bin\Deb
 C:\Users\Markus\Documents\git_managed_projects\drinkHero\ServerDrinkHero\bin\Debug\net6.0\ServerDrinkHero.pdb
 C:\Users\Markus\Documents\git_managed_projects\drinkHero\ServerDrinkHero\bin\Debug\net6.0\Mono.Data.Sqlite.dll
 C:\Users\Markus\Documents\git_managed_projects\drinkHero\ServerDrinkHero\bin\Debug\net6.0\UnityEngine.dll
-C:\Users\Markus\Documents\git_managed_projects\drinkHero\ServerDrinkHero\bin\Debug\net6.0\UnityEngine.xml
 C:\Users\Markus\Documents\git_managed_projects\drinkHero\ServerDrinkHero\obj\Debug\net6.0\ServerDrinkHero.csproj.CopyComplete
 C:\Users\Markus\Documents\git_managed_projects\drinkHero\ServerDrinkHero\obj\Debug\net6.0\ServerDrinkHero.dll
 C:\Users\Markus\Documents\git_managed_projects\drinkHero\ServerDrinkHero\obj\Debug\net6.0\refint\ServerDrinkHero.dll

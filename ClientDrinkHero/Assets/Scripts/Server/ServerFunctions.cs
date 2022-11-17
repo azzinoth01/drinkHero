@@ -35,7 +35,7 @@ public static class ServerFunctions {
         data = data + "\"" + mapping.TableName + "\"";
         foreach (KeyValuePair<string, string> pair in mapping.ColumnsMapping) {
             data = data + ";" + pair.Key;
-            data = data + "\"" + item.GetType().GetProperty(pair.Value).GetValue(item).ToString() + "\"";
+            data = data + "\"" + item.GetType().GetProperty(pair.Value)?.GetValue(item)?.ToString() + "\"";
         }
         return data;
     }
@@ -54,7 +54,7 @@ public static class ServerFunctions {
 
         string data = CreateTransmissionString<HeroDatabase>(heroes);
         stream.Write(data);
-
+        Console.WriteLine(data + "\r\n");
 
     }
     [ServerFunction("GetHerosByKeyPair")]
@@ -70,6 +70,7 @@ public static class ServerFunctions {
         string data = CreateTransmissionString<HeroDatabase>(heroes);
 
         stream.Write(data);
+        Console.WriteLine(data + "\r\n");
     }
     [ServerFunction("GetCardToHero")]
     public static void GetCardToHero(StreamWriter stream) {
@@ -77,6 +78,7 @@ public static class ServerFunctions {
 
         string data = CreateTransmissionString<CardToHero>(cardToHero);
         stream.Write(data);
+        Console.WriteLine(data + "\r\n");
     }
     [ServerFunction("GetCardToHeroByKeyPair")]
     public static void GetCardToHeroByKeyPair(StreamWriter stream, string pair) {
@@ -88,6 +90,7 @@ public static class ServerFunctions {
         List<CardToHero> cardToHero = DatabaseManager.GetDatabaseList<CardToHero>(key, id);
         string data = CreateTransmissionString<CardToHero>(cardToHero);
         stream.Write(data);
+        Console.WriteLine(data + "\r\n");
     }
     [ServerFunction("GetCards")]
     public static void GetCards(StreamWriter stream) {
@@ -95,6 +98,7 @@ public static class ServerFunctions {
 
         string data = CreateTransmissionString<CardDatabase>(cards);
         stream.Write(data);
+        Console.WriteLine(data + "\r\n");
     }
     [ServerFunction("GetCardsByKeyPair")]
     public static void GetCardsByKeyPair(StreamWriter stream, string pair) {
@@ -107,6 +111,7 @@ public static class ServerFunctions {
 
         string data = CreateTransmissionString<CardDatabase>(cards);
         stream.Write(data);
+        Console.WriteLine(data + "\r\n");
     }
     [ServerFunction("GetEnemy")]
     public static void GetEnemy(StreamWriter stream) {
@@ -114,6 +119,7 @@ public static class ServerFunctions {
 
         string data = CreateTransmissionString<EnemyDatabase>(enemy);
         stream.Write(data);
+        Console.WriteLine(data + "\r\n");
     }
     [ServerFunction("GetEnemyByKeyPair")]
     public static void GetEnemyByKeyPair(StreamWriter stream, string pair) {
@@ -125,6 +131,7 @@ public static class ServerFunctions {
         List<EnemyDatabase> enemy = DatabaseManager.GetDatabaseList<EnemyDatabase>(key, id);
         string data = CreateTransmissionString<EnemyDatabase>(enemy);
         stream.Write(data);
+        Console.WriteLine(data + "\r\n");
     }
     [ServerFunction("GetEnemyToEnemySkill")]
     public static void GetEnemyToEnemySkill(StreamWriter stream) {
@@ -132,6 +139,7 @@ public static class ServerFunctions {
 
         string data = CreateTransmissionString<EnemyToEnemySkill>(enemyToEnemySkill);
         stream.Write(data);
+        Console.WriteLine(data + "\r\n");
     }
     [ServerFunction("GetEnemyToEnemySkillByKeyPair")]
     public static void GetEnemyToEnemySkillByKeyPair(StreamWriter stream, string pair) {
@@ -143,6 +151,7 @@ public static class ServerFunctions {
         List<EnemyToEnemySkill> enemyToEnemySkill = DatabaseManager.GetDatabaseList<EnemyToEnemySkill>(key, id);
         string data = CreateTransmissionString<EnemyToEnemySkill>(enemyToEnemySkill);
         stream.Write(data);
+        Console.WriteLine(data + "\r\n");
     }
     [ServerFunction("GetEnemySkill")]
     public static void GetEnemySkill(StreamWriter stream) {
@@ -150,6 +159,7 @@ public static class ServerFunctions {
 
         string data = CreateTransmissionString<EnemySkillDatabase>(enemyToEnemySkill);
         stream.Write(data);
+        Console.WriteLine(data + "\r\n");
     }
     [ServerFunction("GetEnemySkillByKeyPair")]
     public static void GetEnemySkillByKeyPair(StreamWriter stream, string pair) {
@@ -161,6 +171,7 @@ public static class ServerFunctions {
         List<EnemySkillDatabase> enemyToEnemySkill = DatabaseManager.GetDatabaseList<EnemySkillDatabase>(key, id);
         string data = CreateTransmissionString<EnemySkillDatabase>(enemyToEnemySkill);
         stream.Write(data);
+        Console.WriteLine(data + "\r\n");
     }
     [ServerFunction("SendMessage")]
     public static void SendMessage(StreamWriter stream, string message) {
