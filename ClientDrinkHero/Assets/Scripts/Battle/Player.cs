@@ -61,7 +61,7 @@ public class Player : Character {
             _gameDeck.RecreateDeck();
 
             //define max handcards globaly
-            for (int i = 0; i < 5;) {
+            for (int i = 0; i < 4;) {
 
                 _handCards.Add(_gameDeck.DrawCard());
 
@@ -112,7 +112,7 @@ public class Player : Character {
 
         //draw until 5 cards
         Debug.Log(_handCards.Count);
-        for (int i = _handCards.Count; i < 5;) {
+        for (int i = _handCards.Count; i < 4;) {
             _handCards.Add(_gameDeck.DrawCard());
             i = i + 1;
         }
@@ -202,8 +202,7 @@ public class Player : Character {
         }
     }
 
-    public void PlayerDeath() 
-    {
+    public void PlayerDeath() {
         onPlayerDeath?.Invoke();
     }
 
