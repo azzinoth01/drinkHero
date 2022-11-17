@@ -7,7 +7,7 @@ public class BattleUIManager : MonoBehaviour {
 
     [SerializeField] private GameObject _playerCardUIPrefab;
     [SerializeField] private GameObject _playerHandUI;
-    [SerializeField] private GameObject _playerOptionsPanel;
+    [SerializeField] private GameObject _playerOptionsPanel, _playerDeathPanel;
 
     [SerializeField] private List<PlayerCardUI> _currentPlayerHand;
     [SerializeField]
@@ -27,6 +27,8 @@ public class BattleUIManager : MonoBehaviour {
         Player.updatePlayerShieldUI += UpdatePlayerShieldCounter;
         Enemy.updateEnemyHealthUI += UpdateEnemyHealthBar;
         Enemy.updateEnemyShieldUI += UpdateEnemyShieldCounter;
+
+        Player.onPlayerDeath += ShowGameOverScreen;
     }
 
     private void OnDisable() {
@@ -38,6 +40,8 @@ public class BattleUIManager : MonoBehaviour {
         Player.updatePlayerShieldUI -= UpdatePlayerShieldCounter;
         Enemy.updateEnemyHealthUI -= UpdateEnemyHealthBar;
         Enemy.updateEnemyShieldUI -= UpdateEnemyShieldCounter;
+        
+        Player.onPlayerDeath -= ShowGameOverScreen;
     }
 
     void Start() {
@@ -142,6 +146,11 @@ public class BattleUIManager : MonoBehaviour {
         _endTurnButton.interactable = state;
     }
 
+    private void ShowGameOverScreen()
+    {
+        _playerDeathPanel.SetActive(true);
+    }
+    
     private void UpdateDebugText(string text) {
         _debugText.SetText(text);
     }

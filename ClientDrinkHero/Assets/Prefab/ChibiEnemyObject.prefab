@@ -51,40 +51,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
-    _health: 5
-    _maxHealth: 0
-    _schild: 2
-    _attack: 2
+    _id: 0
+    _health: 25
+    _maxHealth: 25
+    _shield: 10
+    _healModifier: 0
+    _dmgModifier: 0
+    _dmgRecieveModifier: 0
+    _shieldModifier: 0
+    _attack: 15
     _element: 0
     _sprite: {fileID: 0}
-    _skillList:
-    - _name: Strong Attack
-      _minAttack: 3
-      _minSchild: 0
-      _minHealth: 0
-      _maxAttack: 7
-      _maxSchild: 0
-      _maxHealth: 0
-      _cooldown: 3
-      _currentCooldown: 0
-    - _name: Heal
-      _minAttack: 0
-      _minSchild: 0
-      _minHealth: 1
-      _maxAttack: 0
-      _maxSchild: 0
-      _maxHealth: 3
-      _cooldown: 5
-      _currentCooldown: 0
-    - _name: Base Attack
-      _minAttack: 1
-      _minSchild: 0
-      _minHealth: 0
-      _maxAttack: 3
-      _maxSchild: 0
-      _maxHealth: 0
-      _cooldown: 0
-      _currentCooldown: 0
+  _enemyDamagedSound: {fileID: 11400000, guid: bad3d2e4718b0504fa15cd5ef3eed15f, type: 2}
+  _enemyDamageBlockedSound: {fileID: 11400000, guid: 0127b8d873bcda447805ef1d4cf7136e, type: 2}
+  _enemyHealedSound: {fileID: 11400000, guid: 6027430e5123374419724e1af086e44d, type: 2}
+  _enemyShielUpSound: {fileID: 11400000, guid: 9c212eb3408341541819b260f19af00c, type: 2}
 --- !u!1 &6880171208421943428
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,7 +91,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6880171208421943428}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -120,8 +101,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 270, y: 480}
+  m_AnchoredPosition: {x: -4, y: 35}
+  m_SizeDelta: {x: 379.3341, y: 681.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6880171208421943431
 CanvasRenderer:
