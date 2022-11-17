@@ -13,6 +13,7 @@ public class Enemy : Character, IWaitingOnServer {
 
     public static event Action<int> updateEnemyShieldUI;
     public static event Action enemyTurnDone;
+    public static event Action enemyDamageReceived, enemyDamageBlocked, enemyHealed, enemyShieldUp;
     public static event Action<float, float> updateEnemyHealthUI;
 
     private EnemyDatabase _enemyData;
@@ -105,7 +106,7 @@ public class Enemy : Character, IWaitingOnServer {
 
 
     public void TakeDmg(int dmg) {
-
+        int lastHealth = _health;
         if (_shield > 0) {
             if (_shield > dmg) {
                 _shield = _shield - dmg;
@@ -115,7 +116,7 @@ public class Enemy : Character, IWaitingOnServer {
                 dmg = dmg - _shield;
                 _shield = 0;
             }
-
+            enemyDamageBlocked?.Invoke();
             UpdateEnemyShieldUI();
         }
 
@@ -125,6 +126,9 @@ public class Enemy : Character, IWaitingOnServer {
         else {
             _health -= dmg;
         }
+
+        if (_health < lastHealth)
+            enemyDamageReceived?.Invoke();
 
         UpdateEnemyHealthUI();
 
