@@ -21,15 +21,17 @@ public class DrinkHeroServer {
     public void StartServer() {
 
 
-        string connectionString = System.IO.Directory.GetCurrentDirectory();
+        string connectionString = System.AppDomain.CurrentDomain.BaseDirectory;
 
         //int pos = connectionString.LastIndexOf("/");
 
         //connectionString = connectionString.Substring(0, pos);
 
-        connectionString = connectionString + "/" + "DrinkHeroDatabase.db";
+        connectionString = connectionString + "DrinkHeroDatabase.db";
 
         connectionString = "URI=file:" + connectionString;
+
+        Console.Write(connectionString + " path \r\n");
 
         SqliteConnection databaseConnection = new SqliteConnection(connectionString);
 

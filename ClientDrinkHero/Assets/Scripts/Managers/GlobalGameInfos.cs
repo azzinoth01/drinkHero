@@ -32,7 +32,7 @@ public class GlobalGameInfos : MonoBehaviour {
     [SerializeField] private UserObject _userObject;
     [SerializeField] private TurnManager _turnManager;
     [SerializeField] public int port = 6969;
-    [SerializeField] public string host = "localhost";
+    [SerializeField] public string host = "markusdullnig.de";
 
     private CachedServerData _cachedServerData;
     public static Queue<WriteBackData> writeServerDataTo;
