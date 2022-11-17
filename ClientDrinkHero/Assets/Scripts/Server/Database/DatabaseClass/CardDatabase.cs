@@ -47,7 +47,7 @@ public class CardDatabase : DatabaseItem {
             _attack = value;
         }
     }
-    [Column("Shield")]
+    [Column("Health")]
     public int Health {
         get {
             return _health;
@@ -57,7 +57,7 @@ public class CardDatabase : DatabaseItem {
             _health = value;
         }
     }
-    [Column("Health")]
+    [Column("Shield")]
     public int Shield {
         get {
             return _shield;

@@ -1,5 +1,6 @@
 using System;
 using System.Buffers.Binary;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
@@ -49,6 +50,9 @@ public class GlobalGameInfos : MonoBehaviour {
     private bool _waitOnStartData;
 
     private Thread _thread;
+
+    public static double _TimeoutBaseTime;
+    public static double _TimeoutTime;
 
     public static GlobalGameInfos Instance {
         get {
@@ -115,6 +119,8 @@ public class GlobalGameInfos : MonoBehaviour {
 
     private void Awake() {
         _instance = this;
+        _TimeoutBaseTime = 6000;
+        _TimeoutTime = _TimeoutBaseTime;
         _playerObject.Player.Clear();
         _waitOnStartData = false;
         writeServerDataTo = new Queue<WriteBackData>();
@@ -132,17 +138,21 @@ public class GlobalGameInfos : MonoBehaviour {
         writeBack = new WriteBackData(_enemyObject.enemy, _enemyObject.enemy.GetType().GetMethod(nameof(_enemyObject.enemy.SetEnemyData)), typeof(EnemyDatabase));
         writeServerDataTo.Enqueue(writeBack);
 
-        ReadServerDataThread serverDataReadThread = new ReadServerDataThread(_reader);
+        ReadServerDataThread serverDataReadThread = new ReadServerDataThread(_reader, _stream);
 
         _thread = new Thread(serverDataReadThread.ThreadLoop);
 
         _thread.Start();
-
+        StartCoroutine(SendHeartbeat(3));
     }
 
     private void Update() {
 
-
+        _TimeoutTime = _TimeoutTime - Time.deltaTime;
+        if (_TimeoutTime <= 0) {
+            ReadServerDataThread.KeepRunning = false;
+            StopServerConnection();
+        }
         if (_waitOnStartData == true && checkUpdates.Count == 0) {
             return;
         }
@@ -171,6 +181,18 @@ public class GlobalGameInfos : MonoBehaviour {
 
 
         return;
+    }
+
+    private IEnumerator SendHeartbeat(int intervall) {
+
+        while (enabled) {
+
+
+            yield return new WaitForSeconds(intervall);
+
+            ClientFunctions.SendHeartbeat();
+        }
+
     }
 
     public void CreatePlayer() {
@@ -216,40 +238,10 @@ public class GlobalGameInfos : MonoBehaviour {
     }
 
 
-    //public void SendDataToServer<T>(T item) {
-
-    //    if (_client == null || _client.Connected == false) {
-    //        return;
-    //    }
-
-    //    Packet packet = new Packet();
-
-    //    packet.SetData(item);
-
-    //    string text = JsonUtility.ToJson(packet);
-
-    //    int size = text.Length;
-
-
-
-    //    Byte[] sizeByte = new byte[4];
-
-    //    BinaryPrimitives.WriteInt32BigEndian(sizeByte, size);
-
-    //    byte[] data = System.Text.Encoding.UTF8.GetBytes(text);
-
-    //    byte[] combinedData = new byte[sizeByte.Length + data.Length];
-
-    //    System.Buffer.BlockCopy(sizeByte, 0, combinedData, 0, sizeByte.Length);
-    //    System.Buffer.BlockCopy(data, 0, combinedData, 4, data.Length);
-
-
-    //    _stream.Write(combinedData, 0, combinedData.Length);
-
-    //}
-
-    private void StopServerConnection() {
+    public void StopServerConnection() {
         if (_client != null) {
+            _writer.Close();
+            _reader.Close();
             _stream.Close();
             _client.Close();
         }

@@ -31,6 +31,20 @@ public static class TransmissionControl {
 
     }
 
+    public static bool CheckHeartBeat(string message, out string remainingMessage) {
+
+        Match match = RegexPatterns.CheckKeepAlive.Match(message);
+
+        if (match.Success) {
+            string startString = message.Substring(0, match.Index);
+            string endString = message.Substring(match.Index + match.Length);
+            remainingMessage = startString + endString;
+            return true;
+        }
+        remainingMessage = message;
+        return false;
+    }
+
 
     public static bool CheckIfDataIsEmpty(string message, out string remainingMessage) {
 

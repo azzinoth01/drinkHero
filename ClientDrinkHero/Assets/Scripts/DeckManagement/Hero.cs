@@ -96,7 +96,8 @@ public class Hero : ICascadable, IWaitingOnServer {
         foreach (CardToHero cardToHero in cardToHeroes) {
             bool waitOn = false;
             long id = long.Parse(cardToHero.RefCard);
-            if (_cardList.TryGetValue(id, out Card card)) {
+            long index = cardToHero.Id;
+            if (_cardList.TryGetValue(index, out Card card)) {
 
                 card.CardData = cardToHero.GetCard(out waitOn);
 
@@ -105,7 +106,7 @@ public class Hero : ICascadable, IWaitingOnServer {
                 card = new Card();
                 card.ID = id;
                 card.CardData = cardToHero.GetCard(out waitOn);
-                _cardList.AddWithCascading(id, card, this);
+                _cardList.AddWithCascading(index, card, this);
             }
 
             _isWaitingOnServer = _isWaitingOnServer | waitOn;

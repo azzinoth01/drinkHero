@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Threading;
 using UnityEngine;
@@ -10,12 +11,13 @@ public class ReadServerDataThread {
     public static bool KeepRunning;
 
     private StreamReader _reader;
+    private NetworkStream _stream;
 
-    public ReadServerDataThread(StreamReader reader) {
+    public ReadServerDataThread(StreamReader reader, NetworkStream stream) {
         KeepRunning = true;
 
         _reader = reader;
-
+        _stream = stream;
 
 
     }
@@ -26,21 +28,31 @@ public class ReadServerDataThread {
         string readData = "";
         while (KeepRunning) {
 
-            if (_reader.BaseStream.CanRead == false) {
-                break;
-            }
-            if (GlobalGameInfos.writeServerDataTo.Count == 0) {
+
+
+            if (GlobalGameInfos.writeServerDataTo.Count == 0 || _stream.DataAvailable == false) {
                 Thread.Sleep(10);
                 continue;
             }
 
 
             char[] buffer = new char[1024];
+            int readCount;
+            try {
+                readCount = _reader.Read(buffer, 0, 1024);
+            }
+            catch {
+                KeepRunning = false;
+                GlobalGameInfos.Instance.StopServerConnection();
+                return;
+            }
 
-            int readCount = _reader.Read(buffer, 0, 1024);
 
             if (readCount > 0) {
                 readData = readData + new string(buffer, 0, readCount);
+            }
+            if (TransmissionControl.CheckHeartBeat(readData, out readData)) {
+                GlobalGameInfos._TimeoutTime = GlobalGameInfos._TimeoutBaseTime;
             }
 
             string message = TransmissionControl.GetMessageObject(readData, out readData);

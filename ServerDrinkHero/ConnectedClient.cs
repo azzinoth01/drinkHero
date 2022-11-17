@@ -1,4 +1,5 @@
 using System;
+
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
@@ -7,7 +8,9 @@ public class ConnectedClient {
 
 
     private Socket _connection;
-    private float _timeoutCheck;
+    private double _timeoutCheck;
+    private double _timeoutCheckIntervall;
+    private double _timeoutReached;
     private DateTime _lastTime;
     private double _deltaTime;
     public string _recievedData;
@@ -30,6 +33,13 @@ public class ConnectedClient {
         _streamWriter = new StreamWriter(_stream, Encoding.UTF8, 1024);
 
         _streamWriter.AutoFlush = true;
+
+        _deltaTime = 0;
+        _lastTime = DateTime.Now;
+
+        _timeoutCheckIntervall = 3000;
+        _timeoutCheck = _timeoutCheckIntervall;
+        _timeoutReached = _timeoutCheckIntervall * 2;
     }
 
     public Socket Connection {
@@ -49,25 +59,62 @@ public class ConnectedClient {
 
     public void ReadConnection() {
 
+        DateTime now = DateTime.Now;
+
+        _deltaTime = (now - _lastTime).TotalMilliseconds;
+        _lastTime = now;
+
+        _timeoutCheck = _timeoutCheck - _deltaTime;
+        _timeoutReached = _timeoutReached - _deltaTime;
+        if (_timeoutCheck <= 0) {
+            _timeoutCheck = _timeoutCheckIntervall;
+            try {
+                _streamWriter.Write("KEEPALIVE ");
+            }
+            catch {
+                CloseConnection();
+                return;
+            }
+            Console.WriteLine("Write KEEPALIVE");
+        }
+
+        if (_timeoutReached <= 0) {
+            CloseConnection();
+            return;
+        }
+
+
         char[] buffer = new char[1024];
         int readCount = 0;
+
         if (_stream.DataAvailable == false) {
             //Console.Write("Can not Read\r\n");
         }
         else {
-            readCount = _streamReader.Read(buffer, 0, 1024);
+            try {
+                readCount = _streamReader.Read(buffer, 0, 1024);
+            }
+            catch {
+                CloseConnection();
+                return;
+            }
         }
 
-        //int readCount = _connection.Receive(buffer, 0, buffer.Length, 0);
+
 
         if (readCount > 0) {
-            //_recievedData = _recievedData + Encoding.UTF8.GetString(buffer, 0, readCount);
+
             _recievedData = _recievedData + new string(buffer, 0, readCount);
-            //Console.Write(_recievedData + "\r\n");
+
         }
 
         if (_recievedData == "" || _recievedData == null) {
             return;
+        }
+
+        if (TransmissionControl.CheckHeartBeat(_recievedData, out _recievedData)) {
+            _timeoutReached = _timeoutCheckIntervall * 2;
+            Console.WriteLine("Recieved KEEPALIVE");
         }
         string message = TransmissionControl.GetMessageObject(_recievedData, out _recievedData);
 
@@ -94,69 +141,6 @@ public class ConnectedClient {
         }
 
 
-
-        //Byte[] receive = new byte[1024];
-
-        //int bytesReceived = _connection.Receive(receive, 0, receive.Length, 0);
-
-
-
-        //if (bytesReceived == 0) {
-
-        //}
-        //else {
-        //    _readPos = 0;
-        //    while (_readPos < bytesReceived) {
-        //        if (_byteSizeOfLastData <= 0) {
-        //            byte[] toint = new byte[4];
-        //            Buffer.BlockCopy(receive, _readPos, toint, 0, 4);
-        //            _readPos = _readPos + 4;
-        //            _byteSizeOfLastData = BinaryPrimitives.ReadInt32BigEndian(toint);
-
-        //            _readData = new byte[_byteSizeOfLastData];
-        //            _copyPos = 0;
-        //        }
-
-        //        int readbytes = 0;
-        //        if (_byteSizeOfLastData < (bytesReceived - _readPos)) {
-        //            readbytes = _byteSizeOfLastData;
-        //        }
-        //        else {
-        //            readbytes = bytesReceived - _readPos;
-        //        }
-        //        Buffer.BlockCopy(receive, _readPos, _readData, _copyPos, readbytes);
-        //        _byteSizeOfLastData = _byteSizeOfLastData - readbytes;
-        //        _copyPos = _copyPos + readbytes;
-
-        //        _readPos = _readPos + readbytes;
-
-
-        //        if (_byteSizeOfLastData <= 0) {
-
-        //            string sBuffer = Encoding.UTF8.GetString(_readData, 0, _readData.Length);
-
-        //            Packet packet = JsonUtility.FromJson<Packet>(sBuffer);
-
-        //            if (packet.ClassName == typeof(Card).ToString()) {
-        //                Card card = JsonUtility.FromJson<Card>(packet.Data);
-        //                string cardText = "Card played \r\n" + "Costs " + card.Costs + "\r\n" + "Attack " + card.Attack + "\r\n" + "Schild " + card.Shield + "\r\n" + "Health " + card.Health + "\r\n";
-        //                Debug.LogError(cardText);
-        //            }
-        //            else if (packet.ClassName == typeof(EnemySkill).ToString()) {
-        //                EnemySkill skill = JsonUtility.FromJson<EnemySkill>(packet.Data);
-        //                string enemySkill = "Enemy Turn \r\n" + "Attack " + skill.MinAttack + "\r\n" + "Schild " + skill.MinShield + "\r\n" + "Health " + skill.MinHealth + "\r\n";
-        //                Debug.LogError(enemySkill);
-        //            }
-        //            else if (packet.ClassName == typeof(string).ToString()) {
-        //                string s = packet.Data;
-        //                Debug.LogError(s);
-        //            }
-        //        }
-        //    }
-
-
-
-        //}
     }
 
 }
