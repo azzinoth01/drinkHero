@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GachaMenu.unity
     guid: d6d39a7393b26c946862947927d3a27e
+  - enabled: 1
+    path: Assets/Scenes/DeckBuilder.unity
+    guid: b8086e8633650884e8a8ce03916fb9ee
   m_configObjects: {}

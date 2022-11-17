@@ -2,28 +2,32 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class TurnManager : MonoBehaviour {
-    
+public class TurnManager : MonoBehaviour
+{
     private bool _playerTurn;
     private TurnState _turnState;
 
     public static event Action<bool> togglePlayerUiControls;
     public static event Action<string> updateDebugText;
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         Enemy.enemyTurnDone += EndEnemyTurn;
     }
 
-    private void Start() {
+    private void Start()
+    {
         _turnState = TurnState.Start;
         StartCoroutine(InitCombat());
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         Enemy.enemyTurnDone -= EndEnemyTurn;
     }
-    
-    private IEnumerator InitCombat() {
+
+    private IEnumerator InitCombat()
+    {
         updateDebugText?.Invoke("Combat Initiated!");
         yield return new WaitForSeconds(1f);
 
@@ -33,7 +37,8 @@ public class TurnManager : MonoBehaviour {
         yield return StartCoroutine(PlayerTurn());
     }
 
-    private IEnumerator PlayerTurn() {
+    private IEnumerator PlayerTurn()
+    {
         togglePlayerUiControls?.Invoke(true);
         updateDebugText?.Invoke("Player Turn!");
         yield return new WaitForSeconds(1f);
@@ -41,7 +46,8 @@ public class TurnManager : MonoBehaviour {
         GlobalGameInfos.Instance.PlayerObject.Player.StartTurn();
     }
 
-    private IEnumerator EnemyTurn() {
+    private IEnumerator EnemyTurn()
+    {
         togglePlayerUiControls?.Invoke(false);
         updateDebugText?.Invoke("Enemy Turn!");
         yield return new WaitForSeconds(1f);
@@ -51,14 +57,16 @@ public class TurnManager : MonoBehaviour {
         yield return StartCoroutine(PlayerTurn());
     }
 
-    private void EndEnemyTurn() {
+    private void EndEnemyTurn()
+    {
         updateDebugText?.Invoke("Enemy Turn Ended!");
         _playerTurn = true;
 
         _turnState = TurnState.PlayerTurn;
     }
 
-    public void EndPlayerTurn() {
+    public void EndPlayerTurn()
+    {
         updateDebugText?.Invoke("Player Turn Ended!");
         // called by button in scene
         _playerTurn = false;

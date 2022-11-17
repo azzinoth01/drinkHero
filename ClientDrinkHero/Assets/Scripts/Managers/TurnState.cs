@@ -1,7 +1,8 @@
-public enum TurnState {
-    Start, 
-    PlayerTurn, 
-    EnemyTurn, 
-    Win, 
+public enum TurnState
+{
+    Start,
+    PlayerTurn,
+    EnemyTurn,
+    Win,
     Lost
 }

@@ -47,7 +47,8 @@ MonoBehaviour:
   _player:
     _name: test
     _health: 0
-    _schild: 0
+    _maxHealth: 0
+    _shield: 0
     _attack: 0
     _maxRessource: 0
     _ressource: 0
@@ -57,12 +58,5 @@ MonoBehaviour:
       _remainingCardList: []
       _deck:
         _heroSlotList: []
-    _sprite: {fileID: 0}
-    enemy:
-      _health: 0
-      _schild: 0
-      _attack: 0
-      _element: 0
-      _sprite: {fileID: 0}
+    _playerDamageSound: {fileID: 11400000, guid: 4acf526a1e216ab4cac295f97c37429b, type: 2}
   testUserField: {fileID: 0}
-  testEnemyField: {fileID: 0}
