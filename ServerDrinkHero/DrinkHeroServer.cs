@@ -1,8 +1,16 @@
+
+#if CLIENT
 using Mono.Data.Sqlite;
+#endif
+
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+
+#if SERVER
+using System.Data.SQLite;
+#endif
 
 
 public class DrinkHeroServer {
@@ -31,9 +39,12 @@ public class DrinkHeroServer {
 
         connectionString = "URI=file:" + connectionString;
 
-        Console.Write(connectionString + " path \r\n");
+        Console.Write(connectionString);
 
-        SqliteConnection databaseConnection = new SqliteConnection(connectionString);
+        SQLiteConnection databaseConnection = new SQLiteConnection(connectionString);
+
+
+
 
         databaseConnection.Open();
         DatabaseManager.Db = databaseConnection;

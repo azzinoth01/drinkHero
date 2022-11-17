@@ -1,4 +1,7 @@
+
+#if CLIENT
 using Mono.Data.Sqlite;
+#endif
 using System;
 using System.Collections.Generic;
 
@@ -6,11 +9,15 @@ using System.Reflection;
 using System.Text;
 using UnityEngine;
 
+#if SERVER
+using System.Data.SQLite;
+#endif
+
 public static class DatabaseManager {
-    private static SqliteConnection _db;
+    private static SQLiteConnection _db;
     private static Dictionary<string, TableMapping> _tableMapping;
 
-    public static SqliteConnection Db {
+    public static SQLiteConnection Db {
         get {
             return _db;
         }
@@ -25,7 +32,7 @@ public static class DatabaseManager {
             return _tableMapping;
         }
     }
-    private static T ReadRow<T>(SqliteDataReader reader, Dictionary<string, string> columnMapping) where T : DatabaseItem, new() {
+    private static T ReadRow<T>(SQLiteDataReader reader, Dictionary<string, string> columnMapping) where T : DatabaseItem, new() {
 
         T item = new T();
 
@@ -42,7 +49,7 @@ public static class DatabaseManager {
         }
         return item;
     }
-    private static void SetReadDataOnProperty<T>(PropertyInfo property, T item, SqliteDataReader reader, int readIndex) {
+    private static void SetReadDataOnProperty<T>(PropertyInfo property, T item, SQLiteDataReader reader, int readIndex) {
 
 
         //  Debug.Log(reader.GetFieldType(readIndex));
@@ -120,13 +127,13 @@ public static class DatabaseManager {
 
         string sqlCommand = "SELECT * FROM " + mapping.TableName + " WHERE " + mapping.PrimaryKeyColumn + " = " + index;
 
-        SqliteCommand command = _db.CreateCommand();
+        SQLiteCommand command = _db.CreateCommand();
 
         command.CommandText = sqlCommand;
 
         T item = new T();
 
-        SqliteDataReader reader = command.ExecuteReader();
+        SQLiteDataReader reader = command.ExecuteReader();
 
         while (reader.Read()) {
 
@@ -145,13 +152,13 @@ public static class DatabaseManager {
 
         string sqlCommand = "SELECT * FROM " + mapping.TableName;
 
-        SqliteCommand command = _db.CreateCommand();
+        SQLiteCommand command = _db.CreateCommand();
 
         command.CommandText = sqlCommand;
 
         List<T> list = new List<T>();
 
-        SqliteDataReader reader = command.ExecuteReader();
+        SQLiteDataReader reader = command.ExecuteReader();
 
         while (reader.Read()) {
 
@@ -170,13 +177,13 @@ public static class DatabaseManager {
 
         string sqlCommand = "SELECT * FROM " + mapping.TableName + " WHERE " + foreigenKey.Trim() + " = " + keyValue;
 
-        SqliteCommand command = _db.CreateCommand();
+        SQLiteCommand command = _db.CreateCommand();
 
         command.CommandText = sqlCommand;
 
         List<T> list = new List<T>();
 
-        SqliteDataReader reader = command.ExecuteReader();
+        SQLiteDataReader reader = command.ExecuteReader();
 
         while (reader.Read()) {
 
@@ -215,7 +222,7 @@ public static class DatabaseManager {
         }
         sqlCommand = sqlCommand + " WHERE " + mapping.PrimaryKeyColumn + " = " + item.GetType().GetProperty(mapping.PrimaryKeyProperty).GetValue(item);
 
-        SqliteCommand command = _db.CreateCommand();
+        SQLiteCommand command = _db.CreateCommand();
 
         command.CommandText = sqlCommand;
 
@@ -276,7 +283,7 @@ public static class DatabaseManager {
         }
         sqlCommand = sqlCommand + " ) ";
 
-        SqliteCommand command = _db.CreateCommand();
+        SQLiteCommand command = _db.CreateCommand();
 
         command.CommandText = sqlCommand;
 

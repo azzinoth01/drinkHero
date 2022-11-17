@@ -33,7 +33,6 @@
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\PrimaryKeyAttribute.cs" Link="Database\PrimaryKeyAttribute.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\TableAttribute.cs" Link="Database\TableAttribute.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\TableMapping.cs" Link="Database\TableMapping.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Packet.cs" Link="Packet.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\RegexPatterns.cs" Link="RegexPatterns.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\ServerFunctionAttribute.cs" Link="ServerFunctionAttribute.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\ServerFunctions.cs" Link="ServerFunctions.cs" />
@@ -48,15 +47,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="..\ClientDrinkHero\Assets\Plugins\sqlite3.def" Link="sqlite3.def">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Include="..\ClientDrinkHero\Assets\Plugins\sqlite3.dll" Link="sqlite3.dll">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
 		<None Include="..\ClientDrinkHero\DrinkHeroDatabase.db" Link="DrinkHeroDatabase.db">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="SQLite" Version="3.13.0" />
+	  <PackageReference Include="System.Data.SQLite" Version="1.0.116" />
 	</ItemGroup>
 
 	<ItemGroup>
