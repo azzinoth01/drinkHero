@@ -128,8 +128,8 @@ public class GlobalGameInfos : MonoBehaviour {
         WriteBackData writeBack = new WriteBackData(_cachedServerData, _cachedServerData.GetType().GetMethod(nameof(_cachedServerData.SetHeroData)), typeof(HeroDatabase));
         writeServerDataTo.Enqueue(writeBack);
 
-        ClientFunctions.GetEnemyDatabase();
-        writeBack = new WriteBackData(_cachedServerData, _cachedServerData.GetType().GetMethod(nameof(_cachedServerData.SetEnemyData)), typeof(EnemyDatabase));
+        ClientFunctions.GetRandomEnemyDatabase();
+        writeBack = new WriteBackData(_enemyObject.enemy, _enemyObject.enemy.GetType().GetMethod(nameof(_enemyObject.enemy.SetEnemyData)), typeof(EnemyDatabase));
         writeServerDataTo.Enqueue(writeBack);
 
         ReadServerDataThread serverDataReadThread = new ReadServerDataThread(_reader);

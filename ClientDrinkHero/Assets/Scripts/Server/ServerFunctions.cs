@@ -121,6 +121,20 @@ public static class ServerFunctions {
         stream.Write(data);
         Console.WriteLine(data + "\r\n");
     }
+    [ServerFunction("GetRandomEnemy")]
+    public static void GetRandomEnemy(StreamWriter stream) {
+        List<EnemyDatabase> enemy = DatabaseManager.GetDatabaseList<EnemyDatabase>();
+        Random rand = new Random((int)DateTime.Now.Ticks);
+
+        int index = rand.Next(0, enemy.Count - 1);
+        EnemyDatabase enemyData = enemy[index];
+
+        string data = CreateTransmissionStringOfItem<EnemyDatabase>(enemyData);
+        data = data + " END ";
+
+        stream.Write(data);
+        Console.WriteLine(data + "\r\n");
+    }
     [ServerFunction("GetEnemyByKeyPair")]
     public static void GetEnemyByKeyPair(StreamWriter stream, string pair) {
         (string, string) keyValue = ResolveKeyValuePair(pair);

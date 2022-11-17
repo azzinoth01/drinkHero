@@ -54,6 +54,18 @@ public static class ClientFunctions {
         GlobalGameInfos.Instance.Writer.Write(function);
 
     }
+
+    public static void GetRandomEnemyDatabase() {
+        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetRandomEnemy));
+
+        string callName = info.GetCustomAttribute<ServerFunctionAttribute>().Name;
+
+        string function = CreateFunctionCallString(callName);
+
+        GlobalGameInfos.Instance.Writer.Write(function);
+
+    }
+
     public static void GetCardToHeroByKeyPair(string pair) {
         MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetCardToHeroByKeyPair));
 

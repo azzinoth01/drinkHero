@@ -34,6 +34,12 @@ public class Enemy : Character, IWaitingOnServer {
         }
     }
 
+    public void SetEnemyData(List<EnemyDatabase> enemyDatabases) {
+        EnemyData = enemyDatabases[0];
+
+
+    }
+
     public bool IsWaitingOnServer {
         get {
             return _isWaitingOnServer;
@@ -139,6 +145,13 @@ public class Enemy : Character, IWaitingOnServer {
     public void EnemyDeath() {
         // Invoke Win State or spawn next enemy
         // hand out exp whatever
+
+        ClientFunctions.GetRandomEnemyDatabase();
+        WriteBackData writeBack = new WriteBackData(this, GetType().GetMethod(nameof(SetEnemyData)), typeof(EnemyDatabase));
+        GlobalGameInfos.writeServerDataTo.Enqueue(writeBack);
+        GlobalGameInfos.Instance.WaitOnServerObjects.Add(this);
+        _isWaitingOnServer = true;
+
     }
 
     public void EnemyTurn() {
