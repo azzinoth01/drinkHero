@@ -42,7 +42,7 @@ public class TurnManager : MonoBehaviour
         togglePlayerUiControls?.Invoke(true);
         updateDebugText?.Invoke("Player Turn!");
         yield return new WaitForSeconds(1f);
-
+        
         GlobalGameInfos.Instance.PlayerObject.Player.StartTurn();
     }
 

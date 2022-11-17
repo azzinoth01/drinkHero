@@ -21,6 +21,8 @@ public class Player : Character {
 
     public int PlayerShield => _shield;
 
+    public static Action onPlayerDeath;
+
     public GameDeck GameDeck {
         get {
             return _gameDeck;
@@ -93,7 +95,7 @@ public class Player : Character {
 
     public void ResetRessource() {
         _ressource = _maxRessource;
-        //UpdateEnergyUI();
+        UpdateEnergyUI();
     }
 
     public void StartTurn() {
@@ -109,7 +111,7 @@ public class Player : Character {
 
 
         //draw until 5 cards
-
+        Debug.Log(_handCards.Count);
         for (int i = _handCards.Count; i < 5;) {
             _handCards.Add(_gameDeck.DrawCard());
             i = i + 1;
@@ -200,8 +202,9 @@ public class Player : Character {
         }
     }
 
-    public void PlayerDeath() {
-
+    public void PlayerDeath() 
+    {
+        onPlayerDeath?.Invoke();
     }
 
     private void UpdateUI() {

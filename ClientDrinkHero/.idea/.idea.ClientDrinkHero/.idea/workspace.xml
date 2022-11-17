@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="62e39fbb-6850-443e-ad73-43033f0b1507" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="TaskManager">
+    <servers />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="false" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Managers/TurnManager.cs</url>
+          <line>45</line>
+          <properties documentPath="C:\Users\SHC3x6\drinkHero\ClientDrinkHero\Assets\Scripts\Managers\TurnManager.cs" initialLine="45" containingFunctionPresentation="method 'PlayerTurn'">
+            <startOffsets>
+              <option value="1046" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1103" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Battle/Player.cs</url>
+          <line>114</line>
+          <properties documentPath="C:\Users\SHC3x6\drinkHero\ClientDrinkHero\Assets\Scripts\Battle\Player.cs" initialLine="114" containingFunctionPresentation="method 'StartTurn'">
+            <startOffsets>
+              <option value="2883" />
+              <option value="2922" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2921" />
+              <option value="2923" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6378266000826116090}
   - component: {fileID: 6378266000826116089}
   m_Layer: 0
-  m_Name: TestUser
+  m_Name: testUser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,80 +45,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _users:
-    _name: 
+    _name: Test User
     _iD: 0
     _money: 0
     _crystalBottles: 0
-    _heroList: []
+    _heroList:
+    - _name: Testing
+      _iD: 12
+      _attack: 12
+      _shield: 12
+      _health: 12
+      _element: 0
+      _sprite: {fileID: 0}
     _deckList:
     - _heroSlotList:
       - _hero:
-          _name: TestHeld
+          _name: Cola Girl
           _iD: 0
           _attack: 0
-          _schild: 0
+          _shield: 0
           _health: 100
-          _cardList:
-          - _name: 
-            _iD: 0
-            _attack: 3
-            _shield: 0
-            _health: 0
-            _text: 
-            _costs: 2
-            _upgradeCosts: 0
-            _element: 0
-            _sprite: {fileID: 0}
-          - _name: 
-            _iD: 0
-            _attack: 5
-            _shield: 5
-            _health: 0
-            _text: 
-            _costs: 2
-            _upgradeCosts: 0
-            _element: 0
-            _sprite: {fileID: 0}
-          - _name: 
-            _iD: 0
-            _attack: 0
-            _shield: 0
-            _health: 5
-            _text: 
-            _costs: 1
-            _upgradeCosts: 0
-            _element: 0
-            _sprite: {fileID: 0}
-          - _name: 
-            _iD: 0
-            _attack: -1
-            _shield: 0
-            _health: 0
-            _text: 
-            _costs: 1
-            _upgradeCosts: 0
-            _element: 0
-            _sprite: {fileID: 0}
-          - _name: 
-            _iD: 0
-            _attack: 5
-            _shield: 0
-            _health: 0
-            _text: 
-            _costs: 1
-            _upgradeCosts: 0
-            _element: 0
-            _sprite: {fileID: 0}
-          - _name: 
-            _iD: 0
-            _attack: 0
-            _shield: 0
-            _health: -1
-            _text: 
-            _costs: 2
-            _upgradeCosts: 0
-            _element: 0
-            _sprite: {fileID: 0}
+          _element: 1
+          _sprite: {fileID: 0}
+        _slotID: 0
+      - _hero:
+          _name: Fanta Chan
+          _iD: 1
+          _attack: 0
+          _shield: 0
+          _health: 100
+          _element: 0
+          _sprite: {fileID: 0}
+        _slotID: 0
+      - _hero:
+          _name: Monster Girl
+          _iD: 2
+          _attack: 0
+          _shield: 0
+          _health: 100
+          _element: 0
+          _sprite: {fileID: 0}
+        _slotID: 0
+      - _hero:
+          _name: Beer Lady
+          _iD: 3
+          _attack: 0
+          _shield: 0
+          _health: 100
           _element: 0
           _sprite: {fileID: 0}
         _slotID: 0
