@@ -17,93 +17,78 @@ public static class ClientFunctions {
     public static void SendMessageToDatabase(string message) {
         MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.SendMessage));
 
-        string callName = info.GetCustomAttribute<ServerFunctionAttribute>().Name;
-
-        string function = CreateFunctionCallString(callName, message);
-
-        GlobalGameInfos.Instance.Writer.Write(function);
+        WriteToServer(info, message);
     }
     public static void GetHeroDatabase() {
         MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetHeros));
 
-        string callName = info.GetCustomAttribute<ServerFunctionAttribute>().Name;
-
-        string function = CreateFunctionCallString(callName);
-
-        GlobalGameInfos.Instance.Writer.Write(function);
+        WriteToServer(info);
 
     }
     public static void GetHeroDatabaseByKeyPair(string pair) {
         MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetHerosByKeyPair));
 
-        string callName = info.GetCustomAttribute<ServerFunctionAttribute>().Name;
-
-        string function = CreateFunctionCallString(callName, pair);
-
-        GlobalGameInfos.Instance.Writer.Write(function);
+        WriteToServer(info, pair);
 
     }
 
     public static void GetEnemyDatabase() {
         MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEnemy));
 
-        string callName = info.GetCustomAttribute<ServerFunctionAttribute>().Name;
-
-        string function = CreateFunctionCallString(callName);
-
-        GlobalGameInfos.Instance.Writer.Write(function);
+        WriteToServer(info);
 
     }
 
     public static void GetRandomEnemyDatabase() {
         MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetRandomEnemy));
 
-        string callName = info.GetCustomAttribute<ServerFunctionAttribute>().Name;
-
-        string function = CreateFunctionCallString(callName);
-
-        GlobalGameInfos.Instance.Writer.Write(function);
+        WriteToServer(info);
 
     }
 
     public static void GetCardToHeroByKeyPair(string pair) {
         MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetCardToHeroByKeyPair));
 
-        string callName = info.GetCustomAttribute<ServerFunctionAttribute>().Name;
-
-        string function = CreateFunctionCallString(callName, pair);
-
-        GlobalGameInfos.Instance.Writer.Write(function);
+        WriteToServer(info, pair);
 
     }
     public static void GetCardDatabaseByKeyPair(string pair) {
         MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetCardsByKeyPair));
-
-        string callName = info.GetCustomAttribute<ServerFunctionAttribute>().Name;
-
-        string function = CreateFunctionCallString(callName, pair);
-
-        GlobalGameInfos.Instance.Writer.Write(function);
+        WriteToServer(info, pair);
 
     }
     public static void GetEnemytoEnemySkillByKeyPair(string pair) {
         MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEnemyToEnemySkillByKeyPair));
 
-        string callName = info.GetCustomAttribute<ServerFunctionAttribute>().Name;
-
-        string function = CreateFunctionCallString(callName, pair);
-
-        GlobalGameInfos.Instance.Writer.Write(function);
+        WriteToServer(info, pair);
 
     }
     public static void GetEnemySkillByKeyPair(string pair) {
         MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEnemySkillByKeyPair));
 
+        WriteToServer(info, pair);
+
+
+    }
+    public static void WriteToServer(MethodInfo info, string parameter = null) {
         string callName = info.GetCustomAttribute<ServerFunctionAttribute>().Name;
 
-        string function = CreateFunctionCallString(callName, pair);
+        string function = CreateFunctionCallString(callName, parameter);
 
-        GlobalGameInfos.Instance.Writer.Write(function);
+        try {
+            GlobalGameInfos.Instance.Writer.Write(function);
+        }
+        catch {
+            GlobalGameInfos.Instance.StopServerConnection();
+        }
+    }
 
+    public static void SendHeartbeat() {
+        try {
+            GlobalGameInfos.Instance.Writer.Write("KEEPALIVE ");
+        }
+        catch {
+            GlobalGameInfos.Instance.StopServerConnection();
+        }
     }
 }

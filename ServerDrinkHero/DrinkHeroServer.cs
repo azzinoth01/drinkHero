@@ -83,7 +83,7 @@ public class DrinkHeroServer {
             if (_listener.Pending()) {
                 Socket socket = _listener.AcceptSocket();
                 //socket.ReceiveTimeout = 10000;
-                socket.ReceiveTimeout = 100000;
+                socket.ReceiveTimeout = 10000;
                 _connectionList.Add(new ConnectedClient(socket));
 
                 Console.Write("Socket Type" + socket.SocketType + "\r\n");
