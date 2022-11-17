@@ -45,18 +45,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player:
+    _id: 0
+    _health: 100
+    _maxHealth: 100
+    _shield: 5
+    _healModifier: 0
+    _dmgModifier: 0
+    _dmgRecieveModifier: 0
+    _shieldModifier: 0
     _name: test
-    _health: 0
-    _maxHealth: 0
-    _shield: 0
     _attack: 0
-    _maxRessource: 0
-    _ressource: 0
+    _maxRessource: 10
+    _ressource: 10
     _handCards: []
     _gameDeck:
-      _scrapedCardList: []
+      _scrappedCardList: []
       _remainingCardList: []
       _deck:
         _heroSlotList: []
-    _playerDamageSound: {fileID: 11400000, guid: 4acf526a1e216ab4cac295f97c37429b, type: 2}
-  testUserField: {fileID: 0}
+  _playerDamageSound: {fileID: 11400000, guid: 4acf526a1e216ab4cac295f97c37429b, type: 2}
+  _playerDamageBlockedSound: {fileID: 11400000, guid: 0127b8d873bcda447805ef1d4cf7136e, type: 2}
+  _playerhealedSound: {fileID: 11400000, guid: 6027430e5123374419724e1af086e44d, type: 2}
+  _playerShieldUpSound: {fileID: 11400000, guid: 9c212eb3408341541819b260f19af00c, type: 2}
+  testUserField: {fileID: 6378266000826116089, guid: 3fa37a94547e1fb44b367d9f9c0df39c, type: 3}

@@ -12,7 +12,7 @@ public class Enemy : Character, IWaitingOnServer {
     [SerializeField] private Dictionary<long, EnemySkill> _skillList;
 
     public static event Action<int> updateEnemyShieldUI;
-    public static event Action enemyTurnDone;
+    public static event Action enemyTurnDone, enemyDamageReceived, enemyDamageBlocked, enemyHealed, enemyShieldUp;
     public static event Action<float, float> updateEnemyHealthUI;
 
     private EnemyDatabase _enemyData;
