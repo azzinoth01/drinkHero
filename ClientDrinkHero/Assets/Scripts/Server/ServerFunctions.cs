@@ -65,7 +65,12 @@ public static class ServerFunctions {
         }
 
         string data = CreateTransmissionString<T>(items);
-        stream.Write(data);
+        try {
+            stream.Write(data);
+        }
+        catch {
+            return "exeption";
+        }
         return data;
 #endif
 #if CLIENT
@@ -83,7 +88,12 @@ public static class ServerFunctions {
         string data = CreateTransmissionStringOfItem<T>(item);
         data = data + " END ";
 
-        stream.Write(data);
+        try {
+            stream.Write(data);
+        }
+        catch {
+            return "exeption";
+        }
         return data;
 
 

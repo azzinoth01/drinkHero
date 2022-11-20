@@ -17,7 +17,7 @@ public class ReadServerDataThread {
     private StreamWriter _writer;
 
     private double _timeoutBaseTime;
-    private double _timeoutTime;
+
     private double _timeoutCheck;
     private double _deltaTime;
     private DateTime _lastTime;
@@ -27,7 +27,7 @@ public class ReadServerDataThread {
 
         _timeoutBaseTime = timeout;
         _timeoutCheck = timeout;
-        _timeoutTime = timeout * 2;
+
         _lastTime = DateTime.Now;
 
         _client = new TcpClient(host, port);
@@ -93,25 +93,21 @@ public class ReadServerDataThread {
             _lastTime = now;
 
             _timeoutCheck = _timeoutCheck - _deltaTime;
-            _timeoutTime = _timeoutTime - _deltaTime;
+
 
             if (_timeoutCheck <= 0) {
                 _timeoutCheck = _timeoutBaseTime;
                 ClientFunctions.SendHeartbeat();
             }
-            if (_timeoutTime <= 0) {
 
-                KeepRunning = false;
-                CloseConnection();
-                return;
 
-            }
 
             while (GlobalGameInfos.serverRequestQueue.Count != 0) {
                 string call = GlobalGameInfos.serverRequestQueue.Dequeue();
 
                 try {
                     _writer.Write(call);
+                    //Debug.Log(call);
                 }
                 catch (Exception e) {
                     Debug.LogError(e.Message);
@@ -124,7 +120,7 @@ public class ReadServerDataThread {
 
 
             try {
-                if (GlobalGameInfos.writeServerDataTo.Count == 0 || _stream.DataAvailable == false) {
+                if (_stream.DataAvailable == false) {
                     Thread.Sleep(10);
                     continue;
                 }
@@ -153,15 +149,14 @@ public class ReadServerDataThread {
             if (readCount > 0) {
                 readData = readData + new string(buffer, 0, readCount);
             }
-            //Debug.Log(readData);
 
-            if (TransmissionControl.CheckHeartBeat(readData, out readData)) {
-                _timeoutTime = _timeoutBaseTime * 2;
-            }
+
             while (readData != "") {
+                TransmissionControl.CheckHeartBeat(readData, out readData);
                 string message = TransmissionControl.GetMessageObject(readData, out readData);
                 if (message == "" || message == null) {
                     if (TransmissionControl.CheckIfDataIsEmpty(readData, out readData)) {
+
                         continue;
                     }
                     else {
@@ -170,6 +165,7 @@ public class ReadServerDataThread {
 
                 }
                 else {
+
                     bool? isCommand = TransmissionControl.IsCommandMessage(message);
 
                     if (isCommand != null && isCommand == false) {

@@ -1,11 +1,10 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
 [CustomPropertyDrawer(typeof(RangedFloat), true)]
-public class RangedFloatDrawer : PropertyDrawer
-{
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-    {
+public class RangedFloatDrawer : PropertyDrawer {
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
         label = EditorGUI.BeginProperty(position, label, property);
         position = EditorGUI.PrefixLabel(position, label);
 
@@ -19,8 +18,7 @@ public class RangedFloatDrawer : PropertyDrawer
         float rangeMax = 1;
 
         var ranges = (MinMaxRangeAttribute[])fieldInfo.GetCustomAttributes(typeof(MinMaxRangeAttribute), true);
-        if (ranges.Length > 0)
-        {
+        if (ranges.Length > 0) {
             rangeMin = ranges[0].Min;
             rangeMax = ranges[0].Max;
         }
@@ -39,8 +37,7 @@ public class RangedFloatDrawer : PropertyDrawer
 
         EditorGUI.BeginChangeCheck();
         EditorGUI.MinMaxSlider(position, ref minValue, ref maxValue, rangeMin, rangeMax);
-        if (EditorGUI.EndChangeCheck())
-        {
+        if (EditorGUI.EndChangeCheck()) {
             minProp.floatValue = minValue;
             maxProp.floatValue = maxValue;
         }
@@ -48,3 +45,4 @@ public class RangedFloatDrawer : PropertyDrawer
         EditorGUI.EndProperty();
     }
 }
+#endif

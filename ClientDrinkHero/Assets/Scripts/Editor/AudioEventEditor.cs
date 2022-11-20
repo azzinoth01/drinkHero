@@ -1,29 +1,28 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(AudioEvent), true)]
-public class AudioEventEditor : Editor
-{
+public class AudioEventEditor : Editor {
     [SerializeField] private AudioSource preListener;
 
-    public void OnEnable()
-    {
+    public void OnEnable() {
         preListener = EditorUtility
             .CreateGameObjectWithHideFlags("Audio preview", HideFlags.HideAndDontSave, typeof(AudioSource))
             .GetComponent<AudioSource>();
     }
 
-    public void OnDisable()
-    {
+    public void OnDisable() {
         DestroyImmediate(preListener.gameObject);
     }
 
-    public override void OnInspectorGUI()
-    {
+    public override void OnInspectorGUI() {
         DrawDefaultInspector();
 
         EditorGUI.BeginDisabledGroup(serializedObject.isEditingMultipleObjects);
-        if (GUILayout.Button("Preview")) ((AudioEvent)target).Play(preListener);
+        if (GUILayout.Button("Preview"))
+            ((AudioEvent)target).Play(preListener);
         EditorGUI.EndDisabledGroup();
     }
 }
+#endif

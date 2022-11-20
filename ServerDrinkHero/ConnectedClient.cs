@@ -8,7 +8,7 @@ public class ConnectedClient {
     private Socket _connection;
     private double _timeoutCheck;
     private double _timeoutCheckIntervall;
-    private double _timeoutReached;
+
     private DateTime _lastTime;
     private double _deltaTime;
     public string _recievedData;
@@ -38,7 +38,7 @@ public class ConnectedClient {
 
         _timeoutCheckIntervall = 3000;
         _timeoutCheck = _timeoutCheckIntervall;
-        _timeoutReached = _timeoutCheckIntervall * 2;
+
 
     }
 
@@ -65,7 +65,7 @@ public class ConnectedClient {
         _lastTime = now;
 
         _timeoutCheck = _timeoutCheck - _deltaTime;
-        _timeoutReached = _timeoutReached - _deltaTime;
+
         if (_timeoutCheck <= 0) {
             _timeoutCheck = _timeoutCheckIntervall;
             try {
@@ -77,11 +77,6 @@ public class ConnectedClient {
             }
             LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {SEND} KEEPALIVE\r\n");
 
-        }
-
-        if (_timeoutReached <= 0) {
-            CloseConnection();
-            return;
         }
 
 
@@ -114,8 +109,7 @@ public class ConnectedClient {
         }
 
         if (TransmissionControl.CheckHeartBeat(_recievedData, out _recievedData)) {
-            _timeoutReached = _timeoutCheckIntervall * 2;
-            //Console.Write("KEEPALIVE");
+
             LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {RECIEVED} KEEPALIVE\r\n");
         }
         string message = TransmissionControl.GetMessageObject(_recievedData, out _recievedData);
