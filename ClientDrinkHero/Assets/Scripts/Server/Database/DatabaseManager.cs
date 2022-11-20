@@ -1,20 +1,26 @@
+#if SERVER
+using MySql.Data.MySqlClient;
+using System.Reflection;
 
 
-using Mono.Data.Sqlite;
+#endif
 
+#if CLIENT
 using System;
 using System.Collections.Generic;
-
-using System.Reflection;
-using System.Text;
 using UnityEngine;
+#endif
+
 
 
 public static class DatabaseManager {
-    private static SqliteConnection _db;
-    private static Dictionary<string, TableMapping> _tableMapping;
 
-    public static SqliteConnection Db {
+#if SERVER
+    private static MySqlConnection _db;
+#endif
+    private static Dictionary<string, TableMapping> _tableMapping;
+#if SERVER
+    public static MySqlConnection Db {
         get {
             return _db;
         }
@@ -23,13 +29,18 @@ public static class DatabaseManager {
             _db = value;
         }
     }
+#endif
 
     public static Dictionary<string, TableMapping> TableMapping {
         get {
             return _tableMapping;
         }
     }
-    private static T ReadRow<T>(SqliteDataReader reader, Dictionary<string, string> columnMapping) where T : DatabaseItem, new() {
+
+#if SERVER
+    private static T ReadRow<T>(MySqlDataReader reader, Dictionary<string, string> columnMapping) where T : DatabaseItem, new() {
+
+
 
         T item = new T();
 
@@ -46,7 +57,7 @@ public static class DatabaseManager {
         }
         return item;
     }
-    private static void SetReadDataOnProperty<T>(PropertyInfo property, T item, SqliteDataReader reader, int readIndex) {
+    private static void SetReadDataOnProperty<T>(PropertyInfo property, T item, MySqlDataReader reader, int readIndex) {
 
 
         //  Debug.Log(reader.GetFieldType(readIndex));
@@ -58,7 +69,10 @@ public static class DatabaseManager {
 
 
         else if (reader.GetFieldType(readIndex) == typeof(int)) {
+
             property.SetValue(item, reader.GetInt32(readIndex));
+
+
         }
         else if (reader.GetFieldType(readIndex) == typeof(short)) {
             property.SetValue(item, reader.GetInt16(readIndex));
@@ -94,7 +108,7 @@ public static class DatabaseManager {
             property.SetValue(item, null);
         }
     }
-
+#endif
     public static TableMapping GetTableMapping<T>() {
 
         return GetTableMapping(typeof(T));
@@ -114,9 +128,9 @@ public static class DatabaseManager {
         }
         return mapping;
     }
-
-    public static T GetDatabaseItem<T>(long index) where T : DatabaseItem, new() {
-        if (_db == null) {
+#if SERVER
+    public static T GetDatabaseItem<T>(int? index) where T : DatabaseItem, new() {
+        if (_db == null || index == null) {
             return null;
         }
 
@@ -124,20 +138,20 @@ public static class DatabaseManager {
 
         string sqlCommand = "SELECT * FROM " + mapping.TableName + " WHERE " + mapping.PrimaryKeyColumn + " = " + index;
 
-        SqliteCommand command = _db.CreateCommand();
+        MySqlCommand command = _db.CreateCommand();
 
         command.CommandText = sqlCommand;
 
         T item = new T();
 
-        SqliteDataReader reader = command.ExecuteReader();
+        MySqlDataReader reader = command.ExecuteReader();
 
         while (reader.Read()) {
 
 
             item = ReadRow<T>(reader, mapping.ColumnsMapping);
         }
-
+        reader.Close();
         return item;
     }
     public static List<T> GetDatabaseList<T>() where T : DatabaseItem, new() {
@@ -149,23 +163,23 @@ public static class DatabaseManager {
 
         string sqlCommand = "SELECT * FROM " + mapping.TableName;
 
-        SqliteCommand command = _db.CreateCommand();
+        MySqlCommand command = _db.CreateCommand();
 
         command.CommandText = sqlCommand;
 
         List<T> list = new List<T>();
 
-        SqliteDataReader reader = command.ExecuteReader();
+        MySqlDataReader reader = command.ExecuteReader();
 
         while (reader.Read()) {
 
 
             list.Add(ReadRow<T>(reader, mapping.ColumnsMapping));
         }
-
+        reader.Close();
         return list;
     }
-    public static List<T> GetDatabaseList<T>(string foreigenKey, long keyValue) where T : DatabaseItem, new() {
+    public static List<T> GetDatabaseList<T>(string foreigenKey, int keyValue) where T : DatabaseItem, new() {
         if (_db == null) {
             return null;
         }
@@ -174,20 +188,20 @@ public static class DatabaseManager {
 
         string sqlCommand = "SELECT * FROM " + mapping.TableName + " WHERE " + foreigenKey.Trim() + " = " + keyValue;
 
-        SqliteCommand command = _db.CreateCommand();
+        MySqlCommand command = _db.CreateCommand();
 
         command.CommandText = sqlCommand;
 
         List<T> list = new List<T>();
 
-        SqliteDataReader reader = command.ExecuteReader();
+        MySqlDataReader reader = command.ExecuteReader();
 
         while (reader.Read()) {
 
 
             list.Add(ReadRow<T>(reader, mapping.ColumnsMapping));
         }
-
+        reader.Close();
         return list;
     }
 
@@ -219,7 +233,7 @@ public static class DatabaseManager {
         }
         sqlCommand = sqlCommand + " WHERE " + mapping.PrimaryKeyColumn + " = " + item.GetType().GetProperty(mapping.PrimaryKeyProperty).GetValue(item);
 
-        SqliteCommand command = _db.CreateCommand();
+        MySqlCommand command = _db.CreateCommand();
 
         command.CommandText = sqlCommand;
 
@@ -280,7 +294,8 @@ public static class DatabaseManager {
         }
         sqlCommand = sqlCommand + " ) ";
 
-        SqliteCommand command = _db.CreateCommand();
+
+        MySqlCommand command = _db.CreateCommand();
 
         command.CommandText = sqlCommand;
 
@@ -297,5 +312,5 @@ public static class DatabaseManager {
         command.ExecuteNonQuery();
 
     }
-
+#endif
 }

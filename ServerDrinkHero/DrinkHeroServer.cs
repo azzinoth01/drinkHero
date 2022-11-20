@@ -1,13 +1,11 @@
 
 
-using Mono.Data.Sqlite;
 
-using System.Collections.Generic;
+
+using MySql.Data.MySqlClient;
+
 using System.Net;
 using System.Net.Sockets;
-using System.Threading;
-
-
 
 
 public class DrinkHeroServer {
@@ -26,27 +24,16 @@ public class DrinkHeroServer {
     public void StartServer() {
 
 
-        string connectionString = System.AppDomain.CurrentDomain.BaseDirectory;
 
-        //int pos = connectionString.LastIndexOf("/");
+        string connector = @"server=localhost;userid=dbOwner;password=DrinkHero2022!;database=DrinkHeroDatenbank";
 
-        //connectionString = connectionString.Substring(0, pos);
+        MySqlConnection con = new MySqlConnection(connector);
 
-        connectionString = connectionString + "DrinkHeroDatabase.db";
-
-        connectionString = "URI=file:" + connectionString;
-
-        Console.Write(connectionString);
-
-        SqliteConnection databaseConnection = new SqliteConnection(connectionString);
+        con.Open();
 
 
+        DatabaseManager.Db = con;
 
-
-        databaseConnection.Open();
-        DatabaseManager.Db = databaseConnection;
-
-        List<HeroDatabase> heroes = DatabaseManager.GetDatabaseList<HeroDatabase>();
 
 
         _connectionList = new List<ConnectedClient>();
@@ -64,7 +51,7 @@ public class DrinkHeroServer {
         _listenThread.Start();
         _connectionThread.Start();
 
-        Console.Write("Server Startet\r\n");
+        LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] Server Startet\r\n");
     }
     public DrinkHeroServer() {
 
@@ -83,7 +70,8 @@ public class DrinkHeroServer {
             client.CloseConnection();
         }
         _listener.Stop();
-        Console.Write("Server Closed\r\n");
+        DatabaseManager.Db.Close();
+        LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] Server Closed\r\n");
     }
 
 
@@ -92,11 +80,11 @@ public class DrinkHeroServer {
         while (_isListen) {
             if (_listener.Pending()) {
                 Socket socket = _listener.AcceptSocket();
-                //socket.ReceiveTimeout = 10000;
                 socket.ReceiveTimeout = 10000;
+
                 _connectionList.Add(new ConnectedClient(socket));
 
-                Console.Write("Socket Type" + socket.SocketType + "\r\n");
+                LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] (" + socket.RemoteEndPoint.ToString() + ") Connected\r\n");
 
             }
 
@@ -120,8 +108,10 @@ public class DrinkHeroServer {
 
             for (int i = 0; i < _connectionList.Count;) {
                 if (_connectionList[i].Connection.Connected == false) {
+
+
+                    LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] (" + _connectionList[i].RemoteIp + ") Disconnected\r\n");
                     _connectionList.RemoveAt(i);
-                    Console.Write("Socket disconnected\r\n");
                     continue;
 
                 }

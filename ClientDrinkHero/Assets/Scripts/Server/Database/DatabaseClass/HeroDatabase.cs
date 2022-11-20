@@ -1,24 +1,36 @@
 
+#if CLIENT
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
+#endif
 
 [Serializable, Table("Hero")]
 public class HeroDatabase : DatabaseItem {
-    [SerializeField] private long _id;
+
+#if CLIENT
+    [SerializeField] private int _id;
     [SerializeField] private int _shield;
     [SerializeField] private int _health;
     [SerializeField] private string _spritePath;
     [SerializeField] private string _name;
     [NonSerialized] private List<CardToHero> _cardList;
-
     private DataRequestStatusEnum _cardListRequested;
 
+#endif
+#if SERVER
+    private int _id;
+    private int _shield;
+    private int _health;
+    private string _spritePath;
+    private string _name;
+    private List<CardToHero> _cardList;
+    private DataRequestStatusEnum _cardListRequested;
 
+#endif
 
     [Column("ID"), PrimaryKey]
-    public long Id {
+    public int Id {
         get {
             return _id;
         }

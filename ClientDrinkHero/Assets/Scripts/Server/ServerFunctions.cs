@@ -1,11 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 
+
+#if CLIENT
+using System.IO;
+#endif
 public static class ServerFunctions {
 
 
-
+#if SERVER
     public static string CreateTransmissionString<T>(List<T> itemList) {
 
 
@@ -48,148 +49,139 @@ public static class ServerFunctions {
         return (key, value);
     }
 
-    [ServerFunction("GetHeros")]
-    public static void GetHeros(StreamWriter stream) {
-        List<HeroDatabase> heroes = DatabaseManager.GetDatabaseList<HeroDatabase>();
+#endif
 
-        string data = CreateTransmissionString<HeroDatabase>(heroes);
+    private static string SendData<T>(StreamWriter stream, string pair = "") where T : DatabaseItem, new() {
+#if SERVER
+        List<T> items;
+        if (pair == "") {
+            items = DatabaseManager.GetDatabaseList<T>();
+        }
+        else {
+            (string, string) keyValue = ResolveKeyValuePair(pair);
+            string key = keyValue.Item1;
+            int id = int.Parse(keyValue.Item2);
+            items = DatabaseManager.GetDatabaseList<T>(key, id);
+        }
+
+        string data = CreateTransmissionString<T>(items);
         stream.Write(data);
-        Console.WriteLine(data + "\r\n");
-
+        return data;
+#endif
+#if CLIENT
+        return null;
+#endif
     }
-    [ServerFunction("GetHerosByKeyPair")]
-    public static void GetHerosByKeyPair(StreamWriter stream, string pair) {
-
-        (string, string) keyValue = ResolveKeyValuePair(pair);
-
-        string key = keyValue.Item1;
-        long id = long.Parse(keyValue.Item2);
-
-        List<HeroDatabase> heroes = DatabaseManager.GetDatabaseList<HeroDatabase>(key, id);
-
-        string data = CreateTransmissionString<HeroDatabase>(heroes);
-
-        stream.Write(data);
-        Console.WriteLine(data + "\r\n");
-    }
-    [ServerFunction("GetCardToHero")]
-    public static void GetCardToHero(StreamWriter stream) {
-        List<CardToHero> cardToHero = DatabaseManager.GetDatabaseList<CardToHero>();
-
-        string data = CreateTransmissionString<CardToHero>(cardToHero);
-        stream.Write(data);
-        Console.WriteLine(data + "\r\n");
-    }
-    [ServerFunction("GetCardToHeroByKeyPair")]
-    public static void GetCardToHeroByKeyPair(StreamWriter stream, string pair) {
-        (string, string) keyValue = ResolveKeyValuePair(pair);
-
-        string key = keyValue.Item1;
-        long id = long.Parse(keyValue.Item2);
-
-        List<CardToHero> cardToHero = DatabaseManager.GetDatabaseList<CardToHero>(key, id);
-        string data = CreateTransmissionString<CardToHero>(cardToHero);
-        stream.Write(data);
-        Console.WriteLine(data + "\r\n");
-    }
-    [ServerFunction("GetCards")]
-    public static void GetCards(StreamWriter stream) {
-        List<CardDatabase> cards = DatabaseManager.GetDatabaseList<CardDatabase>();
-
-        string data = CreateTransmissionString<CardDatabase>(cards);
-        stream.Write(data);
-        Console.WriteLine(data + "\r\n");
-    }
-    [ServerFunction("GetCardsByKeyPair")]
-    public static void GetCardsByKeyPair(StreamWriter stream, string pair) {
-        (string, string) keyValue = ResolveKeyValuePair(pair);
-
-        string key = keyValue.Item1;
-        long id = long.Parse(keyValue.Item2);
-
-        List<CardDatabase> cards = DatabaseManager.GetDatabaseList<CardDatabase>(key, id);
-
-        string data = CreateTransmissionString<CardDatabase>(cards);
-        stream.Write(data);
-        Console.WriteLine(data + "\r\n");
-    }
-    [ServerFunction("GetEnemy")]
-    public static void GetEnemy(StreamWriter stream) {
-        List<EnemyDatabase> enemy = DatabaseManager.GetDatabaseList<EnemyDatabase>();
-
-        string data = CreateTransmissionString<EnemyDatabase>(enemy);
-        stream.Write(data);
-        Console.WriteLine(data + "\r\n");
-    }
-    [ServerFunction("GetRandomEnemy")]
-    public static void GetRandomEnemy(StreamWriter stream) {
-        List<EnemyDatabase> enemy = DatabaseManager.GetDatabaseList<EnemyDatabase>();
+    private static string SendDataOfRandom<T>(StreamWriter stream) where T : DatabaseItem, new() {
+#if SERVER
+        List<T> items = DatabaseManager.GetDatabaseList<T>();
         Random rand = new Random((int)DateTime.Now.Ticks);
 
-        int index = rand.Next(0, enemy.Count - 1);
-        EnemyDatabase enemyData = enemy[index];
+        int index = rand.Next(0, items.Count - 1);
+        T item = items[index];
 
-        string data = CreateTransmissionStringOfItem<EnemyDatabase>(enemyData);
+        string data = CreateTransmissionStringOfItem<T>(item);
         data = data + " END ";
 
         stream.Write(data);
-        Console.WriteLine(data + "\r\n");
+        return data;
+
+
+
+#endif
+#if CLIENT
+        return null;
+#endif
+    }
+
+
+
+
+    [ServerFunction("GetHeros")]
+    public static string GetHeros(StreamWriter stream) {
+        return SendData<HeroDatabase>(stream);
+
+    }
+
+    [ServerFunction("GetHerosByKeyPair")]
+    public static string GetHerosByKeyPair(StreamWriter stream, string pair) {
+        return SendData<HeroDatabase>(stream, pair);
+
+    }
+    [ServerFunction("GetCardToHero")]
+    public static string GetCardToHero(StreamWriter stream) {
+
+        return SendData<CardToHero>(stream);
+
+
+    }
+    [ServerFunction("GetCardToHeroByKeyPair")]
+    public static string GetCardToHeroByKeyPair(StreamWriter stream, string pair) {
+
+        return SendData<CardToHero>(stream, pair);
+
+    }
+    [ServerFunction("GetCards")]
+    public static string GetCards(StreamWriter stream) {
+
+        return SendData<CardDatabase>(stream);
+
+    }
+    [ServerFunction("GetCardsByKeyPair")]
+    public static string GetCardsByKeyPair(StreamWriter stream, string pair) {
+
+        return SendData<CardDatabase>(stream, pair);
+
+
+    }
+    [ServerFunction("GetEnemy")]
+    public static string GetEnemy(StreamWriter stream) {
+        return SendData<EnemyDatabase>(stream);
+
+    }
+    [ServerFunction("GetRandomEnemy")]
+    public static string GetRandomEnemy(StreamWriter stream) {
+
+        return SendDataOfRandom<EnemyDatabase>(stream);
+
+
     }
     [ServerFunction("GetEnemyByKeyPair")]
-    public static void GetEnemyByKeyPair(StreamWriter stream, string pair) {
-        (string, string) keyValue = ResolveKeyValuePair(pair);
+    public static string GetEnemyByKeyPair(StreamWriter stream, string pair) {
 
-        string key = keyValue.Item1;
-        long id = long.Parse(keyValue.Item2);
+        return SendData<EnemyDatabase>(stream, pair);
 
-        List<EnemyDatabase> enemy = DatabaseManager.GetDatabaseList<EnemyDatabase>(key, id);
-        string data = CreateTransmissionString<EnemyDatabase>(enemy);
-        stream.Write(data);
-        Console.WriteLine(data + "\r\n");
     }
     [ServerFunction("GetEnemyToEnemySkill")]
-    public static void GetEnemyToEnemySkill(StreamWriter stream) {
-        List<EnemyToEnemySkill> enemyToEnemySkill = DatabaseManager.GetDatabaseList<EnemyToEnemySkill>();
+    public static string GetEnemyToEnemySkill(StreamWriter stream) {
 
-        string data = CreateTransmissionString<EnemyToEnemySkill>(enemyToEnemySkill);
-        stream.Write(data);
-        Console.WriteLine(data + "\r\n");
+        return SendData<EnemyToEnemySkill>(stream);
+
+
     }
     [ServerFunction("GetEnemyToEnemySkillByKeyPair")]
-    public static void GetEnemyToEnemySkillByKeyPair(StreamWriter stream, string pair) {
-        (string, string) keyValue = ResolveKeyValuePair(pair);
+    public static string GetEnemyToEnemySkillByKeyPair(StreamWriter stream, string pair) {
 
-        string key = keyValue.Item1;
-        long id = long.Parse(keyValue.Item2);
+        return SendData<EnemyToEnemySkill>(stream, pair);
 
-        List<EnemyToEnemySkill> enemyToEnemySkill = DatabaseManager.GetDatabaseList<EnemyToEnemySkill>(key, id);
-        string data = CreateTransmissionString<EnemyToEnemySkill>(enemyToEnemySkill);
-        stream.Write(data);
-        Console.WriteLine(data + "\r\n");
     }
     [ServerFunction("GetEnemySkill")]
-    public static void GetEnemySkill(StreamWriter stream) {
-        List<EnemySkillDatabase> enemyToEnemySkill = DatabaseManager.GetDatabaseList<EnemySkillDatabase>();
+    public static string GetEnemySkill(StreamWriter stream) {
 
-        string data = CreateTransmissionString<EnemySkillDatabase>(enemyToEnemySkill);
-        stream.Write(data);
-        Console.WriteLine(data + "\r\n");
+        return SendData<EnemySkillDatabase>(stream);
+
     }
     [ServerFunction("GetEnemySkillByKeyPair")]
-    public static void GetEnemySkillByKeyPair(StreamWriter stream, string pair) {
-        (string, string) keyValue = ResolveKeyValuePair(pair);
+    public static string GetEnemySkillByKeyPair(StreamWriter stream, string pair) {
 
-        string key = keyValue.Item1;
-        long id = long.Parse(keyValue.Item2);
+        return SendData<EnemySkillDatabase>(stream, pair);
 
-        List<EnemySkillDatabase> enemyToEnemySkill = DatabaseManager.GetDatabaseList<EnemySkillDatabase>(key, id);
-        string data = CreateTransmissionString<EnemySkillDatabase>(enemyToEnemySkill);
-        stream.Write(data);
-        Console.WriteLine(data + "\r\n");
     }
     [ServerFunction("SendMessage")]
-    public static void SendMessage(StreamWriter stream, string message) {
-        //Debug.LogError(message);
-        Console.Write(message + "\r\n");
+    public static string SendMessage(StreamWriter stream, string message) {
+
+        return message;
+
+
     }
 }

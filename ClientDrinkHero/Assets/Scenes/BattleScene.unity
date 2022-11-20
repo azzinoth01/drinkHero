@@ -5106,6 +5106,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 287980286352838640, guid: 14182c6601e5fa54e9ab3d120097f087, type: 3}
+      propertyPath: host
+      value: markusdullnig.de
+      objectReference: {fileID: 0}
+    - target: {fileID: 287980286352838640, guid: 14182c6601e5fa54e9ab3d120097f087, type: 3}
       propertyPath: _enemyObject
       value: 
       objectReference: {fileID: 1004845375}

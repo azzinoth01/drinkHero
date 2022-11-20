@@ -1,14 +1,16 @@
+
+#if CLIENT
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+#endif
 
 [Table("EnemySkill"), Serializable]
 public class EnemySkillDatabase : DatabaseItem {
 
 
-
-    [SerializeField] private long _id;
+#if CLIENT
+    [SerializeField] private int _id;
     [SerializeField] private string _name;
     [SerializeField] private int _minAttack;
     [SerializeField] private int _minShield;
@@ -17,11 +19,24 @@ public class EnemySkillDatabase : DatabaseItem {
     [SerializeField] private int _maxShield;
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _cooldown;
-
     [NonSerialized] private List<EnemyToEnemySkill> _enemyToEnemySkills;
 
+#endif
+#if SERVER
+    private int _id;
+    private string _name;
+    private int _minAttack;
+    private int _minShield;
+    private int _minHealth;
+    private int _maxAttack;
+    private int _maxShield;
+    private int _maxHealth;
+    private int _cooldown;
+    private List<EnemyToEnemySkill> _enemyToEnemySkills;
+
+#endif
     [Column("ID"), PrimaryKey]
-    public long Id {
+    public int Id {
         get {
             return _id;
         }

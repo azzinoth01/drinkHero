@@ -10,7 +10,7 @@ public class Enemy : Character, IWaitingOnServer {
     [SerializeField] private int _attack;
     [SerializeField] private ElementEnum _element;
     [SerializeField] private Sprite _sprite;
-    [SerializeField] private Dictionary<long, EnemySkill> _skillList;
+    [SerializeField] private Dictionary<int, EnemySkill> _skillList;
 
     public static event Action<int> updateEnemyShieldUI;
     public static event Action enemyTurnDone;
@@ -52,7 +52,7 @@ public class Enemy : Character, IWaitingOnServer {
         }
     }
 
-    public Dictionary<long, EnemySkill> SkillList {
+    public Dictionary<int, EnemySkill> SkillList {
         get {
             return _skillList;
         }
@@ -61,7 +61,7 @@ public class Enemy : Character, IWaitingOnServer {
     }
 
     public Enemy() : base() {
-        _skillList = new Dictionary<long, EnemySkill>();
+        _skillList = new Dictionary<int, EnemySkill>();
     }
 
     private bool ConvertEnemyData() {
@@ -78,9 +78,12 @@ public class Enemy : Character, IWaitingOnServer {
 
 
         foreach (EnemyToEnemySkill skill in enemyToEnemySkills) {
-            long id = long.Parse(skill.RefEnemySkill);
+            if (skill.RefEnemySkill == null) {
+                continue;
+            }
+            long id = skill.RefEnemySkill.Value;
             bool waitOn = false;
-            long index = skill.Id;
+            int index = skill.Id;
             if (_skillList.TryGetValue(index, out EnemySkill enemySkill)) {
 
                 enemySkill.EnemySkillData = skill.GetEnemySkill(out waitOn);
@@ -146,7 +149,7 @@ public class Enemy : Character, IWaitingOnServer {
         _attack = 0;
         _element = ElementEnum.none;
         _sprite = null;
-        _skillList = new Dictionary<long, EnemySkill>();
+        _skillList = new Dictionary<int, EnemySkill>();
     }
 
     public void EnemyDeath() {

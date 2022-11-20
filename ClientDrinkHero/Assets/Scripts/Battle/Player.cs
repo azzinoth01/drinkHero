@@ -111,7 +111,7 @@ public class Player : Character {
 
 
         //draw until 5 cards
-        Debug.Log(_handCards.Count);
+        //Debug.Log(_handCards.Count);
         for (int i = _handCards.Count; i < 4;) {
             _handCards.Add(_gameDeck.DrawCard());
             i = i + 1;

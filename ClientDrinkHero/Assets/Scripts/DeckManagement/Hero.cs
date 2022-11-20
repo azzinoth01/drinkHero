@@ -11,7 +11,7 @@ public class Hero : ICascadable, IWaitingOnServer {
     [SerializeField] private int _attack;
     [SerializeField] private int _shield;
     [SerializeField] private int _health;
-    [SerializeField] private Dictionary<long, Card> _cardList;
+    [SerializeField] private Dictionary<int, Card> _cardList;
     [SerializeField] private ElementEnum _element;
     [SerializeField] private Sprite _sprite;
 
@@ -20,7 +20,7 @@ public class Hero : ICascadable, IWaitingOnServer {
 
     private HeroDatabase _heroData;
 
-    public Dictionary<long, Card> CardList {
+    public Dictionary<int, Card> CardList {
         get {
             return _cardList;
 
@@ -94,9 +94,12 @@ public class Hero : ICascadable, IWaitingOnServer {
         }
 
         foreach (CardToHero cardToHero in cardToHeroes) {
+            if (cardToHero.RefCard == null) {
+                continue;
+            }
             bool waitOn = false;
-            long id = long.Parse(cardToHero.RefCard);
-            long index = cardToHero.Id;
+            long id = cardToHero.RefCard.Value;
+            int index = cardToHero.Id;
             if (_cardList.TryGetValue(index, out Card card)) {
 
                 card.CardData = cardToHero.GetCard(out waitOn);
@@ -131,7 +134,7 @@ public class Hero : ICascadable, IWaitingOnServer {
     }
 
     public Hero() {
-        _cardList = new Dictionary<long, Card>();
+        _cardList = new Dictionary<int, Card>();
         _cascadables = new List<ICascadable>();
     }
 

@@ -1,6 +1,4 @@
-using System;
 
-using System.IO;
 using System.Net.Sockets;
 using System.Text;
 
@@ -14,7 +12,7 @@ public class ConnectedClient {
     private DateTime _lastTime;
     private double _deltaTime;
     public string _recievedData;
-
+    public string RemoteIp;
 
 
 
@@ -25,6 +23,7 @@ public class ConnectedClient {
     public ConnectedClient(Socket socket) {
 
         _connection = socket;
+        RemoteIp = _connection.RemoteEndPoint.ToString();
         _recievedData = "";
 
 
@@ -40,6 +39,7 @@ public class ConnectedClient {
         _timeoutCheckIntervall = 3000;
         _timeoutCheck = _timeoutCheckIntervall;
         _timeoutReached = _timeoutCheckIntervall * 2;
+
     }
 
     public Socket Connection {
@@ -75,7 +75,8 @@ public class ConnectedClient {
                 CloseConnection();
                 return;
             }
-            Console.WriteLine("Write KEEPALIVE");
+            LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {SEND} KEEPALIVE\r\n");
+
         }
 
         if (_timeoutReached <= 0) {
@@ -114,7 +115,8 @@ public class ConnectedClient {
 
         if (TransmissionControl.CheckHeartBeat(_recievedData, out _recievedData)) {
             _timeoutReached = _timeoutCheckIntervall * 2;
-            Console.WriteLine("Recieved KEEPALIVE");
+            //Console.Write("KEEPALIVE");
+            LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {RECIEVED} KEEPALIVE\r\n");
         }
         string message = TransmissionControl.GetMessageObject(_recievedData, out _recievedData);
 
@@ -130,9 +132,11 @@ public class ConnectedClient {
             return;
         }
         else if (isCommand == true) {
-            Console.Write(message + "\r\n");
-            TransmissionControl.CommandMessage(_streamWriter, message);
-
+            //Console.Write(message);
+            LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {RECIEVED} " + message + "\r\n");
+            string log = TransmissionControl.CommandMessage(_streamWriter, message);
+            //Console.Write(log);
+            LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {SEND} " + log + "\r\n");
         }
         else {
             //check what data type is to be recieved

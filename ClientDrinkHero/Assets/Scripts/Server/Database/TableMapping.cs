@@ -1,7 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Reflection;
 
+
+using System.Reflection;
+#if CLIENT
+using System.Collections.Generic;
+
+using System;
+
+#endif
 public class TableMapping {
 
     private Dictionary<string, string> _columnMapping;

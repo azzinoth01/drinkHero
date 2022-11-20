@@ -1,20 +1,32 @@
+
+#if CLIENT
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+#endif
 
 [Serializable, Table("EnemyToEnemySkill")]
 public class EnemyToEnemySkill : DatabaseItem {
-    [SerializeField] private long _id;
-    [SerializeField] private string _refEnemy;
-    [SerializeField] private string _refEnemySkill;
+
+#if CLIENT
+    [SerializeField] private int _id;
+    [SerializeField] private int? _refEnemy;
+    [SerializeField] private int? _refEnemySkill;
     [NonSerialized] private EnemyDatabase _enemy;
     [NonSerialized] private EnemySkillDatabase _enemySkill;
-
     private DataRequestStatusEnum _requestedEnemySkills;
+#endif
+#if SERVER
+    private int _id;
+    private int? _refEnemy;
+    private int? _refEnemySkill;
+    private EnemyDatabase _enemy;
+    private EnemySkillDatabase _enemySkill;
+    private DataRequestStatusEnum _requestedEnemySkills;
+#endif
 
     [Column("ID"), PrimaryKey]
-    public long Id {
+    public int Id {
         get {
             return _id;
         }
@@ -24,7 +36,7 @@ public class EnemyToEnemySkill : DatabaseItem {
         }
     }
     [Column("RefEnemy")]
-    public string RefEnemy {
+    public int? RefEnemy {
         get {
             return _refEnemy;
         }
@@ -34,7 +46,7 @@ public class EnemyToEnemySkill : DatabaseItem {
         }
     }
     [Column("RefEnemySkill")]
-    public string RefEnemySkill {
+    public int? RefEnemySkill {
         get {
             return _refEnemySkill;
         }
@@ -43,13 +55,13 @@ public class EnemyToEnemySkill : DatabaseItem {
             _refEnemySkill = value;
         }
     }
-
+#if SERVER
     public EnemyDatabase Enemy {
         get {
             if (_refEnemy == null) {
                 return null;
             }
-            _enemy = DatabaseManager.GetDatabaseItem<EnemyDatabase>(long.Parse(_refEnemy));
+            _enemy = DatabaseManager.GetDatabaseItem<EnemyDatabase>(_refEnemy);
 
             return _enemy;
         }
@@ -59,18 +71,18 @@ public class EnemyToEnemySkill : DatabaseItem {
                 _refEnemy = null;
             }
             else {
-                _refEnemy = value.Id.ToString();
+                _refEnemy = value.Id;
             }
             _enemy = value;
         }
     }
-#if SERVER
+
     public EnemySkillDatabase EnemySkill {
         get {
             if (_refEnemySkill == null) {
                 return null;
             }
-            _enemySkill = DatabaseManager.GetDatabaseItem<EnemySkillDatabase>(long.Parse(_refEnemySkill));
+            _enemySkill = DatabaseManager.GetDatabaseItem<EnemySkillDatabase>(_refEnemySkill);
             return _enemySkill;
         }
 
@@ -79,7 +91,7 @@ public class EnemyToEnemySkill : DatabaseItem {
                 _refEnemySkill = null;
             }
             else {
-                _refEnemySkill = value.Id.ToString();
+                _refEnemySkill = value.Id;
             }
             _enemySkill = value;
         }

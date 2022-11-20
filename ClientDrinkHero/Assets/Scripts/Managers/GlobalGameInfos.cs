@@ -35,6 +35,7 @@ public class GlobalGameInfos : MonoBehaviour {
     [SerializeField] public string host = "markusdullnig.de";
 
     private CachedServerData _cachedServerData;
+    public static Queue<string> serverRequestQueue;
     public static Queue<WriteBackData> writeServerDataTo;
 
     public static Queue<bool> checkUpdates;
@@ -51,8 +52,7 @@ public class GlobalGameInfos : MonoBehaviour {
 
     private Thread _thread;
 
-    public static double _TimeoutBaseTime;
-    public static double _TimeoutTime;
+
 
     public static GlobalGameInfos Instance {
         get {
@@ -119,10 +119,10 @@ public class GlobalGameInfos : MonoBehaviour {
 
     private void Awake() {
         _instance = this;
-        _TimeoutBaseTime = 6000;
-        _TimeoutTime = _TimeoutBaseTime;
+
         _playerObject.Player.Clear();
         _waitOnStartData = false;
+        serverRequestQueue = new Queue<string>();
         writeServerDataTo = new Queue<WriteBackData>();
         checkUpdates = new Queue<bool>();
         _waitOnServerObjects = new List<IWaitingOnServer>();
@@ -138,21 +138,17 @@ public class GlobalGameInfos : MonoBehaviour {
         writeBack = new WriteBackData(_enemyObject.enemy, _enemyObject.enemy.GetType().GetMethod(nameof(_enemyObject.enemy.SetEnemyData)), typeof(EnemyDatabase));
         writeServerDataTo.Enqueue(writeBack);
 
-        ReadServerDataThread serverDataReadThread = new ReadServerDataThread(_reader, _stream);
+        //ReadServerDataThread serverDataReadThread = new ReadServerDataThread(_reader, _stream);
 
-        _thread = new Thread(serverDataReadThread.ThreadLoop);
+        //_thread = new Thread(serverDataReadThread.ThreadLoop);
 
-        _thread.Start();
-        StartCoroutine(SendHeartbeat(3));
+        //_thread.Start();
+        //StartCoroutine(SendHeartbeat(3));
     }
 
     private void Update() {
 
-        _TimeoutTime = _TimeoutTime - Time.deltaTime;
-        if (_TimeoutTime <= 0) {
-            ReadServerDataThread.KeepRunning = false;
-            StopServerConnection();
-        }
+
         if (_waitOnStartData == true && checkUpdates.Count == 0) {
             return;
         }
@@ -169,9 +165,7 @@ public class GlobalGameInfos : MonoBehaviour {
                 i = i - 1;
 
             }
-            foreach (IWaitingOnServer waiting in _waitOnServerObjects) {
-                waiting.GetUpdateFromServer();
-            }
+
         }
 
         if (_cachedServerData._heroData.Count != 0) {
@@ -183,17 +177,6 @@ public class GlobalGameInfos : MonoBehaviour {
         return;
     }
 
-    private IEnumerator SendHeartbeat(int intervall) {
-
-        while (enabled) {
-
-
-            yield return new WaitForSeconds(intervall);
-
-            ClientFunctions.SendHeartbeat();
-        }
-
-    }
 
     public void CreatePlayer() {
         _playerObject.Player.Clear();
@@ -221,31 +204,20 @@ public class GlobalGameInfos : MonoBehaviour {
 
     private void OnDisable() {
         ReadServerDataThread.KeepRunning = false;
-        StopServerConnection();
+        //StopServerConnection();
     }
 
     private void StartServerConnection() {
-        _client = new TcpClient("localhost", port);
-        _stream = _client.GetStream();
-        _reader = new StreamReader(_stream, Encoding.UTF8, false, 1024);
-        _writer = new StreamWriter(_stream, Encoding.UTF8, 1024);
-        _writer.AutoFlush = true;
-
-        ClientFunctions.SendMessageToDatabase("Start");
 
 
+        ReadServerDataThread serverDataReadThread = new ReadServerDataThread(host, port, 3000);
+
+        _thread = new Thread(serverDataReadThread.ThreadLoop);
+
+        _thread.Start();
 
     }
 
 
-    public void StopServerConnection() {
-        if (_client != null) {
-            _writer.Close();
-            _reader.Close();
-            _stream.Close();
-            _client.Close();
-        }
-
-    }
 
 }

@@ -1,11 +1,11 @@
 [Table("Item")]
 public class UpgradeItemDatabase : DatabaseItem {
-    private long _id;
+    private int _id;
     private string _name;
     private string _text;
 
     [Column("ID"), PrimaryKey]
-    public long Id {
+    public int Id {
         get {
             return _id;
         }

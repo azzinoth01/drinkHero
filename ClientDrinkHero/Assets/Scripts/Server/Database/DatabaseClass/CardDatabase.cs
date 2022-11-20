@@ -1,24 +1,42 @@
 
 
+
+#if CLIENT
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+#endif
 
 [Table("Card"), Serializable]
 public class CardDatabase : DatabaseItem {
-    [SerializeField] private long _id;
+#if CLIENT
+    [SerializeField] private int _id;
     [SerializeField] private string _name;
     [SerializeField] private int _attack;
     [SerializeField] private int _shield;
     [SerializeField] private int _health;
     [SerializeField] private int _cost;
     [SerializeField] private string _spritePath;
-    [SerializeField] private string _refUpgradeTo;
+    [SerializeField] private int? _refUpgradeTo;
     [NonSerialized] private CardDatabase _upgradeTo;
     [NonSerialized] private List<CardToHero> _heroList;
 
+#endif
+#if SERVER
+    private int _id;
+    private string _name;
+    private int _attack;
+    private int _shield;
+    private int _health;
+    private int _cost;
+    private string _spritePath;
+    private int? _refUpgradeTo;
+    private CardDatabase _upgradeTo;
+    private List<CardToHero> _heroList;
+
+#endif
     [Column("ID"), PrimaryKey]
-    public long Id {
+    public int Id {
         get {
             return _id;
         }
@@ -88,7 +106,7 @@ public class CardDatabase : DatabaseItem {
         }
     }
     [Column("RefUpgradeTo")]
-    public string RefUpgradeTo {
+    public int? RefUpgradeTo {
         get {
             return _refUpgradeTo;
         }
@@ -106,7 +124,7 @@ public class CardDatabase : DatabaseItem {
             if (_refUpgradeTo == null) {
                 return null;
             }
-            _upgradeTo = DatabaseManager.GetDatabaseItem<CardDatabase>(long.Parse(_refUpgradeTo));
+            _upgradeTo = DatabaseManager.GetDatabaseItem<CardDatabase>(_refUpgradeTo);
             return _upgradeTo;
 
         }
@@ -116,7 +134,7 @@ public class CardDatabase : DatabaseItem {
                 _refUpgradeTo = null;
             }
             else {
-                _refUpgradeTo = value.Id.ToString();
+                _refUpgradeTo = value.Id;
             }
 
             _upgradeTo = value;
@@ -137,7 +155,7 @@ public class CardDatabase : DatabaseItem {
 #endif
 
     public CardDatabase() {
-        _refUpgradeTo = "";
+        _refUpgradeTo = null;
     }
 
 

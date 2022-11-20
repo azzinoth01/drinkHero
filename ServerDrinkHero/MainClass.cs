@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 
 public class MainClass {
 
@@ -7,27 +7,27 @@ public class MainClass {
 
     public static int Main() {
 
-        bool _keepRunning = true;
+        LogManager logger = new LogManager(300);
+
 
         DrinkHeroServer server = new DrinkHeroServer();
         server.StartServer();
 
+
         AppDomain.CurrentDomain.ProcessExit += delegate {
-            _keepRunning = false;
+            logger.KeepRunning = false;
             if (server != null) {
                 server.CloseServer();
+
+            }
+            if (logger != null) {
+                logger.WriteLog();
             }
 
+
         };
+        logger.ManageWrite();
 
-        while (_keepRunning) {
-
-            Thread.Sleep(1000);
-        }
-        if (server != null) {
-            server.CloseServer();
-        }
-        Console.Write("closes");
 
 
         return 0;

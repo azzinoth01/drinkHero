@@ -1,23 +1,34 @@
 
+#if CLIENT
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+#endif
 
 [Table("CardToHero"), Serializable]
 public class CardToHero : DatabaseItem {
 
-
-    [SerializeField] private long _id;
-    [SerializeField] private string _refCard;
-    [SerializeField] private string _refHero;
+#if CLIENT
+    [SerializeField] private int _id;
+    [SerializeField] private int? _refCard;
+    [SerializeField] private int? _refHero;
     [NonSerialized] private CardDatabase _card;
     [NonSerialized] private HeroDatabase _hero;
-
     private DataRequestStatusEnum _cardRequested;
+#endif
+
+
+#if SERVER
+    private int _id;
+    private int? _refCard;
+    private int? _refHero;
+    private CardDatabase _card;
+    private HeroDatabase _hero;
+    private DataRequestStatusEnum _cardRequested;
+#endif
 
     [Column("ID"), PrimaryKey]
-    public long Id {
+    public int Id {
         get {
             return _id;
         }
@@ -27,7 +38,7 @@ public class CardToHero : DatabaseItem {
         }
     }
     [Column("RefCard")]
-    public string RefCard {
+    public int? RefCard {
         get {
             return _refCard;
         }
@@ -37,7 +48,7 @@ public class CardToHero : DatabaseItem {
         }
     }
     [Column("RefHero")]
-    public string RefHero {
+    public int? RefHero {
         get {
             return _refHero;
         }
@@ -52,7 +63,7 @@ public class CardToHero : DatabaseItem {
             if (_refCard == null) {
                 return null;
             }
-            _card = DatabaseManager.GetDatabaseItem<CardDatabase>(long.Parse(_refCard));
+            _card = DatabaseManager.GetDatabaseItem<CardDatabase>(_refCard);
 
             return _card;
         }
@@ -62,7 +73,7 @@ public class CardToHero : DatabaseItem {
                 _refCard = null;
             }
             else {
-                _refCard = value.Id.ToString();
+                _refCard = value.Id;
             }
             _card = value;
         }
@@ -73,7 +84,7 @@ public class CardToHero : DatabaseItem {
             if (_refHero == null) {
                 return null;
             }
-            _hero = DatabaseManager.GetDatabaseItem<HeroDatabase>(long.Parse(_refHero));
+            _hero = DatabaseManager.GetDatabaseItem<HeroDatabase>(_refHero);
             return _hero;
         }
 
@@ -82,7 +93,7 @@ public class CardToHero : DatabaseItem {
                 _refHero = null;
             }
             else {
-                _refHero = value.Id.ToString();
+                _refHero = value.Id;
             }
             _hero = value;
         }
@@ -110,6 +121,7 @@ public class CardToHero : DatabaseItem {
     public void SetCard(List<CardDatabase> card) {
         _card = card[0];
         _cardRequested = DataRequestStatusEnum.Recieved;
+
     }
 
 #endif

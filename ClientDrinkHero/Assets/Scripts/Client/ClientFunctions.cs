@@ -74,21 +74,22 @@ public static class ClientFunctions {
         string callName = info.GetCustomAttribute<ServerFunctionAttribute>().Name;
 
         string function = CreateFunctionCallString(callName, parameter);
-
-        try {
-            GlobalGameInfos.Instance.Writer.Write(function);
-        }
-        catch {
-            GlobalGameInfos.Instance.StopServerConnection();
-        }
+        GlobalGameInfos.serverRequestQueue.Enqueue(function);
+        //try {
+        //    GlobalGameInfos.Instance.Writer.Write(function);
+        //}
+        //catch {
+        //    GlobalGameInfos.Instance.StopServerConnection();
+        //}
     }
 
     public static void SendHeartbeat() {
-        try {
-            GlobalGameInfos.Instance.Writer.Write("KEEPALIVE ");
-        }
-        catch {
-            GlobalGameInfos.Instance.StopServerConnection();
-        }
+        GlobalGameInfos.serverRequestQueue.Enqueue("KEEPALIVE ");
+        //try {
+        //    GlobalGameInfos.Instance.Writer.Write("KEEPALIVE ");
+        //}
+        //catch {
+        //    GlobalGameInfos.Instance.StopServerConnection();
+        //}
     }
 }

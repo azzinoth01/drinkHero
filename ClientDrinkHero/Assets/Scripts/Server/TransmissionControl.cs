@@ -1,8 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
+
+
 using System.Reflection;
 using System.Text.RegularExpressions;
+
+#if CLIENT
+using System.Collections.Generic;
+using System;
+using System.IO;
+#endif
 
 public static class TransmissionControl {
     private static Dictionary<string, MethodInfo> _callableServerMethods;
@@ -114,6 +119,39 @@ public static class TransmissionControl {
                         else if (type == typeof(bool)) {
                             info.SetValue(item, bool.Parse(parameterValue));
                         }
+                        else if (type == typeof(int?)) {
+                            if (parameterValue != "" && parameterValue != null) {
+                                info.SetValue(item, int.Parse(parameterValue));
+                            }
+                            else {
+                                info.SetValue(item, null);
+                            }
+
+                        }
+                        else if (type == typeof(long?)) {
+                            if (parameterValue != "" && parameterValue != null) {
+                                info.SetValue(item, long.Parse(parameterValue));
+                            }
+                            else {
+                                info.SetValue(item, null);
+                            }
+                        }
+                        else if (type == typeof(float?)) {
+                            if (parameterValue != "" && parameterValue != null) {
+                                info.SetValue(item, float.Parse(parameterValue));
+                            }
+                            else {
+                                info.SetValue(item, null);
+                            }
+                        }
+                        else if (type == typeof(bool?)) {
+                            if (parameterValue != "" && parameterValue != null) {
+                                info.SetValue(item, bool.Parse(parameterValue));
+                            }
+                            else {
+                                info.SetValue(item, null);
+                            }
+                        }
                     }
                 }
             }
@@ -170,7 +208,7 @@ public static class TransmissionControl {
     }
 
 
-    public static void CommandMessage(StreamWriter stream, string message) {
+    public static string CommandMessage(StreamWriter stream, string message) {
 
         string callFunctionName = RegexPatterns.GetCallFunctionName.Match(message).Value.Trim();
         string parameterString = RegexPatterns.GetCallFunctionParameter.Match(message).Value.Trim();
@@ -181,14 +219,15 @@ public static class TransmissionControl {
                 parameterArray[0] = stream;
                 parameterArray[1] = parameterString;
 
-                method.Invoke(null, parameterArray);
+                return (string)method.Invoke(null, parameterArray);
             }
             else {
                 object[] parameterArray = new object[1];
                 parameterArray[0] = stream;
-                method.Invoke(null, parameterArray);
+                return (string)method.Invoke(null, parameterArray);
             }
         }
+        return null;
     }
 
 

@@ -1,21 +1,29 @@
 
+#if CLIENT
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+#endif
 
 [Table("Enemy"), Serializable]
 public class EnemyDatabase : DatabaseItem {
 
-    [SerializeField] private long _id;
+#if CLIENT
+    [SerializeField] private int _id;
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _shield;
     [SerializeField] private string _spritePath;
-
     [NonSerialized] private List<EnemyToEnemySkill> _enemyToEnemySkills;
     private DataRequestStatusEnum _requestedEnemySkills;
-
-
+#endif
+#if SERVER
+    private int _id;
+    private int _maxHealth;
+    private int _shield;
+    private string _spritePath;
+    private List<EnemyToEnemySkill> _enemyToEnemySkills;
+    private DataRequestStatusEnum _requestedEnemySkills;
+#endif
 
     [Column("MaxHealth")]
     public int MaxHealth {
@@ -50,7 +58,7 @@ public class EnemyDatabase : DatabaseItem {
     }
 
     [Column("ID"), PrimaryKey]
-    public long Id {
+    public int Id {
         get {
             return _id;
         }
