@@ -70,31 +70,39 @@ public class ConnectedClient {
             _timeoutCheck = _timeoutCheckIntervall;
             try {
                 _streamWriter.Write("KEEPALIVE ");
+                LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {SEND} KEEPALIVE\r\n");
             }
             catch {
                 CloseConnection();
                 return;
             }
-            LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {SEND} KEEPALIVE\r\n");
+
 
         }
 
 
         char[] buffer = new char[1024];
         int readCount = 0;
+        try {
+            if (_stream.DataAvailable == false) {
+                //Console.Write("Can not Read\r\n");
+            }
+            else {
+                try {
+                    readCount = _streamReader.Read(buffer, 0, 1024);
+                }
+                catch {
+                    CloseConnection();
+                    return;
+                }
+            }
+        }
+        catch {
+            CloseConnection();
+            return;
+        }
 
-        if (_stream.DataAvailable == false) {
-            //Console.Write("Can not Read\r\n");
-        }
-        else {
-            try {
-                readCount = _streamReader.Read(buffer, 0, 1024);
-            }
-            catch {
-                CloseConnection();
-                return;
-            }
-        }
+
 
 
 

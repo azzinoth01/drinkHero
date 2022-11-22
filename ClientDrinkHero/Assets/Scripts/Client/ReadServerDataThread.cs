@@ -25,16 +25,32 @@ public class ReadServerDataThread {
     public ReadServerDataThread(string host, int port, int timeout) {
         KeepRunning = true;
 
-        _timeoutBaseTime = timeout;
-        _timeoutCheck = timeout;
 
-        _lastTime = DateTime.Now;
+        int connectTrys = 5;
 
-        _client = new TcpClient(host, port);
-        _stream = _client.GetStream();
-        _reader = new StreamReader(_stream, Encoding.UTF8, false, 1024);
-        _writer = new StreamWriter(_stream, Encoding.UTF8, 1024);
-        _writer.AutoFlush = true;
+
+
+        for (int i = 0; i < connectTrys;) {
+            try {
+                _client = new TcpClient(host, port);
+                _stream = _client.GetStream();
+                _reader = new StreamReader(_stream, Encoding.UTF8, false, 1024);
+                _writer = new StreamWriter(_stream, Encoding.UTF8, 1024);
+                _writer.AutoFlush = true;
+                if (_client.Connected) {
+                    Debug.Log("Connection success");
+                    break;
+                }
+            }
+            catch {
+
+            }
+            Debug.Log("Connection failed trying again");
+            i = i + 1;
+        }
+
+
+
 
         ClientFunctions.SendMessageToDatabase("Start");
 
@@ -53,6 +69,10 @@ public class ReadServerDataThread {
 
         }
 
+        _timeoutBaseTime = timeout;
+        _timeoutCheck = timeout;
+
+        _lastTime = DateTime.Now;
     }
     private void CloseConnection() {
 
