@@ -118,7 +118,7 @@ public class EnemyToEnemySkill : DatabaseItem {
                 }
 
 
-                string functionCall = ClientFunctions.GetCardDatabaseByKeyPair("ID\"" + _refEnemySkill + "\"");
+                string functionCall = ClientFunctions.GetEnemySkillByKeyPair("ID\"" + _refEnemySkill + "\"");
                 int index = SendRequest(functionCall, typeof(EnemySkillDatabase));
                 _propertyToRequestedId[index] = name;
 

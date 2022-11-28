@@ -69,6 +69,9 @@ public class Enemy : Character, IWaitingOnServer, ICharacter {
     }
 
     private bool ConvertEnemyData() {
+        if (_enemyData == null) {
+            return false;
+        }
         _isWaitingOnServer = false;
         _id = _enemyData.Id;
         _health = _enemyData.MaxHealth;
@@ -155,7 +158,7 @@ public class Enemy : Character, IWaitingOnServer, ICharacter {
         //if (_health < lastHealth)
         //    enemyDamageReceived?.Invoke();
 
-        UpdateEnemyShieldUI(healthDmg);
+        UpdateEnemyHealthUI(healthDmg);
 
         if (_health <= 0) {
             EnemyDeath();
@@ -178,6 +181,7 @@ public class Enemy : Character, IWaitingOnServer, ICharacter {
         string callfunction = ClientFunctions.GetRandomEnemyDatabase();
         _requestEnemyId = HandleRequests.Instance.HandleRequest(callfunction, typeof(EnemyDatabase));
         _isWaitingOnServer = true;
+        GlobalGameInfos.Instance.WaitOnServerObjects.Add(this);
 
     }
 
@@ -239,6 +243,15 @@ public class Enemy : Character, IWaitingOnServer, ICharacter {
     }
 
     public bool GetUpdateFromServer() {
+        if (HandleRequests.Instance.RequestDataStatus[_requestEnemyId] == DataRequestStatusEnum.Recieved) {
+
+            List<EnemyDatabase> list = TransmissionControl.GetObjectData<EnemyDatabase>(HandleRequests.Instance.RequestData[_requestEnemyId]);
+
+            _enemyData = list[0];
+            HandleRequests.Instance.RequestDataStatus[_requestEnemyId] = DataRequestStatusEnum.RecievedAccepted;
+
+        }
+
         return ConvertEnemyData();
     }
 

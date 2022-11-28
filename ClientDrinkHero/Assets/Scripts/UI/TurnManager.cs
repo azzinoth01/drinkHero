@@ -49,7 +49,7 @@ public class TurnManager : MonoBehaviour {
         updateDebugText?.Invoke("Enemy Turn!");
         yield return new WaitForSeconds(1f);
 
-        UIDataContainer.Instance.Enemy.EndTurn();
+        UIDataContainer.Instance.Enemy.StartTurn();
 
         //GlobalGameInfos.Instance.EnemyObject.enemy.EnemyTurn();
 
