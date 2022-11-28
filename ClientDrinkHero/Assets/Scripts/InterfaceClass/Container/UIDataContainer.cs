@@ -5,7 +5,7 @@ public class UIDataContainer {
     private IPlayer _player;
     private ICharacter _enemy;
 
-    public IWaitingPanel _waitingPanel;
+    private IWaitingPanel _waitingPanel;
     
     public static UIDataContainer Instance {
         get {

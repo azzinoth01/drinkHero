@@ -1,17 +1,27 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DeckBuilderUIManager : MonoBehaviour
 {
     public TMPro.TMP_Dropdown[] characterDropdowns;
 
-    private void Start()
+    [SerializeField] private GameObject waitingForConnectionPanel;
+    
+    private void OnEnable()
     {
-        
+        UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel += ToggleWaitingPanel;
     }
 
+    private void OnDisable()
+    {
+        UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel -= ToggleWaitingPanel;
+    }
+    
+    private void ToggleWaitingPanel(bool state)
+    {
+        waitingForConnectionPanel.SetActive(state);
+    }
+    
     public void DisplayCharacterChoice()
     {
         foreach (var dropdown in characterDropdowns)
