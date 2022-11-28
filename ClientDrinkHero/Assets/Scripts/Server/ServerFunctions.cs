@@ -49,10 +49,9 @@ public static class ServerFunctions {
         return (key, value);
     }
 
-#endif
 
     private static string SendData<T>(StreamWriter stream, string pair = "") where T : DatabaseItem, new() {
-#if SERVER
+
         List<T> items;
         if (pair == "") {
             items = DatabaseManager.GetDatabaseList<T>();
@@ -72,13 +71,11 @@ public static class ServerFunctions {
             return "exeption";
         }
         return data;
-#endif
-#if CLIENT
-        return null;
-#endif
+
     }
+
     private static string SendDataOfRandom<T>(StreamWriter stream) where T : DatabaseItem, new() {
-#if SERVER
+
         List<T> items = DatabaseManager.GetDatabaseList<T>();
         Random rand = new Random((int)DateTime.Now.Ticks);
 
@@ -98,99 +95,141 @@ public static class ServerFunctions {
 
 
 
-#endif
-#if CLIENT
-        return null;
-#endif
-    }
 
+    }
+#endif
 
 
 
     [ServerFunction("GetHeros")]
     public static string GetHeros(StreamWriter stream) {
+#if SERVER
         return SendData<HeroDatabase>(stream);
+#else
+        return null;
+#endif
 
     }
 
     [ServerFunction("GetHerosByKeyPair")]
     public static string GetHerosByKeyPair(StreamWriter stream, string pair) {
+#if SERVER
         return SendData<HeroDatabase>(stream, pair);
+#else
+        return null;
+#endif
 
     }
     [ServerFunction("GetCardToHero")]
     public static string GetCardToHero(StreamWriter stream) {
-
+#if SERVER
         return SendData<CardToHero>(stream);
+#else
+        return null;
+#endif
 
 
     }
     [ServerFunction("GetCardToHeroByKeyPair")]
     public static string GetCardToHeroByKeyPair(StreamWriter stream, string pair) {
-
+#if SERVER
         return SendData<CardToHero>(stream, pair);
+#else
+        return null;
+#endif
 
     }
     [ServerFunction("GetCards")]
     public static string GetCards(StreamWriter stream) {
-
+#if SERVER
         return SendData<CardDatabase>(stream);
+#else
+        return null;
+#endif
 
     }
     [ServerFunction("GetCardsByKeyPair")]
     public static string GetCardsByKeyPair(StreamWriter stream, string pair) {
-
+#if SERVER
         return SendData<CardDatabase>(stream, pair);
+#else
+        return null;
+#endif
 
 
     }
     [ServerFunction("GetEnemy")]
     public static string GetEnemy(StreamWriter stream) {
-        return SendData<EnemyDatabase>(stream);
+#if SERVER
+    return SendData<EnemyDatabase>(stream);
+#else
+        return null;
+#endif
 
     }
     [ServerFunction("GetRandomEnemy")]
     public static string GetRandomEnemy(StreamWriter stream) {
-
+#if SERVER
         return SendDataOfRandom<EnemyDatabase>(stream);
+#else
+        return null;
 
+#endif
 
     }
     [ServerFunction("GetEnemyByKeyPair")]
     public static string GetEnemyByKeyPair(StreamWriter stream, string pair) {
-
+#if SERVER
         return SendData<EnemyDatabase>(stream, pair);
+#else
+        return null;
+#endif
 
     }
     [ServerFunction("GetEnemyToEnemySkill")]
     public static string GetEnemyToEnemySkill(StreamWriter stream) {
-
+#if SERVER
         return SendData<EnemyToEnemySkill>(stream);
+#else
+        return null;
 
+#endif
 
     }
     [ServerFunction("GetEnemyToEnemySkillByKeyPair")]
     public static string GetEnemyToEnemySkillByKeyPair(StreamWriter stream, string pair) {
-
+#if SERVER
         return SendData<EnemyToEnemySkill>(stream, pair);
+#else
+        return null;
+#endif
 
     }
     [ServerFunction("GetEnemySkill")]
     public static string GetEnemySkill(StreamWriter stream) {
-
+#if SERVER
         return SendData<EnemySkillDatabase>(stream);
+#else
+        return null;
+#endif
 
     }
     [ServerFunction("GetEnemySkillByKeyPair")]
     public static string GetEnemySkillByKeyPair(StreamWriter stream, string pair) {
-
+#if SERVER
         return SendData<EnemySkillDatabase>(stream, pair);
+#else
+        return null;
+#endif
 
     }
     [ServerFunction("SendMessage")]
     public static string SendMessage(StreamWriter stream, string message) {
-
+#if SERVER
         return message;
+#else
+        return null;
+#endif
 
 
     }

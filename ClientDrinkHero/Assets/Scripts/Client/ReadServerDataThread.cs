@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
-using System.Reflection;
 using System.Text;
 using System.Threading;
 using UnityEngine;
@@ -23,6 +21,11 @@ public class ReadServerDataThread {
     private DateTime _lastTime;
 
     public ReadServerDataThread(string host, int port, int timeout) {
+
+        ServerRequests.checkUpdates = new Queue<bool>();
+        ServerRequests.writeServerDataToHandleRequests = new Queue<(int, Type)>();
+        ServerRequests.serverRequestQueue = new Queue<string>();
+
         KeepRunning = true;
 
 
@@ -52,11 +55,13 @@ public class ReadServerDataThread {
 
 
 
-        ClientFunctions.SendMessageToDatabase("Start");
+        string request = ClientFunctions.SendMessageToDatabase("Start");
 
-        while (GlobalGameInfos.serverRequestQueue.Count != 0) {
-            string call = GlobalGameInfos.serverRequestQueue.Dequeue();
+        ServerRequests.serverRequestQueue.Enqueue(request);
 
+        while (ServerRequests.serverRequestQueue.Count != 0) {
+            string call = ServerRequests.serverRequestQueue.Dequeue();
+            Debug.Log("write to server " + call);
             try {
                 _writer.Write(call);
             }
@@ -103,7 +108,7 @@ public class ReadServerDataThread {
     }
 
     public void ThreadLoop() {
-
+        Debug.Log("Data Reading started");
         string readData = "";
         while (KeepRunning) {
 
@@ -122,9 +127,9 @@ public class ReadServerDataThread {
 
 
 
-            while (GlobalGameInfos.serverRequestQueue.Count != 0) {
-                string call = GlobalGameInfos.serverRequestQueue.Dequeue();
-
+            while (ServerRequests.serverRequestQueue.Count != 0) {
+                string call = ServerRequests.serverRequestQueue.Dequeue();
+                Debug.Log("write to server " + call);
                 try {
                     _writer.Write(call);
                     //Debug.Log(call);
@@ -145,9 +150,10 @@ public class ReadServerDataThread {
                     continue;
                 }
             }
-            catch {
+            catch (Exception e) {
                 KeepRunning = false;
                 CloseConnection();
+                Debug.Log(e.Message);
                 return;
             }
 
@@ -159,9 +165,10 @@ public class ReadServerDataThread {
             try {
                 readCount = _reader.Read(buffer, 0, 1024);
             }
-            catch {
+            catch (Exception e) {
                 KeepRunning = false;
                 CloseConnection();
+                Debug.Log(e.Message);
                 return;
             }
 
@@ -172,8 +179,10 @@ public class ReadServerDataThread {
 
 
             while (readData != "") {
+
                 TransmissionControl.CheckHeartBeat(readData, out readData);
                 string message = TransmissionControl.GetMessageObject(readData, out readData);
+                Debug.Log(message);
                 if (message == "" || message == null) {
                     if (TransmissionControl.CheckIfDataIsEmpty(readData, out readData)) {
 
@@ -189,9 +198,9 @@ public class ReadServerDataThread {
                     bool? isCommand = TransmissionControl.IsCommandMessage(message);
 
                     if (isCommand != null && isCommand == false) {
-                        WriteBackData writeBackData = GlobalGameInfos.writeServerDataTo.Dequeue();
+                        (int, Type) writeBackData = ServerRequests.writeServerDataToHandleRequests.Dequeue();
 
-                        GetDataByTypeAndSendBack(writeBackData, message);
+                        GetDataByTypeAndSendBack(writeBackData.Item1, writeBackData.Item2, message);
 
 
                     }
@@ -206,49 +215,79 @@ public class ReadServerDataThread {
     }
 
 
-    private void GetDataByTypeAndSendBack(WriteBackData writeBackData, string message) {
-        if (writeBackData.type == typeof(HeroDatabase)) {
-            List<HeroDatabase> list = TransmissionControl.GetObjectData<HeroDatabase>(message);
-            object[] obj = new object[1];
-            obj[0] = list;
-            writeBackData.method.Invoke(writeBackData.instance, obj);
-            GlobalGameInfos.checkUpdates.Enqueue(true);
-        }
-        else if (writeBackData.type == typeof(CardDatabase)) {
-            List<CardDatabase> list = TransmissionControl.GetObjectData<CardDatabase>(message);
-            object[] obj = new object[1];
-            obj[0] = list;
-            writeBackData.method.Invoke(writeBackData.instance, obj);
-            GlobalGameInfos.checkUpdates.Enqueue(true);
-        }
-        else if (writeBackData.type == typeof(CardToHero)) {
-            List<CardToHero> list = TransmissionControl.GetObjectData<CardToHero>(message);
-            object[] obj = new object[1];
-            obj[0] = list;
-            writeBackData.method.Invoke(writeBackData.instance, obj);
-            GlobalGameInfos.checkUpdates.Enqueue(true);
-        }
-        else if (writeBackData.type == typeof(EnemyDatabase)) {
-            List<EnemyDatabase> list = TransmissionControl.GetObjectData<EnemyDatabase>(message);
-            object[] obj = new object[1];
-            obj[0] = list;
-            writeBackData.method.Invoke(writeBackData.instance, obj);
-            GlobalGameInfos.checkUpdates.Enqueue(true);
-        }
-        else if (writeBackData.type == typeof(EnemyToEnemySkill)) {
-            List<EnemyToEnemySkill> list = TransmissionControl.GetObjectData<EnemyToEnemySkill>(message);
-            object[] obj = new object[1];
-            obj[0] = list;
-            writeBackData.method.Invoke(writeBackData.instance, obj);
-            GlobalGameInfos.checkUpdates.Enqueue(true);
-        }
-        else if (writeBackData.type == typeof(EnemySkillDatabase)) {
-            List<EnemySkillDatabase> list = TransmissionControl.GetObjectData<EnemySkillDatabase>(message);
-            object[] obj = new object[1];
-            obj[0] = list;
-            writeBackData.method.Invoke(writeBackData.instance, obj);
-            GlobalGameInfos.checkUpdates.Enqueue(true);
-        }
+    private void GetDataByTypeAndSendBack(int id, Type type, string message) {
+
+
+        HandleRequests.Instance.RequestData[id] = message;
+        HandleRequests.Instance.RequestDataStatus[id] = DataRequestStatusEnum.Recieved;
+        ServerRequests.checkUpdates.Enqueue(true);
+
+        //if (type == typeof(HeroDatabase)) {
+        //    List<HeroDatabase> list = TransmissionControl.GetObjectData<HeroDatabase>(message);
+        //    List<IRequestDataFromServer> writeBackList = new List<IRequestDataFromServer>();
+
+        //    foreach (HeroDatabase item in list) {
+        //        writeBackList.Add(item);
+        //    }
+        //    HandleRequests.Instance.RequestData[id] = writeBackList;
+        //    HandleRequests.Instance.RequestDataStatus[id] = DataRequestStatusEnum.Recieved;
+        //    ServerRequests.checkUpdates.Enqueue(true);
+        //}
+        //else if (type == typeof(CardDatabase)) {
+        //    List<CardDatabase> list = TransmissionControl.GetObjectData<CardDatabase>(message);
+        //    List<IRequestDataFromServer> writeBackList = new List<IRequestDataFromServer>();
+
+        //    foreach (CardDatabase item in list) {
+        //        writeBackList.Add(item);
+        //    }
+        //    HandleRequests.Instance.RequestData[id] = writeBackList;
+        //    HandleRequests.Instance.RequestDataStatus[id] = DataRequestStatusEnum.Recieved;
+        //    ServerRequests.checkUpdates.Enqueue(true);
+        //}
+        //else if (type == typeof(CardToHero)) {
+        //    List<CardToHero> list = TransmissionControl.GetObjectData<CardToHero>(message);
+        //    List<IRequestDataFromServer> writeBackList = new List<IRequestDataFromServer>();
+
+        //    foreach (CardToHero item in list) {
+        //        writeBackList.Add(item);
+        //    }
+        //    HandleRequests.Instance.RequestData[id] = writeBackList;
+        //    HandleRequests.Instance.RequestDataStatus[id] = DataRequestStatusEnum.Recieved;
+        //    ServerRequests.checkUpdates.Enqueue(true);
+        //}
+        //else if (type == typeof(EnemyDatabase)) {
+        //    List<EnemyDatabase> list = TransmissionControl.GetObjectData<EnemyDatabase>(message);
+        //    List<IRequestDataFromServer> writeBackList = new List<IRequestDataFromServer>();
+
+        //    foreach (EnemyDatabase item in list) {
+        //        writeBackList.Add(item);
+        //    }
+        //    HandleRequests.Instance.RequestData[id] = writeBackList;
+        //    HandleRequests.Instance.RequestDataStatus[id] = DataRequestStatusEnum.Recieved;
+        //    ServerRequests.checkUpdates.Enqueue(true);
+        //}
+        //else if (type == typeof(EnemyToEnemySkill)) {
+        //    List<EnemyToEnemySkill> list = TransmissionControl.GetObjectData<EnemyToEnemySkill>(message);
+        //    List<IRequestDataFromServer> writeBackList = new List<IRequestDataFromServer>();
+
+        //    foreach (EnemyToEnemySkill item in list) {
+        //        writeBackList.Add(item);
+        //    }
+        //    HandleRequests.Instance.RequestData[id] = writeBackList;
+        //    HandleRequests.Instance.RequestDataStatus[id] = DataRequestStatusEnum.Recieved;
+        //    ServerRequests.checkUpdates.Enqueue(true);
+        //}
+        //else if (type == typeof(EnemySkillDatabase)) {
+        //    List<EnemySkillDatabase> list = TransmissionControl.GetObjectData<EnemySkillDatabase>(message);
+        //    List<IRequestDataFromServer> writeBackList = new List<IRequestDataFromServer>();
+
+        //    foreach (EnemySkillDatabase item in list) {
+        //        writeBackList.Add(item);
+        //    }
+        //    HandleRequests.Instance.RequestData[id] = writeBackList;
+        //    HandleRequests.Instance.RequestDataStatus[id] = DataRequestStatusEnum.Recieved;
+        //    ServerRequests.checkUpdates.Enqueue(true);
+        //}
 
 
 

@@ -1,0 +1,24 @@
+{
+    "name": "BattleAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7d2b2271d2af0d44e92d8850d8ba7f13",
+        "GUID:6a05061117a6a5f4fa50556ac6dfa309",
+        "GUID:8bf862ddea420114d941f1a3878d6e22",
+        "GUID:b20e6d5f49075774a9e8f483b27f059f",
+        "GUID:0cdd1802f78c2194cb738ca339a3ecc9",
+        "GUID:0e8359f74fb1fbc4fb031b4b36b5d87e",
+        "GUID:1d3c2d2097446c24889c63d9c6f863ac",
+        "GUID:c2c460698a98e0947a5cb1f60a836cb5",
+        "GUID:11101ee515312304ebf449641a845cd4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

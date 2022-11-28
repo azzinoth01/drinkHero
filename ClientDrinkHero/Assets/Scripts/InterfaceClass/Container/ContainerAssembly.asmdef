@@ -1,0 +1,16 @@
+{
+    "name": "ContainerAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8bf862ddea420114d941f1a3878d6e22"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

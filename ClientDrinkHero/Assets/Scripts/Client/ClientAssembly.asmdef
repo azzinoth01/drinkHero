@@ -1,0 +1,20 @@
+{
+    "name": "ClientAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1d3c2d2097446c24889c63d9c6f863ac",
+        "GUID:c2c460698a98e0947a5cb1f60a836cb5",
+        "GUID:7d2b2271d2af0d44e92d8850d8ba7f13",
+        "GUID:8bf862ddea420114d941f1a3878d6e22",
+        "GUID:6a05061117a6a5f4fa50556ac6dfa309"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

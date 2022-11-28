@@ -1,0 +1,16 @@
+{
+    "name": "DatabaseAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6a05061117a6a5f4fa50556ac6dfa309"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

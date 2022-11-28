@@ -14,7 +14,7 @@ public static class SceneLoader
     }
 
     private static Action onLoaderCallback; 
-    public static void Load(GameScene gameScene)
+    public static void Load(GameSceneEnum gameScene)
     {
         // set the loader callback action to to load target scene
         onLoaderCallback = () =>
@@ -25,7 +25,7 @@ public static class SceneLoader
         };
         
         // load loading scene
-        SceneManager.LoadScene(GameScene.LoadingScene.ToString());
+        SceneManager.LoadScene(GameSceneEnum.LoadingScene.ToString());
     }
 
     public static void LoaderCallback()
@@ -39,7 +39,7 @@ public static class SceneLoader
         }
     }
 
-    private static IEnumerator LoadSceneAsync(GameScene gameScene)
+    private static IEnumerator LoadSceneAsync(GameSceneEnum gameScene)
     {
         yield return null;
         

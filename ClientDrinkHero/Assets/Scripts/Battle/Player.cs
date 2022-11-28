@@ -4,7 +4,7 @@ using System.Reflection;
 using UnityEngine;
 
 [Serializable]
-public class Player : Character {
+public class Player : Character, IHandCards, IPlayer {
     [SerializeField] private string _name;
 
     [SerializeField] private int _attack;
@@ -21,7 +21,24 @@ public class Player : Character {
 
     public int PlayerShield => _shield;
 
-    public static Action onPlayerDeath;
+    //public static Action onPlayerDeath;
+
+
+
+    //public static event Action<float, float> updatePlayerHealthUI;
+    //public static event Action<float, float> updatePlayerEnergyUI;
+    //public static event Action<int> updatePlayerShieldUI;
+    //public static event Action updateHandCardUI;
+
+    public static event Action playerDamageReceived, playerDamageBlocked, playerHealed, playerShieldUp;
+
+    public event Action<int> RessourceChange;
+    public event Action UpdateHandCards;
+    public event Action GameOverEvent;
+    public event Action<int> HealthChange;
+    public event Action<int> ShieldChange;
+    public event Action TurnEnded;
+
 
     public GameDeck GameDeck {
         get {
@@ -39,20 +56,14 @@ public class Player : Character {
             }
         }
     }
-
-    public static event Action<float, float> updatePlayerHealthUI;
-    public static event Action<float, float> updatePlayerEnergyUI;
-    public static event Action<int> updatePlayerShieldUI;
-    public static event Action updateHandCardUI, playerDamageReceived, playerDamageBlocked, playerHealed, playerShieldUp;
-
     public Player(GameDeck gameDeck) : base() {
         GameDeck = gameDeck;
         ResetPlayer();
-
+        UIDataContainer.Instance.Player = this;
     }
 
     public Player() : base() {
-
+        UIDataContainer.Instance.Player = this;
     }
 
     private void ResetPlayer() {
@@ -95,7 +106,7 @@ public class Player : Character {
 
     public void ResetRessource() {
         _ressource = _maxRessource;
-        UpdateEnergyUI();
+        UpdateEnergyUI(_ressource);
     }
 
     public void StartTurn() {
@@ -116,7 +127,7 @@ public class Player : Character {
             _handCards.Add(_gameDeck.DrawCard());
             i = i + 1;
         }
-        updateHandCardUI?.Invoke();
+        UpdateHandCards?.Invoke();
         ResetRessource();
 
         UpdateUI();
@@ -162,38 +173,43 @@ public class Player : Character {
         _gameDeck.ScrapCard(card);
         _handCards.RemoveAt(index);
 
-        UpdateHealthUI();
-        UpdateEnergyUI();
-        UpdateShieldUI();
+        UpdateHealthUI(card.Health);
+        UpdateShieldUI(card.Shield);
+        UpdateEnergyUI(-card.Costs);
+
     }
 
 
     public void TakeDmg(int dmg) {
-
+        int shieldDmg = 0;
         if (_shield > 0) {
             if (_shield > dmg) {
                 _shield = _shield - dmg;
+                shieldDmg = -dmg;
                 dmg = 0;
 
                 // Update Shield Counter UI
             }
             else {
                 dmg = dmg - _shield;
+                shieldDmg = -_shield;
                 _shield = 0;
 
                 // Update Shield Counter UI
             }
-            UpdateShieldUI();
+            UpdateShieldUI(shieldDmg);
         }
-
+        int healthDmg = 0;
         if (_health - dmg < 0) {
+            healthDmg = -_health;
             _health = 0;
         }
         else {
+            healthDmg = -dmg;
             _health -= dmg;
         }
 
-        UpdateHealthUI();
+        UpdateHealthUI(healthDmg);
 
 
         if (_health <= 0) {
@@ -203,25 +219,26 @@ public class Player : Character {
     }
 
     public void PlayerDeath() {
-        onPlayerDeath?.Invoke();
+        GameOverEvent?.Invoke();
     }
 
-    private void UpdateUI() {
-        UpdateEnergyUI();
-        UpdateHealthUI();
-        UpdateShieldUI();
+    private void UpdateUI(int deltaHealth = 0, int deltaShield = 0, int deltaEnergy = 0) {
+
+        UpdateHealthUI(deltaHealth);
+        UpdateShieldUI(deltaShield);
+        UpdateEnergyUI(deltaEnergy);
     }
 
-    private void UpdateHealthUI() {
-        updatePlayerHealthUI?.Invoke(_health, _maxHealth);
+    private void UpdateHealthUI(int deltaValue) {
+        HealthChange?.Invoke(deltaValue);
     }
 
-    private void UpdateEnergyUI() {
-        updatePlayerEnergyUI?.Invoke(_ressource, _maxRessource);
+    private void UpdateEnergyUI(int deltaValue) {
+        RessourceChange?.Invoke(deltaValue);
     }
 
-    private void UpdateShieldUI() {
-        updatePlayerShieldUI?.Invoke(_shield);
+    private void UpdateShieldUI(int deltaValue) {
+        ShieldChange?.Invoke(deltaValue);
     }
 
     public override void Cascade(ICascadable causedBy, PropertyInfo changedProperty = null, object changedValue = null) {
@@ -230,5 +247,42 @@ public class Player : Character {
             ResetPlayer();
         }
         base.Cascade(causedBy, changedProperty, changedValue);
+    }
+
+    public int HandCardCount() {
+        return _handCards.Count;
+    }
+
+    public ICardDisplay GetHandCard(int index) {
+        return HandCards[index];
+    }
+
+    public int MaxRessource() {
+        return 10;
+    }
+
+    public int CurrentRessource() {
+        return _ressource;
+    }
+
+    public IHandCards GetHandCards() {
+        return this;
+    }
+
+    int ICharacter.MaxHealth() {
+        return _maxHealth;
+    }
+
+    public int CurrentHealth() {
+        return _health;
+    }
+
+    public int CurrentShield() {
+        return _shield;
+    }
+
+    public void EndTurn() {
+        Debug.Log("player turn end");
+        TurnEnded?.Invoke();
     }
 }

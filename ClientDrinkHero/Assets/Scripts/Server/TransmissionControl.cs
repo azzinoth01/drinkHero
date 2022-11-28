@@ -19,7 +19,7 @@ public static class TransmissionControl {
                 foreach (Type type in Assembly.GetExecutingAssembly().GetTypes()) {
 
                     foreach (MethodInfo method in type.GetMethods()) {
-                        ServerFunctionAttribute? attribute = method.GetCustomAttribute<ServerFunctionAttribute>();
+                        ServerFunctionAttribute attribute = method.GetCustomAttribute<ServerFunctionAttribute>();
 
                         if (attribute != null) {
                             _callableServerMethods.Add(attribute.Name, method);

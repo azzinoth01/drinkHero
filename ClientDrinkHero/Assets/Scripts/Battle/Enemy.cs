@@ -1,24 +1,27 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 [Serializable]
-public class Enemy : Character, IWaitingOnServer {
+public class Enemy : Character, IWaitingOnServer, ICharacter {
 
     [SerializeField] private int _attack;
     [SerializeField] private ElementEnum _element;
     [SerializeField] private Sprite _sprite;
     [SerializeField] private Dictionary<int, EnemySkill> _skillList;
 
-    public static event Action<int> updateEnemyShieldUI;
-    public static event Action enemyTurnDone;
+    //public static event Action<int> updateEnemyShieldUI;
+    //public static event Action enemyTurnDone;
     public static event Action enemyDamageReceived, enemyDamageBlocked, enemyHealed, enemyShieldUp;
-    public static event Action<float, float> updateEnemyHealthUI;
+    //public static event Action<float, float> updateEnemyHealthUI;
+    public event Action<int> HealthChange;
+    public event Action<int> ShieldChange;
+    public event Action TurnEnded;
 
     private EnemyDatabase _enemyData;
     private bool _isWaitingOnServer;
+    private int _requestEnemyId;
 
     public EnemyDatabase EnemyData {
         get {
@@ -62,15 +65,23 @@ public class Enemy : Character, IWaitingOnServer {
 
     public Enemy() : base() {
         _skillList = new Dictionary<int, EnemySkill>();
+        UIDataContainer.Instance.Enemy = this;
     }
 
     private bool ConvertEnemyData() {
+        _isWaitingOnServer = false;
         _id = _enemyData.Id;
         _health = _enemyData.MaxHealth;
         _maxHealth = _enemyData.MaxHealth;
         _shield = _enemyData.Shield;
 
-        List<EnemyToEnemySkill> enemyToEnemySkills = _enemyData.GetEnemySkillList(out _isWaitingOnServer);
+
+        List<EnemyToEnemySkill> enemyToEnemySkills = _enemyData.EnemyToEnemySkills;
+
+
+        if (_enemyData.WaitingOnDataCount != 0) {
+            _isWaitingOnServer = true;
+        }
 
         if (_isWaitingOnServer) {
             return false;
@@ -86,16 +97,18 @@ public class Enemy : Character, IWaitingOnServer {
             int index = skill.Id;
             if (_skillList.TryGetValue(index, out EnemySkill enemySkill)) {
 
-                enemySkill.EnemySkillData = skill.GetEnemySkill(out waitOn);
+                enemySkill.EnemySkillData = skill.EnemySkill;
 
             }
             else {
                 enemySkill = new EnemySkill();
                 enemySkill.Id = id;
-                enemySkill.EnemySkillData = skill.GetEnemySkill(out waitOn);
+                enemySkill.EnemySkillData = skill.EnemySkill;
                 _skillList.AddWithCascading(index, enemySkill, this);
             }
-
+            if (skill.WaitingOnDataCount != 0) {
+                waitOn = true;
+            }
             _isWaitingOnServer = _isWaitingOnServer | waitOn;
         }
 
@@ -104,39 +117,45 @@ public class Enemy : Character, IWaitingOnServer {
         }
 
         Cascade(this);
-        UpdateEnemyHealthUI();
-        UpdateEnemyShieldUI();
+        UpdateEnemyHealthUI(0);
+        UpdateEnemyShieldUI(0);
 
         return true;
     }
 
 
     public void TakeDmg(int dmg) {
-        int lastHealth = _health;
+        //int lastHealth = _health;
+        int shieldDmg = 0;
         if (_shield > 0) {
             if (_shield > dmg) {
+                shieldDmg = -dmg;
                 _shield = _shield - dmg;
                 dmg = 0;
             }
             else {
                 dmg = dmg - _shield;
+                shieldDmg = -_shield;
                 _shield = 0;
             }
             enemyDamageBlocked?.Invoke();
-            UpdateEnemyShieldUI();
+            UpdateEnemyShieldUI(shieldDmg);
         }
 
+        int healthDmg = 0;
         if (_health - dmg < 0) {
+            healthDmg = -_health;
             _health = 0;
         }
         else {
+            healthDmg = -dmg;
             _health -= dmg;
         }
 
-        if (_health < lastHealth)
-            enemyDamageReceived?.Invoke();
+        //if (_health < lastHealth)
+        //    enemyDamageReceived?.Invoke();
 
-        UpdateEnemyHealthUI();
+        UpdateEnemyShieldUI(healthDmg);
 
         if (_health <= 0) {
             EnemyDeath();
@@ -156,10 +175,8 @@ public class Enemy : Character, IWaitingOnServer {
         // Invoke Win State or spawn next enemy
         // hand out exp whatever
 
-        ClientFunctions.GetRandomEnemyDatabase();
-        WriteBackData writeBack = new WriteBackData(this, GetType().GetMethod(nameof(SetEnemyData)), typeof(EnemyDatabase));
-        GlobalGameInfos.writeServerDataTo.Enqueue(writeBack);
-        GlobalGameInfos.Instance.WaitOnServerObjects.Add(this);
+        string callfunction = ClientFunctions.GetRandomEnemyDatabase();
+        _requestEnemyId = HandleRequests.Instance.HandleRequest(callfunction, typeof(EnemyDatabase));
         _isWaitingOnServer = true;
 
     }
@@ -210,18 +227,38 @@ public class Enemy : Character, IWaitingOnServer {
     }
 
     public void EndEnemyTurn() {
-        enemyTurnDone?.Invoke();
+        TurnEnded?.Invoke();
     }
 
-    private void UpdateEnemyShieldUI() {
-        updateEnemyShieldUI?.Invoke(_shield);
+    private void UpdateEnemyShieldUI(int deltaValue) {
+        ShieldChange?.Invoke(deltaValue);
     }
 
-    private void UpdateEnemyHealthUI() {
-        updateEnemyHealthUI?.Invoke(_health, _maxHealth);
+    private void UpdateEnemyHealthUI(int deltaValue) {
+        HealthChange?.Invoke(deltaValue);
     }
 
     public bool GetUpdateFromServer() {
         return ConvertEnemyData();
+    }
+
+    int ICharacter.MaxHealth() {
+        return _maxHealth;
+    }
+
+    public int CurrentHealth() {
+        return _health;
+    }
+
+    public int CurrentShield() {
+        return _shield;
+    }
+
+    public void EndTurn() {
+        TurnEnded?.Invoke();
+    }
+
+    public void StartTurn() {
+        EnemyTurn();
     }
 }
