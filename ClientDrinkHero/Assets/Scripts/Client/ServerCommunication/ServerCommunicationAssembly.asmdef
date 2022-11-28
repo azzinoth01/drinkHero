@@ -1,0 +1,17 @@
+{
+    "name": "ServerCommunicationAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8bf862ddea420114d941f1a3878d6e22",
+        "GUID:6a05061117a6a5f4fa50556ac6dfa309"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

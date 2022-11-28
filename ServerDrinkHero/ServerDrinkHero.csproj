@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<StartupObject>MainClass</StartupObject>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<NoWarn>1701;1702;CS8618;CS8600;CS8602;CS8603;CS8604</NoWarn>
+		<DefineConstants>$(DefineConstants)TRACE;SERVER</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<NoWarn>1701;1702;CS8618;CS8600;CS8602;CS8603;CS8604</NoWarn>
+		<DefineConstants>$(DefineConstants)TRACE;SERVER</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\ColumnAttribute.cs" Link="Database\ColumnAttribute.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\DatabaseClass\CardDatabase.cs" Link="Database\DatabaseClass\CardDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\DatabaseClass\CardToHero.cs" Link="Database\DatabaseClass\CardToHero.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\DatabaseClass\DatabaseItem.cs" Link="Database\DatabaseClass\DatabaseItem.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\DatabaseClass\EnemyDatabase.cs" Link="Database\DatabaseClass\EnemyDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\DatabaseClass\EnemySkillDatabase.cs" Link="Database\DatabaseClass\EnemySkillDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\DatabaseClass\EnemyToEnemySkill.cs" Link="Database\DatabaseClass\EnemyToEnemySkill.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\DatabaseClass\HeroDatabase.cs" Link="Database\DatabaseClass\HeroDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\DatabaseClass\UpgradeItemDatabase.cs" Link="Database\DatabaseClass\UpgradeItemDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\DatabaseManager.cs" Link="Database\DatabaseManager.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\PrimaryKeyAttribute.cs" Link="Database\PrimaryKeyAttribute.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\TableAttribute.cs" Link="Database\TableAttribute.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\TableMapping.cs" Link="Database\TableMapping.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\RegexPatterns.cs" Link="RegexPatterns.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\ServerFunctionAttribute.cs" Link="ServerFunctionAttribute.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\ServerFunctions.cs" Link="ServerFunctions.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\TransmissionControl.cs" Link="TransmissionControl.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Database\DatabaseClass\" />
+		<Folder Include="Database\" />
+		<Folder Include="Properties\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MySql.Data" Version="8.0.31" />
+	</ItemGroup>
+
+
+
+</Project>

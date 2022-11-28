@@ -1,0 +1,16 @@
+{
+    "name": "ServerAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:46179d261a0904c48a969278d62a3635"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
