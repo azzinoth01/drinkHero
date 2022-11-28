@@ -7,7 +7,7 @@ public class BattleUIManager : MonoBehaviour {
 
     [SerializeField] private GameObject _playerCardUIPrefab;
     [SerializeField] private GameObject _playerHandUI;
-    [SerializeField] private GameObject _playerOptionsPanel, _playerDeathPanel;
+    [SerializeField] private GameObject _playerOptionsPanel, _playerDeathPanel, _waitingForConnectionPanel;
 
     [SerializeField] private List<PlayerCardUI> _currentPlayerHand;
     [SerializeField]
@@ -30,23 +30,14 @@ public class BattleUIManager : MonoBehaviour {
         UIDataContainer.Instance.Enemy.HealthChange += UpdateEnemyHealthBar;
         UIDataContainer.Instance.Enemy.ShieldChange += UpdateEnemyShieldCounter;
 
-
+        UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel += ToggleWaitingPanel;
+        
         TurnManager.togglePlayerUiControls += TogglePlayerUIControls;
         TurnManager.updateDebugText += UpdateDebugText;
-        //Player.updatePlayerHealthUI += UpdatePlayerHealthBar;
-        //Player.updatePlayerEnergyUI += UpdatePlayerEnergyBar;
-        //Player.updateHandCardUI += UpdateHandCards;
-        //Player.updatePlayerShieldUI += UpdatePlayerShieldCounter;
-        //Player.onPlayerDeath += ShowGameOverScreen;
-        //Enemy.updateEnemyHealthUI += UpdateEnemyHealthBar;
-        //Enemy.updateEnemyShieldUI += UpdateEnemyShieldCounter;
-
-
     }
 
     private void OnDisable() {
-
-
+        
         UIDataContainer.Instance.Player.HealthChange -= UpdatePlayerHealthBar;
         UIDataContainer.Instance.Player.ShieldChange -= UpdatePlayerShieldCounter;
         UIDataContainer.Instance.Player.RessourceChange -= UpdatePlayerEnergyBar;
@@ -56,17 +47,10 @@ public class BattleUIManager : MonoBehaviour {
         UIDataContainer.Instance.Enemy.HealthChange -= UpdateEnemyHealthBar;
         UIDataContainer.Instance.Enemy.ShieldChange -= UpdateEnemyShieldCounter;
 
+        UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel += ToggleWaitingPanel;
+        
         TurnManager.togglePlayerUiControls -= TogglePlayerUIControls;
         TurnManager.updateDebugText -= UpdateDebugText;
-        //Player.updatePlayerHealthUI -= UpdatePlayerHealthBar;
-        //Player.updatePlayerEnergyUI -= UpdatePlayerEnergyBar;
-        //Player.updateHandCardUI -= UpdateHandCards;
-        //Player.updatePlayerShieldUI -= UpdatePlayerShieldCounter;
-        //Player.onPlayerDeath -= ShowGameOverScreen;
-        //Enemy.updateEnemyHealthUI -= UpdateEnemyHealthBar;
-        //Enemy.updateEnemyShieldUI -= UpdateEnemyShieldCounter;
-
-
     }
 
     void Start() {
@@ -122,8 +106,7 @@ public class BattleUIManager : MonoBehaviour {
 
     private void CardClickEvent(int index, IHandCards playerHand) {
         playerHand.PlayHandCard(index);
-
-
+        
         UpdateHandCards();
     }
 
@@ -135,15 +118,6 @@ public class BattleUIManager : MonoBehaviour {
 
         UpdateEnemyHealthBar(0);
         UpdateEnemyShieldCounter(0);
-
-        // value initialisation not needed can be done when the objects initzialies itself
-
-        //UpdatePlayerHealthBar(GlobalGameInfos.Instance.PlayerObject.Player.Health, GlobalGameInfos.Instance.PlayerObject.Player.MaxHealth);
-        //UpdatePlayerEnergyBar(GlobalGameInfos.Instance.PlayerObject.Player.PlayerEnergy, GlobalGameInfos.Instance.PlayerObject.Player.PlayerMaxEnergy);
-        //UpdatePlayerShieldCounter(GlobalGameInfos.Instance.PlayerObject.Player.Shield);
-
-        //UpdateEnemyHealthBar(GlobalGameInfos.Instance.EnemyObject.enemy.Health, GlobalGameInfos.Instance.EnemyObject.enemy.MaxHealth);
-        //UpdateEnemyShieldCounter(GlobalGameInfos.Instance.EnemyObject.enemy.Shield);
     }
 
     private void UpdatePlayerHealthBar(int deltaValue) {
@@ -182,6 +156,10 @@ public class BattleUIManager : MonoBehaviour {
         }
     }
 
+    private void UpdateDebugText(string text) {
+        _debugText.SetText(text);
+    }
+
     private void TogglePlayerUIControls(bool state) {
         // get all cards currently held and toggle their state 
         foreach (var cardButton in _currentPlayerHand) {
@@ -191,20 +169,31 @@ public class BattleUIManager : MonoBehaviour {
         _endTurnButton.interactable = state;
     }
 
-    private void ShowGameOverScreen() {
-        _playerDeathPanel.SetActive(true);
-    }
-
-    private void UpdateDebugText(string text) {
-        _debugText.SetText(text);
-    }
-
     public void ShowOptionsPanel() {
-        _playerOptionsPanel.SetActive(true);
+        ShowUIPanel(_playerOptionsPanel);
     }
 
     public void HideOptionsPanel() {
-        _playerOptionsPanel.SetActive(false);
+        HideUIPanel(_playerOptionsPanel);
+    }
+
+    private void ShowGameOverScreen() {
+        ShowUIPanel(_playerDeathPanel);
+    }
+
+    private void ToggleWaitingPanel(bool state)
+    {
+        _waitingForConnectionPanel.SetActive(state);
+    }
+
+    private void ShowUIPanel(GameObject panel)
+    {
+        panel.SetActive(true);
+    }
+
+    private void HideUIPanel(GameObject panel)
+    {
+        panel.SetActive(false);
     }
 
     public void ReturnToMainMenu() {
