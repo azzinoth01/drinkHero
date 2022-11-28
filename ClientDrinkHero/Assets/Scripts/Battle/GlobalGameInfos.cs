@@ -150,6 +150,7 @@ public class GlobalGameInfos : MonoBehaviour {
                     List<HeroDatabase> list = TransmissionControl.GetObjectData<HeroDatabase>(HandleRequests.Instance.RequestData[_herodataWriteBackId]);
 
                     _cachedServerData.SetHeroData(list);
+                    HandleRequests.Instance.RequestDataStatus[_herodataWriteBackId] = DataRequestStatusEnum.RecievedAccepted;
                 }
             }
 
