@@ -66,6 +66,8 @@ public class TurnManager : MonoBehaviour {
     public void EndPlayerTurn() {
         updateDebugText?.Invoke("Player Turn Ended!");
         // called by button in scene
+
+        UIDataContainer.Instance.Player.EndTurn();
         _playerTurn = false;
         _turnState = TurnStateEnum.EnemyTurn;
 

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerObject : MonoBehaviour {
@@ -73,5 +72,10 @@ public class PlayerObject : MonoBehaviour {
     [ContextMenu("start turn")]
     public void DrawCard() {
         _player.StartTurn();
+    }
+
+    [ContextMenu("test")]
+    public void Testing() {
+        Debug.Log("Testing");
     }
 }

@@ -29,6 +29,13 @@ public static class ClientFunctions {
 
     }
 
+    public static string GetEnemyDatabaseByKeyPair(string pair) {
+        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEnemyByKeyPair));
+
+        return GetWriteString(info, pair);
+
+    }
+
     public static string GetRandomEnemyDatabase() {
         MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetRandomEnemy));
 
@@ -49,17 +56,32 @@ public static class ClientFunctions {
     }
     public static string GetEnemytoEnemySkillByKeyPair(string pair) {
         MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEnemyToEnemySkillByKeyPair));
-
         return GetWriteString(info, pair);
-
     }
     public static string GetEnemySkillByKeyPair(string pair) {
         MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEnemySkillByKeyPair));
-
         return GetWriteString(info, pair);
-
-
     }
+
+
+    public static string GetCardToEffectByKeyPair(string pair) {
+        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetCardToEffectByKeyPair));
+        return GetWriteString(info, pair);
+    }
+    public static string GetEffectByKeyPair(string pair) {
+        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEffectByKeyPair));
+        return GetWriteString(info, pair);
+    }
+
+    public static string GetCardToEffect() {
+        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetCardToEffect));
+        return GetWriteString(info);
+    }
+    public static string GetEffect() {
+        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEffect));
+        return GetWriteString(info);
+    }
+
 
     public static string SendHeartbeat() {
         return "KEEPALIVE ";

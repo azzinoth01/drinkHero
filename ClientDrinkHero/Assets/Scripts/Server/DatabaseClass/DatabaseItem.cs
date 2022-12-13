@@ -1,12 +1,20 @@
+
+
+using System.Runtime.CompilerServices;
+#if CLIENT
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
-public abstract class DatabaseItem : IRequestDataFromServer {
+#endif
 
-    // Database object baseclass to limit database operations to child classes
 
+#if CLIENT
+public abstract class DatabaseItem : IRequestDataFromServer, IGetUpdateFromServer {
+#endif
+#if SERVER
+public abstract class DatabaseItem {
+#endif
     protected Dictionary<int, string> _propertyToRequestedId;
     protected int _waitingOnDataCount;
 
@@ -15,23 +23,22 @@ public abstract class DatabaseItem : IRequestDataFromServer {
             return _waitingOnDataCount;
         }
 
-        set {
-            _waitingOnDataCount = value;
-        }
     }
+#if CLIENT
 
     public DatabaseItem() {
         _waitingOnDataCount = 0;
         _propertyToRequestedId = new Dictionary<int, string>();
-    }
 
+    }
+#endif
 
     protected static string GetPropertyName([CallerMemberName] string name = "") {
 
         return name;
     }
 
-
+#if CLIENT
     public virtual bool AlreadyRequested(string property) {
 
         foreach (KeyValuePair<int, string> pair in _propertyToRequestedId) {
@@ -58,6 +65,7 @@ public abstract class DatabaseItem : IRequestDataFromServer {
     }
     public virtual int SendRequest(string functionCall, Type type) {
         _waitingOnDataCount = _waitingOnDataCount + 1;
+        HandleRequests.Instance.AddToUpdateList(this);
         return HandleRequests.Instance.HandleRequest(functionCall, type);
     }
     public virtual void WriteBackData(string data, int id) {
@@ -69,6 +77,7 @@ public abstract class DatabaseItem : IRequestDataFromServer {
 
             HandleRequests.Instance.RequestDataStatus[id] = DataRequestStatusEnum.RecievedAccepted;
             _waitingOnDataCount = _waitingOnDataCount - 1;
+
         }
     }
     public virtual void CheckRequestedData() {
@@ -87,7 +96,7 @@ public abstract class DatabaseItem : IRequestDataFromServer {
         }
 
         if (type == typeof(HeroDatabase)) {
-            List<HeroDatabase> list = TransmissionControl.GetObjectData<HeroDatabase>(data);
+            List<HeroDatabase> list = HeroDatabase.CreateObjectDataFromString(data);
 
             if (isList == false) {
                 info.SetValue(this, list[0]);
@@ -98,7 +107,7 @@ public abstract class DatabaseItem : IRequestDataFromServer {
 
         }
         else if (type == typeof(CardDatabase)) {
-            List<CardDatabase> list = TransmissionControl.GetObjectData<CardDatabase>(data);
+            List<CardDatabase> list = CardDatabase.CreateObjectDataFromString(data);
             if (isList == false) {
                 info.SetValue(this, list[0]);
             }
@@ -107,7 +116,7 @@ public abstract class DatabaseItem : IRequestDataFromServer {
             }
         }
         else if (type == typeof(CardToHero)) {
-            List<CardToHero> list = TransmissionControl.GetObjectData<CardToHero>(data);
+            List<CardToHero> list = CardToHero.CreateObjectDataFromString(data);
             if (isList == false) {
                 info.SetValue(this, list[0]);
             }
@@ -116,7 +125,7 @@ public abstract class DatabaseItem : IRequestDataFromServer {
             }
         }
         else if (type == typeof(EnemyDatabase)) {
-            List<EnemyDatabase> list = TransmissionControl.GetObjectData<EnemyDatabase>(data);
+            List<EnemyDatabase> list = EnemyDatabase.CreateObjectDataFromString(data);
             if (isList == false) {
                 info.SetValue(this, list[0]);
             }
@@ -125,7 +134,7 @@ public abstract class DatabaseItem : IRequestDataFromServer {
             }
         }
         else if (type == typeof(EnemyToEnemySkill)) {
-            List<EnemyToEnemySkill> list = TransmissionControl.GetObjectData<EnemyToEnemySkill>(data);
+            List<EnemyToEnemySkill> list = EnemyToEnemySkill.CreateObjectDataFromString(data);
             if (isList == false) {
                 info.SetValue(this, list[0]);
             }
@@ -134,7 +143,7 @@ public abstract class DatabaseItem : IRequestDataFromServer {
             }
         }
         else if (type == typeof(EnemySkillDatabase)) {
-            List<EnemySkillDatabase> list = TransmissionControl.GetObjectData<EnemySkillDatabase>(data);
+            List<EnemySkillDatabase> list = EnemySkillDatabase.CreateObjectDataFromString(data);
             if (isList == false) {
                 info.SetValue(this, list[0]);
             }
@@ -142,10 +151,40 @@ public abstract class DatabaseItem : IRequestDataFromServer {
                 info.SetValue(this, list);
             }
         }
+        else if (type == typeof(CardToEffect)) {
+            List<CardToEffect> list = CardToEffect.CreateObjectDataFromString(data);
+            if (isList == false) {
+                info.SetValue(this, list[0]);
+            }
+            else {
+                info.SetValue(this, list);
+            }
+        }
+        else if (type == typeof(Effect)) {
+            List<Effect> list = Effect.CreateObjectDataFromString(data);
+            if (isList == false) {
+                info.SetValue(this, list[0]);
+            }
+            else {
+                info.SetValue(this, list);
+            }
+        }
+    }
+
+    public bool GetUpdateFromServer() {
+        CheckRequestedData();
+        if (_waitingOnDataCount > 0) {
+            return false;
+        }
+
+        return true;
+    }
 
 
 
+    public virtual void RequestLoadReferenzData() {
 
     }
 
+#endif
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [Serializable]
-public class Enemy : Character, IWaitingOnServer, ICharacter {
+public class Enemy : Character, IGetUpdateFromServer, ICharacter {
 
     [SerializeField] private int _attack;
     [SerializeField] private ElementEnum _element;
@@ -15,9 +15,8 @@ public class Enemy : Character, IWaitingOnServer, ICharacter {
     //public static event Action enemyTurnDone;
     public static event Action enemyDamageReceived, enemyDamageBlocked, enemyHealed, enemyShieldUp;
     //public static event Action<float, float> updateEnemyHealthUI;
-    public event Action<int> HealthChange;
-    public event Action<int> ShieldChange;
-    public event Action TurnEnded;
+
+
 
     private EnemyDatabase _enemyData;
     private bool _isWaitingOnServer;
@@ -27,7 +26,6 @@ public class Enemy : Character, IWaitingOnServer, ICharacter {
         get {
             return _enemyData;
         }
-
         set {
             _enemyData = value;
             if (_enemyData != null) {
@@ -41,8 +39,6 @@ public class Enemy : Character, IWaitingOnServer, ICharacter {
 
     public void SetEnemyData(List<EnemyDatabase> enemyDatabases) {
         EnemyData = enemyDatabases[0];
-
-
     }
 
     public bool IsWaitingOnServer {
@@ -107,7 +103,7 @@ public class Enemy : Character, IWaitingOnServer, ICharacter {
                 enemySkill = new EnemySkill();
                 enemySkill.Id = id;
                 enemySkill.EnemySkillData = skill.EnemySkill;
-                _skillList.AddWithCascading(index, enemySkill, this);
+
             }
             if (skill.WaitingOnDataCount != 0) {
                 waitOn = true;
@@ -119,51 +115,13 @@ public class Enemy : Character, IWaitingOnServer, ICharacter {
             return false;
         }
 
-        Cascade(this);
-        UpdateEnemyHealthUI(0);
-        UpdateEnemyShieldUI(0);
+
+
 
         return true;
     }
 
 
-    public void TakeDmg(int dmg) {
-        //int lastHealth = _health;
-        int shieldDmg = 0;
-        if (_shield > 0) {
-            if (_shield > dmg) {
-                shieldDmg = -dmg;
-                _shield = _shield - dmg;
-                dmg = 0;
-            }
-            else {
-                dmg = dmg - _shield;
-                shieldDmg = -_shield;
-                _shield = 0;
-            }
-            enemyDamageBlocked?.Invoke();
-            UpdateEnemyShieldUI(shieldDmg);
-        }
-
-        int healthDmg = 0;
-        if (_health - dmg < 0) {
-            healthDmg = -_health;
-            _health = 0;
-        }
-        else {
-            healthDmg = -dmg;
-            _health -= dmg;
-        }
-
-        //if (_health < lastHealth)
-        //    enemyDamageReceived?.Invoke();
-
-        UpdateEnemyHealthUI(healthDmg);
-
-        if (_health <= 0) {
-            EnemyDeath();
-        }
-    }
 
 
     public override void Clear() {
@@ -187,8 +145,18 @@ public class Enemy : Character, IWaitingOnServer, ICharacter {
 
     public void EnemyTurn() {
         ClientFunctions.SendMessageToDatabase("Enemy Turn Started");
-        //GlobalGameInfos.Instance.SendDataToServer("Enemy Turn Started");
+
+        CheckDebuffsAndBuffs(ActivationTimeEnum.turnStart);
+
+
         bool usedSkill = false;
+
+        if (_skipTurn == true) {
+            _skipTurn = false;
+            ClientFunctions.SendMessageToDatabase("Enemy Turn End");
+            EndTurn();
+            return;
+        }
 
         foreach (EnemySkill skill in _skillList.Values) {
 
@@ -197,6 +165,8 @@ public class Enemy : Character, IWaitingOnServer, ICharacter {
                 usedSkill = true;
 
                 int dmg = Random.Range(skill.MinAttack, skill.MaxAttack);
+
+
                 GlobalGameInfos.Instance.PlayerObject.Player.TakeDmg(dmg);
 
                 Debug.Log("Enemy Attacks Player!");
@@ -210,13 +180,6 @@ public class Enemy : Character, IWaitingOnServer, ICharacter {
                 skill.StartCooldown();
 
 
-                // server
-                //EnemySkill logskill = new EnemySkill();
-                //logskill.MinAttack = skill.MinAttack;
-                //logskill.MinHealth = skill.MinHealth;
-                //logskill.MinShield = skill.MinShield;
-
-                //GlobalGameInfos.Instance.SendDataToServer(logskill);
 
             }
             else {
@@ -226,26 +189,17 @@ public class Enemy : Character, IWaitingOnServer, ICharacter {
 
         }
         ClientFunctions.SendMessageToDatabase("Enemy Turn End");
-        //GlobalGameInfos.Instance.SendDataToServer("Enemy Turn End");
-        EndEnemyTurn();
+        EndTurn();
     }
 
-    public void EndEnemyTurn() {
-        TurnEnded?.Invoke();
-    }
 
-    private void UpdateEnemyShieldUI(int deltaValue) {
-        ShieldChange?.Invoke(deltaValue);
-    }
 
-    private void UpdateEnemyHealthUI(int deltaValue) {
-        HealthChange?.Invoke(deltaValue);
-    }
+
 
     public bool GetUpdateFromServer() {
         if (HandleRequests.Instance.RequestDataStatus[_requestEnemyId] == DataRequestStatusEnum.Recieved) {
 
-            List<EnemyDatabase> list = TransmissionControl.GetObjectData<EnemyDatabase>(HandleRequests.Instance.RequestData[_requestEnemyId]);
+            List<EnemyDatabase> list = EnemyDatabase.CreateObjectDataFromString(HandleRequests.Instance.RequestData[_requestEnemyId]);
 
             _enemyData = list[0];
             HandleRequests.Instance.RequestDataStatus[_requestEnemyId] = DataRequestStatusEnum.RecievedAccepted;
@@ -255,23 +209,26 @@ public class Enemy : Character, IWaitingOnServer, ICharacter {
         return ConvertEnemyData();
     }
 
-    int ICharacter.MaxHealth() {
-        return _maxHealth;
+    protected override void Death() {
+        EnemyDeath();
     }
 
-    public int CurrentHealth() {
-        return _health;
+    public override void EndTurn() {
+        CheckDebuffsAndBuffs(ActivationTimeEnum.turnEnd);
+        InvokeTurnEnd();
     }
 
-    public int CurrentShield() {
-        return _shield;
-    }
-
-    public void EndTurn() {
-        TurnEnded?.Invoke();
-    }
-
-    public void StartTurn() {
+    public override void StartTurn() {
         EnemyTurn();
+    }
+
+    public override void SwapShieldWithEnemy() {
+        int tempShield = GlobalGameInfos.Instance.PlayerObject.Player.Shield;
+        GlobalGameInfos.Instance.PlayerObject.Player.Shield = Shield;
+        Shield = tempShield;
+    }
+    public override void AttackEnemy(int value) {
+        GlobalGameInfos.Instance.PlayerObject.Player.TakeDmg(value);
+        _dmgCausedThisAction = _dmgCausedThisAction + value;
     }
 }

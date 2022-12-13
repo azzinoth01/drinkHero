@@ -8,4 +8,6 @@ public interface ICardDisplay {
     public string HealthText();
     public Sprite SpriteDisplay();
 
+    public string CardText();
+
 }

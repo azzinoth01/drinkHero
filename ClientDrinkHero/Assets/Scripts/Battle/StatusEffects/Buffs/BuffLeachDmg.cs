@@ -1,25 +1,40 @@
-public class BuffLeachDmg : Buff {
-    public BuffLeachDmg(BuffLeachDmg statusEffect) : base(statusEffect) {
+public class BuffLeachDmg : Effect, IBuff {
+    public BuffLeachDmg(Effect statusEffect) : base(statusEffect) {
     }
 
-    public override void ActivateStatusEffect(Character target, ActivationTimeEnum activation, int? value = 0) {
+    public override bool ActivateEffect(ICharacterAction target, ActivationTimeEnum activation, int? value = null) {
 
-        if (ActivationTimeEnum.afterDmgCausedActive == activation) {
-            target.HealCharacter((int)value);
-            if (_durationType == DurationTypeEnum.uses) {
-                ReduceDuration();
-            }
-        }
-        if (ActivationTimeEnum.turnEndActive == activation) {
-            if (_durationType == DurationTypeEnum.turns) {
-                ReduceDuration();
-            }
+        if (_isOver == true) {
+            return false;
         }
 
+        if (ActivationTimeEnum.actionFinished == activation) {
+            if (value != null) {
+                target.Heal((int)value);
+            }
+            else {
+                target.Heal(0);
+            }
+            if (_durationType == (int)DurationTypeEnum.uses) {
+                ReduceDuration();
+                SetIsOver();
+            }
+        }
+        if (ActivationTimeEnum.turnEnd == activation) {
+            if (_durationType == (int)DurationTypeEnum.turns) {
+                ReduceDuration();
+                SetIsOver();
+            }
+        }
+
+
+        if (_isOver == true) {
+            return false;
+        }
+        return true;
     }
 
 
-    public override object Clone() {
-        return new BuffLeachDmg(this);
-    }
+
+
 }

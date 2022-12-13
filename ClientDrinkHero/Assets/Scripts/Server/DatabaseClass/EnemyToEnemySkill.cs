@@ -1,6 +1,8 @@
 
 #if CLIENT
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 #endif
 
@@ -14,6 +16,8 @@ public class EnemyToEnemySkill : DatabaseItem {
     [NonSerialized] private EnemyDatabase _enemy;
     [NonSerialized] private EnemySkillDatabase _enemySkill;
 
+    private static Dictionary<string, EnemyToEnemySkill> _cachedData = new Dictionary<string, EnemyToEnemySkill>();
+
 #endif
 #if SERVER
     private int _id;
@@ -21,7 +25,7 @@ public class EnemyToEnemySkill : DatabaseItem {
     private int? _refEnemySkill;
     private EnemyDatabase _enemy;
     private EnemySkillDatabase _enemySkill;
-    private DataRequestStatusEnum _requestedEnemySkills;
+
 #endif
 
     [Column("ID"), PrimaryKey]
@@ -105,32 +109,117 @@ public class EnemyToEnemySkill : DatabaseItem {
             if (_refEnemySkill == null) {
                 return null;
             }
-            CheckRequestedData();
             if (_enemySkill != null) {
                 return _enemySkill;
             }
-            else {
-
-                string name = GetPropertyName();
-
-                if (AlreadyRequested(name)) {
-                    return null;
-                }
 
 
-                string functionCall = ClientFunctions.GetEnemySkillByKeyPair("ID\"" + _refEnemySkill + "\"");
-                int index = SendRequest(functionCall, typeof(EnemySkillDatabase));
-                _propertyToRequestedId[index] = name;
+            string name = GetPropertyName();
 
+            if (AlreadyRequested(name)) {
                 return null;
             }
+
+            RequestEnemySkill(name);
+
+
+            return null;
+
         }
 
         set {
             _enemySkill = value;
         }
     }
+    public EnemyDatabase Enemy {
+        get {
+            if (_refEnemy == null) {
+                return null;
+            }
+            if (_enemy != null) {
+                return _enemy;
+            }
 
+
+            string name = GetPropertyName();
+
+            if (AlreadyRequested(name)) {
+                return null;
+            }
+
+            RequestEnemySkill(name);
+
+
+            return null;
+
+        }
+
+        set {
+            _enemy = value;
+        }
+    }
+
+
+    public static List<EnemyToEnemySkill> CreateObjectDataFromString(string message) {
+
+        List<EnemyToEnemySkill> list = new List<EnemyToEnemySkill>();
+
+        List<string[]> objectStrings = DatabaseItemCreationHelper.GetObjectStrings(message);
+        TableMapping mapping = DatabaseManager.GetTableMapping<EnemyToEnemySkill>();
+
+        foreach (string[] obj in objectStrings) {
+            EnemyToEnemySkill item = new EnemyToEnemySkill();
+            foreach (string parameter in obj) {
+                string parameterName = RegexPatterns.PropertyName.Match(parameter).Value;
+                string parameterValue = RegexPatterns.PropertyValue.Match(parameter).Value;
+
+                if (parameterName == mapping.PrimaryKeyColumn) {
+                    if (_cachedData.TryGetValue(parameterValue, out EnemyToEnemySkill existingItem)) {
+                        item = existingItem;
+                        break;
+                    }
+                    else {
+                        _cachedData.Add(parameterValue, item);
+                    }
+
+                }
+
+                if (mapping.ColumnsMapping.TryGetValue(parameterName, out string property)) {
+                    PropertyInfo info = item.GetType().GetProperty(property);
+                    DatabaseItemCreationHelper.ParseParameterValues(item, info, parameterValue);
+                }
+            }
+            list.Add(item);
+        }
+
+        return list;
+    }
+
+    private void RequestEnemySkill(string name) {
+        string functionCall = ClientFunctions.GetEnemySkillByKeyPair("ID\"" + _refEnemySkill + "\"");
+        int index = SendRequest(functionCall, typeof(EnemySkillDatabase));
+        _propertyToRequestedId[index] = name;
+    }
+    private void RequestEnemy(string name) {
+        string functionCall = ClientFunctions.GetEnemyDatabaseByKeyPair("ID\"" + _refEnemy + "\"");
+        int index = SendRequest(functionCall, typeof(EnemyDatabase));
+        _propertyToRequestedId[index] = name;
+    }
+
+
+    public override void RequestLoadReferenzData() {
+        string name = null;
+
+        name = nameof(EnemySkill);
+        if (AlreadyRequested(name) == false) {
+            RequestEnemySkill(name);
+        }
+        name = nameof(Enemy);
+        if (AlreadyRequested(name) == false) {
+            RequestEnemy(name);
+        }
+
+    }
 
 #endif
     public EnemyToEnemySkill() : base() {

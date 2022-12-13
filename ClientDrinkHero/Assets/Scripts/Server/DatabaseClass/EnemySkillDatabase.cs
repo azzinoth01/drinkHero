@@ -2,6 +2,7 @@
 #if CLIENT
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 #endif
 
@@ -20,6 +21,8 @@ public class EnemySkillDatabase : DatabaseItem {
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _cooldown;
     [NonSerialized] private List<EnemyToEnemySkill> _enemyToEnemySkills;
+
+    private static Dictionary<string, EnemySkillDatabase> _cachedData = new Dictionary<string, EnemySkillDatabase>();
 
 #endif
 #if SERVER
@@ -135,6 +138,48 @@ public class EnemySkillDatabase : DatabaseItem {
 
     }
 #endif
+
+#if CLIENT
+
+
+    public static List<EnemySkillDatabase> CreateObjectDataFromString(string message) {
+
+        List<EnemySkillDatabase> list = new List<EnemySkillDatabase>();
+
+        List<string[]> objectStrings = DatabaseItemCreationHelper.GetObjectStrings(message);
+        TableMapping mapping = DatabaseManager.GetTableMapping<EnemySkillDatabase>();
+
+        foreach (string[] obj in objectStrings) {
+            EnemySkillDatabase item = new EnemySkillDatabase();
+            foreach (string parameter in obj) {
+                string parameterName = RegexPatterns.PropertyName.Match(parameter).Value;
+                string parameterValue = RegexPatterns.PropertyValue.Match(parameter).Value;
+
+                if (parameterName == mapping.PrimaryKeyColumn) {
+                    if (_cachedData.TryGetValue(parameterValue, out EnemySkillDatabase existingItem)) {
+                        item = existingItem;
+                        break;
+                    }
+                    else {
+                        _cachedData.Add(parameterValue, item);
+                    }
+
+                }
+
+                if (mapping.ColumnsMapping.TryGetValue(parameterName, out string property)) {
+                    PropertyInfo info = item.GetType().GetProperty(property);
+                    DatabaseItemCreationHelper.ParseParameterValues(item, info, parameterValue);
+                }
+            }
+            list.Add(item);
+        }
+
+        return list;
+    }
+
+#endif
+
+
     public EnemySkillDatabase() {
 
     }

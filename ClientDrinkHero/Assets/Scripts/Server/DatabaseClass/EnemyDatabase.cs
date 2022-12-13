@@ -2,6 +2,7 @@
 #if CLIENT
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 #endif
 
@@ -13,7 +14,10 @@ public class EnemyDatabase : DatabaseItem {
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _shield;
     [SerializeField] private string _spritePath;
-    [NonSerialized] private List<EnemyToEnemySkill> _enemyToEnemySkills;
+    private List<EnemyToEnemySkill> _enemyToEnemySkills;
+
+    public static Dictionary<string, EnemyDatabase> _cachedData = new Dictionary<string, EnemyDatabase>();
+
 
 
 #endif
@@ -23,7 +27,7 @@ public class EnemyDatabase : DatabaseItem {
     private int _shield;
     private string _spritePath;
     private List<EnemyToEnemySkill> _enemyToEnemySkills;
-    private DataRequestStatusEnum _requestedEnemySkills;
+
 #endif
 
     [Column("MaxHealth")]
@@ -82,7 +86,7 @@ public class EnemyDatabase : DatabaseItem {
 #if CLIENT
     public List<EnemyToEnemySkill> EnemyToEnemySkills {
         get {
-            CheckRequestedData();
+
             if (_enemyToEnemySkills.Count != 0) {
                 return _enemyToEnemySkills;
             }
@@ -95,9 +99,7 @@ public class EnemyDatabase : DatabaseItem {
                     return _enemyToEnemySkills;
                 }
 
-                string functionCall = ClientFunctions.GetEnemytoEnemySkillByKeyPair("RefEnemy\"" + _id + "\"");
-                int index = SendRequest(functionCall, typeof(EnemyToEnemySkill));
-                _propertyToRequestedId[index] = name;
+                RequestEnemySkills(name);
             }
 
             return _enemyToEnemySkills;
@@ -107,6 +109,59 @@ public class EnemyDatabase : DatabaseItem {
             _enemyToEnemySkills = value;
         }
     }
+
+    private void RequestEnemySkills(string name) {
+        string functionCall = ClientFunctions.GetEnemytoEnemySkillByKeyPair("RefEnemy\"" + _id + "\"");
+        int index = SendRequest(functionCall, typeof(EnemyToEnemySkill));
+        _propertyToRequestedId[index] = name;
+    }
+
+
+    public static List<EnemyDatabase> CreateObjectDataFromString(string message) {
+
+        List<EnemyDatabase> list = new List<EnemyDatabase>();
+
+        List<string[]> objectStrings = DatabaseItemCreationHelper.GetObjectStrings(message);
+        TableMapping mapping = DatabaseManager.GetTableMapping<EnemyDatabase>();
+
+        foreach (string[] obj in objectStrings) {
+            EnemyDatabase item = new EnemyDatabase();
+            foreach (string parameter in obj) {
+                string parameterName = RegexPatterns.PropertyName.Match(parameter).Value;
+                string parameterValue = RegexPatterns.PropertyValue.Match(parameter).Value;
+
+                if (parameterName == mapping.PrimaryKeyColumn) {
+                    if (_cachedData.TryGetValue(parameterValue, out EnemyDatabase existingItem)) {
+                        item = existingItem;
+                        break;
+                    }
+                    else {
+                        _cachedData.Add(parameterValue, item);
+                    }
+
+                }
+
+                if (mapping.ColumnsMapping.TryGetValue(parameterName, out string property)) {
+                    PropertyInfo info = item.GetType().GetProperty(property);
+                    DatabaseItemCreationHelper.ParseParameterValues(item, info, parameterValue);
+                }
+            }
+            list.Add(item);
+        }
+
+        return list;
+    }
+
+    public override void RequestLoadReferenzData() {
+        string name = null;
+
+        name = nameof(EnemyToEnemySkills);
+        if (AlreadyRequested(name) == false) {
+            RequestEnemySkills(name);
+        }
+
+    }
+
 
 #endif
 

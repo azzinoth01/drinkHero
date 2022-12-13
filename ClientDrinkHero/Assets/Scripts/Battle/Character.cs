@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
 [Serializable]
-public abstract class Character : ICascadable {
+public abstract class Character : ICharacterAction, ICharacter {
     [SerializeField] protected long _id;
     [SerializeField] protected int _health;
     [SerializeField] protected int _maxHealth;
@@ -12,14 +11,22 @@ public abstract class Character : ICascadable {
 
     [SerializeField] protected float _healModifier;
     [SerializeField] protected float _dmgModifier;
-    [SerializeField] protected float _dmgRecieveModifier;
+    [SerializeField] protected float _defenceModifier;
     [SerializeField] protected float _shieldModifier;
-    private List<ICascadable> _cascadables;
+    protected bool _skipTurn;
 
 
+    protected int _baseMultihit;
+    protected int _buffMultihit;
+    protected int _dmgCausedThisAction;
 
-    protected List<Buff> _buffList;
-    protected List<Debuff> _debuffList;
+
+    protected List<IBuff> _buffList;
+    protected List<IDebuff> _debuffList;
+
+    public event Action<int> HealthChange;
+    public event Action<int> ShieldChange;
+    public event Action TurnEnded;
 
     public int Health {
         get {
@@ -51,7 +58,7 @@ public abstract class Character : ICascadable {
         }
     }
 
-    public List<Buff> BuffList {
+    public List<IBuff> BuffList {
         get {
             return _buffList;
         }
@@ -59,7 +66,7 @@ public abstract class Character : ICascadable {
 
     }
 
-    public List<Debuff> DebuffList {
+    public List<IDebuff> DebuffList {
         get {
             return _debuffList;
         }
@@ -68,15 +75,10 @@ public abstract class Character : ICascadable {
     }
 
 
-    public List<ICascadable> Cascadables {
-        get {
-            return _cascadables;
-        }
+    protected abstract void Death();
 
-        set {
-            _cascadables = value;
-        }
-    }
+
+
 
     public void HealCharacter(int heal) {
         _health = _health + heal;
@@ -87,28 +89,142 @@ public abstract class Character : ICascadable {
     }
 
     public virtual void Clear() {
-
+        _baseMultihit = 1;
+        _buffMultihit = 1;
         _maxHealth = 0;
         _health = 0;
         _shield = 0;
-
-        _buffList = new List<Buff>();
-        _debuffList = new List<Debuff>();
+        _dmgCausedThisAction = 0;
+        _buffList = new List<IBuff>();
+        _debuffList = new List<IDebuff>();
 
     }
 
     public Character() {
-        _cascadables = new List<ICascadable>();
-        _buffList = new List<Buff>();
-        _debuffList = new List<Debuff>();
+
+        _buffList = new List<IBuff>();
+        _debuffList = new List<IDebuff>();
+        _baseMultihit = 1;
+        _buffMultihit = 1;
+        _dmgCausedThisAction = 0;
     }
 
-    public virtual void Cascade(ICascadable causedBy, PropertyInfo changedProperty = null, object changedValue = null) {
-        if (causedBy == null) {
-            causedBy = this;
+
+
+    public void Heal(int value) {
+        _health = _health + value;
+        if (_health > _maxHealth) {
+            _health = _maxHealth;
         }
-        foreach (ICascadable cascadable in Cascadables) {
-            cascadable.Cascade(causedBy, changedProperty, changedValue);
+        HealthChange?.Invoke(value);
+    }
+
+    public void TakeDmg(int value) {
+        int shieldDmg = 0;
+        if (_shield > 0) {
+            if (_shield > value) {
+                _shield = _shield - value;
+                shieldDmg = -value;
+                value = 0;
+            }
+            else {
+                value = value - _shield;
+                shieldDmg = -_shield;
+                _shield = 0;
+
+            }
+            ShieldChange?.Invoke(shieldDmg);
+        }
+        int healthDmg = 0;
+        if (_health - value < 0) {
+            healthDmg = -_health;
+            _health = 0;
+        }
+        else {
+            healthDmg = -value;
+            _health -= value;
+        }
+
+        HealthChange?.Invoke(healthDmg);
+
+
+        if (_health <= 0) {
+
+            Death();
+        }
+    }
+
+    void ICharacterAction.Shield(int value) {
+        _shield = _shield + value;
+        ShieldChange?.Invoke(value);
+    }
+
+    int ICharacter.MaxHealth() {
+        return _maxHealth;
+    }
+
+    public int CurrentHealth() {
+        return _health;
+    }
+
+    public int CurrentShield() {
+        return _shield;
+    }
+    protected void InvokeTurnEnd() {
+        TurnEnded!.Invoke();
+    }
+
+    public abstract void EndTurn();
+    public abstract void StartTurn();
+
+
+
+    protected void UpdateUI(int deltaHealth = 0, int deltaShield = 0) {
+        HealthChange?.Invoke(deltaHealth);
+        ShieldChange?.Invoke(deltaShield);
+    }
+
+    public void AddAttackModifier(int value) {
+        _dmgModifier = _dmgModifier + value;
+    }
+
+    public void AddDefenceModifier(int value) {
+        _defenceModifier = _defenceModifier + value;
+    }
+
+    public abstract void SwapShieldWithEnemy();
+
+    public void RemoveShield() {
+        _shield = 0;
+    }
+
+    public void SkipTurn() {
+        _skipTurn = true;
+    }
+
+    public void SetBaseMultihit(int value) {
+        _baseMultihit = value;
+    }
+
+    public void SetBuffMultihit(int value) {
+        _buffMultihit = value;
+    }
+
+    public abstract void AttackEnemy(int value);
+    protected void CheckDebuffsAndBuffs(ActivationTimeEnum activation, int? value = null) {
+        for (int i = BuffList.Count; i > 0;) {
+            i = i - 1;
+            if (BuffList[i].ActivateEffect(this, activation, value) == false) {
+                BuffList.RemoveAt(i);
+            }
+
+        }
+        for (int i = DebuffList.Count; i > 0;) {
+            i = i - 1;
+            if (DebuffList[i].ActivateEffect(this, activation, value) == false) {
+                DebuffList.RemoveAt(i);
+            }
+
         }
     }
 }
