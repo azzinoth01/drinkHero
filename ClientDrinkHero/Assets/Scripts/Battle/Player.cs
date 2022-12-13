@@ -132,6 +132,7 @@ public class Player : Character, IHandCards, IPlayer {
         _buffMultihit = 1;
 
         CheckDebuffsAndBuffs(ActivationTimeEnum.actionFinished, _dmgCausedThisAction);
+        _dmgCausedThisAction = 0;
 
         _gameDeck.ScrapCard(card);
         _handCards.RemoveAt(index);
@@ -235,6 +236,8 @@ public class Player : Character, IHandCards, IPlayer {
         int tempShield = GlobalGameInfos.Instance.EnemyObject.Enemy.shield;
         GlobalGameInfos.Instance.EnemyObject.Enemy.shield = Shield;
         Shield = tempShield;
+        UpdateUI();
+        GlobalGameInfos.Instance.EnemyObject.Enemy.UpdateUI();
     }
 
     public override void AttackEnemy(int value) {

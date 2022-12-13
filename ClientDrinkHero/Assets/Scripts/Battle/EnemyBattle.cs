@@ -57,6 +57,13 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     public event Action DiedEvent;
 
     public static event Action enemyDamageReceived, enemyDamageBlocked, enemyHealed, enemyShieldUp;
+
+
+    public void UpdateUI(int deltaHealth = 0, int deltaShield = 0) {
+        HealthChange?.Invoke(deltaHealth);
+        ShieldChange?.Invoke(deltaShield);
+    }
+
     int ICharacter.MaxHealth() {
         return maxHealth;
     }

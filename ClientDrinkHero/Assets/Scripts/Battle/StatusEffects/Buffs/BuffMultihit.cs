@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BuffMultihit : Effect {
+public class BuffMultihit : Effect, IBuff {
     public BuffMultihit(Effect statusEffect) : base(statusEffect) {
     }
 
