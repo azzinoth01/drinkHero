@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9585c3e3e0a08014e9211b6d6523878c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startView: {fileID: 0}
+  _startingView: {fileID: 0}
   _views:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}

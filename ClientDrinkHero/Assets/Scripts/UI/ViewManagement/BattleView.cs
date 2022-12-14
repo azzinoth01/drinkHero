@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BattleView : View
 {
-    [SerializeField] private List<PlayerCardUI> currentPlayerHand;
+    [SerializeField] private List<CardView> currentPlayerHand;
 
     [Header("Card Related")] 
     [SerializeField] private GameObject playerCardObjectPrefab;
@@ -27,11 +27,13 @@ public class BattleView : View
 
     [Header("Buttons")] 
     [SerializeField] private Button endTurnButton;
-    [SerializeField] private Button deckMenuButton; 
+    [SerializeField] private Button optionsMenuButton; 
     [SerializeField] private Button mainMenuButton;
     
     [Header("Debug Related")]
     [SerializeField] private TextMeshProUGUI debugText;
+
+    public static GameObject CurrentCardDragged;
     
     //TODO: maybe refactor..
     private void OnEnable() {
@@ -45,7 +47,7 @@ public class BattleView : View
         UIDataContainer.Instance.Enemy.HealthChange += UpdateEnemyHealthBar;
         UIDataContainer.Instance.Enemy.ShieldChange += UpdateEnemyShieldCounter;
 
-        UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel += ToggleWaitingPanel;
+        //UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel += ToggleWaitingPanel;
         
         TurnManager.togglePlayerUiControls += TogglePlayerUIControls;
         TurnManager.updateDebugText += UpdateDebugText;
@@ -62,7 +64,7 @@ public class BattleView : View
         UIDataContainer.Instance.Enemy.HealthChange -= UpdateEnemyHealthBar;
         UIDataContainer.Instance.Enemy.ShieldChange -= UpdateEnemyShieldCounter;
 
-        UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel -= ToggleWaitingPanel;
+        //UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel -= ToggleWaitingPanel;
         
         TurnManager.togglePlayerUiControls -= TogglePlayerUIControls;
         TurnManager.updateDebugText -= UpdateDebugText;
@@ -77,7 +79,7 @@ public class BattleView : View
     private void AddHandCard(ICardDisplay card) {
         var newCard = Instantiate(playerCardObjectPrefab, playerHandContainer.transform.position,
             Quaternion.identity, playerHandContainer.transform);
-        var newCardUi = newCard.GetComponent<PlayerCardUI>();
+        var newCardUi = newCard.GetComponent<CardView>();
 
         currentPlayerHand.Add(newCardUi);
 
@@ -98,7 +100,7 @@ public class BattleView : View
             }
             else {
                 currentPlayerHand[i].gameObject.SetActive(true);
-                currentPlayerHand[i].GetComponent<PlayerCardUI>().SetDisplayValues(card);
+                currentPlayerHand[i].GetComponent<CardView>().SetDisplayValues(card);
             }
 
             int index = i;
@@ -196,7 +198,7 @@ public class BattleView : View
 
     public override void Initialize()
     { 
-        deckMenuButton.onClick.AddListener(() => ViewManager.Show<DeckMenuView>());
+        optionsMenuButton.onClick.AddListener(() => ViewManager.Show<OptionsMenuView>());
         mainMenuButton.onClick.AddListener(() => SceneLoader.Load(GameSceneEnum.MainMenu));
     }
 }

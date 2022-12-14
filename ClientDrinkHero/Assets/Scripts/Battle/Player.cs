@@ -4,6 +4,8 @@ using UnityEngine;
 
 [Serializable]
 public class Player : Character, IHandCards, IPlayer {
+    const int MaxHandCards = 5;
+    
     [SerializeField] private string _name;
 
     [SerializeField] private int _attack;
@@ -217,7 +219,8 @@ public class Player : Character, IHandCards, IPlayer {
 
         //draw until 5 cards
         //Debug.Log(_handCards.Count);
-        for (int i = _handCards.Count; i < 4;) {
+
+        for (int i = _handCards.Count; i < MaxHandCards;) {
             _handCards.Add(_gameDeck.DrawCard());
             i = i + 1;
         }

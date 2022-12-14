@@ -9,7 +9,7 @@ public class BattleUIManager : MonoBehaviour {
     [SerializeField] private GameObject playerHandUI;
     [SerializeField] private GameObject playerOptionsPanel, playerDeathPanel, waitingForConnectionPanel;
 
-    [SerializeField] private List<PlayerCardUI> currentPlayerHand;
+    [SerializeField] private List<CardView> currentPlayerHand;
     [SerializeField]
     private TextMeshProUGUI playerHealthLabelText, playerEnergyLabelText, enemyHealthLabelText,
         debugText, playerShieldCount, enemyShieldCount;
@@ -62,7 +62,7 @@ public class BattleUIManager : MonoBehaviour {
     private void AddHandCard(ICardDisplay card) {
         var newCard = Instantiate(playerCardUIPrefab, playerHandUI.transform.position,
             Quaternion.identity, playerHandUI.transform);
-        var newCardUi = newCard.GetComponent<PlayerCardUI>();
+        var newCardUi = newCard.GetComponent<CardView>();
 
         currentPlayerHand.Add(newCardUi);
 
@@ -83,7 +83,7 @@ public class BattleUIManager : MonoBehaviour {
             }
             else {
                 currentPlayerHand[i].gameObject.SetActive(true);
-                currentPlayerHand[i].GetComponent<PlayerCardUI>().SetDisplayValues(card);
+                currentPlayerHand[i].GetComponent<CardView>().SetDisplayValues(card);
             }
 
             int index = i;
