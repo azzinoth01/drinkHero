@@ -309,4 +309,14 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     public void Mana(int value) {
         Debug.Log("enemy has no mana");
     }
+
+    public void RemoveDebuff(int value) {
+        for (int i = 0; i < value;) {
+            if (_debuffList.Count == 0) {
+                break;
+            }
+            _debuffList.RemoveAt(_debuffList.Count - 1);
+            i = i + 1;
+        }
+    }
 }

@@ -294,4 +294,15 @@ public abstract class Character : ICharacterAction, ICharacter {
         return _discardedHandCardsThisAction;
     }
     public abstract void Mana(int value);
+
+    public void RemoveDebuff(int value) {
+
+        for (int i = 0; i < value;) {
+            if (_debuffList.Count == 0) {
+                break;
+            }
+            _debuffList.RemoveAt(_debuffList.Count - 1);
+            i = i + 1;
+        }
+    }
 }

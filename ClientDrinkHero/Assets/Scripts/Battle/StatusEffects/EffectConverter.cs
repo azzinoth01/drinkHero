@@ -59,6 +59,12 @@ public static class EffectConverter {
         else if (item.ClassType == "Heal") {
             converted = new Heal(item);
         }
+        else if (item.ClassType == "RemoveDebuff") {
+            converted = new RemoveDebuff(item);
+        }
+        else if (item.ClassType == "SelfAttack") {
+            converted = new SelfAttack(item);
+        }
         else if (item.ClassType == "Shield") {
             converted = new Shield(item);
         }
