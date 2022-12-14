@@ -4,36 +4,39 @@
 #if CLIENT
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 #endif
 
 [Table("Card"), Serializable]
-public class CardDatabase : DatabaseItem {
 #if CLIENT
+public class CardDatabase : DatabaseItem, ICardDisplay {
+
     [SerializeField] private int _id;
     [SerializeField] private string _name;
-    [SerializeField] private int _attack;
-    [SerializeField] private int _shield;
-    [SerializeField] private int _health;
+    [SerializeField] private string _text;
     [SerializeField] private int _cost;
     [SerializeField] private string _spritePath;
-    [SerializeField] private int? _refUpgradeTo;
-    [NonSerialized] private CardDatabase _upgradeTo;
-    [NonSerialized] private List<CardToHero> _heroList;
+    private int? _refUpgradeTo;
+    [SerializeField] private CardDatabase _upgradeTo;
+    [SerializeField] private List<CardToHero> _heroList;
+    [SerializeField] private List<CardToEffect> _cardEffectList;
+
+    private static Dictionary<string, CardDatabase> _cachedData = new Dictionary<string, CardDatabase>();
 
 
 #endif
 #if SERVER
+public class CardDatabase : DatabaseItem {
     private int _id;
     private string _name;
-    private int _attack;
-    private int _shield;
-    private int _health;
+    private string _text;
     private int _cost;
     private string _spritePath;
     private int? _refUpgradeTo;
     private CardDatabase _upgradeTo;
     private List<CardToHero> _heroList;
+    private List<CardToEffect> _cardEffectList;
 
 #endif
     [Column("ID"), PrimaryKey]
@@ -56,36 +59,7 @@ public class CardDatabase : DatabaseItem {
             _name = value;
         }
     }
-    [Column("Attack")]
-    public int Attack {
-        get {
-            return _attack;
-        }
 
-        set {
-            _attack = value;
-        }
-    }
-    [Column("Health")]
-    public int Health {
-        get {
-            return _health;
-        }
-
-        set {
-            _health = value;
-        }
-    }
-    [Column("Shield")]
-    public int Shield {
-        get {
-            return _shield;
-        }
-
-        set {
-            _shield = value;
-        }
-    }
     [Column("Cost")]
     public int Cost {
         get {
@@ -116,6 +90,16 @@ public class CardDatabase : DatabaseItem {
             _refUpgradeTo = value;
 
 
+        }
+    }
+    [Column("CardText")]
+    public string Text {
+        get {
+            return _text;
+        }
+
+        set {
+            _text = value;
         }
     }
 
@@ -155,11 +139,161 @@ public class CardDatabase : DatabaseItem {
 #endif
 
 
-    public CardDatabase() : base() {
-        _refUpgradeTo = null;
+#if CLIENT
+
+
+
+    public List<CardToEffect> CardEffectList {
+        get {
+
+            if (_cardEffectList.Count != 0) {
+                return _cardEffectList;
+            }
+            else {
+                string name = GetPropertyName();
+
+                if (AlreadyRequested(name)) {
+                    return _cardEffectList;
+                }
+
+                RequestCardEffectList(name);
+            }
+
+            return _cardEffectList;
+        }
+
+        set {
+
+            _cardEffectList = value;
+
+
+        }
+    }
+
+
+    public List<CardToHero> HeroList {
+        get {
+
+            if (_heroList.Count != 0) {
+                return _heroList;
+            }
+            else {
+                string name = GetPropertyName();
+
+                if (AlreadyRequested(name)) {
+                    return _heroList;
+                }
+
+                RequestHeroList(name);
+            }
+
+            return _heroList;
+        }
+
+        set {
+            _heroList = value;
+
+        }
+    }
+
+
+    private void RequestHeroList(string name) {
+        string functionCall = ClientFunctions.GetCardToHeroByKeyPair("RefCard\"" + _id + "\"");
+        int index = SendRequest(functionCall, typeof(CardToHero));
+        _propertyToRequestedId[index] = name;
+    }
+    private void RequestCardEffectList(string name) {
+        string functionCall = ClientFunctions.GetCardToEffectByKeyPair("RefCard\"" + _id + "\"");
+        int index = SendRequest(functionCall, typeof(CardToEffect));
+        _propertyToRequestedId[index] = name;
+    }
+
+    public static List<CardDatabase> CreateObjectDataFromString(string message) {
+
+        List<CardDatabase> list = new List<CardDatabase>();
+
+        List<string[]> objectStrings = DatabaseItemCreationHelper.GetObjectStrings(message);
+        TableMapping mapping = DatabaseManager.GetTableMapping<CardDatabase>();
+
+        foreach (string[] obj in objectStrings) {
+            CardDatabase item = new CardDatabase();
+            foreach (string parameter in obj) {
+                string parameterName = RegexPatterns.PropertyName.Match(parameter).Value;
+                string parameterValue = RegexPatterns.PropertyValue.Match(parameter).Value;
+
+                if (parameterName == mapping.PrimaryKeyColumn) {
+                    if (_cachedData.TryGetValue(parameterValue, out CardDatabase existingItem)) {
+                        item = existingItem;
+                        break;
+                    }
+                    else {
+                        _cachedData.Add(parameterValue, item);
+                    }
+
+                }
+
+                if (mapping.ColumnsMapping.TryGetValue(parameterName, out string property)) {
+                    PropertyInfo info = item.GetType().GetProperty(property);
+                    DatabaseItemCreationHelper.ParseParameterValues(item, info, parameterValue);
+                }
+            }
+            list.Add(item);
+        }
+
+        return list;
+    }
+
+
+    public override void RequestLoadReferenzData() {
+        string name = null;
+
+        name = nameof(HeroList);
+        if (AlreadyRequested(name) == false) {
+            RequestHeroList(name);
+        }
+        name = nameof(CardEffectList);
+        if (AlreadyRequested(name) == false) {
+            RequestCardEffectList(name);
+        }
 
     }
 
 
+#endif
 
+
+    public CardDatabase() : base() {
+        _refUpgradeTo = null;
+        _cardEffectList = new List<CardToEffect>();
+        _heroList = new List<CardToHero>();
+    }
+
+
+
+#if CLIENT
+
+    public string CostText() {
+        return _cost.ToString();
+    }
+
+    public string AttackText() {
+        return "";
+    }
+
+    public string ShieldText() {
+        return "";
+    }
+
+    public string HealthText() {
+        return "";
+    }
+
+    public Sprite SpriteDisplay() {
+        return null;
+    }
+
+    public string CardText() {
+        return _text;
+    }
+#endif
 }

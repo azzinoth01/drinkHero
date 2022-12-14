@@ -16,9 +16,8 @@ public class GlobalGameInfos : MonoBehaviour {
     [SerializeField] public int port = 6969;
     [SerializeField] public string host = "markusdullnig.de";
 
-    private CachedServerData _cachedServerData;
 
-    private List<IWaitingOnServer> _waitOnServerObjects;
+    private List<IGetUpdateFromServer> _waitOnServerObjects;
 
 
     private TcpClient _client;
@@ -32,6 +31,9 @@ public class GlobalGameInfos : MonoBehaviour {
     private Thread _thread;
 
     private int _herodataWriteBackId;
+    private int _enemyWriteBackId;
+
+    public EnemyHandler enemyHandler;
 
 
 
@@ -74,13 +76,7 @@ public class GlobalGameInfos : MonoBehaviour {
     }
 
 
-    public CachedServerData CachedServerData {
-        get {
-            return _cachedServerData;
-        }
 
-
-    }
 
     public StreamWriter Writer {
         get {
@@ -90,7 +86,7 @@ public class GlobalGameInfos : MonoBehaviour {
 
     }
 
-    public List<IWaitingOnServer> WaitOnServerObjects {
+    public List<IGetUpdateFromServer> WaitOnServerObjects {
         get {
             return _waitOnServerObjects;
         }
@@ -106,103 +102,47 @@ public class GlobalGameInfos : MonoBehaviour {
 
 
 
-        _waitOnServerObjects = new List<IWaitingOnServer>();
+        _waitOnServerObjects = new List<IGetUpdateFromServer>();
 
         StartServerConnection();
-        _cachedServerData = new CachedServerData();
-
-        string request = ClientFunctions.GetHeroDatabase();
-
-        _herodataWriteBackId = HandleRequests.Instance.HandleRequest(request, typeof(HeroDatabase));
 
 
-        //WriteBackData writeBack = new WriteBackData(_cachedServerData, _cachedServerData.GetType().GetMethod(nameof(_cachedServerData.SetHeroData)), typeof(HeroDatabase));
-        //writeServerDataTo.Enqueue(writeBack);
+        //string request = ClientFunctions.GetHeroDatabase();
+
+        //_herodataWriteBackId = HandleRequests.Instance.HandleRequest(request, typeof(HeroDatabase));
 
 
-        _enemyObject.enemy.EnemyDeath();
 
-        //ClientFunctions.GetRandomEnemyDatabase();
-        //writeBack = new WriteBackData(_enemyObject.enemy, _enemyObject.enemy.GetType().GetMethod(nameof(_enemyObject.enemy.SetEnemyData)), typeof(EnemyDatabase));
-        //writeServerDataTo.Enqueue(writeBack);
-
-        //ReadServerDataThread serverDataReadThread = new ReadServerDataThread(_reader, _stream);
-
-        //_thread = new Thread(serverDataReadThread.ThreadLoop);
-
-        //_thread.Start();
-        //StartCoroutine(SendHeartbeat(3));
     }
 
     private void Update() {
 
 
-        if (_waitOnStartData == true && ServerRequests.checkUpdates.Count == 0) {
+        if (ServerRequests.checkUpdates.Count == 0) {
             return;
         }
 
-        if (ServerRequests.checkUpdates.Count != 0) {
-            ServerRequests.checkUpdates.Dequeue();
+        ServerRequests.checkUpdates.Dequeue();
+        HandleRequests.Instance.CheckUpdateList();
 
-            if (_waitOnStartData == false) {
-                if (HandleRequests.Instance.RequestDataStatus[_herodataWriteBackId] == DataRequestStatusEnum.Recieved) {
-
-                    List<HeroDatabase> list = TransmissionControl.GetObjectData<HeroDatabase>(HandleRequests.Instance.RequestData[_herodataWriteBackId]);
-
-                    _cachedServerData.SetHeroData(list);
-                    HandleRequests.Instance.RequestDataStatus[_herodataWriteBackId] = DataRequestStatusEnum.RecievedAccepted;
-                }
-            }
-
-            for (int i = _waitOnServerObjects.Count - 1; i >= 0;) {
-
-                if (_waitOnServerObjects[i].GetUpdateFromServer()) {
-                    _waitOnServerObjects.RemoveAt(i);
-                }
-
-                i = i - 1;
-
-            }
-
+        if (_turnManager.activeSelf == false) {
+            _turnManager.SetActive(true);
         }
-
-        if (_cachedServerData._heroData.Count != 0) {
-            _waitOnStartData = true;
-            CreatePlayer();
-        }
-
 
         return;
     }
 
 
-    public void CreatePlayer() {
-        _playerObject.Player.Clear();
-        GameDeck gameDeck = new GameDeck();
-        Deck deck = new Deck();
-        int i = 0;
-        foreach (HeroDatabase heroDatabase in _cachedServerData._heroData.Values) {
-            if (i > 3) {
-                break;
-            }
-            Hero hero = new Hero();
-            HeroSlot slot = new HeroSlot();
-            slot.Hero = hero;
-            deck.HeroSlotList.AddWithCascading(slot, deck);
-            hero.HeroData = heroDatabase;
-            i = i + 1;
-        }
-        gameDeck.Deck = deck;
 
-        _playerObject.Player.GameDeck = gameDeck;
-        _turnManager.SetActive(true);
-    }
+
+
+
 
 
 
     private void OnDisable() {
         ReadServerDataThread.KeepRunning = false;
-        //StopServerConnection();
+
     }
 
     private void StartServerConnection() {

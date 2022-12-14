@@ -1,14 +1,56 @@
-using System;
 using UnityEngine;
 
 public class PlayerObject : MonoBehaviour {
     [SerializeField] private Player _player;
     [SerializeField] private SimpleAudioEvent _playerDamageSound, _playerDamageBlockedSound, _playerhealedSound, _playerShieldUpSound;
 
+    private HeroHandler _heroHandler;
+
+
+
     public Player Player => _player;
 
     //remove after prototype
     public UserObject testUserField;
+
+
+
+    private void Awake() {
+        _player = new Player();
+        _player.Clear();
+
+        _heroHandler = new HeroHandler();
+
+        _heroHandler.RequestData();
+        _heroHandler.LoadingFinished += HerosLoaded;
+
+    }
+
+    private void Update() {
+        _heroHandler.Update();
+    }
+    private void HerosLoaded() {
+        GameDeck gameDeck = new GameDeck();
+        Deck deck = new Deck();
+        int i = 0;
+        foreach (HeroDatabase heroDatabase in _heroHandler.Heros) {
+            if (i > 3) {
+                break;
+            }
+
+            HeroSlot slot = new HeroSlot();
+            slot.Hero = heroDatabase;
+            deck.HeroSlotList.Add(slot);
+
+            i = i + 1;
+        }
+        gameDeck.Deck = deck;
+
+        _player.GameDeck = gameDeck;
+
+
+    }
+
 
     private void OnEnable() {
         Player.playerDamageReceived += PlayerDamageFeedback;
@@ -73,5 +115,10 @@ public class PlayerObject : MonoBehaviour {
     [ContextMenu("start turn")]
     public void DrawCard() {
         _player.StartTurn();
+    }
+
+    [ContextMenu("test")]
+    public void Testing() {
+        Debug.Log("Testing");
     }
 }

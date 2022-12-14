@@ -11,6 +11,7 @@ public class PlayerCardUI : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI _healthText;
     [SerializeField] private TextMeshProUGUI _attackText;
     [SerializeField] private TextMeshProUGUI _shieldText;
+    [SerializeField] private TextMeshProUGUI _cardText;
     [SerializeField] private SimpleAudioEvent _clickOnCardSound;
 
     private Image _cardImage;
@@ -34,6 +35,8 @@ public class PlayerCardUI : MonoBehaviour {
 
 
         _healthText.SetText(card.HealthText());
+
+        _cardText.SetText(card.CardText());
     }
 
 

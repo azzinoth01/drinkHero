@@ -2,6 +2,7 @@
 #if CLIENT
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 #endif
 
@@ -14,7 +15,9 @@ public class HeroDatabase : DatabaseItem {
     [SerializeField] private int _health;
     [SerializeField] private string _spritePath;
     [SerializeField] private string _name;
-    [NonSerialized] private List<CardToHero> _cardList;
+    private List<CardToHero> _cardList;
+
+    public static Dictionary<string, HeroDatabase> _cachedData = new Dictionary<string, HeroDatabase>();
 
 
 #endif
@@ -25,7 +28,7 @@ public class HeroDatabase : DatabaseItem {
     private string _spritePath;
     private string _name;
     private List<CardToHero> _cardList;
-    private DataRequestStatusEnum _cardListRequested;
+
 
 #endif
 
@@ -99,13 +102,11 @@ public class HeroDatabase : DatabaseItem {
 
     public List<CardToHero> CardList {
         get {
-            CheckRequestedData();
+
             if (_cardList.Count != 0) {
                 return _cardList;
             }
             else {
-
-
 
                 string name = GetPropertyName();
 
@@ -113,9 +114,8 @@ public class HeroDatabase : DatabaseItem {
                     return _cardList;
                 }
 
-                string functionCall = ClientFunctions.GetCardToHeroByKeyPair("RefHero\"" + _id + "\"");
-                int index = SendRequest(functionCall, typeof(CardToHero));
-                _propertyToRequestedId[index] = name;
+                RequestCardList(name);
+
             }
 
             return _cardList;
@@ -123,13 +123,70 @@ public class HeroDatabase : DatabaseItem {
 
         set {
             _cardList = value;
+            if (_cardList.Count != 0) {
+                foreach (CardToHero cardToHero in _cardList) {
+                    cardToHero.Hero = this;
+                }
+            }
         }
     }
 
+    private void RequestCardList(string name) {
+        string functionCall = ClientFunctions.GetCardToHeroByKeyPair("RefHero\"" + _id + "\"");
+        int index = SendRequest(functionCall, typeof(CardToHero));
+        _propertyToRequestedId[index] = name;
+    }
+
+
+    public static List<HeroDatabase> CreateObjectDataFromString(string message) {
+
+        List<HeroDatabase> list = new List<HeroDatabase>();
+
+        List<string[]> objectStrings = DatabaseItemCreationHelper.GetObjectStrings(message);
+        TableMapping mapping = DatabaseManager.GetTableMapping<HeroDatabase>();
+
+        foreach (string[] obj in objectStrings) {
+            HeroDatabase item = new HeroDatabase();
+            foreach (string parameter in obj) {
+                string parameterName = RegexPatterns.PropertyName.Match(parameter).Value;
+                string parameterValue = RegexPatterns.PropertyValue.Match(parameter).Value;
+
+                if (parameterName == mapping.PrimaryKeyColumn) {
+                    if (_cachedData.TryGetValue(parameterValue, out HeroDatabase existingItem)) {
+                        item = existingItem;
+                        break;
+                    }
+                    else {
+                        _cachedData.Add(parameterValue, item);
+                    }
+
+                }
+
+                if (mapping.ColumnsMapping.TryGetValue(parameterName, out string property)) {
+                    PropertyInfo info = item.GetType().GetProperty(property);
+                    DatabaseItemCreationHelper.ParseParameterValues(item, info, parameterValue);
+                }
+            }
+            list.Add(item);
+        }
+
+        return list;
+    }
+
+    public override void RequestLoadReferenzData() {
+        string name = null;
+
+        name = nameof(CardList);
+        if (AlreadyRequested(name) == false) {
+            RequestCardList(name);
+        }
+
+    }
 #endif
     public HeroDatabase() : base() {
         _cardList = new List<CardToHero>();
     }
+
 
 
 

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
 [Serializable]
@@ -11,8 +10,8 @@ public class Player : Character, IHandCards, IPlayer {
     [SerializeField] private int _maxRessource;
     [SerializeField] private int _ressource;
 
-    [SerializeField] private List<Card> _handCards;
-    public List<Card> HandCards => _handCards;
+    [SerializeField] private List<CardDatabase> _handCards;
+    public List<CardDatabase> HandCards => _handCards;
 
     [SerializeField] private GameDeck _gameDeck;
 
@@ -35,9 +34,7 @@ public class Player : Character, IHandCards, IPlayer {
     public event Action<int> RessourceChange;
     public event Action UpdateHandCards;
     public event Action GameOverEvent;
-    public event Action<int> HealthChange;
-    public event Action<int> ShieldChange;
-    public event Action TurnEnded;
+
 
 
     public GameDeck GameDeck {
@@ -46,14 +43,10 @@ public class Player : Character, IHandCards, IPlayer {
         }
 
         set {
-            if (_gameDeck != null) {
-                _gameDeck.Cascadables.Remove(this);
-            }
+
             _gameDeck = value;
-            if (_gameDeck != null) {
-                _gameDeck.Cascadables.Add(this);
-                ResetPlayer();
-            }
+            ResetPlayer();
+
         }
     }
     public Player(GameDeck gameDeck) : base() {
@@ -68,7 +61,7 @@ public class Player : Character, IHandCards, IPlayer {
 
     private void ResetPlayer() {
         if (_gameDeck != null) {
-            _handCards = new List<Card>();
+            _handCards = new List<CardDatabase>();
             _gameDeck.RecreateDeck();
 
             //define max handcards globaly
@@ -99,155 +92,95 @@ public class Player : Character, IHandCards, IPlayer {
         _maxRessource = 10;
         _ressource = 0;
         _gameDeck = null;
-        _handCards = new List<Card>();
+        _handCards = new List<CardDatabase>();
 
     }
 
 
     public void ResetRessource() {
         _ressource = _maxRessource;
-        UpdateEnergyUI(_ressource);
+        RessourceChange?.Invoke(_ressource);
     }
 
-    public void StartTurn() {
-        for (int i = 0; i < _buffList.Count;) {
-            _buffList[i].ActivateStatusEffect(this, ActivationTimeEnum.turnStartActive);
-            if (_buffList[i].CheckIfEffectIsOver()) {
-                _buffList.RemoveAt(i);
-            }
-            else {
-                i = i + 1;
-            }
-        }
 
-
-        //draw until 5 cards
-        //Debug.Log(_handCards.Count);
-        for (int i = _handCards.Count; i < 4;) {
-            _handCards.Add(_gameDeck.DrawCard());
-            i = i + 1;
-        }
-        UpdateHandCards?.Invoke();
-        ResetRessource();
-
-        UpdateUI();
-
-    }
 
     public void PlayHandCard(int index) {
 
-        Card card = _handCards[index];
+        CardDatabase card = _handCards[index];
 
-        if (card.Costs > _ressource) {
+        if (card.Cost > _ressource) {
             return;
         }
 
+        _ressource = _ressource - card.Cost;
+        RessourceChange?.Invoke(-card.Cost);
 
 
-        _ressource = _ressource - card.Costs;
+        // Action Start
+        CheckDebuffsAndBuffs(ActivationTimeEnum.actionStart);
 
-        GlobalGameInfos.Instance.EnemyObject.enemy.TakeDmg(card.Attack);
 
+        // Action
+        for (int i = 0; i < _buffMultihit;) {
+            Action(card);
 
-        if (_shield + card.Shield < 0) {
-            _shield = 0;
-        }
-        else {
-            _shield += card.Shield;
-        }
-        _health = _health + card.Health;
-        if (_health > _maxHealth) {
-            _health = _maxHealth;
+            i = i + 1;
         }
 
+        // Action End
 
-        if (card.StatusEffects != null && card.StatusEffects.Count > 0) {
-            foreach (Buff buff in card.StatusEffects) {
-                Buff b = (Buff)buff.Clone();
-                _buffList.Add(b);
-            }
-        }
+        _buffMultihit = 1;
 
-
+        CheckDebuffsAndBuffs(ActivationTimeEnum.actionFinished, _dmgCausedThisAction);
+        _dmgCausedThisAction = 0;
 
         _gameDeck.ScrapCard(card);
         _handCards.RemoveAt(index);
 
-        UpdateHealthUI(card.Health);
-        UpdateShieldUI(card.Shield);
-        UpdateEnergyUI(-card.Costs);
-
     }
 
 
-    public void TakeDmg(int dmg) {
-        int shieldDmg = 0;
-        if (_shield > 0) {
-            if (_shield > dmg) {
-                _shield = _shield - dmg;
-                shieldDmg = -dmg;
-                dmg = 0;
-
-                // Update Shield Counter UI
+    public void Action(CardDatabase card) {
+        if (card.CardEffectList != null && card.CardEffectList.Count > 0) {
+            foreach (CardToEffect cardToEffect in card.CardEffectList) {
+                Effect effect = EffectConverter.ConvertEffectIntoEffectType(cardToEffect.Effect);
+                if (effect is IBuff) {
+                    IBuff b = (IBuff)effect;
+                    if (b.ActivateEffect(this, ActivationTimeEnum.onCast) == true) {
+                        _buffList.Add(b);
+                    }
+                }
+                else if (effect is IDebuff) {
+                    IDebuff b = (IDebuff)effect;
+                    if (b.ActivateEffect(GlobalGameInfos.Instance.EnemyObject.Enemy, ActivationTimeEnum.onCast) == true) {
+                        GlobalGameInfos.Instance.EnemyObject.Enemy.DebuffList.Add(b);
+                    }
+                }
+                else if (effect is ISkill) {
+                    ISkill b = (ISkill)effect;
+                    b.ActivateEffect(this, ActivationTimeEnum.onCast);
+                }
             }
-            else {
-                dmg = dmg - _shield;
-                shieldDmg = -_shield;
-                _shield = 0;
 
-                // Update Shield Counter UI
-            }
-            UpdateShieldUI(shieldDmg);
-        }
-        int healthDmg = 0;
-        if (_health - dmg < 0) {
-            healthDmg = -_health;
-            _health = 0;
-        }
-        else {
-            healthDmg = -dmg;
-            _health -= dmg;
-        }
-
-        UpdateHealthUI(healthDmg);
-
-
-        if (_health <= 0) {
-
-            PlayerDeath();
         }
     }
 
-    public void PlayerDeath() {
+
+
+
+
+    protected override void Death() {
         GameOverEvent?.Invoke();
     }
 
-    private void UpdateUI(int deltaHealth = 0, int deltaShield = 0, int deltaEnergy = 0) {
 
-        UpdateHealthUI(deltaHealth);
-        UpdateShieldUI(deltaShield);
-        UpdateEnergyUI(deltaEnergy);
+    protected void UpdateUI(int deltaHealth = 0, int deltaShield = 0, int deltaEnergy = 0) {
+        base.UpdateUI(deltaHealth, deltaShield);
+        RessourceChange?.Invoke(deltaEnergy);
     }
 
-    private void UpdateHealthUI(int deltaValue) {
-        HealthChange?.Invoke(deltaValue);
-    }
 
-    private void UpdateEnergyUI(int deltaValue) {
-        RessourceChange?.Invoke(deltaValue);
-    }
 
-    private void UpdateShieldUI(int deltaValue) {
-        ShieldChange?.Invoke(deltaValue);
-    }
-
-    public override void Cascade(ICascadable causedBy, PropertyInfo changedProperty = null, object changedValue = null) {
-
-        if (causedBy is Hero || causedBy is Card) {
-            ResetPlayer();
-        }
-        base.Cascade(causedBy, changedProperty, changedValue);
-    }
 
     public int HandCardCount() {
         return _handCards.Count;
@@ -269,20 +202,49 @@ public class Player : Character, IHandCards, IPlayer {
         return this;
     }
 
-    int ICharacter.MaxHealth() {
-        return _maxHealth;
-    }
-
-    public int CurrentHealth() {
-        return _health;
-    }
-
-    public int CurrentShield() {
-        return _shield;
-    }
-
-    public void EndTurn() {
+    public override void EndTurn() {
         Debug.Log("player turn end");
-        TurnEnded?.Invoke();
+
+        CheckDebuffsAndBuffs(ActivationTimeEnum.turnEnd);
+
+
+    }
+
+    public override void StartTurn() {
+
+
+        CheckDebuffsAndBuffs(ActivationTimeEnum.turnStart);
+
+        //draw until 5 cards
+        //Debug.Log(_handCards.Count);
+        for (int i = _handCards.Count; i < 4;) {
+            _handCards.Add(_gameDeck.DrawCard());
+            i = i + 1;
+        }
+        UpdateHandCards?.Invoke();
+        ResetRessource();
+
+        UpdateUI();
+
+        if (_skipTurn > 0) {
+            _skipTurn = _skipTurn - 1;
+            InvokeEndTurn();
+        }
+    }
+
+    public override void SwapShieldWithEnemy() {
+        int tempShield = GlobalGameInfos.Instance.EnemyObject.Enemy.shield;
+        GlobalGameInfos.Instance.EnemyObject.Enemy.shield = Shield;
+        Shield = tempShield;
+        UpdateUI();
+        GlobalGameInfos.Instance.EnemyObject.Enemy.UpdateUI();
+    }
+
+    public override void AttackEnemy(int value) {
+
+        value = _dmgModifier.CalcValue(value);
+
+        GlobalGameInfos.Instance.EnemyObject.Enemy.TakeDmg(value);
+        _dmgCausedThisAction = _dmgCausedThisAction + value;
     }
 }

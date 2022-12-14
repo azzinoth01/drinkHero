@@ -649,6 +649,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 3a38d6338e67f7f41b171ba8a11ba39b, type: 3}
+    - target: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
 --- !u!224 &252617635 stripped

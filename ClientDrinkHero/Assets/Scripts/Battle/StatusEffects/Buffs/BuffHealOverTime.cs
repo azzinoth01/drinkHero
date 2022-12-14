@@ -1,31 +1,36 @@
-using System;
-
-[Serializable]
-public class BuffHealOverTime : Buff {
-    public BuffHealOverTime(BuffHealOverTime statusEffect) : base(statusEffect) {
+public class BuffHealOverTime : Effect, IBuff {
+    public BuffHealOverTime(Effect statusEffect) : base(statusEffect) {
     }
-
-    public override void ActivateStatusEffect(Character target, ActivationTimeEnum activation, int? value = null) {
-
-        if (ActivationTimeEnum.turnStartActive == activation || ActivationTimeEnum.onCast == activation) {
-
-            target.HealCharacter(_value);
+    public override bool ActivateEffect(ICharacterAction target, ActivationTimeEnum activation, int? value = null) {
+        if (_isOver == true) {
+            return false;
+        }
 
 
-            if (_durationType == DurationTypeEnum.uses) {
+        if (ActivationTimeEnum.turnStart == activation || ActivationTimeEnum.onCast == activation) {
+
+            target.Heal(_maxValue);
+
+
+            if (_durationType == (int)DurationTypeEnum.uses) {
                 ReduceDuration();
             }
         }
 
-        if (ActivationTimeEnum.turnEndActive == activation) {
-            if (_durationType == DurationTypeEnum.turns) {
+        if (ActivationTimeEnum.turnEnd == activation) {
+            if (_durationType == (int)DurationTypeEnum.turns) {
                 ReduceDuration();
             }
+            SetIsOver();
         }
 
+
+        if (_isOver == true) {
+            return false;
+        }
+        return true;
     }
 
-    public override object Clone() {
-        return new BuffHealOverTime(this);
-    }
+
+
 }

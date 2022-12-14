@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
 [Serializable]
-public class EnemySkill : IWaitingOnServer, ICascadable {
+public class EnemySkill : IGetUpdateFromServer {
     private long _id;
     [SerializeField] private string _name;
     [SerializeField] private int _minAttack;
@@ -20,7 +18,7 @@ public class EnemySkill : IWaitingOnServer, ICascadable {
 
     private EnemySkillDatabase _enemySkillData;
 
-    private List<ICascadable> _cascadables;
+
     private bool _isWaitingOnServer;
 
     public int MinAttack {
@@ -149,15 +147,6 @@ public class EnemySkill : IWaitingOnServer, ICascadable {
         }
     }
 
-    public List<ICascadable> Cascadables {
-        get {
-            return _cascadables;
-        }
-
-        set {
-            _cascadables = value;
-        }
-    }
 
     private bool ConvertEnemySkillData() {
 
@@ -174,7 +163,7 @@ public class EnemySkill : IWaitingOnServer, ICascadable {
         _minShield = _enemySkillData.MinShield;
         _maxSchield = _enemySkillData.MaxShield;
 
-        Cascade(this);
+
 
         return true;
     }
@@ -195,18 +184,11 @@ public class EnemySkill : IWaitingOnServer, ICascadable {
         return ConvertEnemySkillData();
     }
 
-    public void Cascade(ICascadable causedBy, PropertyInfo changedProperty = null, object changedValue = null) {
-        if (causedBy == null) {
-            causedBy = this;
-        }
-        foreach (ICascadable cascadable in Cascadables) {
-            cascadable.Cascade(causedBy, changedProperty, changedValue);
-        }
 
-    }
+
 
     public EnemySkill() {
-        _cascadables = new List<ICascadable>();
+
     }
 
 }

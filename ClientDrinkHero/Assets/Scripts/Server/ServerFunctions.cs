@@ -161,7 +161,7 @@ public static class ServerFunctions {
     [ServerFunction("GetEnemy")]
     public static string GetEnemy(StreamWriter stream) {
 #if SERVER
-    return SendData<EnemyDatabase>(stream);
+        return SendData<EnemyDatabase>(stream);
 #else
         return null;
 #endif
@@ -223,6 +223,44 @@ public static class ServerFunctions {
 #endif
 
     }
+    [ServerFunction("GetCardToEffekt")]
+    public static string GetCardToEffect(StreamWriter stream) {
+#if SERVER
+        return SendData<CardToEffect>(stream);
+#else
+        return null;
+#endif
+
+    }
+    [ServerFunction("GetCardToEffektByKeyPair")]
+    public static string GetCardToEffectByKeyPair(StreamWriter stream, string pair) {
+#if SERVER
+        return SendData<CardToEffect>(stream, pair);
+#else
+        return null;
+#endif
+
+    }
+    [ServerFunction("GetEffekt")]
+    public static string GetEffect(StreamWriter stream) {
+#if SERVER
+        return SendData<Effect>(stream);
+#else
+        return null;
+#endif
+
+    }
+    [ServerFunction("GetEffektByKeyPair")]
+    public static string GetEffectByKeyPair(StreamWriter stream, string pair) {
+#if SERVER
+        return SendData<Effect>(stream, pair);
+#else
+        return null;
+#endif
+
+    }
+
+
     [ServerFunction("SendMessage")]
     public static string SendMessage(StreamWriter stream, string message) {
 #if SERVER
