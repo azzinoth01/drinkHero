@@ -14,7 +14,14 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     [SerializeField] private List<IDebuff> _debuffList;
 
 
+
+    [SerializeField] protected ModifierStruct _healModifier;
+    [SerializeField] protected ModifierStruct _dmgModifier;
+    [SerializeField] protected ModifierStruct _defenceModifier;
+    [SerializeField] protected ModifierStruct _shieldModifier;
+
     private int _skipTurn;
+    private int _buffMultihit;
 
     public List<IBuff> BuffList {
         get {
@@ -51,7 +58,13 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
         ShieldChange?.Invoke(0);
         HealthChange?.Invoke(0);
+
         _skipTurn = 0;
+
+        _dmgModifier = new ModifierStruct(0, 0);
+        _healModifier = new ModifierStruct(0, 0);
+        _defenceModifier = new ModifierStruct(0, 0);
+        _shieldModifier = new ModifierStruct(0, 0);
 
     }
 
@@ -97,6 +110,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
             _skipTurn = _skipTurn - 1;
             ClientFunctions.SendMessageToDatabase("Enemy Turn End");
             EndTurn();
+            TurnEnded?.Invoke();
             return;
         }
 
@@ -133,6 +147,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         AttackEnemy(5);
         ClientFunctions.SendMessageToDatabase("Enemy Turn End");
         EndTurn();
+        TurnEnded?.Invoke();
     }
 
 
@@ -144,7 +159,9 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         HealthChange?.Invoke(value);
     }
 
-    public void TakeDmg(int value) {
+
+
+    private int DmgShield(int value) {
         int shieldDmg = 0;
         if (shield > 0) {
             if (shield > value) {
@@ -160,17 +177,33 @@ public class EnemyBattle : ICharacter, ICharacterAction {
             }
             ShieldChange?.Invoke(shieldDmg);
         }
+        return value;
+    }
+
+    private int DmgHealth(int value) {
         int healthDmg = 0;
         if (health - value < 0) {
+            value = value - health;
             healthDmg = -health;
             health = 0;
         }
         else {
             healthDmg = -value;
             health -= value;
+            value = 0;
         }
 
         HealthChange?.Invoke(healthDmg);
+        return value;
+    }
+
+    public void TakeDmg(int value) {
+
+        value = _defenceModifier.CalcValue(value);
+
+        value = DmgShield(value);
+
+        value = DmgHealth(value);
 
 
         if (health <= 0) {
@@ -180,25 +213,43 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         }
     }
 
+    public void TakeShieldDmg(int value) {
+        value = _defenceModifier.CalcValue(value);
+
+        value = DmgShield(value);
+    }
+
+
     void ICharacterAction.Shield(int value) {
         shield = shield + value;
         ShieldChange?.Invoke(value);
     }
 
     public void AddAttackModifier(int value) {
-        //  throw new NotImplementedException();
+
+        _dmgModifier.AddModifier(value);
+
     }
 
     public void AddDefenceModifier(int value) {
-        //  throw new NotImplementedException();
+        _defenceModifier.AddModifier(value);
     }
 
     public void SwapShieldWithEnemy() {
-        //  throw new NotImplementedException();
+
+
+        int tempShield = GlobalGameInfos.Instance.PlayerObject.Player.Shield;
+        GlobalGameInfos.Instance.PlayerObject.Player.Shield = shield;
+        shield = tempShield;
+        UpdateUI();
+        GlobalGameInfos.Instance.PlayerObject.Player.UpdateUI();
+
     }
 
     public void AttackEnemy(int value) {
         ICharacterAction playerActions = (ICharacterAction)UIDataContainer.Instance.Player;
+
+        value = _dmgModifier.CalcValue(value);
 
         playerActions.TakeDmg(value);
     }
@@ -213,7 +264,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     }
 
     public void SetBuffMultihit(int value) {
-        //  throw new NotImplementedException();
+        _buffMultihit = value;
     }
 
     private void CheckDebuffsAndBuffs(ActivationTimeEnum activation, int? value = null) {
@@ -230,6 +281,42 @@ public class EnemyBattle : ICharacter, ICharacterAction {
                 DebuffList.RemoveAt(i);
             }
 
+        }
+    }
+
+
+    public void ShieldAttack() {
+        AttackEnemy(shield);
+    }
+
+    public void DiscardHandCards(int value) {
+        Debug.Log("enemy can't discard cards");
+    }
+
+    public void AddFixedAttackModifier(int value) {
+        _dmgModifier.addFixedModifier(value);
+    }
+
+    public void AddFixedDefenceModifier(int value) {
+        _defenceModifier.addFixedModifier(value);
+    }
+
+    public int GetDiscadHandCardsCount() {
+        Debug.Log("enemy has no discard cards");
+        return 0;
+    }
+
+    public void Mana(int value) {
+        Debug.Log("enemy has no mana");
+    }
+
+    public void RemoveDebuff(int value) {
+        for (int i = 0; i < value;) {
+            if (_debuffList.Count == 0) {
+                break;
+            }
+            _debuffList.RemoveAt(_debuffList.Count - 1);
+            i = i + 1;
         }
     }
 }
