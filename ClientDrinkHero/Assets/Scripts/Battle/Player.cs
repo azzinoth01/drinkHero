@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public class Player : Character, IHandCards, IPlayer {
@@ -112,6 +113,8 @@ public class Player : Character, IHandCards, IPlayer {
             return;
         }
 
+        _handCards.RemoveAt(index);
+
         _ressource = _ressource - card.Cost;
         RessourceChange?.Invoke(-card.Cost);
 
@@ -130,12 +133,13 @@ public class Player : Character, IHandCards, IPlayer {
         // Action End
 
         _buffMultihit = 1;
+        _discardedHandCardsThisAction = 0;
 
         CheckDebuffsAndBuffs(ActivationTimeEnum.actionFinished, _dmgCausedThisAction);
         _dmgCausedThisAction = 0;
 
         _gameDeck.ScrapCard(card);
-        _handCards.RemoveAt(index);
+
 
     }
 
@@ -174,7 +178,7 @@ public class Player : Character, IHandCards, IPlayer {
     }
 
 
-    protected void UpdateUI(int deltaHealth = 0, int deltaShield = 0, int deltaEnergy = 0) {
+    public void UpdateUI(int deltaHealth = 0, int deltaShield = 0, int deltaEnergy = 0) {
         base.UpdateUI(deltaHealth, deltaShield);
         RessourceChange?.Invoke(deltaEnergy);
     }
@@ -246,5 +250,31 @@ public class Player : Character, IHandCards, IPlayer {
 
         GlobalGameInfos.Instance.EnemyObject.Enemy.TakeDmg(value);
         _dmgCausedThisAction = _dmgCausedThisAction + value;
+    }
+
+    public override void DiscardHandCards(int value) {
+        for (int i = 0; i < value;) {
+            if (_handCards.Count == 0) {
+                break;
+            }
+            DiscardCard();
+
+            _discardedHandCardsThisAction = _discardedHandCardsThisAction + 1;
+            i = i + 1;
+        }
+
+    }
+
+    private void DiscardCard() {
+        int index = Random.Range(0, _handCards.Count);
+        CardDatabase card = _handCards[index];
+
+        _handCards.RemoveAt(index);
+        _gameDeck.ScrapCard(card);
+    }
+
+    public override void Mana(int value) {
+        _ressource = _ressource + value;
+        RessourceChange?.Invoke(value);
     }
 }

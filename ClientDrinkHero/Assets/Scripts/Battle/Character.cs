@@ -31,6 +31,8 @@ public abstract class Character : ICharacterAction, ICharacter {
     public event Action<int> ShieldChange;
     public event Action TurnEnded;
 
+    protected int _discardedHandCardsThisAction;
+
     public int Health {
         get {
             return _health;
@@ -106,6 +108,7 @@ public abstract class Character : ICharacterAction, ICharacter {
         _defenceModifier = new ModifierStruct(0, 0);
         _shieldModifier = new ModifierStruct(0, 0);
 
+        _discardedHandCardsThisAction = 0;
     }
 
     public Character() {
@@ -121,6 +124,7 @@ public abstract class Character : ICharacterAction, ICharacter {
         _defenceModifier = new ModifierStruct(0, 0);
         _shieldModifier = new ModifierStruct(0, 0);
 
+        _discardedHandCardsThisAction = 0;
     }
 
 
@@ -136,10 +140,7 @@ public abstract class Character : ICharacterAction, ICharacter {
         HealthChange?.Invoke(value);
     }
 
-    public void TakeDmg(int value) {
-
-        value = _defenceModifier.CalcValue(value);
-
+    private int DmgShield(int value) {
         int shieldDmg = 0;
         if (_shield > 0) {
             if (_shield > value) {
@@ -155,23 +156,44 @@ public abstract class Character : ICharacterAction, ICharacter {
             }
             ShieldChange?.Invoke(shieldDmg);
         }
+        return value;
+    }
+
+    private int DmgHealth(int value) {
         int healthDmg = 0;
         if (_health - value < 0) {
+            value = value - _health;
             healthDmg = -_health;
             _health = 0;
         }
         else {
             healthDmg = -value;
             _health -= value;
+            value = 0;
         }
 
         HealthChange?.Invoke(healthDmg);
+        return value;
+    }
+
+    public void TakeDmg(int value) {
+
+        value = _defenceModifier.CalcValue(value);
+
+        value = DmgShield(value);
+
+        value = DmgHealth(value);
 
 
         if (_health <= 0) {
 
             Death();
         }
+    }
+    public void TakeShieldDmg(int value) {
+        value = _defenceModifier.CalcValue(value);
+        DmgShield(value);
+
     }
 
     void ICharacterAction.Shield(int value) {
@@ -216,6 +238,15 @@ public abstract class Character : ICharacterAction, ICharacter {
         _defenceModifier.AddModifier(value);
     }
 
+    public void AddFixedAttackModifier(int value) {
+        _dmgModifier.addFixedModifier(value);
+
+    }
+
+    public void AddFixedDefenceModifier(int value) {
+        _defenceModifier.addFixedModifier(value);
+    }
+
     public abstract void SwapShieldWithEnemy();
 
     public void RemoveShield() {
@@ -252,4 +283,15 @@ public abstract class Character : ICharacterAction, ICharacter {
     protected void InvokeEndTurn() {
         TurnEnded?.Invoke();
     }
+
+    public void ShieldAttack() {
+        AttackEnemy(_shield);
+    }
+
+    public abstract void DiscardHandCards(int value);
+
+    public int GetDiscadHandCardsCount() {
+        return _discardedHandCardsThisAction;
+    }
+    public abstract void Mana(int value);
 }
