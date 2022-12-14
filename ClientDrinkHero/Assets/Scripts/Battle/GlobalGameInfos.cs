@@ -105,29 +105,12 @@ public class GlobalGameInfos : MonoBehaviour {
         _waitOnServerObjects = new List<IGetUpdateFromServer>();
 
         StartServerConnection();
-        //_cachedServerData = new CachedServerData();
-
-        string request = ClientFunctions.GetHeroDatabase();
-
-        _herodataWriteBackId = HandleRequests.Instance.HandleRequest(request, typeof(HeroDatabase));
 
 
-        //WriteBackData writeBack = new WriteBackData(_cachedServerData, _cachedServerData.GetType().GetMethod(nameof(_cachedServerData.SetHeroData)), typeof(HeroDatabase));
-        //writeServerDataTo.Enqueue(writeBack);
+        //string request = ClientFunctions.GetHeroDatabase();
 
+        //_herodataWriteBackId = HandleRequests.Instance.HandleRequest(request, typeof(HeroDatabase));
 
-        //_enemyObject.Enemy.EnemyDeath();
-
-        //ClientFunctions.GetRandomEnemyDatabase();
-        //writeBack = new WriteBackData(_enemyObject.enemy, _enemyObject.enemy.GetType().GetMethod(nameof(_enemyObject.enemy.SetEnemyData)), typeof(EnemyDatabase));
-        //writeServerDataTo.Enqueue(writeBack);
-
-        //ReadServerDataThread serverDataReadThread = new ReadServerDataThread(_reader, _stream);
-
-        //_thread = new Thread(serverDataReadThread.ThreadLoop);
-
-        //_thread.Start();
-        //StartCoroutine(SendHeartbeat(3));
 
 
     }
@@ -135,106 +118,31 @@ public class GlobalGameInfos : MonoBehaviour {
     private void Update() {
 
 
-        if (_waitOnStartData == true && ServerRequests.checkUpdates.Count == 0) {
+        if (ServerRequests.checkUpdates.Count == 0) {
             return;
         }
 
-        if (ServerRequests.checkUpdates.Count != 0) {
-            ServerRequests.checkUpdates.Dequeue();
+        ServerRequests.checkUpdates.Dequeue();
+        HandleRequests.Instance.CheckUpdateList();
 
-            if (_waitOnStartData == false) {
-                if (HandleRequests.Instance.RequestDataStatus[_herodataWriteBackId] == DataRequestStatusEnum.Recieved) {
-
-                    List<HeroDatabase> list = HeroDatabase.CreateObjectDataFromString(HandleRequests.Instance.RequestData[_herodataWriteBackId]);
-
-
-                    HandleRequests.Instance.RequestDataStatus[_herodataWriteBackId] = DataRequestStatusEnum.RecievedAccepted;
-                }
-            }
-
-            HandleRequests.Instance.CheckUpdateList();
-
-
+        if (_turnManager.activeSelf == false) {
+            _turnManager.SetActive(true);
         }
-        if (_waitOnStartData == false) {
-            if (HeroDatabase._cachedData.Count != 0 && EnemyDatabase._cachedData.Count != 0) {
-
-                if (PreloadData() == true) {
-                    _waitOnStartData = true;
-                    CreatePlayer();
-                }
-
-
-            }
-        }
-
-
-
-
-
 
         return;
     }
 
 
 
-    public bool PreloadData() {
-        bool check = true;
-        foreach (HeroDatabase hero in HeroDatabase._cachedData.Values) {
-            hero.RequestLoadReferenzData();
-            check = check & hero.WaitingOnDataCount == 0;
-            if (hero.WaitingOnDataCount == 0) {
-                foreach (CardToHero cardToHero in hero.CardList) {
-                    cardToHero.RequestLoadReferenzData();
-                    check = check & cardToHero.WaitingOnDataCount == 0;
-                    if (cardToHero.WaitingOnDataCount == 0) {
-                        cardToHero.Card.RequestLoadReferenzData();
-                        check = check & cardToHero.Card.WaitingOnDataCount == 0;
-                        if (cardToHero.Card.WaitingOnDataCount == 0) {
-                            foreach (CardToEffect cardToEffect in cardToHero.Card.CardEffectList) {
-                                cardToEffect.RequestLoadReferenzData();
-                                check = check & cardToEffect.WaitingOnDataCount == 0;
-                            }
-                        }
-                    }
-                }
-            }
-        }
 
 
-
-        return check;
-    }
-
-    public void CreatePlayer() {
-        _playerObject.Player.Clear();
-        GameDeck gameDeck = new GameDeck();
-        Deck deck = new Deck();
-        int i = 0;
-        foreach (HeroDatabase heroDatabase in HeroDatabase._cachedData.Values) {
-            if (i > 3) {
-                break;
-            }
-
-            HeroSlot slot = new HeroSlot();
-            slot.Hero = heroDatabase;
-            deck.HeroSlotList.Add(slot);
-
-            i = i + 1;
-        }
-        gameDeck.Deck = deck;
-
-        _playerObject.Player.GameDeck = gameDeck;
-
-        _turnManager.SetActive(true);
-    }
 
 
 
 
     private void OnDisable() {
         ReadServerDataThread.KeepRunning = false;
-        //StopServerConnection();
+
     }
 
     private void StartServerConnection() {

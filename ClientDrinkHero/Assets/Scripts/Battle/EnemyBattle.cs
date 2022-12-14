@@ -13,6 +13,9 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     [SerializeField] private List<IBuff> _buffList;
     [SerializeField] private List<IDebuff> _debuffList;
 
+
+    private int _skipTurn;
+
     public List<IBuff> BuffList {
         get {
             return _buffList;
@@ -48,6 +51,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
         ShieldChange?.Invoke(0);
         HealthChange?.Invoke(0);
+        _skipTurn = 0;
 
     }
 
@@ -89,12 +93,12 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
         bool usedSkill = false;
 
-        //if (_skipTurn == true) {
-        //    _skipTurn = false;
-        //    ClientFunctions.SendMessageToDatabase("Enemy Turn End");
-        //    EndTurn();
-        //    return;
-        //}
+        if (_skipTurn > 0) {
+            _skipTurn = _skipTurn - 1;
+            ClientFunctions.SendMessageToDatabase("Enemy Turn End");
+            EndTurn();
+            return;
+        }
 
         //foreach (EnemySkill skill in _skillList.Values) {
 
@@ -204,12 +208,8 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         ShieldChange?.Invoke(0);
     }
 
-    public void SkipTurn() {
-        //  throw new NotImplementedException();/
-    }
-
-    public void SetBaseMultihit(int value) {
-        //  throw new NotImplementedException();
+    public void SkipTurn(int value) {
+        _skipTurn = value;
     }
 
     public void SetBuffMultihit(int value) {

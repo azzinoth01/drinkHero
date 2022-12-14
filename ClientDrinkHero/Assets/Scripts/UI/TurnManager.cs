@@ -11,6 +11,7 @@ public class TurnManager : MonoBehaviour {
 
     private void OnEnable() {
         UIDataContainer.Instance.Enemy.TurnEnded += EndEnemyTurn;
+        UIDataContainer.Instance.Player.TurnEnded += EndPlayerTurn;
         //Enemy.enemyTurnDone += EndEnemyTurn;
     }
 
@@ -21,6 +22,7 @@ public class TurnManager : MonoBehaviour {
 
     private void OnDisable() {
         UIDataContainer.Instance.Enemy.TurnEnded -= EndEnemyTurn;
+        UIDataContainer.Instance.Player.TurnEnded -= EndPlayerTurn;
         //Enemy.enemyTurnDone -= EndEnemyTurn;
     }
 

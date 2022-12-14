@@ -226,9 +226,9 @@ public class Player : Character, IHandCards, IPlayer {
 
         UpdateUI();
 
-        if (_skipTurn == true) {
-            _skipTurn = false;
-            EndTurn();
+        if (_skipTurn > 0) {
+            _skipTurn = _skipTurn - 1;
+            InvokeEndTurn();
         }
     }
 
@@ -241,6 +241,9 @@ public class Player : Character, IHandCards, IPlayer {
     }
 
     public override void AttackEnemy(int value) {
+
+        value = _dmgModifier.CalcValue(value);
+
         GlobalGameInfos.Instance.EnemyObject.Enemy.TakeDmg(value);
         _dmgCausedThisAction = _dmgCausedThisAction + value;
     }

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class DebuffStun : Effect, IDebuff {
     public DebuffStun(Effect statusEffect) : base(statusEffect) {
     }
@@ -9,7 +11,8 @@ public class DebuffStun : Effect, IDebuff {
         }
 
         if (ActivationTimeEnum.turnStart == activation) {
-            target.SkipTurn();
+            value = Random.Range(_minValue, _maxValue + 1);
+            target.SkipTurn((int)value);
             if (_durationType == (int)DurationTypeEnum.uses) {
                 ReduceDuration();
                 SetIsOver();

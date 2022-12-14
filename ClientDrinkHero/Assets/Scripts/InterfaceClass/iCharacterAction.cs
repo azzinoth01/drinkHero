@@ -12,9 +12,9 @@ public interface ICharacterAction {
 
     public void RemoveShield();
 
-    public void SkipTurn();
+    public void SkipTurn(int value);
 
-    public void SetBaseMultihit(int value);
+
     public void SetBuffMultihit(int value);
 
 }

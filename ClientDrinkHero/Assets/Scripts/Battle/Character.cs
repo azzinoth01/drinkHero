@@ -9,14 +9,17 @@ public abstract class Character : ICharacterAction, ICharacter {
     [SerializeField] protected int _maxHealth;
     [SerializeField] protected int _shield;
 
-    [SerializeField] protected float _healModifier;
-    [SerializeField] protected float _dmgModifier;
-    [SerializeField] protected float _defenceModifier;
-    [SerializeField] protected float _shieldModifier;
-    protected bool _skipTurn;
+
+    [SerializeField] protected ModifierStruct _healModifier;
+    [SerializeField] protected ModifierStruct _dmgModifier;
+    [SerializeField] protected ModifierStruct _defenceModifier;
+    [SerializeField] protected ModifierStruct _shieldModifier;
 
 
-    protected int _baseMultihit;
+    protected int _skipTurn;
+
+
+
     protected int _buffMultihit;
     protected int _dmgCausedThisAction;
 
@@ -89,7 +92,7 @@ public abstract class Character : ICharacterAction, ICharacter {
     }
 
     public virtual void Clear() {
-        _baseMultihit = 1;
+
         _buffMultihit = 1;
         _maxHealth = 0;
         _health = 0;
@@ -98,20 +101,34 @@ public abstract class Character : ICharacterAction, ICharacter {
         _buffList = new List<IBuff>();
         _debuffList = new List<IDebuff>();
 
+        _dmgModifier = new ModifierStruct(0, 0);
+        _healModifier = new ModifierStruct(0, 0);
+        _defenceModifier = new ModifierStruct(0, 0);
+        _shieldModifier = new ModifierStruct(0, 0);
+
     }
 
     public Character() {
 
         _buffList = new List<IBuff>();
         _debuffList = new List<IDebuff>();
-        _baseMultihit = 1;
+
         _buffMultihit = 1;
         _dmgCausedThisAction = 0;
+
+        _dmgModifier = new ModifierStruct(0, 0);
+        _healModifier = new ModifierStruct(0, 0);
+        _defenceModifier = new ModifierStruct(0, 0);
+        _shieldModifier = new ModifierStruct(0, 0);
+
     }
 
 
 
     public void Heal(int value) {
+
+        value = _healModifier.CalcValue(value);
+
         _health = _health + value;
         if (_health > _maxHealth) {
             _health = _maxHealth;
@@ -120,6 +137,9 @@ public abstract class Character : ICharacterAction, ICharacter {
     }
 
     public void TakeDmg(int value) {
+
+        value = _defenceModifier.CalcValue(value);
+
         int shieldDmg = 0;
         if (_shield > 0) {
             if (_shield > value) {
@@ -155,6 +175,9 @@ public abstract class Character : ICharacterAction, ICharacter {
     }
 
     void ICharacterAction.Shield(int value) {
+
+        value = _shieldModifier.CalcValue(value);
+
         _shield = _shield + value;
         ShieldChange?.Invoke(value);
     }
@@ -185,11 +208,12 @@ public abstract class Character : ICharacterAction, ICharacter {
     }
 
     public void AddAttackModifier(int value) {
-        _dmgModifier = _dmgModifier + value;
+        _dmgModifier.AddModifier(value);
+
     }
 
     public void AddDefenceModifier(int value) {
-        _defenceModifier = _defenceModifier + value;
+        _defenceModifier.AddModifier(value);
     }
 
     public abstract void SwapShieldWithEnemy();
@@ -198,13 +222,10 @@ public abstract class Character : ICharacterAction, ICharacter {
         _shield = 0;
     }
 
-    public void SkipTurn() {
-        _skipTurn = true;
+    public void SkipTurn(int value) {
+        _skipTurn = value;
     }
 
-    public void SetBaseMultihit(int value) {
-        _baseMultihit = value;
-    }
 
     public void SetBuffMultihit(int value) {
         _buffMultihit = value;
@@ -226,5 +247,9 @@ public abstract class Character : ICharacterAction, ICharacter {
             }
 
         }
+    }
+
+    protected void InvokeEndTurn() {
+        TurnEnded?.Invoke();
     }
 }
