@@ -33,9 +33,7 @@ public class BattleView : View
     [Header("Debug Related")]
     [SerializeField] private TextMeshProUGUI debugText;
 
-    public static GameObject CurrentCardDragged;
-    
-    //TODO: maybe refactor..
+    // TODO: Observer Pattern?
     private void OnEnable() {
 
         UIDataContainer.Instance.Player.HealthChange += UpdatePlayerHealthBar;
@@ -76,18 +74,19 @@ public class BattleView : View
         InitUIValues();
     }
 
-    private void AddHandCard(ICardDisplay card) {
+    private void AddHandCard(ICardDisplay card, int index) {
         var newCard = Instantiate(playerCardObjectPrefab, playerHandContainer.transform.position,
             Quaternion.identity, playerHandContainer.transform);
-        var newCardUi = newCard.GetComponent<CardView>();
+        var cardView = newCard.GetComponent<CardView>();
 
-        currentPlayerHand.Add(newCardUi);
+        currentPlayerHand.Add(cardView);
 
-        newCardUi.SetDisplayValues(card);
+        cardView.SetDisplayValues(card, index);
     }
 
     private void UpdateHandCards() {
         IHandCards playerHand = UIDataContainer.Instance.Player.GetHandCards();
+        
         if (playerHand == null) {
             return;
         }
@@ -95,12 +94,13 @@ public class BattleView : View
         int i;
         for (i = 0; i < playerHand.HandCardCount();) {
             ICardDisplay card = playerHand.GetHandCard(i);
+            
             if (currentPlayerHand.Count == i) {
-                AddHandCard(card);
+                AddHandCard(card, i);
             }
             else {
                 currentPlayerHand[i].gameObject.SetActive(true);
-                currentPlayerHand[i].GetComponent<CardView>().SetDisplayValues(card);
+                currentPlayerHand[i].GetComponent<CardView>().SetDisplayValues(card, i);
             }
 
             int index = i;
@@ -121,12 +121,27 @@ public class BattleView : View
         }
     }
 
-    private void CardClickEvent(int index, IHandCards playerHand) {
+    private void CardClickEvent(int index, IHandCards playerHand) 
+    {
         playerHand.PlayHandCard(index);
-        
         UpdateHandCards();
     }
 
+    public bool PlayHandCardOnDrop(int index)
+    {
+        IHandCards playerHand = UIDataContainer.Instance.Player.GetHandCards();
+        
+
+        bool success = playerHand.PlayHandCard(index);
+        if (success)
+        {
+            currentPlayerHand[index].gameObject.SetActive(false);
+            UpdateHandCards();
+        }
+
+        return success;
+    }
+    
     private void InitUIValues() {
 
         UpdatePlayerHealthBar(0);

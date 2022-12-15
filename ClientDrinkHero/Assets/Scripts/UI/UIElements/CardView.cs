@@ -1,39 +1,83 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardView : MonoBehaviour {
+public class CardView : MonoBehaviour
+{
+    [Header("Text Labels")] 
+    [SerializeField] private TextMeshProUGUI costText;
+    [SerializeField] private TextMeshProUGUI cardName;
+    [SerializeField] private TextMeshProUGUI cardDescription;
 
-    //removed card object from calls because it was not needed
-    //added interface abstraction for card values
+    [Header("Sound Effect(s)")] 
+    [SerializeField] private SimpleAudioEvent clickOnCardSound;
+    
+    [Header("Card Zoom Settings")] 
+    [SerializeField] private Ease dragScaleEaseMode;
+    [SerializeField] private float dragScaleFactor = 1.5f;
+    [SerializeField] private float dragScaleDuration = 0.25f;
 
-    [SerializeField] private TextMeshProUGUI _costText;
-    [SerializeField] private TextMeshProUGUI _healthText;
-    [SerializeField] private TextMeshProUGUI _attackText;
-    [SerializeField] private TextMeshProUGUI _shieldText;
-    [SerializeField] private TextMeshProUGUI _cardText;
+    private int _handIndex;
+    public int HandIndex => _handIndex;
+
+    private Image[] _images;
     
-    [SerializeField] private SimpleAudioEvent _clickOnCardSound;
-    
-    private int _id;
     private Sprite _cardSprite;
     private Sprite _cardLevelBorder;
 
-    public void SetDisplayValues(ICardDisplay card) {
-        if (card == null) {
+    private void Awake()
+    {
+        _images = GetComponentsInChildren<Image>();
+    }
+
+    private void OnDisable()
+    {
+        transform.localScale = Vector3.one;
+    }
+
+    public void SetDisplayValues(ICardDisplay card, int index)
+    {
+        if (card == null)
+        {
             return;
         }
 
         _cardSprite = card.SpriteDisplay();
-        _costText.SetText(card.CostText());
-        _attackText.SetText(card.AttackText());
-        _shieldText.SetText(card.ShieldText());
-        _healthText.SetText(card.HealthText());
-        _cardText.SetText(card.CardText());
+        costText.SetText(card.CostText());
+        cardDescription.SetText(card.CardText());
+
+        _handIndex = index;
+    }
+    
+    public void ClickCard()
+    {
+        GlobalAudioManager.Instance.Play(clickOnCardSound);
     }
 
+    public void DisableAllRayCastTargets()
+    {
+        foreach (var target  in _images)
+        {
+            target.raycastTarget = false;
+        }
+    }
 
-    public void ClickCard() {
-        GlobalAudioManager.Instance.Play(_clickOnCardSound);
+    public void EnableAllRaycastTargets()
+    {
+        foreach (var target  in _images)
+        {
+            target.raycastTarget = true;
+        }
+    }
+    
+    public void ZoomIn()
+    {
+        transform.DOScale(Vector3.one * dragScaleFactor, dragScaleDuration).SetEase(dragScaleEaseMode);
+    }
+    
+    public void ZoomOut()
+    {
+        transform.DOScale(Vector3.one, dragScaleDuration).SetEase(dragScaleEaseMode);
     }
 }

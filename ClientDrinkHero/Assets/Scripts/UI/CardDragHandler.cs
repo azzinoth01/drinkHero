@@ -3,34 +3,29 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
+public class CardDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [Header("Drag Damping")]
     [SerializeField] private float dampingSpeed = 0.5f;
 
-    [Header("Drag Scaling")] 
-    [SerializeField] private Ease dragScaleEaseMode;
-    [SerializeField] private float dragScaleFactor = 1.5f;
-    [SerializeField] private float dragScaleDuration = 0.25f;
 
+    private CardView _cardView;
     private RectTransform _cardTransform;
     private Vector3 _initialPosition;
     private Vector3 _velocity;
 
-    private void OnDisable()
-    {
-        _cardTransform.transform.localScale = Vector3.one;
-    }
-
     private void Awake()
     {
+        _cardView = GetComponent<CardView>();
+        
         _cardTransform = transform as RectTransform;
         _initialPosition = _cardTransform.localPosition;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        _cardTransform.DOScale(Vector3.one * dragScaleFactor, dragScaleDuration).SetEase(dragScaleEaseMode);
+        _cardView.ZoomIn();
+        _cardView.DisableAllRayCastTargets();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -45,11 +40,12 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        _cardTransform.DOScale(Vector3.one, dragScaleDuration).SetEase(dragScaleEaseMode);
+        _cardView.ZoomOut();
+        _cardView.EnableAllRaycastTargets();
     }
 
-    public void OnDrop(PointerEventData eventData)
+    private void ReturnCardToHand()
     {
-        Debug.Log("Card dropped.");
+        
     }
 }

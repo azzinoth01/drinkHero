@@ -153,7 +153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4345874923779804452
 RectTransform:
   m_ObjectHideFlags: 0
@@ -288,7 +288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5520392922286010381
 RectTransform:
   m_ObjectHideFlags: 0
@@ -677,12 +677,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816fd2bbadf86864e92aefe65a0a7f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _costText: {fileID: 5995649209521695685}
-  _healthText: {fileID: 3126278712911980745}
-  _attackText: {fileID: 2991318122635647265}
-  _shieldText: {fileID: 1467162979093758506}
-  _cardText: {fileID: 7092574847088455848}
-  _clickOnCardSound: {fileID: 11400000, guid: 110ebf90b55afeb43b20237870eed601, type: 2}
+  costText: {fileID: 5995649209521695685}
+  cardName: {fileID: 3379485892717627498}
+  cardDescription: {fileID: 7092574847088455848}
+  clickOnCardSound: {fileID: 11400000, guid: 110ebf90b55afeb43b20237870eed601, type: 2}
+  dragScaleEaseMode: 28
+  dragScaleFactor: 1.5
+  dragScaleDuration: 0.25
 --- !u!114 &6511119311458772194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,9 +697,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dampingSpeed: 0.05
-  dragScaleEaseMode: 19
-  dragScaleFactor: 2
-  dragScaleDuration: 0.25
 --- !u!114 &4811749745024373754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -983,7 +981,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4991194654033724136
 RectTransform:
   m_ObjectHideFlags: 0
