@@ -697,7 +697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dampingSpeed: 0.05
   dragScaleEaseMode: 19
-  dragScaleFactor: 1.5
+  dragScaleFactor: 2
   dragScaleDuration: 0.25
 --- !u!114 &4811749745024373754
 MonoBehaviour:
