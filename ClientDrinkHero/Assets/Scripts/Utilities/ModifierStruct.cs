@@ -34,8 +34,14 @@ public struct ModifierStruct {
     }
 
     public int CalcValue(int value) {
+        float modifier = ModifierValue;
+        modifier = modifier / 100;
 
-        value = value * (1 + (ModifierValue / 100)) + _fixedModifierValue;
+        float tempValue = (value * (1 + modifier)) + _fixedModifierValue;
+
+        value = (int)tempValue;
+
+        //value = value * (1 + (ModifierValue / 100)) + _fixedModifierValue;
 
         if (value < 0) {
             value = 0;
