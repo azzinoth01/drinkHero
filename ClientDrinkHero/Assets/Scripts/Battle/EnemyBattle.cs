@@ -145,6 +145,9 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
         //}
         AttackEnemy(5);
+
+        CheckDebuffsAndBuffs(ActivationTimeEnum.actionFinished);
+
         ClientFunctions.SendMessageToDatabase("Enemy Turn End");
         EndTurn();
         TurnEnded?.Invoke();

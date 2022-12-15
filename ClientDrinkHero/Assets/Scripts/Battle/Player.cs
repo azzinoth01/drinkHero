@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class Player : Character, IHandCards, IPlayer {
     const int MaxHandCards = 5;
-    
+
     [SerializeField] private string _name;
 
     [SerializeField] private int _attack;
@@ -133,12 +133,12 @@ public class Player : Character, IHandCards, IPlayer {
         }
 
         // Action End
+        CheckDebuffsAndBuffs(ActivationTimeEnum.actionFinished, _dmgCausedThisAction);
 
+
+        _dmgCausedThisAction = 0;
         _buffMultihit = 1;
         _discardedHandCardsThisAction = 0;
-
-        CheckDebuffsAndBuffs(ActivationTimeEnum.actionFinished, _dmgCausedThisAction);
-        _dmgCausedThisAction = 0;
 
         _gameDeck.ScrapCard(card);
 
