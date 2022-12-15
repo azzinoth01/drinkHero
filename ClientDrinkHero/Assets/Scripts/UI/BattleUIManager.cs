@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class BattleUIManager : MonoBehaviour {
 
-    [SerializeField] private GameObject _playerCardUIPrefab;
-    [SerializeField] private GameObject _playerHandUI;
-    [SerializeField] private GameObject _playerOptionsPanel, _playerDeathPanel;
+    [SerializeField] private GameObject playerCardUIPrefab;
+    [SerializeField] private GameObject playerHandUI;
+    [SerializeField] private GameObject playerOptionsPanel, playerDeathPanel, waitingForConnectionPanel;
 
-    [SerializeField] private List<PlayerCardUI> _currentPlayerHand;
+    [SerializeField] private List<CardView> currentPlayerHand;
     [SerializeField]
-    private TextMeshProUGUI _playerHealthLabelText, _playerEnergyLabelText, _enemyHealthLabelText,
-        _debugText, _playerShieldCount, _enemyShieldCount;
-    [SerializeField] private Image _playerHealthBar, _playerEnergyBar, _enemyHealthBar;
+    private TextMeshProUGUI playerHealthLabelText, playerEnergyLabelText, enemyHealthLabelText,
+        debugText, playerShieldCount, enemyShieldCount;
+    [SerializeField] private Image playerHealthBar, playerEnergyBar, enemyHealthBar;
 
-    [SerializeField] private Button _endTurnButton;
+    [SerializeField] private Button endTurnButton;
 
 
     //TODO: maybe refactor..
@@ -30,23 +30,14 @@ public class BattleUIManager : MonoBehaviour {
         UIDataContainer.Instance.Enemy.HealthChange += UpdateEnemyHealthBar;
         UIDataContainer.Instance.Enemy.ShieldChange += UpdateEnemyShieldCounter;
 
-
+        UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel += ToggleWaitingPanel;
+        
         TurnManager.togglePlayerUiControls += TogglePlayerUIControls;
         TurnManager.updateDebugText += UpdateDebugText;
-        //Player.updatePlayerHealthUI += UpdatePlayerHealthBar;
-        //Player.updatePlayerEnergyUI += UpdatePlayerEnergyBar;
-        //Player.updateHandCardUI += UpdateHandCards;
-        //Player.updatePlayerShieldUI += UpdatePlayerShieldCounter;
-        //Player.onPlayerDeath += ShowGameOverScreen;
-        //Enemy.updateEnemyHealthUI += UpdateEnemyHealthBar;
-        //Enemy.updateEnemyShieldUI += UpdateEnemyShieldCounter;
-
-
     }
 
     private void OnDisable() {
-
-
+        
         UIDataContainer.Instance.Player.HealthChange -= UpdatePlayerHealthBar;
         UIDataContainer.Instance.Player.ShieldChange -= UpdatePlayerShieldCounter;
         UIDataContainer.Instance.Player.RessourceChange -= UpdatePlayerEnergyBar;
@@ -56,17 +47,10 @@ public class BattleUIManager : MonoBehaviour {
         UIDataContainer.Instance.Enemy.HealthChange -= UpdateEnemyHealthBar;
         UIDataContainer.Instance.Enemy.ShieldChange -= UpdateEnemyShieldCounter;
 
+        UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel -= ToggleWaitingPanel;
+        
         TurnManager.togglePlayerUiControls -= TogglePlayerUIControls;
         TurnManager.updateDebugText -= UpdateDebugText;
-        //Player.updatePlayerHealthUI -= UpdatePlayerHealthBar;
-        //Player.updatePlayerEnergyUI -= UpdatePlayerEnergyBar;
-        //Player.updateHandCardUI -= UpdateHandCards;
-        //Player.updatePlayerShieldUI -= UpdatePlayerShieldCounter;
-        //Player.onPlayerDeath -= ShowGameOverScreen;
-        //Enemy.updateEnemyHealthUI -= UpdateEnemyHealthBar;
-        //Enemy.updateEnemyShieldUI -= UpdateEnemyShieldCounter;
-
-
     }
 
     void Start() {
@@ -76,11 +60,11 @@ public class BattleUIManager : MonoBehaviour {
     }
 
     private void AddHandCard(ICardDisplay card) {
-        var newCard = Instantiate(_playerCardUIPrefab, _playerHandUI.transform.position,
-            Quaternion.identity, _playerHandUI.transform);
-        var newCardUi = newCard.GetComponent<PlayerCardUI>();
+        var newCard = Instantiate(playerCardUIPrefab, playerHandUI.transform.position,
+            Quaternion.identity, playerHandUI.transform);
+        var newCardUi = newCard.GetComponent<CardView>();
 
-        _currentPlayerHand.Add(newCardUi);
+        currentPlayerHand.Add(newCardUi);
 
         newCardUi.SetDisplayValues(card);
     }
@@ -94,16 +78,16 @@ public class BattleUIManager : MonoBehaviour {
         int i;
         for (i = 0; i < playerHand.HandCardCount();) {
             ICardDisplay card = playerHand.GetHandCard(i);
-            if (_currentPlayerHand.Count == i) {
+            if (currentPlayerHand.Count == i) {
                 AddHandCard(card);
             }
             else {
-                _currentPlayerHand[i].gameObject.SetActive(true);
-                _currentPlayerHand[i].GetComponent<PlayerCardUI>().SetDisplayValues(card);
+                currentPlayerHand[i].gameObject.SetActive(true);
+                currentPlayerHand[i].GetComponent<CardView>().SetDisplayValues(card);
             }
 
             int index = i;
-            Button button = _currentPlayerHand[i].GetComponent<Button>();
+            Button button = currentPlayerHand[i].GetComponent<Button>();
             button.onClick.RemoveAllListeners();
 
             button.onClick.AddListener(delegate {
@@ -113,8 +97,8 @@ public class BattleUIManager : MonoBehaviour {
             i = i + 1;
         }
 
-        for (; i < _currentPlayerHand.Count;) {
-            _currentPlayerHand[i].gameObject.SetActive(false);
+        for (; i < currentPlayerHand.Count;) {
+            currentPlayerHand[i].gameObject.SetActive(false);
 
             i = i + 1;
         }
@@ -122,8 +106,7 @@ public class BattleUIManager : MonoBehaviour {
 
     private void CardClickEvent(int index, IHandCards playerHand) {
         playerHand.PlayHandCard(index);
-
-
+        
         UpdateHandCards();
     }
 
@@ -135,30 +118,21 @@ public class BattleUIManager : MonoBehaviour {
 
         UpdateEnemyHealthBar(0);
         UpdateEnemyShieldCounter(0);
-
-        // value initialisation not needed can be done when the objects initzialies itself
-
-        //UpdatePlayerHealthBar(GlobalGameInfos.Instance.PlayerObject.Player.Health, GlobalGameInfos.Instance.PlayerObject.Player.MaxHealth);
-        //UpdatePlayerEnergyBar(GlobalGameInfos.Instance.PlayerObject.Player.PlayerEnergy, GlobalGameInfos.Instance.PlayerObject.Player.PlayerMaxEnergy);
-        //UpdatePlayerShieldCounter(GlobalGameInfos.Instance.PlayerObject.Player.Shield);
-
-        //UpdateEnemyHealthBar(GlobalGameInfos.Instance.EnemyObject.enemy.Health, GlobalGameInfos.Instance.EnemyObject.enemy.MaxHealth);
-        //UpdateEnemyShieldCounter(GlobalGameInfos.Instance.EnemyObject.enemy.Shield);
     }
 
     private void UpdatePlayerHealthBar(int deltaValue) {
         ICharacter character = UIDataContainer.Instance.Player;
-        UpdateBarDisplay(character.CurrentHealth(), character.MaxHealth(), _playerHealthLabelText, _playerHealthBar);
+        UpdateBarDisplay(character.CurrentHealth(), character.MaxHealth(), playerHealthLabelText, playerHealthBar);
     }
 
     private void UpdatePlayerEnergyBar(int deltaValue) {
         IPlayer player = UIDataContainer.Instance.Player;
-        UpdateBarDisplay(player.CurrentRessource(), player.MaxRessource(), _playerEnergyLabelText, _playerEnergyBar);
+        UpdateBarDisplay(player.CurrentRessource(), player.MaxRessource(), playerEnergyLabelText, playerEnergyBar);
     }
 
     private void UpdateEnemyHealthBar(int deltaValue) {
         ICharacter character = UIDataContainer.Instance.Enemy;
-        UpdateBarDisplay(character.CurrentHealth(), character.MaxHealth(), _enemyHealthLabelText, _enemyHealthBar);
+        UpdateBarDisplay(character.CurrentHealth(), character.MaxHealth(), enemyHealthLabelText, enemyHealthBar);
     }
 
     private static void UpdateBarDisplay(float currentValue, float maxValue, TextMeshProUGUI label, Image bar) {
@@ -168,12 +142,12 @@ public class BattleUIManager : MonoBehaviour {
 
     private void UpdateEnemyShieldCounter(int deltaValue) {
         ICharacter character = UIDataContainer.Instance.Enemy;
-        UpdateShieldCounterDisplay(_enemyShieldCount, character.CurrentShield());
+        UpdateShieldCounterDisplay(enemyShieldCount, character.CurrentShield());
     }
 
     private void UpdatePlayerShieldCounter(int deltaValue) {
         ICharacter character = UIDataContainer.Instance.Player;
-        UpdateShieldCounterDisplay(_playerShieldCount, character.CurrentShield());
+        UpdateShieldCounterDisplay(playerShieldCount, character.CurrentShield());
     }
 
     private void UpdateShieldCounterDisplay(TextMeshProUGUI counterText, int value) {
@@ -182,29 +156,44 @@ public class BattleUIManager : MonoBehaviour {
         }
     }
 
+    private void UpdateDebugText(string text) {
+        debugText.SetText(text);
+    }
+
     private void TogglePlayerUIControls(bool state) {
         // get all cards currently held and toggle their state 
-        foreach (var cardButton in _currentPlayerHand) {
+        foreach (var cardButton in currentPlayerHand) {
             cardButton.GetComponent<Button>().interactable = state;
         }
 
-        _endTurnButton.interactable = state;
-    }
-
-    private void ShowGameOverScreen() {
-        _playerDeathPanel.SetActive(true);
-    }
-
-    private void UpdateDebugText(string text) {
-        _debugText.SetText(text);
+        endTurnButton.interactable = state;
     }
 
     public void ShowOptionsPanel() {
-        _playerOptionsPanel.SetActive(true);
+        ShowUIPanel(playerOptionsPanel);
     }
 
     public void HideOptionsPanel() {
-        _playerOptionsPanel.SetActive(false);
+        HideUIPanel(playerOptionsPanel);
+    }
+
+    private void ShowGameOverScreen() {
+        ShowUIPanel(playerDeathPanel);
+    }
+
+    private void ToggleWaitingPanel(bool state)
+    {
+        waitingForConnectionPanel.SetActive(state);
+    }
+
+    private void ShowUIPanel(GameObject panel)
+    {
+        panel.SetActive(true);
+    }
+
+    private void HideUIPanel(GameObject panel)
+    {
+        panel.SetActive(false);
     }
 
     public void ReturnToMainMenu() {

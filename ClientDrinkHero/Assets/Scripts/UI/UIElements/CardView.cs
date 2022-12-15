@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerCardUI : MonoBehaviour {
+public class CardView : MonoBehaviour {
 
     //removed card object from calls because it was not needed
     //added interface abstraction for card values
@@ -12,30 +12,23 @@ public class PlayerCardUI : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI _attackText;
     [SerializeField] private TextMeshProUGUI _shieldText;
     [SerializeField] private TextMeshProUGUI _cardText;
+    
     [SerializeField] private SimpleAudioEvent _clickOnCardSound;
-
-    private Image _cardImage;
+    
     private int _id;
-    private Sprite _sprite;
+    private Sprite _cardSprite;
+    private Sprite _cardLevelBorder;
 
     public void SetDisplayValues(ICardDisplay card) {
         if (card == null) {
             return;
         }
 
-        _sprite = card.SpriteDisplay();
+        _cardSprite = card.SpriteDisplay();
         _costText.SetText(card.CostText());
-
-
-
         _attackText.SetText(card.AttackText());
-
-
         _shieldText.SetText(card.ShieldText());
-
-
         _healthText.SetText(card.HealthText());
-
         _cardText.SetText(card.CardText());
     }
 

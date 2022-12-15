@@ -4,6 +4,9 @@ public class UIDataContainer {
     private static UIDataContainer _instance;
     private IPlayer _player;
     private ICharacter _enemy;
+
+    private IWaitingPanel _waitingPanel;
+    
     public static UIDataContainer Instance {
         get {
             if (_instance == null) {
@@ -11,9 +14,6 @@ public class UIDataContainer {
             }
             return _instance;
         }
-
-
-
     }
 
     public IPlayer Player {
@@ -35,4 +35,7 @@ public class UIDataContainer {
             _enemy = value;
         }
     }
+    
+    public IWaitingPanel WaitingPanel => _waitingPanel;
+    
 }
