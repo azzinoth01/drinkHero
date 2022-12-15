@@ -18,5 +18,6 @@ public interface ICharacterAction {
     public int GetDiscadHandCardsCount();
     public void Mana(int value);
     public void RemoveDebuff(int value);
+    public void DrawCard(int value);
 
 }

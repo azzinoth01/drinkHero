@@ -305,4 +305,6 @@ public abstract class Character : ICharacterAction, ICharacter {
             i = i + 1;
         }
     }
+
+    public abstract void DrawCard(int value);
 }

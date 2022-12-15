@@ -322,4 +322,8 @@ public class EnemyBattle : ICharacter, ICharacterAction {
             i = i + 1;
         }
     }
+
+    public void DrawCard(int value) {
+        Debug.Log("enemy can't draw cards");
+    }
 }
