@@ -6,12 +6,12 @@ public class MainMenuUIManager : MonoBehaviour
     
     private void OnEnable()
     {
-        UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel += ToggleWaitingPanel;
+        //UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel += ToggleWaitingPanel;
     }
 
     private void OnDisable()
     {
-        UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel -= ToggleWaitingPanel;
+        //UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel -= ToggleWaitingPanel;
     }
     
     private void ToggleWaitingPanel(bool state)
