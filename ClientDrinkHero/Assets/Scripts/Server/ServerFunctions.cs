@@ -1,8 +1,7 @@
-
-
 #if CLIENT
 using System.IO;
 #endif
+
 public static class ServerFunctions {
 
 
@@ -93,8 +92,34 @@ public static class ServerFunctions {
         }
         return data;
 
+    }
+    private static string SendDataOfRandom<T>(StreamWriter stream, string viewName, string amount = "1") where T : DatabaseItem, new() {
+
+        List<T> items = DatabaseManager.GetDatabaseList<T>(viewName);
+
+        int count = int.Parse(amount);
 
 
+        List<T> transmissionItem = new List<T>();
+        for (int i = 0; i < count;) {
+            Random rand = new Random((int)DateTime.Now.Ticks);
+
+            int index = rand.Next(0, items.Count - 1);
+            transmissionItem.Add(items[index]);
+
+            i = i + 1;
+        }
+
+        string data = CreateTransmissionString<T>(transmissionItem);
+
+
+        try {
+            stream.Write(data);
+        }
+        catch {
+            return "exeption";
+        }
+        return data;
 
     }
 #endif
@@ -171,6 +196,29 @@ public static class ServerFunctions {
     public static string GetRandomEnemy(StreamWriter stream) {
 #if SERVER
         return SendDataOfRandom<EnemyDatabase>(stream);
+#else
+        return null;
+
+#endif
+    }
+    [ServerFunction("GetRandomNormalEnemy")]
+    public static string GetRandomNormalEnemy(StreamWriter stream, string amount) {
+#if SERVER
+
+        string viewName = "NormalEnemyView";
+
+        return SendDataOfRandom<EnemyDatabase>(stream, viewName, amount);
+#else
+        return null;
+
+#endif
+    }
+    [ServerFunction("GetRandomBossEnemy")]
+    public static string GetRandomBossEnemy(StreamWriter stream) {
+#if SERVER
+        string viewName = "BossEnemyView";
+
+        return SendDataOfRandom<EnemyDatabase>(stream, viewName);
 #else
         return null;
 
