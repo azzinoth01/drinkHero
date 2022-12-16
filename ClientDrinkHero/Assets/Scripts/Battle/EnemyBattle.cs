@@ -68,6 +68,16 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
     }
 
+    public void SetBaseModificator(ModifierStruct healthModificator, ModifierStruct dmgModificator) {
+        _dmgModifier = new ModifierStruct(dmgModificator);
+
+        maxHealth = healthModificator.CalcValue(maxHealth);
+        health = maxHealth;
+        HealthChange?.Invoke(0);
+
+    }
+
+
     public event Action<int> HealthChange;
     public event Action<int> ShieldChange;
     public event Action TurnEnded;
@@ -145,6 +155,9 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
         //}
         AttackEnemy(5);
+
+        CheckDebuffsAndBuffs(ActivationTimeEnum.actionFinished);
+
         ClientFunctions.SendMessageToDatabase("Enemy Turn End");
         EndTurn();
         TurnEnded?.Invoke();
@@ -318,5 +331,9 @@ public class EnemyBattle : ICharacter, ICharacterAction {
             _debuffList.RemoveAt(_debuffList.Count - 1);
             i = i + 1;
         }
+    }
+
+    public void DrawCard(int value) {
+        Debug.Log("enemy can't draw cards");
     }
 }

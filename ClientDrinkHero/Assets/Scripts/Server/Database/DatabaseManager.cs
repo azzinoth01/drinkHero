@@ -206,6 +206,31 @@ public static class DatabaseManager {
         return list;
     }
 
+    public static List<T> GetDatabaseList<T>(string viewName) where T : DatabaseItem, new() {
+        if (_db == null) {
+            return null;
+        }
+
+        TableMapping mapping = GetTableMapping<T>();
+
+        string sqlCommand = "SELECT * FROM " + viewName;
+
+        MySqlCommand command = _db.CreateCommand();
+        command.CommandText = sqlCommand;
+
+        List<T> list = new List<T>();
+
+        MySqlDataReader reader = command.ExecuteReader();
+
+        while (reader.Read()) {
+
+
+            list.Add(ReadRow<T>(reader, mapping.ColumnsMapping));
+        }
+        reader.Close();
+        return list;
+    }
+
 
     public static void UpdateDatabaseItem<T>(T item) where T : DatabaseItem, new() {
         if (_db == null) {

@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class Player : Character, IHandCards, IPlayer {
     const int MaxHandCards = 5;
-    
+
     [SerializeField] private string _name;
 
     [SerializeField] private int _attack;
@@ -134,12 +134,12 @@ public class Player : Character, IHandCards, IPlayer {
         }
 
         // Action End
+        CheckDebuffsAndBuffs(ActivationTimeEnum.actionFinished, _dmgCausedThisAction);
 
+
+        _dmgCausedThisAction = 0;
         _buffMultihit = 1;
         _discardedHandCardsThisAction = 0;
-
-        CheckDebuffsAndBuffs(ActivationTimeEnum.actionFinished, _dmgCausedThisAction);
-        _dmgCausedThisAction = 0;
 
         _gameDeck.ScrapCard(card);
 
@@ -225,10 +225,8 @@ public class Player : Character, IHandCards, IPlayer {
         //draw until 5 cards
         //Debug.Log(_handCards.Count);
 
-        for (int i = _handCards.Count; i < MaxHandCards;) {
-            _handCards.Add(_gameDeck.DrawCard());
-            i = i + 1;
-        }
+        DrawCardsFromDeck(MaxHandCards);
+
         UpdateHandCards?.Invoke();
         ResetRessource();
 
@@ -239,6 +237,20 @@ public class Player : Character, IHandCards, IPlayer {
             InvokeEndTurn();
         }
     }
+
+    private void DrawCardsFromDeck(int value) {
+
+        for (int i = 0; i < value;) {
+            if (_handCards.Count >= MaxHandCards) {
+                break;
+            }
+            _handCards.Add(_gameDeck.DrawCard());
+
+            i = i + 1;
+        }
+
+    }
+
 
     public override void SwapShieldWithEnemy() {
         int tempShield = GlobalGameInfos.Instance.EnemyObject.Enemy.shield;
@@ -280,5 +292,9 @@ public class Player : Character, IHandCards, IPlayer {
     public override void Mana(int value) {
         _ressource = _ressource + value;
         RessourceChange?.Invoke(value);
+    }
+
+    public override void DrawCard(int value) {
+        DrawCardsFromDeck(value);
     }
 }

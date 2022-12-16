@@ -10,6 +10,10 @@ public struct ModifierStruct {
         _modifierValue = modifierValue;
         _fixedModifierValue = fixedModifierValue;
     }
+    public ModifierStruct(ModifierStruct copy) {
+        _modifierValue = copy._modifierValue;
+        _fixedModifierValue = copy._fixedModifierValue;
+    }
 
     public int ModifierValue {
         get {
@@ -34,8 +38,14 @@ public struct ModifierStruct {
     }
 
     public int CalcValue(int value) {
+        float modifier = ModifierValue;
+        modifier = modifier / 100;
 
-        value = value * (1 + (ModifierValue / 100)) + _fixedModifierValue;
+        float tempValue = (value * (1 + modifier)) + _fixedModifierValue;
+
+        value = (int)tempValue;
+
+        //value = value * (1 + (ModifierValue / 100)) + _fixedModifierValue;
 
         if (value < 0) {
             value = 0;

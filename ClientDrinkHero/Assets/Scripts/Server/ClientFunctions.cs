@@ -42,6 +42,18 @@ public static class ClientFunctions {
         return GetWriteString(info);
 
     }
+    public static string GetRandomNormalEnemyDatabase(int amount = 1) {
+        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetRandomNormalEnemy));
+
+        return GetWriteString(info, amount.ToString());
+
+    }
+    public static string GetRandomBossEnemyDatabase() {
+        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetRandomBossEnemy));
+
+        return GetWriteString(info);
+
+    }
 
     public static string GetCardToHeroByKeyPair(string pair) {
         MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetCardToHeroByKeyPair));

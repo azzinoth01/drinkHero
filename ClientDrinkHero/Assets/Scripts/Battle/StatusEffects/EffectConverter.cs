@@ -56,8 +56,14 @@ public static class EffectConverter {
         else if (item.ClassType == "DiscardHandCard") {
             converted = new DiscardHandCards(item);
         }
+        else if (item.ClassType == "DrawCard") {
+            converted = new DrawCard(item);
+        }
         else if (item.ClassType == "Heal") {
             converted = new Heal(item);
+        }
+        else if (item.ClassType == "Mana") {
+            converted = new Mana(item);
         }
         else if (item.ClassType == "RemoveDebuff") {
             converted = new RemoveDebuff(item);

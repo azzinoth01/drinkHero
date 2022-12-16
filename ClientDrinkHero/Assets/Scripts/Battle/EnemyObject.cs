@@ -3,10 +3,13 @@ using UnityEngine;
 public class EnemyObject : MonoBehaviour {
 
     [SerializeField] private EnemyBattle _enemyData;
-    public EnemyHandler _enemyHandler;
+    //public EnemyHandler _enemyHandler;
 
     [SerializeField]
     private SimpleAudioEvent _enemyDamagedSound, _enemyDamageBlockedSound, _enemyHealedSound, _enemyShielUpSound;
+
+
+    private LevelContainer _levelData;
 
     public EnemyBattle Enemy {
         get {
@@ -19,20 +22,26 @@ public class EnemyObject : MonoBehaviour {
 
     private void Awake() {
         _enemyData = new EnemyBattle();
-        _enemyHandler = new EnemyHandler();
-        _enemyHandler.RequestData();
-        _enemyHandler.LoadingFinished += EnemyLoaded;
-        _enemyData.DiedEvent += _enemyHandler.RequestData;
+        //_enemyHandler = new EnemyHandler();
+        //_enemyHandler.RequestData();
+        //_enemyHandler.LoadingFinished += EnemyLoaded;
+        //_enemyData.DiedEvent += _enemyHandler.RequestData;
+
+
+        _levelData = new LevelContainer(_enemyData);
+        _enemyData.DiedEvent += _levelData.NextEnemy;
     }
 
     private void Update() {
-        _enemyHandler.Update();
+        //_enemyHandler.Update();
+
+        _levelData.Update();
     }
-    private void EnemyLoaded() {
-        _enemyData.ResetEnemy(_enemyHandler._enemy);
+    //private void EnemyLoaded() {
+    //    _enemyData.ResetEnemy(_enemyHandler._enemy);
 
 
-    }
+    //}
 
 
     private void OnEnable() {
