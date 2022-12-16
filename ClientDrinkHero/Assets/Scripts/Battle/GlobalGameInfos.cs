@@ -33,7 +33,7 @@ public class GlobalGameInfos : MonoBehaviour {
     private int _herodataWriteBackId;
     private int _enemyWriteBackId;
 
-    public EnemyHandler enemyHandler;
+    public EnemyBossHandler enemyHandler;
 
 
 

@@ -68,6 +68,16 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
     }
 
+    public void SetBaseModificator(ModifierStruct healthModificator, ModifierStruct dmgModificator) {
+        _dmgModifier = new ModifierStruct(dmgModificator);
+
+        maxHealth = healthModificator.CalcValue(maxHealth);
+        health = maxHealth;
+        HealthChange?.Invoke(0);
+
+    }
+
+
     public event Action<int> HealthChange;
     public event Action<int> ShieldChange;
     public event Action TurnEnded;
