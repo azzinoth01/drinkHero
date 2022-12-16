@@ -18,6 +18,7 @@ public class LevelContainer {
     private ModifierStruct _dmgModificator;
     private ModifierStruct _healthModificator;
 
+    public int levelCount;
 
 
     public void NextEnemy() {
@@ -40,13 +41,20 @@ public class LevelContainer {
     }
     public LevelContainer(EnemyBattle _enemyObject) {
         _bossSpawned = false;
+        levelCount = 0;
+
         _currentEnemy = _enemyObject;
+
+        _dmgModificator = new ModifierStruct(0, 0);
+        _healthModificator = new ModifierStruct(0, 0);
 
         _enemyBossHandler = new EnemyBossHandler();
         _enemyListHandler = new EnemyListHandler();
 
         _enemyListHandler.LoadingFinished += SetEnemyLoadFinish;
         _enemyBossHandler.LoadingFinished += SetBossLoadFinish;
+
+        LoadNextLevel();
     }
 
     public void Update() {
@@ -62,7 +70,7 @@ public class LevelContainer {
         _enemyListHandler.RequestData();
         _enemyBossHandler.RequestData();
 
-
+        levelCount = levelCount + 1;
     }
     private void SetEnemyLoadFinish() {
         _enemyLoadFinished = true;
@@ -75,6 +83,14 @@ public class LevelContainer {
 
     private void CheckFinishedLoading() {
         if (_enemyLoadFinished && _boosLoadFinished) {
+            if (levelCount != 1) {
+                _dmgModificator.AddModifier(20);
+                _healthModificator.AddModifier(20);
+            }
+
+
+            _enemies = _enemyListHandler._enemyList;
+            _boss = _enemyBossHandler._enemy;
             NextEnemy();
         }
     }
