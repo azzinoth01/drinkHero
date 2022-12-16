@@ -681,9 +681,13 @@ MonoBehaviour:
   cardName: {fileID: 3379485892717627498}
   cardDescription: {fileID: 7092574847088455848}
   clickOnCardSound: {fileID: 11400000, guid: 110ebf90b55afeb43b20237870eed601, type: 2}
+  cardPlayedSound: {fileID: 0}
+  cardNotPlayedSound: {fileID: 0}
   dragScaleEaseMode: 28
-  dragScaleFactor: 1.5
+  dragScaleFactor: 1.75
   dragScaleDuration: 0.25
+  returnMoveDuration: 0.5
+  returnMoveEaseMode: 28
 --- !u!114 &6511119311458772194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,7 +700,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e8d224bf0b29e4193eeee6863fb2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dampingSpeed: 0.05
+  dragDampingSpeed: 0.05
+  returnMoveDuration: 0.25
+  returnMoveEaseMode: 0
 --- !u!114 &4811749745024373754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,7 +749,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1503423733234487695}
         m_TargetAssemblyTypeName: PlayerCardUI, Assembly-CSharp
-        m_MethodName: ClickCard
+        m_MethodName: ClickCardSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

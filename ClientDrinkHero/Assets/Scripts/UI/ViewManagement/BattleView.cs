@@ -80,7 +80,7 @@ public class BattleView : View
         var cardView = newCard.GetComponent<CardView>();
 
         currentPlayerHand.Add(cardView);
-
+        
         cardView.SetDisplayValues(card, index);
     }
 
@@ -131,15 +131,14 @@ public class BattleView : View
     {
         IHandCards playerHand = UIDataContainer.Instance.Player.GetHandCards();
         
-
-        bool success = playerHand.PlayHandCard(index);
-        if (success)
+        bool cardWasPlayed = playerHand.PlayHandCard(index);
+        if (cardWasPlayed)
         {
             currentPlayerHand[index].gameObject.SetActive(false);
             UpdateHandCards();
         }
 
-        return success;
+        return cardWasPlayed;
     }
     
     private void InitUIValues() {

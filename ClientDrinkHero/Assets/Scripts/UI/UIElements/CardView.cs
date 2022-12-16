@@ -1,3 +1,4 @@
+using System.Threading.Tasks.Sources;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -12,12 +13,18 @@ public class CardView : MonoBehaviour
 
     [Header("Sound Effect(s)")] 
     [SerializeField] private SimpleAudioEvent clickOnCardSound;
+    [SerializeField] private SimpleAudioEvent cardPlayedSound;
+    [SerializeField] private SimpleAudioEvent cardNotPlayedSound;
     
-    [Header("Card Zoom Settings")] 
+    [Header("Card Zoom Values")] 
     [SerializeField] private Ease dragScaleEaseMode;
     [SerializeField] private float dragScaleFactor = 1.5f;
     [SerializeField] private float dragScaleDuration = 0.25f;
 
+    [Header("Card Return Movement Values")] 
+    [SerializeField] private float returnMoveDuration;
+    [SerializeField] private Ease returnMoveEaseMode;
+        
     private int _handIndex;
     public int HandIndex => _handIndex;
 
@@ -26,14 +33,30 @@ public class CardView : MonoBehaviour
     private Sprite _cardSprite;
     private Sprite _cardLevelBorder;
 
+    private RectTransform _cardTransform;
+    private Vector2 _lastAnchoredPosition;
+
+    private Transform _dragParent;
+    private Transform _baseParent;
+
     private void Awake()
     {
+        _cardTransform = GetComponent<RectTransform>();
+        _baseParent = _cardTransform.parent;
+        _dragParent = _baseParent.parent;
+        
         _images = GetComponentsInChildren<Image>();
     }
 
     private void OnDisable()
     {
-        transform.localScale = Vector3.one;
+        ResetCardView();
+    }
+
+    public void InitializePosition(Vector2 position)
+    {
+        _lastAnchoredPosition = position;
+        Debug.Log($"Card Position: {_lastAnchoredPosition}");
     }
 
     public void SetDisplayValues(ICardDisplay card, int index)
@@ -49,10 +72,15 @@ public class CardView : MonoBehaviour
 
         _handIndex = index;
     }
-    
-    public void ClickCard()
+
+    public void ClickCardSound()
     {
-        GlobalAudioManager.Instance.Play(clickOnCardSound);
+        PlayCardSoundEffect(clickOnCardSound);
+    }
+
+    private void PlayCardSoundEffect(SimpleAudioEvent audioEvent)
+    {
+        GlobalAudioManager.Instance.Play(audioEvent);
     }
 
     public void DisableAllRayCastTargets()
@@ -70,14 +98,38 @@ public class CardView : MonoBehaviour
             target.raycastTarget = true;
         }
     }
-    
+
+    public void ReturnCardToHand()
+    {
+        //_cardTransform.DOMove(_lastAnchoredPosition, returnMoveDuration, true).SetEase(returnMoveEaseMode);
+        _cardTransform.anchoredPosition = _lastAnchoredPosition;
+    }
+
     public void ZoomIn()
     {
+        DisableAllRayCastTargets();
         transform.DOScale(Vector3.one * dragScaleFactor, dragScaleDuration).SetEase(dragScaleEaseMode);
     }
     
     public void ZoomOut()
     {
+        EnableAllRaycastTargets();
         transform.DOScale(Vector3.one, dragScaleDuration).SetEase(dragScaleEaseMode);
+    }
+    
+    public void ResetCardView()
+    {
+        _cardTransform.localScale = Vector3.one;
+        EnableAllRaycastTargets();
+    }
+
+    public void ResetCardViewParent()
+    {
+        _cardTransform.parent = _baseParent;
+    }
+
+    public void UnparentCardView()
+    {
+        _cardTransform.parent = _dragParent;
     }
 }
