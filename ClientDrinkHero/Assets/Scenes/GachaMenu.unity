@@ -2506,6 +2506,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 730611756988826682, guid: 5bbe02e416a4df449a92c90fcf4dc895, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 730611756988826683, guid: 5bbe02e416a4df449a92c90fcf4dc895, type: 3}
       propertyPath: testUserField
       value: 
@@ -4008,6 +4012,10 @@ PrefabInstance:
     - target: {fileID: 287980286352838655, guid: 14182c6601e5fa54e9ab3d120097f087, type: 3}
       propertyPath: m_Name
       value: GlobalGameInfos
+      objectReference: {fileID: 0}
+    - target: {fileID: 287980286352838655, guid: 14182c6601e5fa54e9ab3d120097f087, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14182c6601e5fa54e9ab3d120097f087, type: 3}

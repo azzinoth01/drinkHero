@@ -2099,6 +2099,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 730611756988826682, guid: 5bbe02e416a4df449a92c90fcf4dc895, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 730611756988826683, guid: 5bbe02e416a4df449a92c90fcf4dc895, type: 3}
       propertyPath: testUserField
       value: 
@@ -2719,7 +2723,7 @@ MonoBehaviour:
   - {fileID: 1769136912}
   - {fileID: 239830603}
   - {fileID: 357633466}
-  waitingForConnectionPanel: {fileID: 0}
+  waitingForConnectionPanel: {fileID: 6128011456009213247, guid: e84dd9f20c1f00d4885a15c650bb394e, type: 3}
 --- !u!1 &1797894574
 GameObject:
   m_ObjectHideFlags: 0
@@ -3460,6 +3464,10 @@ PrefabInstance:
     - target: {fileID: 287980286352838655, guid: 14182c6601e5fa54e9ab3d120097f087, type: 3}
       propertyPath: m_Name
       value: GlobalGameInfos
+      objectReference: {fileID: 0}
+    - target: {fileID: 287980286352838655, guid: 14182c6601e5fa54e9ab3d120097f087, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14182c6601e5fa54e9ab3d120097f087, type: 3}
