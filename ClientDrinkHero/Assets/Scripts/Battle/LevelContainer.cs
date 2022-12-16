@@ -42,11 +42,15 @@ public class LevelContainer {
         _bossSpawned = false;
         _currentEnemy = _enemyObject;
 
+
+
         _enemyBossHandler = new EnemyBossHandler();
         _enemyListHandler = new EnemyListHandler();
 
         _enemyListHandler.LoadingFinished += SetEnemyLoadFinish;
         _enemyBossHandler.LoadingFinished += SetBossLoadFinish;
+
+        LoadNextLevel();
     }
 
     public void Update() {
@@ -75,6 +79,8 @@ public class LevelContainer {
 
     private void CheckFinishedLoading() {
         if (_enemyLoadFinished && _boosLoadFinished) {
+            _enemies = _enemyListHandler._enemyList;
+            _boss = _enemyBossHandler._enemy;
             NextEnemy();
         }
     }
