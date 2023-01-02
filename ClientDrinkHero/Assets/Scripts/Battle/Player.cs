@@ -115,18 +115,9 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
 
         CardDatabase card = _handCards[index];
 
-<<<<<<< HEAD
+
         if (card.Cost > _ressource) {
-<<<<<<< Updated upstream
-            return;
-=======
             return false;
->>>>>>> Stashed changes
-=======
-        if (card.Cost > _ressource)
-        {
-            return false;
->>>>>>> development
         }
 
         _handCards.RemoveAt(index);

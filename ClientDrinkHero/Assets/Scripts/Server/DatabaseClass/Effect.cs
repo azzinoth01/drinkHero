@@ -231,9 +231,14 @@ public class Effect : DatabaseItem {
 
 
 
-    public virtual bool ActivateEffect(ICharacterAction target, ActivationTimeEnum activation, int? value = null) {
 
+
+    public virtual bool ActivateEffectBase(ICharacterAction target, ActivationTimeEnum activation, int? value = null) {
         return false;
+    }
+
+    public virtual bool ActivateEffect(IPlayerAction target, ActivationTimeEnum activation, int? value = null) {
+        return ActivateEffectBase(target, activation, value);
     }
 
 
@@ -281,6 +286,8 @@ public class Effect : DatabaseItem {
 
         return list;
     }
+
+
 
     public Effect() {
         _cardToEffects = new List<CardToEffect>();
