@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ViewManager : MonoBehaviour
 {
-    private static ViewManager instance;
+    public static ViewManager Instance;
 
     [SerializeField] private View _startingView;
     [SerializeField] private View[] _views;
@@ -12,11 +12,11 @@ public class ViewManager : MonoBehaviour
 
     private readonly Stack<View> _history = new ();
 
-    public static T GetView<T>() where T : View
+    public T GetView<T>() where T : View
     {
-        for (int i = 0; i < instance._views.Length; i++)
+        for (int i = 0; i < Instance._views.Length; i++)
         {
-            if (instance._views[i] is T tView)
+            if (Instance._views[i] is T tView)
             {
                 return tView;
             }
@@ -27,53 +27,53 @@ public class ViewManager : MonoBehaviour
 
     public static void Show<T>(bool remember = true) where T : View
     {
-        for (int i = 0; i < instance._views.Length; i++)
+        for (int i = 0; i < Instance._views.Length; i++)
         {
-            if (instance._views[i] is T)
+            if (Instance._views[i] is T)
             {
-                if (instance._currentView != null)
+                if (Instance._currentView != null)
                 {
                     if (remember)
                     {
-                        instance._history.Push(instance._currentView);
+                        Instance._history.Push(Instance._currentView);
                     }
 
-                    instance._currentView.Hide();
+                    Instance._currentView.Hide();
                 }
 
-                instance._views[i].Show();
+                Instance._views[i].Show();
 
-                instance._currentView = instance._views[i];
+                Instance._currentView = Instance._views[i];
             }
         }
     }
 
     public static void Show(View view, bool remember = true)
     {
-        if (instance._currentView != null)
+        if (Instance._currentView != null)
         {
             if (remember)
             {
-                instance._history.Push(instance._currentView);
+                Instance._history.Push(Instance._currentView);
             }
 
-            instance._currentView.Hide();
+            Instance._currentView.Hide();
         }
 
         view.Show();
 
-        instance._currentView = view;
+        Instance._currentView = view;
     }
 
     public static void ShowLast()
     {
-        if (instance._history.Count != 0)
+        if (Instance._history.Count != 0)
         {
-            Show(instance._history.Pop(), false);
+            Show(Instance._history.Pop(), false);
         }
     }
 
-    private void Awake() => instance = this;
+    private void Awake() => Instance = this;
 
     private void Start()
     {

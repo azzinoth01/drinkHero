@@ -14,6 +14,7 @@ public class EnemyDatabase : DatabaseItem {
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _shield;
     [SerializeField] private string _spritePath;
+    [SerializeField] private bool _isBoss;
     private List<EnemyToEnemySkill> _enemyToEnemySkills;
 
     public static Dictionary<string, EnemyDatabase> _cachedData = new Dictionary<string, EnemyDatabase>();
@@ -26,9 +27,21 @@ public class EnemyDatabase : DatabaseItem {
     private int _maxHealth;
     private int _shield;
     private string _spritePath;
+    private bool _isBoss;
     private List<EnemyToEnemySkill> _enemyToEnemySkills;
 
 #endif
+
+    [Column("ID"), PrimaryKey]
+    public int Id {
+        get {
+            return _id;
+        }
+        set {
+            _id = value;
+        }
+
+    }
 
     [Column("MaxHealth")]
     public int MaxHealth {
@@ -62,15 +75,16 @@ public class EnemyDatabase : DatabaseItem {
         }
     }
 
-    [Column("ID"), PrimaryKey]
-    public int Id {
+
+    [Column("IsBoss")]
+    public bool IsBoss {
         get {
-            return _id;
-        }
-        set {
-            _id = value;
+            return _isBoss;
         }
 
+        set {
+            _isBoss = value;
+        }
     }
 
 
@@ -109,6 +123,8 @@ public class EnemyDatabase : DatabaseItem {
             _enemyToEnemySkills = value;
         }
     }
+
+
 
     private void RequestEnemySkills(string name) {
         string functionCall = ClientFunctions.GetEnemytoEnemySkillByKeyPair("RefEnemy\"" + _id + "\"");

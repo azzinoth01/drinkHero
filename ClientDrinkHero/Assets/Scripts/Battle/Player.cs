@@ -111,16 +111,22 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
 
 
 
-    public void PlayHandCard(int index) {
+    public bool PlayHandCard(int index) {
 
         CardDatabase card = _handCards[index];
 
+<<<<<<< HEAD
         if (card.Cost > _ressource) {
 <<<<<<< Updated upstream
             return;
 =======
             return false;
 >>>>>>> Stashed changes
+=======
+        if (card.Cost > _ressource)
+        {
+            return false;
+>>>>>>> development
         }
 
         _handCards.RemoveAt(index);
@@ -150,7 +156,7 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
 
         _gameDeck.ScrapCard(card);
 
-
+        return true;
     }
 
 

@@ -10,6 +10,10 @@ public struct ModifierStruct {
         _modifierValue = modifierValue;
         _fixedModifierValue = fixedModifierValue;
     }
+    public ModifierStruct(ModifierStruct copy) {
+        _modifierValue = copy._modifierValue;
+        _fixedModifierValue = copy._fixedModifierValue;
+    }
 
     public int ModifierValue {
         get {
