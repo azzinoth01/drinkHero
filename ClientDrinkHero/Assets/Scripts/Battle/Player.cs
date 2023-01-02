@@ -4,7 +4,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [Serializable]
-public class Player : Character, IHandCards, IPlayer {
+public class Player : Character, IHandCards, IPlayer, IPlayerAction {
     const int MaxHandCards = 5;
 
     [SerializeField] private string _name;
@@ -52,14 +52,18 @@ public class Player : Character, IHandCards, IPlayer {
 
         }
     }
+
+
     public Player(GameDeck gameDeck) : base() {
         GameDeck = gameDeck;
         ResetPlayer();
         UIDataContainer.Instance.Player = this;
+
     }
 
     public Player() : base() {
         UIDataContainer.Instance.Player = this;
+
     }
 
     private void ResetPlayer() {
@@ -112,7 +116,11 @@ public class Player : Character, IHandCards, IPlayer {
         CardDatabase card = _handCards[index];
 
         if (card.Cost > _ressource) {
+<<<<<<< Updated upstream
             return;
+=======
+            return false;
+>>>>>>> Stashed changes
         }
 
         _handCards.RemoveAt(index);
@@ -158,7 +166,7 @@ public class Player : Character, IHandCards, IPlayer {
                 }
                 else if (effect is IDebuff) {
                     IDebuff b = (IDebuff)effect;
-                    if (b.ActivateEffect(GlobalGameInfos.Instance.EnemyObject.Enemy, ActivationTimeEnum.onCast) == true) {
+                    if (b.ActivateEffectBase(GlobalGameInfos.Instance.EnemyObject.Enemy, ActivationTimeEnum.onCast) == true) {
                         GlobalGameInfos.Instance.EnemyObject.Enemy.DebuffList.Add(b);
                     }
                 }

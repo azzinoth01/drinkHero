@@ -2,7 +2,7 @@ public class DebuffFixedAttack : Effect, IDebuff {
     public DebuffFixedAttack(Effect statusEffect) : base(statusEffect) {
     }
 
-    public override bool ActivateEffect(ICharacterAction target, ActivationTimeEnum activation, int? value = null) {
+    public override bool ActivateEffectBase(ICharacterAction target, ActivationTimeEnum activation, int? value = null) {
         if (_isOver == true) {
             return false;
         }

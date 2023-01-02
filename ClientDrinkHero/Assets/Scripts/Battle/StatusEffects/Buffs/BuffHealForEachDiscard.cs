@@ -3,7 +3,7 @@ using UnityEngine;
 public class BuffHealForEachDiscard : Effect, IBuff {
     public BuffHealForEachDiscard(Effect statusEffect) : base(statusEffect) {
     }
-    public override bool ActivateEffect(ICharacterAction target, ActivationTimeEnum activation, int? value = null) {
+    public override bool ActivateEffect(IPlayerAction target, ActivationTimeEnum activation, int? value = null) {
         if (_isOver == true) {
             return false;
         }

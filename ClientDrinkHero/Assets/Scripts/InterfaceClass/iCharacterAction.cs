@@ -14,10 +14,8 @@ public interface ICharacterAction {
     public void SkipTurn(int value);
     public void SetBuffMultihit(int value);
     public void ShieldAttack();
-    public void DiscardHandCards(int value);
-    public int GetDiscadHandCardsCount();
-    public void Mana(int value);
     public void RemoveDebuff(int value);
-    public void DrawCard(int value);
+
+
 
 }

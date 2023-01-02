@@ -37,7 +37,10 @@ public interface IEffect {
     }
 
 
-    public bool ActivateEffect(ICharacterAction target, ActivationTimeEnum activation, int? value = null);
+    public bool ActivateEffectBase(ICharacterAction target, ActivationTimeEnum activation, int? value = null);
+
+    public bool ActivateEffect(IPlayerAction target, ActivationTimeEnum activation, int? value = null);
+
 
     public bool StatusEffectApplyCheck(IEffect statusEffect);
 
