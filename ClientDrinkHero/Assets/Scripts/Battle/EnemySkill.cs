@@ -120,7 +120,7 @@ public class EnemySkill : IGetUpdateFromServer {
             _enemySkillData = value;
             if (_enemySkillData != null) {
                 if (ConvertEnemySkillData() == false) {
-                    GlobalGameInfos.Instance.WaitOnServerObjects.Add(this);
+                    //GlobalGameInfos.Instance.WaitOnServerObjects.Add(this);
                 }
             }
 

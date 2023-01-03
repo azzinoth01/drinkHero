@@ -123,22 +123,24 @@ public static class ServerFunctions {
 
     }
 
-    private static string AddDataToDatabase<T>(StreamWriter stream, T item) where T : DatabaseItem, new() {
+    private static T AddDataToDatabase<T>(T item) where T : DatabaseItem, new() {
 
         int? id = DatabaseManager.InsertDatabaseItemAndReturnKey<T>(item);
 
-        T insertedItem = DatabaseManager.GetDatabaseItem<T>(id);
+        return DatabaseManager.GetDatabaseItem<T>(id);
 
-        string data = CreateTransmissionStringOfItem<T>(insertedItem);
-        data = data + " END ";
+        //T insertedItem = DatabaseManager.GetDatabaseItem<T>(id);
 
-        try {
-            stream.Write(data);
-        }
-        catch {
-            return "exeption";
-        }
-        return data;
+        //string data = CreateTransmissionStringOfItem<T>(insertedItem);
+        //data = data + " END ";
+
+        //try {
+        //    stream.Write(data);
+        //}
+        //catch {
+        //    return "exeption";
+        //}
+        //return data;
 
     }
 
@@ -368,8 +370,19 @@ public static class ServerFunctions {
     public static string CreateNewUser(StreamWriter stream, string pair) {
 #if SERVER
         UserDatabase user = new UserDatabase();
+        user = AddDataToDatabase<UserDatabase>(user);
 
-        return AddDataToDatabase<UserDatabase>(stream, user);
+        for (int i = 0; i < 4;) {
+            HeroToUserDatabase heroToUser = new HeroToUserDatabase();
+
+            heroToUser.RefHero = i;
+            heroToUser.RefUser = user.Id;
+
+            AddDataToDatabase<HeroToUserDatabase>(heroToUser);
+
+            i = i + 1;
+        }
+        return SendData<UserDatabase>(stream, "ID\"" + user.Id + "\"");
 #else
         return null;
 #endif

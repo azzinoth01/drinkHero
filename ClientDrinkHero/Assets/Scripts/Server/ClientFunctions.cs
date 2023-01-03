@@ -114,7 +114,11 @@ public static class ClientFunctions {
         return GetWriteString(info, pair);
     }
 
+    public static string CreateNewUser() {
+        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.CreateNewUser));
 
+        return GetWriteString(info);
+    }
 
 
 

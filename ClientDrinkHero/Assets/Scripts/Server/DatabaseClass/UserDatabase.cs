@@ -10,9 +10,10 @@ public class UserDatabase : DatabaseItem {
 
 #if CLIENT
     [SerializeField] private int _id;
+    [SerializeField] private string _name;
     [SerializeField] private int _money;
     [SerializeField] private int _crystalBottles;
-    private List<HeroDatabase> _heroDatabasesList;
+    private List<HeroToUserDatabase> _heroToUserDatabasesList;
 
 
     public static Dictionary<string, UserDatabase> _cachedData = new Dictionary<string, UserDatabase>();
@@ -20,9 +21,10 @@ public class UserDatabase : DatabaseItem {
 #endif
 #if SERVER
      private int _id;
+     private string _name;
      private int _money;
      private int _crystalBottles;
-     private List<HeroDatabase> _heroDatabasesList;
+     private List<HeroToUserDatabase> _heroToUserDatabasesList;
    
 #endif
 
@@ -35,6 +37,16 @@ public class UserDatabase : DatabaseItem {
             _id = value;
         }
 
+    }
+    [Column("Name")]
+    public string Name {
+        get {
+            return _name;
+        }
+
+        set {
+            _name = value;
+        }
     }
 
     [Column("Money")]
@@ -72,11 +84,11 @@ public class UserDatabase : DatabaseItem {
     }
 #endif
 #if CLIENT
-    public List<HeroDatabase> HeroDatabasesList {
+    public List<HeroToUserDatabase> HeroDatabasesList {
         get {
 
-            if (_heroDatabasesList.Count != 0) {
-                return _heroDatabasesList;
+            if (_heroToUserDatabasesList.Count != 0) {
+                return _heroToUserDatabasesList;
             }
             else {
 
@@ -84,17 +96,17 @@ public class UserDatabase : DatabaseItem {
                 string name = GetPropertyName();
 
                 if (AlreadyRequested(name)) {
-                    return _heroDatabasesList;
+                    return _heroToUserDatabasesList;
                 }
 
                 RequestHeroToUser(name);
             }
 
-            return _heroDatabasesList;
+            return _heroToUserDatabasesList;
         }
 
         set {
-            _heroDatabasesList = value;
+            _heroToUserDatabasesList = value;
         }
     }
 
@@ -107,6 +119,8 @@ public class UserDatabase : DatabaseItem {
         int index = SendRequest(functionCall, typeof(HeroToUserDatabase));
         _propertyToRequestedId[index] = name;
     }
+
+
 
 
     public static List<UserDatabase> CreateObjectDataFromString(string message) {
@@ -147,6 +161,10 @@ public class UserDatabase : DatabaseItem {
     public override void RequestLoadReferenzData() {
         string name = null;
 
+
+
+
+
         name = nameof(HeroDatabasesList);
         if (AlreadyRequested(name) == false) {
             RequestHeroToUser(name);
@@ -155,10 +173,17 @@ public class UserDatabase : DatabaseItem {
     }
 
 
+
+
+
+
+
 #endif
 
     public UserDatabase() : base() {
-        _heroDatabasesList = new List<HeroDatabase>();
+        _heroToUserDatabasesList = new List<HeroToUserDatabase>();
+
+
     }
 
 
