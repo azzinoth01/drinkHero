@@ -206,6 +206,7 @@ public static class DatabaseManager {
         return list;
     }
 
+
     public static List<T> GetDatabaseList<T>(string viewName) where T : DatabaseItem, new() {
         if (_db == null) {
             return null;
@@ -337,6 +338,89 @@ public static class DatabaseManager {
 
         command.ExecuteNonQuery();
 
+    }
+    public static int InsertDatabaseItemAndReturnKey<T>(T item) where T : DatabaseItem, new() {
+        if (_db == null) {
+            return -1;
+        }
+
+
+        TableMapping mapping = GetTableMapping<T>();
+
+        string sqlCommand = "INSERT INTO " + mapping.TableName + " ( ";
+        bool firstLoop = false;
+        foreach (string key in mapping.ColumnsMapping.Keys) {
+            if (key == mapping.PrimaryKeyColumn) {
+                continue;
+            }
+
+            if (firstLoop == false) {
+                firstLoop = true;
+                sqlCommand = sqlCommand + " " + key;
+            }
+            else {
+                sqlCommand = sqlCommand + ", " + key;
+            }
+
+        }
+
+        sqlCommand = sqlCommand + " ) VALUES (";
+        firstLoop = false;
+
+        foreach (string key in mapping.ColumnsMapping.Keys) {
+            if (key == mapping.PrimaryKeyColumn) {
+                continue;
+            }
+
+            if (firstLoop == false) {
+                firstLoop = true;
+                sqlCommand = sqlCommand + " @" + key;
+            }
+            else {
+                sqlCommand = sqlCommand + ", @" + key;
+            }
+
+        }
+        sqlCommand = sqlCommand + " ) ";
+
+
+        MySqlCommand command = _db.CreateCommand();
+
+        MySqlTransaction transaction = _db.BeginTransaction();
+
+        command.Connection = _db;
+        command.Transaction = transaction;
+
+        command.CommandText = sqlCommand;
+
+        foreach (KeyValuePair<string, string> pair in mapping.ColumnsMapping) {
+            if (pair.Key == mapping.PrimaryKeyColumn) {
+                continue;
+            }
+
+            command.Parameters.AddWithValue("@" + pair.Key, item.GetType().GetProperty(pair.Value).GetValue(item));
+
+        }
+
+        command.ExecuteNonQuery();
+        command.CommandText = "SELECT LAST_INSERT_ID()";
+
+        MySqlDataReader reader = command.ExecuteReader();
+
+        int id = -1;
+        while (reader.Read()) {
+
+
+            id = reader.GetInt32(0);
+
+
+
+        }
+        reader.Close();
+
+
+
+        return id;
     }
 #endif
 }

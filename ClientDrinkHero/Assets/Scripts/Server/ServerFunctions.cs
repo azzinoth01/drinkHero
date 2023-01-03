@@ -122,6 +122,26 @@ public static class ServerFunctions {
         return data;
 
     }
+
+    private static string AddDataToDatabase<T>(StreamWriter stream, T item) where T : DatabaseItem, new() {
+
+        int? id = DatabaseManager.InsertDatabaseItemAndReturnKey<T>(item);
+
+        T insertedItem = DatabaseManager.GetDatabaseItem<T>(id);
+
+        string data = CreateTransmissionStringOfItem<T>(insertedItem);
+        data = data + " END ";
+
+        try {
+            stream.Write(data);
+        }
+        catch {
+            return "exeption";
+        }
+        return data;
+
+    }
+
 #endif
 
 
@@ -307,6 +327,55 @@ public static class ServerFunctions {
 #endif
 
     }
+
+    [ServerFunction("GetUser")]
+    public static string GetUser(StreamWriter stream) {
+#if SERVER
+        return SendData<UserDatabase>(stream);
+#else
+        return null;
+#endif
+
+    }
+    [ServerFunction("GetUserByKeyPair")]
+    public static string GetUserByKeyPair(StreamWriter stream, string pair) {
+#if SERVER
+        return SendData<UserDatabase>(stream, pair);
+#else
+        return null;
+#endif
+
+    }
+    [ServerFunction("GetUserToHero")]
+    public static string GetUserToHero(StreamWriter stream) {
+#if SERVER
+        return SendData<UserDatabase>(stream);
+#else
+        return null;
+#endif
+
+    }
+    [ServerFunction("GetUserToHeroByKeyPair")]
+    public static string GetUserToHeroByKeyPair(StreamWriter stream, string pair) {
+#if SERVER
+        return SendData<UserDatabase>(stream, pair);
+#else
+        return null;
+#endif
+
+    }
+    [ServerFunction("CreateNewUser")]
+    public static string CreateNewUser(StreamWriter stream, string pair) {
+#if SERVER
+        UserDatabase user = new UserDatabase();
+
+        return AddDataToDatabase<UserDatabase>(stream, user);
+#else
+        return null;
+#endif
+
+    }
+
 
 
     [ServerFunction("SendMessage")]
