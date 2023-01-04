@@ -6,9 +6,9 @@ public class InitScene : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        //delay = delay - Time.deltaTime;
-        //if (delay <= 0) {
-        //    //SceneLoader.Load(GameSceneEnum.MainMenu);
-        //}
+        delay = delay - Time.deltaTime;
+        if (delay <= 0) {
+            SceneLoader.Load(GameSceneEnum.MainMenu);
+        }
     }
 }
