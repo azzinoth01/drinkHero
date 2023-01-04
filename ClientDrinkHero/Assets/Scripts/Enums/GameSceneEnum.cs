@@ -1,8 +1,8 @@
 public enum GameSceneEnum {
     InitScene,
     LoadingScene,
-    MainMenu,
+    MainMenuScene,
     BattleScene,
-    GachaMenu,
-    DeckBuilder
+    GachaMenuScene,
+    BattlePreparationMenu
 }
