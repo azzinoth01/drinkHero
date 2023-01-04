@@ -7,6 +7,6 @@ public class GameOverView : View
     
     public override void Initialize()
     {
-        mainMenuButton.onClick.AddListener(() => SceneLoader.Load(GameSceneEnum.MainMenu));
+        mainMenuButton.onClick.AddListener(() => SceneLoader.Load(GameSceneEnum.MainMenuScene));
     }
 }

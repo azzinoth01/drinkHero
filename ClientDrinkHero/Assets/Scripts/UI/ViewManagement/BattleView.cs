@@ -213,6 +213,6 @@ public class BattleView : View
     public override void Initialize()
     { 
         optionsMenuButton.onClick.AddListener(() => ViewManager.Show<OptionsMenuView>());
-        mainMenuButton.onClick.AddListener(() => SceneLoader.Load(GameSceneEnum.MainMenu));
+        mainMenuButton.onClick.AddListener(() => SceneLoader.Load(GameSceneEnum.MainMenuScene));
     }
 }
