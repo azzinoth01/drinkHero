@@ -351,7 +351,7 @@ public static class ServerFunctions {
     [ServerFunction("GetUserToHero")]
     public static string GetUserToHero(StreamWriter stream) {
 #if SERVER
-        return SendData<UserDatabase>(stream);
+        return SendData<HeroToUserDatabase>(stream);
 #else
         return null;
 #endif
@@ -360,19 +360,19 @@ public static class ServerFunctions {
     [ServerFunction("GetUserToHeroByKeyPair")]
     public static string GetUserToHeroByKeyPair(StreamWriter stream, string pair) {
 #if SERVER
-        return SendData<UserDatabase>(stream, pair);
+        return SendData<HeroToUserDatabase>(stream, pair);
 #else
         return null;
 #endif
 
     }
     [ServerFunction("CreateNewUser")]
-    public static string CreateNewUser(StreamWriter stream, string pair) {
+    public static string CreateNewUser(StreamWriter stream) {
 #if SERVER
         UserDatabase user = new UserDatabase();
         user = AddDataToDatabase<UserDatabase>(user);
 
-        for (int i = 0; i < 4;) {
+        for (int i = 1; i < 5;) {
             HeroToUserDatabase heroToUser = new HeroToUserDatabase();
 
             heroToUser.RefHero = i;

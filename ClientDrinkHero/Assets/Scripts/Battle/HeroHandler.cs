@@ -33,6 +33,7 @@ public class HeroHandler {
         _requestId = HandleRequests.Instance.HandleRequest(request, typeof(HeroDatabase));
         _heros = null;
         _dataIsLoading = true;
+        NetworkDataContainer.Instance.WaitForServer.AddWaitOnServer();
     }
 
     private bool LoadHeroData() {
@@ -79,6 +80,7 @@ public class HeroHandler {
             if (LoadHeroData()) {
                 _dataIsLoading = false;
                 LoadingFinished?.Invoke();
+                NetworkDataContainer.Instance.WaitForServer.FinishedWaitOnServer();
             }
         }
 

@@ -1,4 +1,5 @@
 public enum GameSceneEnum {
+    InitScene,
     LoadingScene,
     MainMenu,
     BattleScene,

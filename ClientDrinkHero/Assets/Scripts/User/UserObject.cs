@@ -13,6 +13,8 @@ public class UserObject : MonoBehaviour {
 
         _userHandle.LoadingFinished += UserLoaded;
 
+        _userHandle.RequestData();
+
         UserSingelton.Instance.UserObject = this;
     }
 

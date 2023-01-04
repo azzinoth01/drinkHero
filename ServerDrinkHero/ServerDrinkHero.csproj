@@ -21,9 +21,7 @@
 
 	<ItemGroup>
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\CardToEffect.cs" Link="Database\DatabaseClass\CardToEffect.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\DeckDatabase.cs" Link="Database\DatabaseClass\DeckDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Effect.cs" Link="Database\DatabaseClass\Effect.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\HeroSlotDatabase.cs" Link="Database\DatabaseClass\HeroSlotDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\HeroToUserDatabase.cs" Link="Database\DatabaseClass\HeroToUserDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\UserDatabase.cs" Link="Database\DatabaseClass\UserDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\ColumnAttribute.cs" Link="Database\ColumnAttribute.cs" />

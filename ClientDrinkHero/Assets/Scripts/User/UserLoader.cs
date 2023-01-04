@@ -30,6 +30,8 @@ public class UserLoader {
         requestId = HandleRequests.Instance.HandleRequest(request, typeof(UserDatabase));
         user = null;
         loadData = true;
+
+        NetworkDataContainer.Instance.WaitForServer.AddWaitOnServer();
     }
 
     private bool LoadUserData() {
@@ -71,6 +73,7 @@ public class UserLoader {
             if (LoadUserData()) {
                 loadData = false;
                 LoadingFinished?.Invoke();
+                NetworkDataContainer.Instance.WaitForServer.FinishedWaitOnServer();
             }
         }
 

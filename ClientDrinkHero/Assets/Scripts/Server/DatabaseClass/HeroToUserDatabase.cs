@@ -1,15 +1,18 @@
 #if CLIENT
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 #endif
+
+[Serializable, Table("HeroToUser")]
 public class HeroToUserDatabase : DatabaseItem {
 
 #if CLIENT
     [SerializeField] private int _id;
     [SerializeField] private int? _refUser;
     [SerializeField] private int? _refHero;
-    private HeroDatabase _hero;
+    [SerializeField] private HeroDatabase _hero;
     private UserDatabase _user;
 
     private static Dictionary<string, HeroToUserDatabase> _cachedData = new Dictionary<string, HeroToUserDatabase>();

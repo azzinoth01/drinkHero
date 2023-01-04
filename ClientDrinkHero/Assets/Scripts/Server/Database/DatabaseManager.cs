@@ -134,6 +134,9 @@ public static class DatabaseManager {
         if (_db == null || index == null) {
             return null;
         }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
+        }
 
         TableMapping mapping = GetTableMapping<T>();
 
@@ -159,6 +162,9 @@ public static class DatabaseManager {
         if (_db == null) {
             return null;
         }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
+        }
 
         TableMapping mapping = GetTableMapping<T>();
 
@@ -183,6 +189,9 @@ public static class DatabaseManager {
     public static List<T> GetDatabaseList<T>(string foreigenKey, int keyValue) where T : DatabaseItem, new() {
         if (_db == null) {
             return null;
+        }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
         }
 
         TableMapping mapping = GetTableMapping<T>();
@@ -211,6 +220,9 @@ public static class DatabaseManager {
         if (_db == null) {
             return null;
         }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
+        }
 
         TableMapping mapping = GetTableMapping<T>();
 
@@ -236,6 +248,9 @@ public static class DatabaseManager {
     public static void UpdateDatabaseItem<T>(T item) where T : DatabaseItem, new() {
         if (_db == null) {
             return;
+        }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
         }
 
 
@@ -280,6 +295,9 @@ public static class DatabaseManager {
     public static void InsertDatabaseItem<T>(T item) where T : DatabaseItem, new() {
         if (_db == null) {
             return;
+        }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
         }
 
 
@@ -343,6 +361,9 @@ public static class DatabaseManager {
         if (_db == null) {
             return -1;
         }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
+        }
 
 
         TableMapping mapping = GetTableMapping<T>();
@@ -402,8 +423,12 @@ public static class DatabaseManager {
 
         }
 
+        Console.WriteLine(command.CommandText + " \r\n");
+
         command.ExecuteNonQuery();
         command.CommandText = "SELECT LAST_INSERT_ID()";
+
+        Console.WriteLine(command.CommandText + " \r\n");
 
         MySqlDataReader reader = command.ExecuteReader();
 
@@ -418,6 +443,7 @@ public static class DatabaseManager {
         }
         reader.Close();
 
+        transaction.Commit();
 
 
         return id;

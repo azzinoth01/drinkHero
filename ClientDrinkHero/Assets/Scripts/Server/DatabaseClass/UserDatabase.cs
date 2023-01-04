@@ -1,10 +1,12 @@
 
 #if CLIENT
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 #endif
 
+[Serializable, Table("User")]
 public class UserDatabase : DatabaseItem {
 
 
@@ -13,19 +15,19 @@ public class UserDatabase : DatabaseItem {
     [SerializeField] private string _name;
     [SerializeField] private int _money;
     [SerializeField] private int _crystalBottles;
-    private List<HeroToUserDatabase> _heroToUserDatabasesList;
+    [SerializeField] private List<HeroToUserDatabase> _heroToUserDatabasesList;
 
 
     public static Dictionary<string, UserDatabase> _cachedData = new Dictionary<string, UserDatabase>();
 
 #endif
 #if SERVER
-     private int _id;
-     private string _name;
-     private int _money;
-     private int _crystalBottles;
-     private List<HeroToUserDatabase> _heroToUserDatabasesList;
-   
+    private int _id;
+    private string _name;
+    private int _money;
+    private int _crystalBottles;
+    private List<HeroToUserDatabase> _heroToUserDatabasesList;
+
 #endif
 
     [Column("ID"), PrimaryKey]
@@ -75,10 +77,10 @@ public class UserDatabase : DatabaseItem {
 
 
 #if SERVER
-    public  List<HeroDatabase> HeroDatabasesList {
+    public List<HeroToUserDatabase> HeroToUserDatabasesList {
         get {
-            _heroDatabasesList = DatabaseManager.GetDatabaseList<HeroDatabase>("RefHero", Id);
-            return _heroDatabasesList;
+            _heroToUserDatabasesList = DatabaseManager.GetDatabaseList<HeroToUserDatabase>("RefHero", Id);
+            return _heroToUserDatabasesList;
         }
 
     }
