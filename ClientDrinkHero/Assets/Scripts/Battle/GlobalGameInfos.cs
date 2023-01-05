@@ -7,7 +7,7 @@ public class GlobalGameInfos : MonoBehaviour {
 
     [SerializeField] private PlayerObject _playerObject;
     [SerializeField] private EnemyObject _enemyObject;
-    [SerializeField] private UserObject _userObject;
+    [SerializeField] private UserObjectOld _userObject;
     [SerializeField] private GameObject _turnManager;
 
     public static GlobalGameInfos Instance {
@@ -38,7 +38,7 @@ public class GlobalGameInfos : MonoBehaviour {
         }
     }
 
-    public UserObject UserObject {
+    public UserObjectOld UserObject {
         get {
             return _userObject;
         }

@@ -111,21 +111,21 @@ public class EnemySkill : IGetUpdateFromServer {
         }
     }
 
-    public EnemySkillDatabase EnemySkillData {
-        get {
-            return _enemySkillData;
-        }
+    //public EnemySkillDatabase EnemySkillData {
+    //    get {
+    //        return _enemySkillData;
+    //    }
 
-        set {
-            _enemySkillData = value;
-            if (_enemySkillData != null) {
-                if (ConvertEnemySkillData() == false) {
-                    //GlobalGameInfos.Instance.WaitOnServerObjects.Add(this);
-                }
-            }
+    //    set {
+    //        _enemySkillData = value;
+    //        if (_enemySkillData != null) {
+    //            if (ConvertEnemySkillData() == false) {
+    //                //GlobalGameInfos.Instance.WaitOnServerObjects.Add(this);
+    //            }
+    //        }
 
-        }
-    }
+    //    }
+    //}
 
     public long Id {
         get {

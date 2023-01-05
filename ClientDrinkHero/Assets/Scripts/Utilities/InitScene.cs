@@ -8,7 +8,7 @@ public class InitScene : MonoBehaviour {
     void Update() {
         delay = delay - Time.deltaTime;
         if (delay <= 0) {
-            SceneLoader.Load(GameSceneEnum.MainMenu);
+            SceneLoader.Load(GameSceneEnum.MainMenuScene);
         }
     }
 }

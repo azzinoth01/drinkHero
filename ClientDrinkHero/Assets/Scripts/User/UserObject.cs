@@ -3,7 +3,17 @@ using UnityEngine;
 public class UserObject : MonoBehaviour {
 
     private UserLoader _userHandle;
-    public UserDatabase _user;
+    [SerializeField] private UserDatabase _user;
+
+    public UserDatabase User {
+        get {
+            return _user;
+        }
+
+        set {
+            _user = value;
+        }
+    }
 
     void Start() {
 
@@ -24,7 +34,7 @@ public class UserObject : MonoBehaviour {
     }
 
     private void UserLoaded() {
-        _user = _userHandle.user;
+        User = _userHandle.user;
     }
     private void OnDestroy() {
         _userHandle.LoadingFinished -= UserLoaded;
