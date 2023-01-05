@@ -6,7 +6,7 @@ public class UIDataContainer {
     private ICharacter _enemy;
 
     private IWaitingPanel _waitingPanel;
-    
+
     public static UIDataContainer Instance {
         get {
             if (_instance == null) {
@@ -35,7 +35,14 @@ public class UIDataContainer {
             _enemy = value;
         }
     }
-    
-    public IWaitingPanel WaitingPanel => _waitingPanel;
-    
+
+    public IWaitingPanel WaitingPanel {
+        get {
+            return _waitingPanel;
+        }
+        set {
+            _waitingPanel = value;
+        }
+
+    }
 }

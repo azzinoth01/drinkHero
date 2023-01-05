@@ -119,6 +119,7 @@ public class ConnectedClient {
         if (TransmissionControl.CheckHeartBeat(_recievedData, out _recievedData)) {
 
             LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {RECIEVED} KEEPALIVE\r\n");
+            Console.WriteLine("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {RECIEVED} KEEPALIVE\r\n");
         }
         string message = TransmissionControl.GetMessageObject(_recievedData, out _recievedData);
 
@@ -136,9 +137,11 @@ public class ConnectedClient {
         else if (isCommand == true) {
             //Console.Write(message);
             LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {RECIEVED} " + message + "\r\n");
+            Console.WriteLine("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {RECIEVED} " + message + "\r\n");
             string log = TransmissionControl.CommandMessage(_streamWriter, message);
             //Console.Write(log);
             LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {SEND} " + log + "\r\n");
+            Console.WriteLine("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {SEND} " + log + "\r\n");
         }
         else {
             //check what data type is to be recieved

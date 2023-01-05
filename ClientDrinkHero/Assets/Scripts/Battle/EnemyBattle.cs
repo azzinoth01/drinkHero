@@ -283,14 +283,14 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     private void CheckDebuffsAndBuffs(ActivationTimeEnum activation, int? value = null) {
         for (int i = BuffList.Count; i > 0;) {
             i = i - 1;
-            if (BuffList[i].ActivateEffect(this, activation, value) == false) {
+            if (BuffList[i].ActivateEffectBase(this, activation, value) == false) {
                 BuffList.RemoveAt(i);
             }
 
         }
         for (int i = DebuffList.Count; i > 0;) {
             i = i - 1;
-            if (DebuffList[i].ActivateEffect(this, activation, value) == false) {
+            if (DebuffList[i].ActivateEffectBase(this, activation, value) == false) {
                 DebuffList.RemoveAt(i);
             }
 

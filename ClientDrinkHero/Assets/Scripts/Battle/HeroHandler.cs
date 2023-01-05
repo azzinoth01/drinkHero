@@ -4,11 +4,11 @@ using System.Collections.Generic;
 public class HeroHandler {
 
     private int _requestId;
-    private List<HeroDatabase> _heros;
+    private HeroDatabase _heros;
 
     private bool _dataIsLoading;
 
-    public List<HeroDatabase> Heros {
+    public HeroDatabase Heros {
         get {
             return _heros;
         }
@@ -20,19 +20,20 @@ public class HeroHandler {
     public HeroHandler() {
 
         _dataIsLoading = false;
-        _heros = new List<HeroDatabase>();
+        _heros = null;
         _requestId = 0;
 
     }
 
 
-    public void RequestData() {
+    public void RequestData(int index) {
 
-        string request = ClientFunctions.GetHeroDatabase();
+        string request = ClientFunctions.GetHeroDatabaseByKeyPair("ID\"" + index + "\"");
 
         _requestId = HandleRequests.Instance.HandleRequest(request, typeof(HeroDatabase));
         _heros = null;
         _dataIsLoading = true;
+        NetworkDataContainer.Instance.WaitForServer.AddWaitOnServer();
     }
 
     private bool LoadHeroData() {
@@ -72,13 +73,14 @@ public class HeroHandler {
 
             List<HeroDatabase> list = HeroDatabase.CreateObjectDataFromString(HandleRequests.Instance.RequestData[_requestId]);
 
-            _heros = list;
+            _heros = list[0];
             HandleRequests.Instance.RequestDataStatus[_requestId] = DataRequestStatusEnum.RecievedAccepted;
         }
         if (_heros != null) {
             if (LoadHeroData()) {
                 _dataIsLoading = false;
                 LoadingFinished?.Invoke();
+                NetworkDataContainer.Instance.WaitForServer.FinishedWaitOnServer();
             }
         }
 

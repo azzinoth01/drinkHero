@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UserObject : MonoBehaviour {
+public class UserObjectOld : MonoBehaviour {
 
     [SerializeField] private User _users;
 

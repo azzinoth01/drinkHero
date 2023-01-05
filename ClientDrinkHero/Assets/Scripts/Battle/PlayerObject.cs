@@ -1,45 +1,61 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerObject : MonoBehaviour {
     [SerializeField] private Player _player;
     [SerializeField] private SimpleAudioEvent _playerDamageSound, _playerDamageBlockedSound, _playerhealedSound, _playerShieldUpSound;
 
-    private HeroHandler _heroHandler;
+    private List<HeroHandler> _heroHandlerList;
 
 
 
     public Player Player => _player;
 
     //remove after prototype
-    public UserObject testUserField;
-
+    public UserObjectOld testUserField;
+    private int _loadcounter;
 
 
     private void Awake() {
         _player = new Player();
         _player.Clear();
 
-        _heroHandler = new HeroHandler();
 
-        _heroHandler.RequestData();
-        _heroHandler.LoadingFinished += HerosLoaded;
+        _heroHandlerList = new List<HeroHandler>();
+
+        _loadcounter = 0;
+        for (int i = 0; i < 4;) {
+            HeroHandler heroHandler = new HeroHandler();
+            heroHandler.RequestData((int)UserSingelton.Instance.UserObject.User.HeroDatabasesList[i].RefHero);
+            heroHandler.LoadingFinished += HerosLoaded;
+
+            _heroHandlerList.Add(heroHandler);
+
+            i = i + 1;
+        }
+
 
     }
 
     private void Update() {
-        _heroHandler.Update();
+        foreach (HeroHandler heroHandler in _heroHandlerList) {
+            heroHandler.Update();
+        }
+
     }
     private void HerosLoaded() {
+        _loadcounter = _loadcounter + 1;
+        if (_loadcounter != 4) {
+            return;
+        }
+
         GameDeck gameDeck = new GameDeck();
         Deck deck = new Deck();
         int i = 0;
-        foreach (HeroDatabase heroDatabase in _heroHandler.Heros) {
-            if (i > 3) {
-                break;
-            }
+        foreach (HeroHandler heroHandler in _heroHandlerList) {
 
             HeroSlot slot = new HeroSlot();
-            slot.Hero = heroDatabase;
+            slot.Hero = heroHandler.Heros;
             deck.HeroSlotList.Add(slot);
 
             i = i + 1;

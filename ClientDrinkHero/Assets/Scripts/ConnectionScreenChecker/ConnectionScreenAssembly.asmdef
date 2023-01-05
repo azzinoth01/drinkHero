@@ -1,0 +1,17 @@
+{
+    "name": "ConnectionScreenAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8bf862ddea420114d941f1a3878d6e22",
+        "GUID:11101ee515312304ebf449641a845cd4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

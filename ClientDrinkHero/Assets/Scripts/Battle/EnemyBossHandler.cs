@@ -29,6 +29,7 @@ public class EnemyBossHandler {
         requestId = HandleRequests.Instance.HandleRequest(request, typeof(EnemyDatabase));
         _enemy = null;
         loadData = true;
+        NetworkDataContainer.Instance.WaitForServer.AddWaitOnServer();
     }
 
     private bool LoadEnemyData() {
@@ -64,6 +65,7 @@ public class EnemyBossHandler {
             if (LoadEnemyData()) {
                 loadData = false;
                 LoadingFinished?.Invoke();
+                NetworkDataContainer.Instance.WaitForServer.FinishedWaitOnServer();
             }
         }
 

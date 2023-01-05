@@ -95,6 +95,33 @@ public static class ClientFunctions {
     }
 
 
+    //public static string GetUser() {
+    //    MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetUser));
+
+    //    return GetWriteString(info);
+    //}
+    public static string GetUserByKeyPair(string pair) {
+        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetUserByKeyPair));
+        return GetWriteString(info, pair);
+    }
+    public static string GetUserToHero() {
+        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetUserToHero));
+
+        return GetWriteString(info);
+    }
+    public static string GetUserToHeroByKeyPair(string pair) {
+        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetUserToHeroByKeyPair));
+        return GetWriteString(info, pair);
+    }
+
+    public static string CreateNewUser() {
+        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.CreateNewUser));
+
+        return GetWriteString(info);
+    }
+
+
+
     public static string SendHeartbeat() {
         return "KEEPALIVE ";
 
