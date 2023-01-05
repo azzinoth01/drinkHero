@@ -169,8 +169,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 594643185947486161, guid: 5508ba2231ac20544866b9c6ec1af580, type: 3}
       propertyPath: m_Name
-      value: CurrencyCounter
+      value: CrystalBottleCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 2244673537899240318, guid: 5508ba2231ac20544866b9c6ec1af580, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5b7bf4ccbf40a84d85b244e4fa18f32, type: 3}
     - target: {fileID: 3238223279241964457, guid: 5508ba2231ac20544866b9c6ec1af580, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.29999924
@@ -275,7 +279,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 594643185947486161, guid: 5508ba2231ac20544866b9c6ec1af580, type: 3}
       propertyPath: m_Name
-      value: CurrencyCounter
+      value: CoinCounter
       objectReference: {fileID: 0}
     - target: {fileID: 3238223279241964457, guid: 5508ba2231ac20544866b9c6ec1af580, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -347,7 +351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6611156578172910162, guid: 5508ba2231ac20544866b9c6ec1af580, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -196.99988
+      value: -279
       objectReference: {fileID: 0}
     - target: {fileID: 6611156578172910162, guid: 5508ba2231ac20544866b9c6ec1af580, type: 3}
       propertyPath: m_AnchoredPosition.y
