@@ -1,15 +1,14 @@
 using UnityEngine;
-public class PullResolver : MonoBehaviour
+public class PullResolver
 {
-    [SerializeField] private int heroPullChance;
-    [SerializeField] private int itemPullChance;
+    private int _heroPullChance;
+    private int _itemPullChance;
 
-    [SerializeField] private Pull[] pullTypes;
-    
+    private Pull[] _pullTypes;
     private float _totalPullTypeWeight;
     
-    [SerializeField] private Pull[] availableHeroPulls;
-    [SerializeField] private Pull[] availableItemPulls;
+    private Pull[] _availableHeroPulls;
+    private Pull[] _availableItemPulls;
 
     private float _totalHeroPullWeight; 
     private float _totalItemPullWeight;
@@ -20,26 +19,12 @@ public class PullResolver : MonoBehaviour
     
     private void Initialize()
     {
-        // check whether PullResolver is initialized
-        // if so return
-        // else    
-            // Get all available Items and Characters and their respective DropRates from Server
-            // fill arrays
-            // sum up chances into totalweight
-            foreach (var type in pullTypes)
-            {
-                _totalPullTypeWeight += type.weight;
-            }
-            // set isInitialized to true
+        foreach (var type in _pullTypes)
+        {
+            _totalPullTypeWeight += type.weight;
+        }
     }
 
-    private void CheckForSufficientCurrency()
-    {
-        // check which currency is needed and amount
-        // if sufficient, deduct and resolve pull type
-        // not really part of this classes job...
-    }
-    
     private void ResolvePull(Pull[] pulls)
     {
         float roll = Random.value * _totalPullTypeWeight;

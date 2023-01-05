@@ -297,7 +297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7839881325722140763, guid: d21e42e86b292f547914de82d758f298, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7839881325722140763, guid: d21e42e86b292f547914de82d758f298, type: 3}
       propertyPath: m_AnchorMax.x
@@ -599,7 +599,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Player Name
+  m_text: NGY7777
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4b234a138094c04d9907bf268b08352, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 4e93ecf090cc8a7438ecffe3074f1ec6, type: 2}
@@ -626,7 +626,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.35
+  m_fontSize: 44.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1581,7 +1581,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Floor 999
+  m_text: Floor 9999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4b234a138094c04d9907bf268b08352, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 4e93ecf090cc8a7438ecffe3074f1ec6, type: 2}
@@ -1675,7 +1675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6128011456009213216, guid: e84dd9f20c1f00d4885a15c650bb394e, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6128011456009213216, guid: e84dd9f20c1f00d4885a15c650bb394e, type: 3}
       propertyPath: m_AnchorMax.x
