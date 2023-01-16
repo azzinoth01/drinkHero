@@ -5,6 +5,8 @@ using System.Text;
 public class ConnectedClient {
 
 
+    private UserDatabase _user;
+
     private Socket _connection;
     private double _timeoutCheck;
     private double _timeoutCheckIntervall;
@@ -48,6 +50,22 @@ public class ConnectedClient {
         }
 
 
+    }
+
+    public StreamWriter StreamWriter {
+        get {
+            return _streamWriter;
+        }
+    }
+
+    public UserDatabase User {
+        get {
+            return _user;
+        }
+
+        set {
+            _user = value;
+        }
     }
 
     public void CloseConnection() {
@@ -146,7 +164,6 @@ public class ConnectedClient {
         else {
             //check what data type is to be recieved
 
-            //TransmissionControl.GetObjectData<HeroDatabase>(message);
         }
 
 

@@ -1,123 +1,136 @@
-using System.Reflection;
-
 public static class ClientFunctions {
 
 
 
     public static string SendMessageToDatabase(string message) {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.SendMessage));
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.SendMessage));
 
-        return GetWriteString(info, message);
+        string callName = "SendMessage";
+        return GetWriteString(callName, message);
     }
     public static string GetHeroDatabase() {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetHeros));
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetHeros));
 
-        return GetWriteString(info);
-
+        string callName = "GetHeros";
+        return GetWriteString(callName);
     }
     public static string GetHeroDatabaseByKeyPair(string pair) {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetHerosByKeyPair));
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetHerosByKeyPair));
 
-        return GetWriteString(info, pair);
-
+        string callName = "GetHerosByKeyPair";
+        return GetWriteString(callName, pair);
     }
 
     public static string GetEnemyDatabase() {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEnemy));
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEnemy));
 
-        return GetWriteString(info);
+        string callName = "GetEnemy";
+        return GetWriteString(callName);
 
     }
 
     public static string GetEnemyDatabaseByKeyPair(string pair) {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEnemyByKeyPair));
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEnemyByKeyPair));
 
-        return GetWriteString(info, pair);
+        string callName = "GetEnemyByKeyPair";
+        return GetWriteString(callName, pair);
 
     }
 
     public static string GetRandomEnemyDatabase() {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetRandomEnemy));
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetRandomEnemy));
 
-        return GetWriteString(info);
+        string callName = "GetRandomEnemy";
+        return GetWriteString(callName);
 
     }
     public static string GetRandomNormalEnemyDatabase(int amount = 1) {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetRandomNormalEnemy));
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetRandomNormalEnemy));
 
-        return GetWriteString(info, amount.ToString());
 
+        string callName = "GetRandomNormalEnemy";
+        return GetWriteString(callName, amount.ToString());
     }
     public static string GetRandomBossEnemyDatabase() {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetRandomBossEnemy));
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetRandomBossEnemy));
 
-        return GetWriteString(info);
+        string callName = "GetRandomBossEnemy";
+        return GetWriteString(callName);
 
     }
 
     public static string GetCardToHeroByKeyPair(string pair) {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetCardToHeroByKeyPair));
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetCardToHeroByKeyPair));
 
-        return GetWriteString(info, pair);
+        string callName = "GetCardToHeroByKeyPair";
+        return GetWriteString(callName, pair);
 
     }
     public static string GetCardDatabaseByKeyPair(string pair) {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetCardsByKeyPair));
-        return GetWriteString(info, pair);
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetCardsByKeyPair));
+        string callName = "GetCardsByKeyPair";
+        return GetWriteString(callName, pair);
 
     }
     public static string GetEnemytoEnemySkillByKeyPair(string pair) {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEnemyToEnemySkillByKeyPair));
-        return GetWriteString(info, pair);
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEnemyToEnemySkillByKeyPair));
+        string callName = "GetEnemyToEnemySkillByKeyPair";
+        return GetWriteString(callName, pair);
     }
     public static string GetEnemySkillByKeyPair(string pair) {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEnemySkillByKeyPair));
-        return GetWriteString(info, pair);
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEnemySkillByKeyPair));
+        string callName = "GetEnemySkillByKeyPair";
+        return GetWriteString(callName, pair);
     }
 
 
     public static string GetCardToEffectByKeyPair(string pair) {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetCardToEffectByKeyPair));
-        return GetWriteString(info, pair);
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetCardToEffectByKeyPair));
+        string callName = "GetCardToEffectByKeyPair";
+        return GetWriteString(callName, pair);
     }
     public static string GetEffectByKeyPair(string pair) {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEffectByKeyPair));
-        return GetWriteString(info, pair);
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEffectByKeyPair));
+        string callName = "GetEffectByKeyPair";
+        return GetWriteString(callName, pair);
     }
 
     public static string GetCardToEffect() {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetCardToEffect));
-        return GetWriteString(info);
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetCardToEffect));
+        string callName = "GetCardToEffect";
+        return GetWriteString(callName);
     }
     public static string GetEffect() {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEffect));
-        return GetWriteString(info);
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetEffect));
+        string callName = "GetEffect";
+        return GetWriteString(callName);
     }
 
-
-    //public static string GetUser() {
-    //    MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetUser));
-
-    //    return GetWriteString(info);
-    //}
     public static string GetUserByKeyPair(string pair) {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetUserByKeyPair));
-        return GetWriteString(info, pair);
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetUserByKeyPair));
+        string callName = "GetUserByKeyPair";
+        return GetWriteString(callName, pair);
     }
     public static string GetUserToHero() {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetUserToHero));
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetUserToHero));
 
-        return GetWriteString(info);
+        string callName = "GetUserToHero";
+        return GetWriteString(callName);
     }
     public static string GetUserToHeroByKeyPair(string pair) {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetUserToHeroByKeyPair));
-        return GetWriteString(info, pair);
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetUserToHeroByKeyPair));
+        string callName = "GetUserToHeroByKeyPair";
+        return GetWriteString(callName, pair);
     }
 
-    public static string CreateNewUser() {
-        MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.CreateNewUser));
 
-        return GetWriteString(info);
+    public static string CreateNewUser() {
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.CreateNewUser));
+
+
+
+        string callName = "CreateNewUser";
+        return GetWriteString(callName);
     }
 
 
@@ -137,8 +150,7 @@ public static class ClientFunctions {
         return functionCall;
 
     }
-    public static string GetWriteString(MethodInfo info, string parameter = null) {
-        string callName = info.GetCustomAttribute<ServerFunctionAttribute>().Name;
+    public static string GetWriteString(string callName, string parameter = null) {
 
         string function = CreateFunctionCallString(callName, parameter);
         return function;

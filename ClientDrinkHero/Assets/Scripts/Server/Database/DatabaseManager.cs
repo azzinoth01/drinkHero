@@ -158,6 +158,46 @@ public static class DatabaseManager {
         reader.Close();
         return item;
     }
+    public static T GetDatabaseItem<T>(List<string> foreigenKeys, List<int> keyValue) where T : DatabaseItem, new() {
+        if (_db == null || foreigenKeys.Count == 0 || keyValue.Count == 0) {
+            return null;
+        }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
+        }
+
+        TableMapping mapping = GetTableMapping<T>();
+
+
+
+        string sqlCommand = "SELECT * FROM " + mapping.TableName + " WHERE " + foreigenKeys[0] + "=" + keyValue[0] + " ";
+
+        for (int i = 1; i < foreigenKeys.Count;) {
+
+            sqlCommand = sqlCommand + "AND " + foreigenKeys[i] + "=" + keyValue[i] + " ";
+
+
+            i = i + 1;
+        }
+
+
+        MySqlCommand command = _db.CreateCommand();
+
+        command.CommandText = sqlCommand;
+
+        T item = new T();
+
+        MySqlDataReader reader = command.ExecuteReader();
+
+        while (reader.Read()) {
+
+
+            item = ReadRow<T>(reader, mapping.ColumnsMapping);
+
+        }
+        reader.Close();
+        return item;
+    }
     public static List<T> GetDatabaseList<T>() where T : DatabaseItem, new() {
         if (_db == null) {
             return null;
