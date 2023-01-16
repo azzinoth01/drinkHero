@@ -26,7 +26,6 @@
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\GachaCategorieToItemDatabase.cs" Link="Database\DatabaseClass\GachaCategorieToItemDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\GachaDatabase.cs" Link="Database\DatabaseClass\GachaDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\GachaToGachaCategorieDatabase.cs" Link="Database\DatabaseClass\GachaToGachaCategorieDatabase.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\GatchaCategorieToHeroDatabase.cs" Link="Database\DatabaseClass\GatchaCategorieToHeroDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\HeroToUserDatabase.cs" Link="Database\DatabaseClass\HeroToUserDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\PullHistoryDatabase.cs" Link="Database\DatabaseClass\PullHistoryDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\ResponsMessageObject.cs" Link="Database\DatabaseClass\ResponsMessageObject.cs" />
@@ -46,8 +45,6 @@
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\TableAttribute.cs" Link="Database\TableAttribute.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\TableMapping.cs" Link="Database\TableMapping.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\RegexPatterns.cs" Link="RegexPatterns.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\ServerFunctionAttribute.cs" Link="ServerFunctionAttribute.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\ServerFunctions.cs" Link="ServerFunctions.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\TransmissionControl.cs" Link="TransmissionControl.cs" />
 	</ItemGroup>
 

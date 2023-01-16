@@ -8,10 +8,14 @@ using UnityEngine;
 [Serializable, Table("ResponsMessageObject")]
 public class ResponsMessageObject : DatabaseItem {
 
+#if CLIENT
+
     [SerializeField] private string _message;
 
+#endif
+
 #if SERVER
-   private string _message;
+    private string _message;
 #endif
 
     public string Message {

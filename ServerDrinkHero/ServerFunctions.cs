@@ -189,8 +189,13 @@ public static class ServerFunctions {
 
         foreach (int pullID in pullList) {
 
+
+
+
             GachaCategorieToGachaItemDatabase pull = DatabaseManager.GetDatabaseItem<GachaCategorieToGachaItemDatabase>(pullID);
 
+
+            Console.Write("Pulled Categorie: " + pull.RefGachaCategorie + " Pulled ID: " + pullID + " Pulled Type: " + pull.RefGachaCategorie + " Pulled Item ID: " + pull.RefGachaItem + "\r\n");
             if (pull.GachaItemType == "Hero") {
 
                 HeroToUserDatabase heroToUser = new HeroToUserDatabase();

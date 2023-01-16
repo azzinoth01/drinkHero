@@ -1,7 +1,10 @@
-using System.Text.RegularExpressions;
 
-#if CLIENT
+#if SERVER
+using System.Reflection;
 #endif
+
+
+using System.Text.RegularExpressions;
 
 public static class TransmissionControl {
 
@@ -32,7 +35,7 @@ public static class TransmissionControl {
 
     }
 
-     public static string CommandMessage(StreamWriter stream, string message) {
+    public static string CommandMessage(StreamWriter stream, string message) {
 
         string callFunctionName = RegexPatterns.GetCallFunctionName.Match(message).Value.Trim();
         string parameterString = RegexPatterns.GetCallFunctionParameter.Match(message).Value.Trim();

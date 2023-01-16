@@ -2,6 +2,14 @@ public static class ClientFunctions {
 
 
 
+    public static string GachaMultiPull() {
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.SendMessage));
+
+        string callName = "PullGachaMultiple";
+        return GetWriteString(callName, "ID\"" + 0 + "\"");
+    }
+
+
     public static string SendMessageToDatabase(string message) {
         //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.SendMessage));
 

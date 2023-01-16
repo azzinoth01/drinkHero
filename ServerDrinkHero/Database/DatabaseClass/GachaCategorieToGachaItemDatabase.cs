@@ -15,8 +15,6 @@ public class GachaCategorieToGachaItemDatabase : DatabaseItem {
     [SerializeField] private string _gachaItemType;
     [SerializeField] private int _weigthedValue;
 
-
-
     public static Dictionary<string, GachaToGachaCategorieDatabase> _cachedData = new Dictionary<string, GachaToGachaCategorieDatabase>();
 
 #endif
@@ -26,6 +24,7 @@ public class GachaCategorieToGachaItemDatabase : DatabaseItem {
     private int? _refGachaItem;
     private string _gachaItemType;
     private int _weigthedValue;
+    private GachaCategorieDatabase _gachaCategorie;
 
 #endif
 
@@ -82,13 +81,7 @@ public class GachaCategorieToGachaItemDatabase : DatabaseItem {
     }
 
 #if SERVER
-    public GachaDatabase Gacha {
-        get {
-            _gacha = DatabaseManager.GetDatabaseItem<GachaDatabase>(_refGacha);
-            return _gacha;
-        }
 
-    }
 
     public GachaCategorieDatabase GachaCategorie {
         get {
