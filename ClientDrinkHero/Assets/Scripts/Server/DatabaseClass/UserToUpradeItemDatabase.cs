@@ -70,4 +70,9 @@ public class UserToUpradeItemDatabase : DatabaseItem {
             _amount = value;
         }
     }
+
+
+    public UserToUpradeItemDatabase() {
+        _id = 0;
+    }
 }

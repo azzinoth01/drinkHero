@@ -23,7 +23,6 @@
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\CardToEffect.cs" Link="Database\DatabaseClass\CardToEffect.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Effect.cs" Link="Database\DatabaseClass\Effect.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\GachaCategorieDatabase.cs" Link="Database\DatabaseClass\GachaCategorieDatabase.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\GachaCategorieToItemDatabase.cs" Link="Database\DatabaseClass\GachaCategorieToItemDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\GachaDatabase.cs" Link="Database\DatabaseClass\GachaDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\GachaToGachaCategorieDatabase.cs" Link="Database\DatabaseClass\GachaToGachaCategorieDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\HeroToUserDatabase.cs" Link="Database\DatabaseClass\HeroToUserDatabase.cs" />

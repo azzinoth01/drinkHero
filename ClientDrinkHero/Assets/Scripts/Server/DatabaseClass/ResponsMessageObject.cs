@@ -18,6 +18,7 @@ public class ResponsMessageObject : DatabaseItem {
     private string _message;
 #endif
 
+    [Column("Message")]
     public string Message {
         get {
             return _message;

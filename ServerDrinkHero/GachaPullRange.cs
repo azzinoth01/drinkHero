@@ -6,6 +6,7 @@
     private List<GachaPullRange> _gachaPullRanges;
     private int _gachaPullRangeMaxValue;
     private int _id;
+    private bool _removeAfterPull;
 
 
 
@@ -16,6 +17,7 @@
         _from = 0;
         _to = 0;
         _gachaPullRangeMaxValue = 0;
+        _removeAfterPull = false;
     }
 
     public int From {
@@ -64,6 +66,14 @@
         }
     }
 
+    public bool RemoveAfterPull {
+        get {
+            return _removeAfterPull;
+        }
 
+        set {
+            _removeAfterPull = value;
+        }
+    }
 }
 

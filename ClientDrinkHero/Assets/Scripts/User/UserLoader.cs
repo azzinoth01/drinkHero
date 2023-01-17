@@ -23,7 +23,8 @@ public class UserLoader {
             request = ClientFunctions.CreateNewUser();
         }
         else {
-            request = ClientFunctions.GetUserByKeyPair("ID\"" + save.Id + "\"");
+            //request = ClientFunctions.GetUserByKeyPair("ID\"" + save.Id + "\"");
+            request = ClientFunctions.LoginWithUser(save.Id.ToString());
         }
 
 

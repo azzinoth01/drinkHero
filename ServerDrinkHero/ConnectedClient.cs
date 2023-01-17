@@ -156,7 +156,7 @@ public class ConnectedClient {
             //Console.Write(message);
             LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {RECIEVED} " + message + "\r\n");
             Console.WriteLine("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {RECIEVED} " + message + "\r\n");
-            string log = TransmissionControl.CommandMessage(_streamWriter, message);
+            string log = TransmissionControl.CommandMessage(this, message);
             //Console.Write(log);
             LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {SEND} " + log + "\r\n");
             Console.WriteLine("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {SEND} " + log + "\r\n");

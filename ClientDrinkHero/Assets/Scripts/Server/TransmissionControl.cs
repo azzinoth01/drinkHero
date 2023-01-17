@@ -35,7 +35,7 @@ public static class TransmissionControl {
 
     }
 
-    public static string CommandMessage(StreamWriter stream, string message) {
+    public static string CommandMessage(ConnectedClient client, string message) {
 
         string callFunctionName = RegexPatterns.GetCallFunctionName.Match(message).Value.Trim();
         string parameterString = RegexPatterns.GetCallFunctionParameter.Match(message).Value.Trim();
@@ -43,14 +43,14 @@ public static class TransmissionControl {
         if (CallableServerMethods.TryGetValue(callFunctionName, out MethodInfo method)) {
             if (parameterString != null && parameterString != "") {
                 object[] parameterArray = new object[2];
-                parameterArray[0] = stream;
+                parameterArray[0] = client;
                 parameterArray[1] = parameterString;
 
                 return (string)method.Invoke(null, parameterArray);
             }
             else {
                 object[] parameterArray = new object[1];
-                parameterArray[0] = stream;
+                parameterArray[0] = client;
                 return (string)method.Invoke(null, parameterArray);
             }
         }

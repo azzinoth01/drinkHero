@@ -185,6 +185,9 @@ public static class DatabaseManager {
 
         command.CommandText = sqlCommand;
 
+        Console.Write("SQL Command: " + sqlCommand + "\r\n");
+
+
         T item = new T();
 
         MySqlDataReader reader = command.ExecuteReader();
@@ -214,6 +217,8 @@ public static class DatabaseManager {
 
         command.CommandText = sqlCommand;
 
+        Console.Write("SQL Command: " + sqlCommand + "\r\n");
+
         List<T> list = new List<T>();
 
         MySqlDataReader reader = command.ExecuteReader();
@@ -241,6 +246,9 @@ public static class DatabaseManager {
         MySqlCommand command = _db.CreateCommand();
 
         command.CommandText = sqlCommand;
+
+        Console.Write("SQL Command: " + sqlCommand + "\r\n");
+
 
         List<T> list = new List<T>();
 

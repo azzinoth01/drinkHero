@@ -223,11 +223,11 @@ public static class ServerFunctions {
                 foreigenkeys.Add("RefItem");
 
                 keyValues.Add(user.Id);
-                keyValues.Add(item.Id);
+                keyValues.Add((int)pull.RefGachaItem);
 
                 UserToUpradeItemDatabase userToUpradeItem = DatabaseManager.GetDatabaseItem<UserToUpradeItemDatabase>(foreigenkeys, keyValues);
 
-                if (userToUpradeItem == null) {
+                if (userToUpradeItem.Id == 0) {
                     userToUpradeItem = new UserToUpradeItemDatabase();
                     userToUpradeItem.Amount = 1;
                     userToUpradeItem.RefItem = pull.RefGachaItem;
@@ -577,15 +577,21 @@ public static class ServerFunctions {
 
             GachaPullInstance pullInstance = new GachaPullInstance(user, gacha);
 
-            List<int> pullList = pullInstance.Pull(10);
+            List<int> pullList = pullInstance.Pull(gacha.MultiPullAmount);
+
+            Console.Write("PullList:\r\n");
+
+            foreach (int i in pullList) {
+                Console.Write(" pull Id" + i + "\r\n");
+            }
 
             ResolvePullId(user, pullList);
 
             if (gacha.CostType == "Gold") {
-                user.Money = user.Money - gacha.CostSingelPull;
+                user.Money = user.Money - gacha.CostMultiPull;
             }
             else if (gacha.CostType == "CrystalBottle") {
-                user.CrystalBottles = user.CrystalBottles - gacha.CostSingelPull;
+                user.CrystalBottles = user.CrystalBottles - gacha.CostMultiPull;
             }
             DatabaseManager.UpdateDatabaseItem<UserDatabase>(user);
             messageObject.Message = "SUCCESS";

@@ -6,7 +6,7 @@ public static class ClientFunctions {
         //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.SendMessage));
 
         string callName = "PullGachaMultiple";
-        return GetWriteString(callName, "ID\"" + 0 + "\"");
+        return GetWriteString(callName, "ID\"" + 1 + "\"");
     }
 
 
@@ -135,10 +135,14 @@ public static class ClientFunctions {
     public static string CreateNewUser() {
         //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.CreateNewUser));
 
-
-
         string callName = "CreateNewUser";
         return GetWriteString(callName);
+    }
+    public static string LoginWithUser(string userId) {
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.CreateNewUser));
+
+        string callName = "LoginWithUser";
+        return GetWriteString(callName, userId);
     }
 
 

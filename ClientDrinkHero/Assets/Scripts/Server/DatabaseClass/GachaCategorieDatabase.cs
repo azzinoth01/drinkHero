@@ -50,6 +50,8 @@ public class GachaCategorieDatabase : DatabaseItem {
 #if SERVER
     public List<GachaCategorieToGachaItemDatabase> ItemList {
         get {
+            Console.Write("Current ID: " + _id);
+            _gachaitemList = DatabaseManager.GetDatabaseList<GachaCategorieToGachaItemDatabase>("RefGachaCategorie", _id);
             return _gachaitemList;
         }
 
