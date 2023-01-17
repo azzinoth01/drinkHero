@@ -195,7 +195,7 @@ public static class ServerFunctions {
             GachaCategorieToGachaItemDatabase pull = DatabaseManager.GetDatabaseItem<GachaCategorieToGachaItemDatabase>(pullID);
 
 
-            Console.Write("Pulled Categorie: " + pull.RefGachaCategorie + " Pulled ID: " + pullID + " Pulled Type: " + pull.RefGachaCategorie + " Pulled Item ID: " + pull.RefGachaItem + "\r\n");
+            //Console.Write("Pulled Categorie: " + pull.RefGachaCategorie + " Pulled ID: " + pullID + " Pulled Type: " + pull.RefGachaCategorie + " Pulled Item ID: " + pull.RefGachaItem + "\r\n");
             if (pull.GachaItemType == "Hero") {
 
                 HeroToUserDatabase heroToUser = new HeroToUserDatabase();
@@ -579,11 +579,11 @@ public static class ServerFunctions {
 
             List<int> pullList = pullInstance.Pull(gacha.MultiPullAmount);
 
-            Console.Write("PullList:\r\n");
+            //Console.Write("PullList:\r\n");
 
-            foreach (int i in pullList) {
-                Console.Write(" pull Id" + i + "\r\n");
-            }
+            //foreach (int i in pullList) {
+            //    Console.Write(" pull Id" + i + "\r\n");
+            //}
 
             ResolvePullId(user, pullList);
 

@@ -185,7 +185,7 @@ public static class DatabaseManager {
 
         command.CommandText = sqlCommand;
 
-        Console.Write("SQL Command: " + sqlCommand + "\r\n");
+        //Console.Write("SQL Command: " + sqlCommand + "\r\n");
 
 
         T item = new T();
@@ -217,7 +217,7 @@ public static class DatabaseManager {
 
         command.CommandText = sqlCommand;
 
-        Console.Write("SQL Command: " + sqlCommand + "\r\n");
+        //Console.Write("SQL Command: " + sqlCommand + "\r\n");
 
         List<T> list = new List<T>();
 
@@ -247,7 +247,7 @@ public static class DatabaseManager {
 
         command.CommandText = sqlCommand;
 
-        Console.Write("SQL Command: " + sqlCommand + "\r\n");
+        //Console.Write("SQL Command: " + sqlCommand + "\r\n");
 
 
         List<T> list = new List<T>();
