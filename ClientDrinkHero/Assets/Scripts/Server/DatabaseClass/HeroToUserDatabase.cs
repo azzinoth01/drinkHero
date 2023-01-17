@@ -223,7 +223,7 @@ public class HeroToUserDatabase : DatabaseItem {
 #endif
     public HeroToUserDatabase() : base() {
 
-
+        _id = 0;
 
     }
 
