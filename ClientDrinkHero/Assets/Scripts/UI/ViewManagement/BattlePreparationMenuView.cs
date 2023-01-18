@@ -8,10 +8,16 @@ public class BattlePreparationMenuView : View
     [SerializeField] private Button backButton;
     [SerializeField] private Button optionsMenuButton;
 
+    [SerializeField] private Button[] characterSlots;
     public override void Initialize()
     {
         enterbattleButton.onClick.AddListener(() => SceneLoader.Load(GameSceneEnum.BattleScene));
         backButton.onClick.AddListener(() => SceneLoader.Load(GameSceneEnum.MainMenuScene));
         optionsMenuButton.onClick.AddListener(() => ViewManager.Show<OptionsMenuView>());
+
+        foreach (var slot in characterSlots)
+        {
+            slot.onClick.AddListener(() => ViewManager.Show<CharacterSelectView>());
+        }
     }
 }
