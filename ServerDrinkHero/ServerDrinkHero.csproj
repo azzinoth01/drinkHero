@@ -20,25 +20,26 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\CardToEffect.cs" Link="Database\DatabaseClass\CardToEffect.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Effect.cs" Link="Database\DatabaseClass\Effect.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\GachaCategorieDatabase.cs" Link="Database\DatabaseClass\GachaCategorieDatabase.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\GachaDatabase.cs" Link="Database\DatabaseClass\GachaDatabase.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\GachaToGachaCategorieDatabase.cs" Link="Database\DatabaseClass\GachaToGachaCategorieDatabase.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\HeroToUserDatabase.cs" Link="Database\DatabaseClass\HeroToUserDatabase.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\PullHistoryDatabase.cs" Link="Database\DatabaseClass\PullHistoryDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Hero\CardToEffect.cs" Link="Database\DatabaseClass\Hero\CardToEffect.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Hero\Effect.cs" Link="Database\DatabaseClass\Hero\Effect.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Gacha\GachaCategorieDatabase.cs" Link="Database\DatabaseClass\Gacha\GachaCategorieDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Gacha\GachaCategorieToGachaItemDatabase.cs" Link="Database\DatabaseClass\Gacha\GachaCategorieToGachaItemDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Gacha\GachaDatabase.cs" Link="Database\DatabaseClass\Gacha\GachaDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Gacha\GachaToGachaCategorieDatabase.cs" Link="Database\DatabaseClass\Gacha\GachaToGachaCategorieDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\User\HeroToUserDatabase.cs" Link="Database\DatabaseClass\User\HeroToUserDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Gacha\PullHistoryDatabase.cs" Link="Database\DatabaseClass\Gacha\PullHistoryDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\ResponsMessageObject.cs" Link="Database\DatabaseClass\ResponsMessageObject.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\UserDatabase.cs" Link="Database\DatabaseClass\UserDatabase.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\UserToUpradeItemDatabase.cs" Link="Database\DatabaseClass\UserToUpradeItemDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\User\UserDatabase.cs" Link="Database\DatabaseClass\User\UserDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\User\UserToUpradeItemDatabase.cs" Link="Database\DatabaseClass\User\UserToUpradeItemDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\ColumnAttribute.cs" Link="Database\ColumnAttribute.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\CardDatabase.cs" Link="Database\DatabaseClass\CardDatabase.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\CardToHero.cs" Link="Database\DatabaseClass\CardToHero.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Hero\CardDatabase.cs" Link="Database\DatabaseClass\Hero\CardDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Hero\CardToHero.cs" Link="Database\DatabaseClass\Hero\CardToHero.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\DatabaseItem.cs" Link="Database\DatabaseClass\DatabaseItem.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\EnemyDatabase.cs" Link="Database\DatabaseClass\EnemyDatabase.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\EnemySkillDatabase.cs" Link="Database\DatabaseClass\EnemySkillDatabase.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\EnemyToEnemySkill.cs" Link="Database\DatabaseClass\EnemyToEnemySkill.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\HeroDatabase.cs" Link="Database\DatabaseClass\HeroDatabase.cs" />
-		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\UpgradeItemDatabase.cs" Link="Database\DatabaseClass\UpgradeItemDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Enemy\EnemyDatabase.cs" Link="Database\DatabaseClass\Enemy\EnemyDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Enemy\EnemySkillDatabase.cs" Link="Database\DatabaseClass\Enemy\EnemySkillDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Enemy\EnemyToEnemySkill.cs" Link="Database\DatabaseClass\Enemy\EnemyToEnemySkill.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Hero\HeroDatabase.cs" Link="Database\DatabaseClass\Hero\HeroDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Gacha\UpgradeItemDatabase.cs" Link="Database\DatabaseClass\Gacha\UpgradeItemDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\DatabaseManager.cs" Link="Database\DatabaseManager.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\PrimaryKeyAttribute.cs" Link="Database\PrimaryKeyAttribute.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\TableAttribute.cs" Link="Database\TableAttribute.cs" />

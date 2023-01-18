@@ -262,6 +262,37 @@ public static class DatabaseManager {
         reader.Close();
         return list;
     }
+    public static List<T> GetDatabaseList<T>(string foreigenKey, int keyValue, int entityCount, string OrderByKey, string OrderType) where T : DatabaseItem, new() {
+        if (_db == null) {
+            return null;
+        }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
+        }
+
+        TableMapping mapping = GetTableMapping<T>();
+
+        string sqlCommand = "SELECT * FROM " + mapping.TableName + " WHERE " + foreigenKey.Trim() + " = " + keyValue + " ORDER BY " + OrderByKey + " " + OrderType + " LIMIT " + entityCount;
+
+        MySqlCommand command = _db.CreateCommand();
+
+        command.CommandText = sqlCommand;
+
+        //Console.Write("SQL Command: " + sqlCommand + "\r\n");
+
+
+        List<T> list = new List<T>();
+
+        MySqlDataReader reader = command.ExecuteReader();
+
+        while (reader.Read()) {
+
+
+            list.Add(ReadRow<T>(reader, mapping.ColumnsMapping));
+        }
+        reader.Close();
+        return list;
+    }
 
 
     public static List<T> GetDatabaseList<T>(string viewName) where T : DatabaseItem, new() {
