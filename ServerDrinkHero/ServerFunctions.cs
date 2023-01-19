@@ -591,6 +591,7 @@ public static class ServerFunctions {
     [ServerFunction("GetCardListOfHero")]
     public static string GetCardListOfHero(ConnectedClient client, string pair) {
 
+
         (string, string) keyValue = ResolveKeyValuePair(pair);
         string key = keyValue.Item1;
         int id = int.Parse(keyValue.Item2);
@@ -605,16 +606,7 @@ public static class ServerFunctions {
         foreigenKeyValue.Add(client.User.Id);
         foreigenKeyValue.Add(id);
 
-        HeroToUserDatabase userHero = DatabaseManager.GetDatabaseItem<HeroToUserDatabase>(foreigenKey, foreigenKeyValue);
-
-        List<UserHeroToCardDatabase> userHeroToCardList = DatabaseManager.GetDatabaseList<UserHeroToCardDatabase>("RefUserHero", userHero.Id);
-
-
-        List<CardDatabase> cardList = new List<CardDatabase>();
-
-        foreach (UserHeroToCardDatabase userHeroToCard in userHeroToCardList) {
-            cardList.Add(userHeroToCard.Card);
-        }
+        List<CardDatabase> cardList = DatabaseManager.GetDatabaseList<CardDatabase>("CardToHeroView", foreigenKey, foreigenKeyValue);
 
         string data = CreateTransmissionString<CardDatabase>(cardList);
         try {

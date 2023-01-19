@@ -15,12 +15,12 @@ public class HeroDatabase : DatabaseItem {
     [SerializeField] private int _health;
     [SerializeField] private string _spritePath;
     [SerializeField] private string _name;
-    private List<CardToHero> _cardList;
+    //private List<CardToHero> _cardList;
 
     public static Dictionary<string, HeroDatabase> _cachedData = new Dictionary<string, HeroDatabase>();
 
 
-    private List<CardDatabase> _cardDatabases;
+    [SerializeField] private List<CardDatabase> _cardDatabases;
 
 #endif
 #if SERVER
@@ -102,40 +102,35 @@ public class HeroDatabase : DatabaseItem {
 #endif
 #if CLIENT
 
-    public List<CardToHero> CardList {
+    public List<CardDatabase> CardList {
         get {
 
-            if (_cardList.Count != 0) {
-                return _cardList;
+            if (_cardDatabases.Count != 0) {
+                return _cardDatabases;
             }
             else {
 
                 string name = GetPropertyName();
 
                 if (AlreadyRequested(name)) {
-                    return _cardList;
+                    return _cardDatabases;
                 }
 
                 RequestCardList(name);
 
             }
 
-            return _cardList;
+            return _cardDatabases;
         }
 
         set {
-            _cardList = value;
-            if (_cardList.Count != 0) {
-                foreach (CardToHero cardToHero in _cardList) {
-                    cardToHero.Hero = this;
-                }
-            }
+            _cardDatabases = value;
         }
     }
 
     private void RequestCardList(string name) {
         string functionCall = ClientFunctions.GetCardToHeroByKeyPair("RefHero\"" + _id + "\"");
-        int index = SendRequest(functionCall, typeof(CardToHero));
+        int index = SendRequest(functionCall, typeof(CardDatabase));
         _propertyToRequestedId[index] = name;
     }
 
@@ -186,7 +181,10 @@ public class HeroDatabase : DatabaseItem {
     }
 #endif
     public HeroDatabase() : base() {
+#if SERVER
         _cardList = new List<CardToHero>();
+#endif
+        _cardDatabases = new List<CardDatabase>();
     }
 
 

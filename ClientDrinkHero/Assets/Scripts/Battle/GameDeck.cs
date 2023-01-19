@@ -15,8 +15,8 @@ public class GameDeck {
         _remainingCardList = new List<CardDatabase>();
         _deck = deck;
         foreach (HeroSlot heroSlot in _deck.HeroSlotList) {
-            foreach (CardToHero cardToHero in heroSlot.Hero.CardList) {
-                _remainingCardList.Add(cardToHero.Card);
+            foreach (CardDatabase card in heroSlot.Hero.CardList) {
+                _remainingCardList.Add(card);
             }
         }
     }
@@ -77,8 +77,8 @@ public class GameDeck {
         _scrappedCardList = new List<CardDatabase>();
         _remainingCardList = new List<CardDatabase>();
         foreach (HeroSlot heroSlot in _deck.HeroSlotList) {
-            foreach (CardToHero cardToHero in heroSlot.Hero.CardList) {
-                _remainingCardList.Add(cardToHero.Card);
+            foreach (CardDatabase card in heroSlot.Hero.CardList) {
+                _remainingCardList.Add(card);
             }
         }
     }
