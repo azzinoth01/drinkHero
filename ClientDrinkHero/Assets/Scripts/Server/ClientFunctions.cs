@@ -3,10 +3,16 @@ public static class ClientFunctions {
 
 
     public static string GachaMultiPull() {
-        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.SendMessage));
-
         string callName = "PullGachaMultiple";
         return GetWriteString(callName, "ID\"" + 1 + "\"");
+    }
+    public static string PullGachaSingel() {
+        string callName = "PullGachaSingel";
+        return GetWriteString(callName, "ID\"" + 1 + "\"");
+    }
+    public static string GetLastPullResult(int amount = 1) {
+        string callName = "GetLastPullResult";
+        return GetWriteString(callName, amount.ToString());
     }
 
 

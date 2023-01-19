@@ -21,6 +21,8 @@ public class CardDatabase : DatabaseItem, ICardDisplay {
     [SerializeField] private CardDatabase _upgradeTo;
     [SerializeField] private List<CardToHero> _heroList;
     [SerializeField] private List<CardToEffect> _cardEffectList;
+    [SerializeField] private int? _refUpgradeItem;
+    [SerializeField] private int _upgradeItemAmount;
 
     private static Dictionary<string, CardDatabase> _cachedData = new Dictionary<string, CardDatabase>();
 
@@ -37,6 +39,9 @@ public class CardDatabase : DatabaseItem {
     private CardDatabase _upgradeTo;
     private List<CardToHero> _heroList;
     private List<CardToEffect> _cardEffectList;
+
+    private int? _refUpgradeItem;
+    private int _upgradeItemAmount;
 
 #endif
     [Column("ID"), PrimaryKey]
@@ -103,6 +108,27 @@ public class CardDatabase : DatabaseItem {
         }
     }
 
+    [Column("RefUpgradeItem")]
+    public int? RefUpgradeItem {
+        get {
+            return _refUpgradeItem;
+        }
+
+        set {
+            _refUpgradeItem = value;
+        }
+    }
+    [Column("UpgradeItemAmount")]
+    public int UpgradeItemAmount {
+        get {
+            return _upgradeItemAmount;
+        }
+
+        set {
+            _upgradeItemAmount = value;
+        }
+    }
+
 #if SERVER
     public CardDatabase UpgradeTo {
         get {
@@ -136,6 +162,8 @@ public class CardDatabase : DatabaseItem {
 
 
     }
+
+
 #endif
 
 
