@@ -1,6 +1,7 @@
 #if CLIENT
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 #endif
 
@@ -15,7 +16,7 @@ public class GachaCategorieToGachaItemDatabase : DatabaseItem {
     [SerializeField] private string _gachaItemType;
     [SerializeField] private int _weigthedValue;
 
-    public static Dictionary<string, GachaToGachaCategorieDatabase> _cachedData = new Dictionary<string, GachaToGachaCategorieDatabase>();
+    public static Dictionary<string, GachaCategorieToGachaItemDatabase> _cachedData = new Dictionary<string, GachaCategorieToGachaItemDatabase>();
 
 #endif
 #if SERVER
@@ -94,6 +95,42 @@ public class GachaCategorieToGachaItemDatabase : DatabaseItem {
 #endif
 
 
+#if CLIENT
+    public static List<GachaCategorieToGachaItemDatabase> CreateObjectDataFromString(string message) {
+
+        List<GachaCategorieToGachaItemDatabase> list = new List<GachaCategorieToGachaItemDatabase>();
+
+        List<string[]> objectStrings = DatabaseItemCreationHelper.GetObjectStrings(message);
+        TableMapping mapping = DatabaseManager.GetTableMapping<GachaCategorieToGachaItemDatabase>();
+
+        foreach (string[] obj in objectStrings) {
+            GachaCategorieToGachaItemDatabase item = new GachaCategorieToGachaItemDatabase();
+            foreach (string parameter in obj) {
+                string parameterName = RegexPatterns.PropertyName.Match(parameter).Value;
+                string parameterValue = RegexPatterns.PropertyValue.Match(parameter).Value;
+
+                if (parameterName == mapping.PrimaryKeyColumn) {
+                    if (_cachedData.TryGetValue(parameterValue, out GachaCategorieToGachaItemDatabase existingItem)) {
+                        item = existingItem;
+                        break;
+                    }
+                    else {
+                        _cachedData.Add(parameterValue, item);
+                    }
+
+                }
+
+                if (mapping.ColumnsMapping.TryGetValue(parameterName, out string property)) {
+                    PropertyInfo info = item.GetType().GetProperty(property);
+                    DatabaseItemCreationHelper.ParseParameterValues(item, info, parameterValue);
+                }
+            }
+            list.Add(item);
+        }
+
+        return list;
+    }
+#endif
 
 
 }
