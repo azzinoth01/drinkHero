@@ -20,6 +20,8 @@ public class HeroDatabase : DatabaseItem {
     public static Dictionary<string, HeroDatabase> _cachedData = new Dictionary<string, HeroDatabase>();
 
 
+    private List<CardDatabase> _cardDatabases;
+
 #endif
 #if SERVER
     private int _id;

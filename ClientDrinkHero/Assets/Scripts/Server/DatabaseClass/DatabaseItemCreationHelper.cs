@@ -18,41 +18,6 @@ public static class DatabaseItemCreationHelper {
         return list;
     }
 
-    //public static List<T> GetObjectData<T>(string message) where T : DatabaseItem, new() {
-
-
-
-    //    List<T> itemList = new List<T>();
-
-    //    MatchCollection matches = RegexPatterns.GetValueMessage.Matches(message);
-    //    TableMapping mapping = DatabaseManager.GetTableMapping<T>();
-    //    foreach (Match match in matches) {
-    //        string value = match.Value;
-    //        string[] splitString = RegexPatterns.SplitValue.Split(value);
-
-
-    //        T item = new T();
-    //        foreach (string parameter in splitString) {
-    //            string parameterName = RegexPatterns.PropertyName.Match(parameter).Value;
-    //            string parameterValue = RegexPatterns.PropertyValue.Match(parameter).Value;
-
-    //            if (parameterName == mapping.PrimaryKeyColumn) {
-    //                //mapping.
-
-    //            }
-
-    //            if (mapping.ColumnsMapping.TryGetValue(parameterName, out string property)) {
-    //                PropertyInfo info = item.GetType().GetProperty(property);
-    //                ParseParameterValues(item, info, parameterValue);
-    //            }
-    //        }
-
-
-
-    //        itemList.Add(item);
-    //    }
-    //    return itemList;
-    //}
     public static void ParseParameterValues<T>(T item, PropertyInfo info, string parameterValue) {
 
         if (info != null) {

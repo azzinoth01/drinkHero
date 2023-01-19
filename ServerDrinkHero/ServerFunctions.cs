@@ -69,6 +69,35 @@ public static class ServerFunctions {
         return data;
 
     }
+    private static string SendDataPairList<T>(StreamWriter stream, string pair) where T : DatabaseItem, new() {
+
+        List<T> items;
+        string[] splitPair = RegexPatterns.SplitValue.Split(pair);
+
+        List<string> foreigenKey = new List<string>();
+        List<int> keyValue = new List<int>();
+
+        foreach (string split in splitPair) {
+            (string, string) keyValuePair = ResolveKeyValuePair(split);
+            string key = keyValuePair.Item1;
+            int id = int.Parse(keyValuePair.Item2);
+            foreigenKey.Add(key);
+            keyValue.Add(id);
+        }
+
+        items = DatabaseManager.GetDatabaseList<T>(foreigenKey, keyValue);
+
+        string data = CreateTransmissionString<T>(items);
+        try {
+            stream.Write(data);
+        }
+        catch {
+            return "exeption";
+        }
+        return data;
+
+    }
+
     private static string SendDataObject<T>(StreamWriter stream, T item) where T : DatabaseItem {
 
 
@@ -209,21 +238,13 @@ public static class ServerFunctions {
 
         foreach (int pullID in pullList) {
 
-
-
-
             GachaCategorieToGachaItemDatabase pull = DatabaseManager.GetDatabaseItem<GachaCategorieToGachaItemDatabase>(pullID);
-
 
             //Console.Write("Pulled Categorie: " + pull.RefGachaCategorie + " Pulled ID: " + pullID + " Pulled Type: " + pull.RefGachaCategorie + " Pulled Item ID: " + pull.RefGachaItem + "\r\n");
             if (pull.GachaItemType == "Hero") {
 
-                HeroToUserDatabase heroToUser = new HeroToUserDatabase();
 
-                heroToUser.RefHero = pull.RefGachaItem;
-                heroToUser.RefUser = user.Id;
-
-                AddDataToDatabase<HeroToUserDatabase>(heroToUser);
+                AddHeroToUser(user, (int)pull.RefGachaItem);
 
                 PullHistoryDatabase pullHistory = new PullHistoryDatabase();
                 pullHistory.RefUser = user.Id;
@@ -271,7 +292,24 @@ public static class ServerFunctions {
     }
 
 
+    private static void AddHeroToUser(UserDatabase user, int heroId) {
 
+        HeroToUserDatabase heroToUser = new HeroToUserDatabase();
+        heroToUser.RefHero = heroId;
+        heroToUser.RefUser = user.Id;
+
+        heroToUser = AddDataToDatabase<HeroToUserDatabase>(heroToUser);
+
+        List<CardToHero> heroCardList = DatabaseManager.GetDatabaseList<CardToHero>("RefHero", (int)heroToUser.RefHero);
+
+        foreach (CardToHero heroCard in heroCardList) {
+            UserHeroToCardDatabase userHeroCard = new UserHeroToCardDatabase();
+            userHeroCard.RefUserHero = heroToUser.Id;
+            userHeroCard.RefCard = heroCard.RefCard;
+
+            AddDataToDatabase<UserHeroToCardDatabase>(userHeroCard);
+        }
+    }
 
 
 
@@ -418,9 +456,13 @@ public static class ServerFunctions {
     public static string GetUserToHeroByKeyPair(ConnectedClient client, string pair) {
 
         return SendData<HeroToUserDatabase>(client.StreamWriter, pair);
-
-
     }
+
+
+
+
+
+
     [ServerFunction("GetUser")]
     public static string GetUser(ConnectedClient client) {
 
@@ -444,12 +486,7 @@ public static class ServerFunctions {
         user = AddDataToDatabase<UserDatabase>(user);
 
         for (int i = 1; i < 5;) {
-            HeroToUserDatabase heroToUser = new HeroToUserDatabase();
-
-            heroToUser.RefHero = i;
-            heroToUser.RefUser = user.Id;
-
-            AddDataToDatabase<HeroToUserDatabase>(heroToUser);
+            AddHeroToUser(user, i);
 
             i = i + 1;
         }
@@ -465,6 +502,11 @@ public static class ServerFunctions {
     public static string LoginWithUser(ConnectedClient client, string userId) {
         int id = int.Parse(userId);
         UserDatabase user = DatabaseManager.GetDatabaseItem<UserDatabase>(id);
+
+        if (user.Id == 0) {
+            //User not found Create new User
+            return CreateNewUser(client);
+        }
 
         client.User = user;
         return SendData<UserDatabase>(client.StreamWriter, "ID\"" + user.Id + "\"");
@@ -545,6 +587,46 @@ public static class ServerFunctions {
 
         return SendDataLimitedOrderdData<PullHistoryDatabase>(client.StreamWriter, "RefUser\"" + client.User.Id + "\"", int.Parse(amount), "ID", "DESC");
     }
+
+    [ServerFunction("GetCardListOfHero")]
+    public static string GetCardListOfHero(ConnectedClient client, string pair) {
+
+        (string, string) keyValue = ResolveKeyValuePair(pair);
+        string key = keyValue.Item1;
+        int id = int.Parse(keyValue.Item2);
+
+
+        List<string> foreigenKey = new List<string>();
+        List<int> foreigenKeyValue = new List<int>();
+
+        foreigenKey.Add("RefUser");
+        foreigenKey.Add("RefHero");
+
+        foreigenKeyValue.Add(client.User.Id);
+        foreigenKeyValue.Add(id);
+
+        HeroToUserDatabase userHero = DatabaseManager.GetDatabaseItem<HeroToUserDatabase>(foreigenKey, foreigenKeyValue);
+
+        List<UserHeroToCardDatabase> userHeroToCardList = DatabaseManager.GetDatabaseList<UserHeroToCardDatabase>("RefUserHero", userHero.Id);
+
+
+        List<CardDatabase> cardList = new List<CardDatabase>();
+
+        foreach (UserHeroToCardDatabase userHeroToCard in userHeroToCardList) {
+            cardList.Add(userHeroToCard.Card);
+        }
+
+        string data = CreateTransmissionString<CardDatabase>(cardList);
+        try {
+            client.StreamWriter.Write(data);
+        }
+        catch {
+            return "exeption";
+        }
+        return data;
+
+    }
+
 
 
     [ServerFunction("SendMessage")]

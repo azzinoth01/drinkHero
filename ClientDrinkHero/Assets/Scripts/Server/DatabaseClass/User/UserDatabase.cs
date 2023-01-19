@@ -184,7 +184,7 @@ public class UserDatabase : DatabaseItem {
 
     public UserDatabase() : base() {
         _heroToUserDatabasesList = new List<HeroToUserDatabase>();
-
+        _id = 0;
 
     }
 

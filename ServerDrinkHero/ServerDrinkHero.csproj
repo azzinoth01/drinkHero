@@ -30,6 +30,7 @@
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Gacha\PullHistoryDatabase.cs" Link="Database\DatabaseClass\Gacha\PullHistoryDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\ResponsMessageObject.cs" Link="Database\DatabaseClass\ResponsMessageObject.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\User\UserDatabase.cs" Link="Database\DatabaseClass\User\UserDatabase.cs" />
+		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\User\UserHeroToCardDatabase.cs" Link="Database\DatabaseClass\User\UserHeroToCardDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\User\UserToUpradeItemDatabase.cs" Link="Database\DatabaseClass\User\UserToUpradeItemDatabase.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\Database\ColumnAttribute.cs" Link="Database\ColumnAttribute.cs" />
 		<Compile Include="..\ClientDrinkHero\Assets\Scripts\Server\DatabaseClass\Hero\CardDatabase.cs" Link="Database\DatabaseClass\Hero\CardDatabase.cs" />
