@@ -24,6 +24,14 @@ public static class ClientFunctions {
         return GetWriteString(callName, pair);
     }
 
+    //returns ResponsMessageObject FAILURE / SUCCESS
+    //pair = RefHero"1";RefCard"1" 
+    // "RefHero\"1\";RefCard\"1\"" 
+    public static string UpgradeCard(string pair) {
+        string callName = "UpgradeCard";
+        return GetWriteString(callName, pair);
+    }
+
 
     public static string SendMessageToDatabase(string message) {
         //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.SendMessage));
