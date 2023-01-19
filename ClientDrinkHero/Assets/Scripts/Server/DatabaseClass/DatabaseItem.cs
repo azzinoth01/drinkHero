@@ -187,6 +187,60 @@ public abstract class DatabaseItem {
                 info.SetValue(this, list);
             }
         }
+        else if (type == typeof(ResponsMessageObject)) {
+            List<ResponsMessageObject> list = ResponsMessageObject.CreateObjectDataFromString(data);
+            if (isList == false) {
+                info.SetValue(this, list[0]);
+            }
+            else {
+                info.SetValue(this, list);
+            }
+        }
+        else if (type == typeof(PullHistoryDatabase)) {
+            List<PullHistoryDatabase> list = PullHistoryDatabase.CreateObjectDataFromString(data);
+            if (isList == false) {
+                info.SetValue(this, list[0]);
+            }
+            else {
+                info.SetValue(this, list);
+            }
+        }
+        else if (type == typeof(GachaDatabase)) {
+            List<GachaDatabase> list = GachaDatabase.CreateObjectDataFromString(data);
+            if (isList == false) {
+                info.SetValue(this, list[0]);
+            }
+            else {
+                info.SetValue(this, list);
+            }
+        }
+        else if (type == typeof(GachaCategorieDatabase)) {
+            List<GachaCategorieDatabase> list = GachaCategorieDatabase.CreateObjectDataFromString(data);
+            if (isList == false) {
+                info.SetValue(this, list[0]);
+            }
+            else {
+                info.SetValue(this, list);
+            }
+        }
+        else if (type == typeof(GachaToGachaCategorieDatabase)) {
+            List<GachaToGachaCategorieDatabase> list = GachaToGachaCategorieDatabase.CreateObjectDataFromString(data);
+            if (isList == false) {
+                info.SetValue(this, list[0]);
+            }
+            else {
+                info.SetValue(this, list);
+            }
+        }
+        else if (type == typeof(GachaCategorieToGachaItemDatabase)) {
+            List<GachaCategorieToGachaItemDatabase> list = GachaCategorieToGachaItemDatabase.CreateObjectDataFromString(data);
+            if (isList == false) {
+                info.SetValue(this, list[0]);
+            }
+            else {
+                info.SetValue(this, list);
+            }
+        }
     }
 
     public bool GetUpdateFromServer() {

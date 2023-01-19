@@ -1,6 +1,7 @@
 #if CLIENT
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 #endif
 
@@ -160,5 +161,42 @@ public class GachaToGachaCategorieDatabase : DatabaseItem {
 
 #endif
 
+
+#if CLIENT
+    public static List<GachaToGachaCategorieDatabase> CreateObjectDataFromString(string message) {
+
+        List<GachaToGachaCategorieDatabase> list = new List<GachaToGachaCategorieDatabase>();
+
+        List<string[]> objectStrings = DatabaseItemCreationHelper.GetObjectStrings(message);
+        TableMapping mapping = DatabaseManager.GetTableMapping<GachaToGachaCategorieDatabase>();
+
+        foreach (string[] obj in objectStrings) {
+            GachaToGachaCategorieDatabase item = new GachaToGachaCategorieDatabase();
+            foreach (string parameter in obj) {
+                string parameterName = RegexPatterns.PropertyName.Match(parameter).Value;
+                string parameterValue = RegexPatterns.PropertyValue.Match(parameter).Value;
+
+                if (parameterName == mapping.PrimaryKeyColumn) {
+                    if (_cachedData.TryGetValue(parameterValue, out GachaToGachaCategorieDatabase existingItem)) {
+                        item = existingItem;
+                        break;
+                    }
+                    else {
+                        _cachedData.Add(parameterValue, item);
+                    }
+
+                }
+
+                if (mapping.ColumnsMapping.TryGetValue(parameterName, out string property)) {
+                    PropertyInfo info = item.GetType().GetProperty(property);
+                    DatabaseItemCreationHelper.ParseParameterValues(item, info, parameterValue);
+                }
+            }
+            list.Add(item);
+        }
+
+        return list;
+    }
+#endif
 
 }

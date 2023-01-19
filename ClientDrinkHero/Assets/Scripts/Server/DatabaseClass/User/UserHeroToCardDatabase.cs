@@ -50,7 +50,7 @@ public class UserHeroToCardDatabase : DatabaseItem {
             _refCard = value;
         }
     }
-
+#if SERVER
     public CardDatabase Card {
         get {
             if (_refCard == null) {
@@ -70,5 +70,5 @@ public class UserHeroToCardDatabase : DatabaseItem {
             _card = value;
         }
     }
-
+#endif
 }
