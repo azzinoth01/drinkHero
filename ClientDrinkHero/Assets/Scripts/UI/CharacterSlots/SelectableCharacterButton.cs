@@ -5,26 +5,55 @@ using UnityEngine.UI;
 
 public class SelectableCharacterButton : MonoBehaviour
 {
-    private CharacterSlotData _characterSlotData;
-    private TextMeshProUGUI _characterName;
-    private Image _characterFactionImage;
-    private Image _characterPortraitImage;
-
-    [SerializeField] private bool _isUnlocked;
-    private Button _selectButton;
+    [SerializeField] private GameObject characterSelectedBlock;
+    
+    [SerializeField] private CharacterSlotData characterSlotData;
+    [SerializeField] private TextMeshProUGUI characterName;
+    [SerializeField] private Image characterFactionImage;
+    [SerializeField] private Image characterPortraitImage;
+    [SerializeField] private Image lockIcon;
+    [SerializeField] private Button selectButton;
+    [SerializeField] private bool isUnlocked;
+    
+    private TeamController _teamController;
+    
     private void Awake()
     {
-        _selectButton = GetComponent<Button>();
-        if (!_isUnlocked) _selectButton.interactable = false;
-    }
+        SetData();
+        
+        selectButton.onClick.AddListener(()=> TeamController.Instance.SetHeroInSlot(characterSlotData));
+        selectButton.onClick.AddListener(()=> Select());
+        selectButton.onClick.AddListener(()=> ViewManager.ShowLast());
 
+        if (isUnlocked)
+        {
+            selectButton.interactable = true;
+            lockIcon.enabled = false;
+        }
+        else
+        {
+            selectButton.interactable = false;
+            lockIcon.enabled = true;
+        }
+    }
+    
     public void SetData()
     {
-        _characterName.SetText(_characterSlotData.characterName);
-        _characterPortraitImage.sprite = _characterSlotData.characterPortrait;
-        _characterFactionImage.sprite = _characterSlotData.characterFaction;
+        characterSlotData.characterName = characterName.text;
+        characterSlotData.characterPortrait = characterPortraitImage;
+        characterSlotData.characterFaction = characterFactionImage;
         // id
         // rank?
         // isUnlocked?
+    }
+
+    private void Select()
+    {
+        characterSelectedBlock.SetActive(true);
+    }
+
+    private void DeSelect()
+    {
+        characterSelectedBlock.SetActive(false);
     }
 }
