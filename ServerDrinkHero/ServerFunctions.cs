@@ -465,7 +465,7 @@ public static class ServerFunctions {
 
     [ServerFunction("GetUser")]
     public static string GetUser(ConnectedClient client) {
-        return SendData<UserDatabase>(client.StreamWriter, "ID\"" + user.Id + "\"");
+        return SendData<UserDatabase>(client.StreamWriter, "ID\"" + client.User.Id + "\"");
     }
 
 
