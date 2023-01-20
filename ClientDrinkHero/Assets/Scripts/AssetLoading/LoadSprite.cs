@@ -54,4 +54,9 @@ public class LoadSprite : MonoBehaviour, IAssetLoader {
 
     }
 
+    public void UnloadSprite() {
+        _spriteRender.enabled = false;
+        _spriteRender.sprite = null;
+        AssetLoader.Instance.ReturnSprite(_spritePath + _spritePathSufix);
+    }
 }

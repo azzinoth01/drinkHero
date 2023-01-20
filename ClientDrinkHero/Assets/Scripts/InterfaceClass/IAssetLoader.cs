@@ -5,4 +5,5 @@ public interface IAssetLoader {
         get;
     }
     public void LoadNewSprite(string path);
+    public void UnloadSprite();
 }
