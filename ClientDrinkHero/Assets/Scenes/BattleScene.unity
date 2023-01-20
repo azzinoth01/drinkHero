@@ -308,10 +308,26 @@ PrefabInstance:
     - target: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: b77c0314679fc9548936db22a0e33ab7, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: _slot
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: spritePath
       value: Assets/Art/Character/Molly/Molly
+      objectReference: {fileID: 0}
+    - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: _spriteRender
+      value: 
+      objectReference: {fileID: 123499404}
+    - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: _spritePathSufix
+      value: _Chibi.png
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
@@ -320,6 +336,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 893972363001960622, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
   m_PrefabInstance: {fileID: 123499402}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &123499404 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+  m_PrefabInstance: {fileID: 123499402}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &136416607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -442,10 +469,26 @@ PrefabInstance:
     - target: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 32b269a1c1808cd4a936bac67d810b71, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: _slot
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: spritePath
       value: Assets/Art/Character/Beatrice/Beatrice
+      objectReference: {fileID: 0}
+    - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: _spriteRender
+      value: 
+      objectReference: {fileID: 136416609}
+    - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: _spritePathSufix
+      value: _Chibi.png
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
@@ -454,6 +497,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 893972363001960622, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
   m_PrefabInstance: {fileID: 136416607}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &136416609 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+  m_PrefabInstance: {fileID: 136416607}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &165201941
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -920,7 +974,7 @@ PrefabInstance:
     - target: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 48503d23526f8244384c439a3eb3c655, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -933,9 +987,21 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: spritePath
       value: Assets/Art/Character/Lola/Lola
+      objectReference: {fileID: 0}
+    - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: _spriteRender
+      value: 
+      objectReference: {fileID: 252617636}
+    - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: _spritePathSufix
+      value: _Chibi.png
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
@@ -944,6 +1010,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 893972363001960622, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
   m_PrefabInstance: {fileID: 252617634}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &252617636 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+  m_PrefabInstance: {fileID: 252617634}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &419876277 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1238918478118766447, guid: 8c0eddbc32e9d2441b5347e9afe25429, type: 3}
@@ -2344,10 +2421,26 @@ PrefabInstance:
     - target: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a09945e6ef078fc498678f98d1df6f00, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: _slot
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: spritePath
       value: Assets/Art/Character/FR4N/FR4N
+      objectReference: {fileID: 0}
+    - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: _spriteRender
+      value: 
+      objectReference: {fileID: 997314293}
+    - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: _spritePathSufix
+      value: _Chibi.png
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
@@ -2356,6 +2449,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 893972363001960622, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
   m_PrefabInstance: {fileID: 997314291}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &997314293 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+  m_PrefabInstance: {fileID: 997314291}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1004845374 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6880171207486711354, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
@@ -3994,6 +4098,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TurnManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2928137037437884921, guid: 2930fefd9b4757649a31a60e476de24e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2930fefd9b4757649a31a60e476de24e, type: 3}
 --- !u!1 &3214266412492415662 stripped
@@ -4070,6 +4178,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1482049816}
     m_Modifications:
+    - target: {fileID: 1950064952779645527, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
+      propertyPath: _spritePath
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5626899109704554698, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
       propertyPath: enemy._shield
       value: 0
@@ -4164,6 +4276,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6880171207486711354, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6880171208421943430, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4b4e89c10c3e8434fb64f92bfaae658b, type: 3}
+    - target: {fileID: 6880171208421943430, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

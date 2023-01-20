@@ -56,6 +56,7 @@ public class PlayerObject : MonoBehaviour {
 
             HeroSlot slot = new HeroSlot();
             slot.Hero = heroHandler.Heros;
+            slot.SlotID = i;
             deck.HeroSlotList.Add(slot);
 
             i = i + 1;

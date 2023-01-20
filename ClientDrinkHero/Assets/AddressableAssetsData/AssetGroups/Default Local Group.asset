@@ -46,7 +46,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 37dc0e088b42d1b47a6f380c922ef8ca
-    m_Address: Assets/Art/Character/Lady Scarlet
+    m_Address: Assets/Art/Character/LadyScarlet
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: d94df09dd231be7439df0a2325388627
@@ -146,7 +146,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 36ffed64ee17a4845a9ab3ea95284280
-    m_Address: Assets/Art/Character/Lady Scarlet/LadyScarlet_Chibi.png
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarlet_Chibi.png
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: e7893035aa6a15c4bb912760e3b232d6

@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public class HeroSlot {
     [SerializeField] private HeroDatabase _hero;
-    [SerializeField] private uint _slotID;
+    [SerializeField] private int _slotID;
 
 
     public HeroDatabase Hero {
@@ -19,6 +19,15 @@ public class HeroSlot {
 
     }
 
+    public int SlotID {
+        get {
+            return _slotID;
+        }
+
+        set {
+            _slotID = value;
+        }
+    }
 
     public HeroSlot() {
 

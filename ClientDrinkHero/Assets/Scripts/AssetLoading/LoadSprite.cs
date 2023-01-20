@@ -2,34 +2,56 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class LoadSprite : MonoBehaviour {
+public class LoadSprite : MonoBehaviour, IAssetLoader {
 
-    [SerializeField] public Image spriteRender;
-    [SerializeField] public string spritePath;
-    [SerializeField] public string spritePathSufix;
-
-    // Start is called before the first frame update
-    void Start() {
-
-        Sprite sprite = AssetLoader.Instance.BorrowSprite(spritePath + spritePathSufix);
-        if (sprite != null) {
-
-            spriteRender.sprite = sprite;
+    [SerializeField] private Image _spriteRender;
+    [SerializeField] private string _spritePath;
+    [SerializeField] private string _spritePathSufix;
+    [SerializeField] private int _slot;
+    [SerializeField] private bool _isEnemy;
+    public int Slot {
+        get {
+            return _slot;
         }
+
+    }
+
+    private void Awake() {
+        if (_spritePath != "" && _spritePath != null) {
+            Sprite sprite = AssetLoader.Instance.BorrowSprite(_spritePath + _spritePathSufix);
+            if (sprite != null) {
+
+                _spriteRender.sprite = sprite;
+                _spriteRender.enabled = true;
+            }
+        }
+
+        if (_isEnemy == true) {
+            UIDataContainer.Instance.EnemySlot = this;
+        }
+        else {
+            UIDataContainer.Instance.CharacterSlots[_slot] = this;
+        }
+
     }
 
     private void OnDestroy() {
-        AssetLoader.Instance.ReturnSprite(spritePath + spritePathSufix);
+        AssetLoader.Instance.ReturnSprite(_spritePath + _spritePathSufix);
     }
 
     public void LoadNewSprite(string path) {
-        Sprite sprite = AssetLoader.Instance.BorrowSprite(path + spritePathSufix);
+        Sprite sprite = AssetLoader.Instance.BorrowSprite(path + _spritePathSufix);
         if (sprite != null) {
-            spriteRender.sprite = sprite;
-            AssetLoader.Instance.ReturnSprite(spritePath + spritePathSufix);
-            spritePath = path;
+            //Debug.Log("Loaded Sprite Paht: " + path);
+            _spriteRender.sprite = sprite;
+            AssetLoader.Instance.ReturnSprite(_spritePath + _spritePathSufix);
+            _spritePath = path;
+
+            _spriteRender.enabled = true;
+
         }
 
 
     }
+
 }

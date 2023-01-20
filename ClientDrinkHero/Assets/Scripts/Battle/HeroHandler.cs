@@ -38,22 +38,22 @@ public class HeroHandler {
 
     private bool LoadHeroData() {
         bool check = true;
-        foreach (HeroDatabase hero in HeroDatabase._cachedData.Values) {
-            hero.RequestLoadReferenzData();
-            check = check & hero.WaitingOnDataCount == 0;
-            if (hero.WaitingOnDataCount == 0) {
-                foreach (CardDatabase card in hero.CardList) {
-                    card.RequestLoadReferenzData();
-                    check = check & card.WaitingOnDataCount == 0;
-                    if (card.WaitingOnDataCount == 0) {
-                        foreach (CardToEffect cardToEffect in card.CardEffectList) {
-                            cardToEffect.RequestLoadReferenzData();
-                            check = check & cardToEffect.WaitingOnDataCount == 0;
-                        }
+
+        _heros.RequestLoadReferenzData();
+        check = check & _heros.WaitingOnDataCount == 0;
+        if (_heros.WaitingOnDataCount == 0) {
+            foreach (CardDatabase card in _heros.CardList) {
+                card.RequestLoadReferenzData();
+                check = check & card.WaitingOnDataCount == 0;
+                if (card.WaitingOnDataCount == 0) {
+                    foreach (CardToEffect cardToEffect in card.CardEffectList) {
+                        cardToEffect.RequestLoadReferenzData();
+                        check = check & cardToEffect.WaitingOnDataCount == 0;
                     }
                 }
             }
         }
+
 
         return check;
     }

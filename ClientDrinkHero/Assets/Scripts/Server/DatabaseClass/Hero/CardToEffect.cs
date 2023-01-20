@@ -156,18 +156,17 @@ public class CardToEffect : DatabaseItem {
         }
 
         set {
-            if (_effect != null) {
-                _effect.CardToEffects.Remove(this);
-            }
+
             _effect = value;
-            if (_effect != null) {
-                _effect.CardToEffects.Add(this);
-            }
+
         }
 
     }
 
     private void RequestEffect(string name) {
+        if (_refEffect == null) {
+            Debug.Log("ref effect is null");
+        }
         string functionCall = ClientFunctions.GetEffectByKeyPair("ID\"" + _refEffect + "\"");
         int index = SendRequest(functionCall, typeof(Effect));
         _propertyToRequestedId[index] = name;

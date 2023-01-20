@@ -30,6 +30,7 @@ public class HeroDatabase : DatabaseItem {
     private string _spritePath;
     private string _name;
     private List<CardToHero> _cardList;
+    private List<CardDatabase> _cardDatabases;
 
 
 #endif
@@ -129,7 +130,8 @@ public class HeroDatabase : DatabaseItem {
     }
 
     private void RequestCardList(string name) {
-        string functionCall = ClientFunctions.GetCardToHeroByKeyPair("RefHero\"" + _id + "\"");
+
+        string functionCall = ClientFunctions.GetCardListOfHero("RefHero\"" + _id + "\"");
         int index = SendRequest(functionCall, typeof(CardDatabase));
         _propertyToRequestedId[index] = name;
     }
@@ -184,6 +186,7 @@ public class HeroDatabase : DatabaseItem {
 #if SERVER
         _cardList = new List<CardToHero>();
 #endif
+
         _cardDatabases = new List<CardDatabase>();
     }
 

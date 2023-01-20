@@ -58,7 +58,10 @@ public class GlobalGameInfos : MonoBehaviour {
     private void Update() {
 
         if (_turnManager.activeSelf == false) {
-            _turnManager.SetActive(true);
+            if (UIDataContainer.Instance.WaitingPanel.WaitingState == false) {
+                _turnManager.SetActive(true);
+            }
+
         }
 
         return;

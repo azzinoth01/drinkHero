@@ -66,6 +66,8 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         _defenceModifier = new ModifierStruct(0, 0);
         _shieldModifier = new ModifierStruct(0, 0);
 
+
+        UIDataContainer.Instance.EnemySlot.LoadNewSprite(enemyData.SpritePath);
     }
 
     public void SetBaseModificator(ModifierStruct healthModificator, ModifierStruct dmgModificator) {
