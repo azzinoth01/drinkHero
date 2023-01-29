@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 893972363730087549}
   - component: {fileID: 893972363730087551}
   - component: {fileID: 893972363730087550}
+  - component: {fileID: 1583913935006106169}
   m_Layer: 5
   m_Name: PlayerCharacterSprite
   m_TagString: Untagged
@@ -113,3 +114,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1583913935006106169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893972363730087548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7004e28c533a16948896470eb5c9e5d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRender: {fileID: 893972363730087550}
+  spritePath: Assets/Art/Character/Ceri/Ceri
+  spritePathSufix: _Chibi.png

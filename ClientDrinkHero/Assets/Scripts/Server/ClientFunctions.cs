@@ -2,17 +2,34 @@ public static class ClientFunctions {
 
 
 
+    //returns ResponsMessageObject FAILURE / SUCCESS
     public static string GachaMultiPull() {
         string callName = "PullGachaMultiple";
         return GetWriteString(callName, "ID\"" + 1 + "\"");
     }
+    //returns ResponsMessageObject FAILURE / SUCCESS
     public static string PullGachaSingel() {
         string callName = "PullGachaSingel";
         return GetWriteString(callName, "ID\"" + 1 + "\"");
     }
+    //returns List PullHistory
     public static string GetLastPullResult(int amount = 1) {
         string callName = "GetLastPullResult";
         return GetWriteString(callName, amount.ToString());
+    }
+
+    // returns List Card
+    public static string GetCardListOfHero(string pair) {
+        string callName = "GetCardListOfHero";
+        return GetWriteString(callName, pair);
+    }
+
+    //returns ResponsMessageObject FAILURE / SUCCESS
+    //pair = RefHero"1";RefCard"1" 
+    // "RefHero\"1\";RefCard\"1\"" 
+    public static string UpgradeCard(string pair) {
+        string callName = "UpgradeCard";
+        return GetWriteString(callName, pair);
     }
 
 

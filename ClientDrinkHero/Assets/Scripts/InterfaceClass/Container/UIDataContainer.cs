@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class UIDataContainer {
 
 
@@ -6,6 +8,9 @@ public class UIDataContainer {
     private ICharacter _enemy;
 
     private IWaitingPanel _waitingPanel;
+
+    private Dictionary<int, IAssetLoader> _characterSlots;
+    private IAssetLoader _enemySlot;
 
     public static UIDataContainer Instance {
         get {
@@ -44,5 +49,26 @@ public class UIDataContainer {
             _waitingPanel = value;
         }
 
+    }
+
+    public Dictionary<int, IAssetLoader> CharacterSlots {
+        get {
+            return _characterSlots;
+        }
+
+    }
+
+    public IAssetLoader EnemySlot {
+        get {
+            return _enemySlot;
+        }
+
+        set {
+            _enemySlot = value;
+        }
+    }
+
+    private UIDataContainer() {
+        _characterSlots = new Dictionary<int, IAssetLoader>();
     }
 }

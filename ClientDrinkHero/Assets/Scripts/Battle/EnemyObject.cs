@@ -1,8 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyObject : MonoBehaviour {
 
     [SerializeField] private EnemyBattle _enemyData;
+    [SerializeField] private Animator _vfx;
+    [SerializeField] private float _enemySpawnDelay;
     //public EnemyHandler _enemyHandler;
 
     [SerializeField]
@@ -29,7 +32,8 @@ public class EnemyObject : MonoBehaviour {
 
 
         _levelData = new LevelContainer(_enemyData);
-        _enemyData.DiedEvent += _levelData.NextEnemy;
+        //_enemyData.DiedEvent += _levelData.NextEnemy;
+        _enemyData.DiedEvent += StartDieAnimation;
     }
 
     private void Update() {
@@ -43,6 +47,26 @@ public class EnemyObject : MonoBehaviour {
 
     //}
 
+    private IEnumerator DeathAnimation() {
+
+        UIDataContainer.Instance.EnemySlot.UnloadSprite();
+        _vfx.SetBool("isOver", false);
+        _vfx.SetTrigger("die");
+
+        while (_vfx.GetBool("isOver") == false) {
+            //Debug.Log("Delay enemy spawn");
+            yield return null;
+        }
+        yield return new WaitForSeconds(_enemySpawnDelay);
+        _levelData.NextEnemy();
+    }
+
+
+    public void StartDieAnimation() {
+
+
+        StartCoroutine(DeathAnimation());
+    }
 
     private void OnEnable() {
         EnemyBattle.enemyDamageReceived += EnemyDamageFeedback;

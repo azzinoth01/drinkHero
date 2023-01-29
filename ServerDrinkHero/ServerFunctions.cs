@@ -465,9 +465,7 @@ public static class ServerFunctions {
 
     [ServerFunction("GetUser")]
     public static string GetUser(ConnectedClient client) {
-
-        return SendData<UserDatabase>(client.StreamWriter);
-
+        return SendData<UserDatabase>(client.StreamWriter, "ID\"" + client.User.Id + "\"");
     }
 
 
@@ -591,6 +589,7 @@ public static class ServerFunctions {
     [ServerFunction("GetCardListOfHero")]
     public static string GetCardListOfHero(ConnectedClient client, string pair) {
 
+
         (string, string) keyValue = ResolveKeyValuePair(pair);
         string key = keyValue.Item1;
         int id = int.Parse(keyValue.Item2);
@@ -605,16 +604,7 @@ public static class ServerFunctions {
         foreigenKeyValue.Add(client.User.Id);
         foreigenKeyValue.Add(id);
 
-        HeroToUserDatabase userHero = DatabaseManager.GetDatabaseItem<HeroToUserDatabase>(foreigenKey, foreigenKeyValue);
-
-        List<UserHeroToCardDatabase> userHeroToCardList = DatabaseManager.GetDatabaseList<UserHeroToCardDatabase>("RefUserHero", userHero.Id);
-
-
-        List<CardDatabase> cardList = new List<CardDatabase>();
-
-        foreach (UserHeroToCardDatabase userHeroToCard in userHeroToCardList) {
-            cardList.Add(userHeroToCard.Card);
-        }
+        List<CardDatabase> cardList = DatabaseManager.GetDatabaseList<CardDatabase>("CardToHeroView", foreigenKey, foreigenKeyValue);
 
         string data = CreateTransmissionString<CardDatabase>(cardList);
         try {
@@ -625,6 +615,75 @@ public static class ServerFunctions {
         }
         return data;
 
+    }
+    [ServerFunction("UpgradeCard")]
+    public static string UpgradeCard(ConnectedClient client, string pair) {
+        ResponsMessageObject messageObject = new ResponsMessageObject();
+
+        messageObject.Message = "FAILED";
+
+        string[] splitPair = RegexPatterns.SplitValue.Split(pair);
+
+        List<string> foreigenKey = new List<string>();
+        List<int> keyValue = new List<int>();
+
+        foreach (string split in splitPair) {
+            (string, string) keyValuePair = ResolveKeyValuePair(split);
+            string key = keyValuePair.Item1;
+            int id = int.Parse(keyValuePair.Item2);
+            foreigenKey.Add(key);
+            keyValue.Add(id);
+        }
+        foreigenKey.Add("RefUser");
+        keyValue.Add(client.User.Id);
+
+        UserHeroToCardDatabase upgradeCard = DatabaseManager.GetDatabaseList<UserHeroToCardDatabase>("", foreigenKey, keyValue)[0];
+
+        //check if card is upgradeable
+        if (upgradeCard.Card.RefUpgradeTo == null) {
+            return SendDataObject(client.StreamWriter, messageObject);
+        }
+
+        //check if upgrade item is needed
+        if (upgradeCard.Card.RefUpgradeItem != null && upgradeCard.Card.UpgradeItemAmount != 0) {
+            foreigenKey = new List<string>();
+            keyValue = new List<int>();
+
+            foreigenKey.Add("RefUser");
+            foreigenKey.Add("RefItem");
+
+            keyValue.Add(client.User.Id);
+            keyValue.Add((int)upgradeCard.Card.RefUpgradeItem);
+
+            //get possesed upgrade item
+            UserToUpradeItemDatabase possesedUpgradeItem = DatabaseManager.GetDatabaseItem<UserToUpradeItemDatabase>(foreigenKey, keyValue);
+
+            // check upgrade cost
+            if (possesedUpgradeItem.Amount >= upgradeCard.Card.UpgradeItemAmount) {
+
+                upgradeCard.RefCard = upgradeCard.Card.RefUpgradeTo;
+
+                possesedUpgradeItem.Amount = possesedUpgradeItem.Amount - upgradeCard.Card.UpgradeItemAmount;
+
+                DatabaseManager.UpdateDatabaseItem<UserHeroToCardDatabase>(upgradeCard);
+                DatabaseManager.UpdateDatabaseItem<UserToUpradeItemDatabase>(possesedUpgradeItem);
+
+                messageObject.Message = "SUCCESS";
+            }
+
+        }
+        else {
+            //upgrade item not needed
+            upgradeCard.RefCard = upgradeCard.Card.RefUpgradeTo;
+            DatabaseManager.UpdateDatabaseItem<UserHeroToCardDatabase>(upgradeCard);
+            messageObject.Message = "SUCCESS";
+        }
+
+
+
+
+
+        return SendDataObject(client.StreamWriter, messageObject);
     }
 
 

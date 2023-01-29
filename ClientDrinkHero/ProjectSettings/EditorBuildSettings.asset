@@ -20,4 +20,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BattlePreparationMenu.unity
     guid: b8086e8633650884e8a8ce03916fb9ee
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 8a0075e487962f34290a7b4e769ebfaf, type: 2}
