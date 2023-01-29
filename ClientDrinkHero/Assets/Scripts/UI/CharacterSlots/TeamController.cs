@@ -9,7 +9,7 @@ public class TeamController : MonoBehaviour
     [SerializeField] private List<CharacterSlotData> team;
     [SerializeField] private int activeSlot;
     
-    private bool activeSlotEmpty;
+    private bool _activeSlotEmpty;
     
     private int _slotCount;
     private int _filledSlots;
@@ -50,6 +50,8 @@ public class TeamController : MonoBehaviour
     public void SetActiveSlot(int id, bool isEmpty)
     {
         activeSlot = id;
-        activeSlotEmpty = isEmpty;
+        _activeSlotEmpty = isEmpty;
     }
+    
+    
 }

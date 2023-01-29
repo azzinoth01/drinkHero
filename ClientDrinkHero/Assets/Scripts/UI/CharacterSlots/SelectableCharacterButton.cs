@@ -52,8 +52,13 @@ public class SelectableCharacterButton : MonoBehaviour
         characterSelectedBlock.SetActive(true);
     }
 
-    private void DeSelect()
+    public void DisableSelection()
     {
         characterSelectedBlock.SetActive(false);
+    }
+    
+    public void EnableSelection()
+    {
+        characterSelectedBlock.SetActive(true);
     }
 }

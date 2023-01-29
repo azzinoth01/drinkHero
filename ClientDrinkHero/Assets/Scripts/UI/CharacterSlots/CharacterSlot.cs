@@ -6,6 +6,7 @@ public class CharacterSlot : MonoBehaviour
 {
     [Header("Character Data")] 
     [SerializeField] private int slotID;
+    [SerializeField] private int currentHeroID;
     [SerializeField] private CharacterSlotData slotData;
     
     [SerializeField] private Image characterPortrait;
@@ -34,6 +35,8 @@ public class CharacterSlot : MonoBehaviour
 
         characterName.SetText(slotData.characterName);
         characterName.enabled = true;
+
+        currentHeroID = slotData.id;
         
         isEmpty = false;
     }
@@ -48,6 +51,8 @@ public class CharacterSlot : MonoBehaviour
         characterName.SetText("");
         characterName.enabled = false;
 
+        currentHeroID = 0;
+        
         isEmpty = true;
     }
 

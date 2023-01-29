@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backButton: {fileID: 1997210198}
-  selectableCharacters:
+  characterButtonObjects:
   - {fileID: 2799500750986840639}
   - {fileID: 1831848712}
   - {fileID: 626431073}
@@ -195,6 +195,7 @@ MonoBehaviour:
   - {fileID: 2117038857}
   - {fileID: 1094194839}
   - {fileID: 793378153}
+  characterButtons: []
 --- !u!114 &88776714
 MonoBehaviour:
   m_ObjectHideFlags: 0
