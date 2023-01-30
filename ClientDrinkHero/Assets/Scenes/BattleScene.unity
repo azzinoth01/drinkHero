@@ -1088,6 +1088,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 893972363730087550, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: spritePath
       value: Assets/Art/Character/Lola/Lola
@@ -4285,8 +4289,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 212775303}
     - target: {fileID: 5626899109704554698, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
+      propertyPath: _despawnDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626899109704554698, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
       propertyPath: enemy._shield
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626899109704554698, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
+      propertyPath: _spawnNextDelay
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626899109704554698, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
+      propertyPath: _spawnAnimationDelay
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6880171207486711353, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
       propertyPath: m_Name
@@ -4383,11 +4399,15 @@ PrefabInstance:
     - target: {fileID: 6880171208421943430, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4b4e89c10c3e8434fb64f92bfaae658b, type: 3}
+      objectReference: {fileID: 21300000, guid: 3488b8eff93affa4ea6c4c6405b20b02, type: 3}
     - target: {fileID: 6880171208421943430, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6880171208421943430, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 3bb400fc0be7f6a499dccfa77d07f957, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
 --- !u!1001 &7924567282963191723
