@@ -2,6 +2,7 @@
     
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class UnlockedHerosPreviewHandler
 {
@@ -83,7 +84,7 @@ public class UnlockedHerosPreviewHandler
 
 
         if (HandleRequests.Instance.RequestDataStatus[_requestId] == DataRequestStatusEnum.Recieved) {
-
+            Debug.LogError("UnlockedHerosPreviewHandler Received List!");
             List<HeroToUserDatabase> list = HeroToUserDatabase.CreateObjectDataFromString(HandleRequests.Instance.RequestData[_requestId]);
 
             _unlockedHeros = list;
@@ -93,6 +94,7 @@ public class UnlockedHerosPreviewHandler
             if (LoadHeroData()) {
                 _dataIsLoading = false;
                 LoadingFinished?.Invoke();
+                Debug.Log("UnlockedHerosPreviewHandler finished!");
                 NetworkDataContainer.Instance.WaitForServer.FinishedWaitOnServer();
             }
         }

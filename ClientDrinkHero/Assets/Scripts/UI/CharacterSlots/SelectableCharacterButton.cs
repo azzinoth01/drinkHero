@@ -15,7 +15,8 @@ public class SelectableCharacterButton : MonoBehaviour
     [SerializeField] private Button selectButton;
     [SerializeField] private Button infoButton;
 
-    public int ID => characterSlotData.id;
+    [SerializeField] private int id;
+    public int ID => id;
     
     private LoadSprite _loadSprite;
     
@@ -23,21 +24,27 @@ public class SelectableCharacterButton : MonoBehaviour
     
     private void Awake()
     {
+        characterSlotData = new CharacterSlotData();
         _loadSprite = characterPortraitImage.GetComponent<LoadSprite>();
-        
-        selectButton.onClick.AddListener(()=> TeamController.Instance.SetHeroInSlot(characterSlotData));
-        selectButton.onClick.AddListener(()=> Select());
-        selectButton.onClick.AddListener(()=> ViewManager.ShowLast());
-
         infoButton.onClick.AddListener(()=> ViewManager.Show<CharacterCardView>());
     }
 
     public void SetData(CharacterSlotData data)
     {
+
         characterSlotData = data;
-        
+        id = data.id;
         _loadSprite.LoadNewSprite(characterSlotData.characterSpritePath);
         characterName.SetText(characterSlotData.characterName);
+        
+        MakeSelectable();
+    }
+
+    private void MakeSelectable()
+    {
+        selectButton.onClick.AddListener(()=> TeamController.Instance.SetHeroInSlot(characterSlotData));
+        selectButton.onClick.AddListener(()=> Select());
+        selectButton.onClick.AddListener(()=> ViewManager.ShowLast());
     }
     
     public void Unlock()

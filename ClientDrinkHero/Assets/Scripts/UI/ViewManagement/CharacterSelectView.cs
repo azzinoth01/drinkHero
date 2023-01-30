@@ -13,16 +13,19 @@ public class CharacterSelectView : View
     private UnlockedHerosPreviewHandler _unlockedHerosPreviewHandler;
 
     private int _listCounter;
-    
+
     public override void Initialize()
     {
         backButton.onClick.AddListener(() => ViewManager.ShowLast());
-        
+
         _allHerosPreviewHandler = new AllHerosPreviewHandler();
         _unlockedHerosPreviewHandler = new UnlockedHerosPreviewHandler();
-        
+
         _allHerosPreviewHandler.LoadingFinished += CheckLists;
         _unlockedHerosPreviewHandler.LoadingFinished += CheckLists;
+        
+        _allHerosPreviewHandler.RequestData();
+        _unlockedHerosPreviewHandler.RequestData();
     }
 
     private void PopulateCharacterList()
