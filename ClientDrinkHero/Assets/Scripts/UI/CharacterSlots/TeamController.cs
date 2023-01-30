@@ -16,6 +16,8 @@ public class TeamController : MonoBehaviour
 
     public static TeamController Instance;
 
+    public static int[] CurrentTeamIds;
+
     public static Action<bool> OnTeamReady;
 
     private void Awake()
@@ -44,6 +46,12 @@ public class TeamController : MonoBehaviour
             }
         }
         Debug.Log("Team Selection complete! Entering Combat!");
+
+        for (int i = 0; i < 4; i++)
+        {
+            CurrentTeamIds[i] = team[i].id;
+        }
+        
         OnTeamReady?.Invoke(true);
     }
     

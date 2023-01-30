@@ -350,13 +350,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotID: 0
+  currentHeroID: 0
   slotData:
     id: 0
     characterName: 
-    characterFaction: {fileID: 0}
-    characterPortrait: {fileID: 0}
+    characterFaction: {fileID: 6294797158777950353}
+    characterPortrait: {fileID: 5820964679754046556}
   characterPortrait: {fileID: 5820964679754046556}
-  characterFaction: {fileID: 6294797158777950353}
   characterName: {fileID: 3459986115518882726}
   isEmpty: 1
 --- !u!114 &7009366842880726451

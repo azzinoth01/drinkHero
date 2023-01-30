@@ -148,6 +148,14 @@ public static class ClientFunctions {
         string callName = "GetUserToHero";
         return GetWriteString(callName);
     }
+    
+    public static string GetUserToHeroByLoggedInUser() {
+        //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetUserToHero));
+
+        string callName = "GetUserToHeroByLoggedInUser";
+        return GetWriteString(callName);
+    }
+    
     public static string GetUserToHeroByKeyPair(string pair) {
         //MethodInfo info = typeof(ServerFunctions).GetMethod(nameof(ServerFunctions.GetUserToHeroByKeyPair));
         string callName = "GetUserToHeroByKeyPair";

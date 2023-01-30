@@ -30,7 +30,7 @@ public class CharacterSlot : MonoBehaviour
         
         slotData = data;
 
-        characterPortrait.sprite = slotData.characterPortrait.sprite;
+        characterPortrait = slotData.characterPortrait;
         characterPortrait.enabled = true;
 
         characterName.SetText(slotData.characterName);

@@ -9,6 +9,8 @@ public class BattlePreparationMenuView : View
     [SerializeField] private Button optionsMenuButton;
 
     [SerializeField] private Button[] characterSlots;
+    
+
     public override void Initialize()
     {
         TeamController.OnTeamReady += ToggleBattleButton;

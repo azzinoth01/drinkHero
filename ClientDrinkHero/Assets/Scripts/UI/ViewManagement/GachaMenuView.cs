@@ -77,7 +77,7 @@ public class GachaMenuView : View
                 }
                 else if (pull.Type == "Item")
                 {
-                    Debug.Log("You an Item!");
+                    Debug.Log("You got an Item!");
                     //use pull.TypeId to check ItemList and print Item name
                 }
             }

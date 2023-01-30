@@ -13,38 +13,43 @@ public class SelectableCharacterButton : MonoBehaviour
     [SerializeField] private Image characterPortraitImage;
     [SerializeField] private Image lockIcon;
     [SerializeField] private Button selectButton;
-    [SerializeField] private bool isUnlocked;
+    [SerializeField] private Button infoButton;
+
+    public int ID => characterSlotData.id;
+    
+    private LoadSprite _loadSprite;
     
     private TeamController _teamController;
     
     private void Awake()
     {
-        SetData();
+        _loadSprite = characterPortraitImage.GetComponent<LoadSprite>();
         
         selectButton.onClick.AddListener(()=> TeamController.Instance.SetHeroInSlot(characterSlotData));
         selectButton.onClick.AddListener(()=> Select());
         selectButton.onClick.AddListener(()=> ViewManager.ShowLast());
 
-        if (isUnlocked)
-        {
-            selectButton.interactable = true;
-            lockIcon.enabled = false;
-        }
-        else
-        {
-            selectButton.interactable = false;
-            lockIcon.enabled = true;
-        }
+        infoButton.onClick.AddListener(()=> ViewManager.Show<CharacterCardView>());
+    }
+
+    public void SetData(CharacterSlotData data)
+    {
+        characterSlotData = data;
+        
+        _loadSprite.LoadNewSprite(characterSlotData.characterSpritePath);
+        characterName.SetText(characterSlotData.characterName);
     }
     
-    public void SetData()
+    public void Unlock()
     {
-        characterSlotData.characterName = characterName.text;
-        characterSlotData.characterPortrait = characterPortraitImage;
-        characterSlotData.characterFaction = characterFactionImage;
-        // id
-        // rank?
-        // isUnlocked?
+        selectButton.interactable = true;
+        lockIcon.enabled = false;
+    }
+    
+    public void Lock()
+    {
+        selectButton.interactable = false;
+        lockIcon.enabled = true;
     }
 
     private void Select()
