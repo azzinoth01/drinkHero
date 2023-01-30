@@ -9,6 +9,7 @@ public class LoadSprite : MonoBehaviour, IAssetLoader {
     [SerializeField] private string _spritePathSufix;
     [SerializeField] private int _slot;
     [SerializeField] private bool _isEnemy;
+    [SerializeField] private bool _noSlot;
     public int Slot {
         get {
             return _slot;
@@ -25,8 +26,10 @@ public class LoadSprite : MonoBehaviour, IAssetLoader {
                 _spriteRender.enabled = true;
             }
         }
-
-        if (_isEnemy == true) {
+        if (_noSlot == true) {
+            return;
+        }
+        else if (_isEnemy == true) {
             UIDataContainer.Instance.EnemySlot = this;
         }
         else {

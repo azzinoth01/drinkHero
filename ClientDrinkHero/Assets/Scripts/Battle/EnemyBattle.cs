@@ -172,6 +172,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
             health = maxHealth;
         }
         HealthChange?.Invoke(value);
+        enemyHealed?.Invoke();
     }
 
 
@@ -191,6 +192,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
             }
             ShieldChange?.Invoke(shieldDmg);
+            enemyDamageBlocked?.Invoke();
         }
         return value;
     }
@@ -209,6 +211,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         }
 
         HealthChange?.Invoke(healthDmg);
+        enemyDamageReceived?.Invoke();
         return value;
     }
 
@@ -238,6 +241,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     void ICharacterAction.Shield(int value) {
         shield = shield + value;
         ShieldChange?.Invoke(value);
+        enemyShieldUp?.Invoke();
     }
 
     public void AddAttackModifier(int value) {

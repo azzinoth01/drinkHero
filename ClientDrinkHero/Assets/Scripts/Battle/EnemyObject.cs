@@ -5,8 +5,14 @@ public class EnemyObject : MonoBehaviour {
 
     [SerializeField] private EnemyBattle _enemyData;
     [SerializeField] private Animator _vfx;
-    [SerializeField] private float _enemySpawnDelay;
-    //public EnemyHandler _enemyHandler;
+
+
+    [SerializeField] private float _despawnDelay;
+    [SerializeField] private float _spawnNextDelay;
+    [SerializeField] private float _deathAnimationDelay;
+    [SerializeField] private float _spawnAnimationDelay;
+
+
 
     [SerializeField]
     private SimpleAudioEvent _enemyDamagedSound, _enemyDamageBlockedSound, _enemyHealedSound, _enemyShielUpSound;
@@ -25,47 +31,51 @@ public class EnemyObject : MonoBehaviour {
 
     private void Awake() {
         _enemyData = new EnemyBattle();
-        //_enemyHandler = new EnemyHandler();
-        //_enemyHandler.RequestData();
-        //_enemyHandler.LoadingFinished += EnemyLoaded;
-        //_enemyData.DiedEvent += _enemyHandler.RequestData;
+
 
 
         _levelData = new LevelContainer(_enemyData);
-        //_enemyData.DiedEvent += _levelData.NextEnemy;
-        _enemyData.DiedEvent += StartDieAnimation;
+
+        _enemyData.DiedEvent += StartAnimations;
     }
 
     private void Update() {
-        //_enemyHandler.Update();
 
         _levelData.Update();
     }
-    //private void EnemyLoaded() {
-    //    _enemyData.ResetEnemy(_enemyHandler._enemy);
 
-
-    //}
 
     private IEnumerator DeathAnimation() {
+        yield return new WaitForSeconds(_deathAnimationDelay);
 
-        UIDataContainer.Instance.EnemySlot.UnloadSprite();
+
         _vfx.SetBool("isOver", false);
         _vfx.SetTrigger("die");
+    }
 
-        while (_vfx.GetBool("isOver") == false) {
-            //Debug.Log("Delay enemy spawn");
-            yield return null;
-        }
-        yield return new WaitForSeconds(_enemySpawnDelay);
+    private IEnumerator SpawnDelay() {
+        yield return new WaitForSeconds(_spawnNextDelay);
         _levelData.NextEnemy();
+    }
+    private IEnumerator DespawnDelay() {
+        yield return new WaitForSeconds(_despawnDelay);
+
+        UIDataContainer.Instance.EnemySlot.UnloadSprite();
+    }
+    private IEnumerator SpawnAnimationDelay() {
+        yield return new WaitForSeconds(_spawnAnimationDelay);
+
+        _vfx.SetBool("isOver", false);
+        _vfx.SetTrigger("spawn");
     }
 
 
-    public void StartDieAnimation() {
+    public void StartAnimations() {
 
-
+        StartCoroutine(DespawnDelay());
         StartCoroutine(DeathAnimation());
+        StartCoroutine(SpawnDelay());
+        StartCoroutine(SpawnAnimationDelay());
     }
 
     private void OnEnable() {
