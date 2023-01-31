@@ -86,16 +86,12 @@ public class CharacterSelectView : View
             HideLoadingPanel();
         }
     }
-
-    private void DisableCharacter(int id)
-    {
-        characterButtons[id - 1].DisableSelection();
-    }
-
+    
     private void EnableCharacter(int id)
     {
         Debug.Log($"<color=red>Attempting to (re-)enable {id - 1}</color>");
-        characterButtons[id - 1].EnableSelection();
+        //characterButtons[id - 1].EnableSelection();
+        characterButtons[id - 1].CheckIfSelected();
     }
 
     private void ShowLoadingPanel()

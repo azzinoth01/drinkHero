@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,7 @@ public class SelectableCharacterButton : MonoBehaviour
     [SerializeField] private Image characterPortraitImage;
     [SerializeField] private Image lockIcon;
     [SerializeField] private Button selectButton;
+    [SerializeField] private Button deSelectButton;
     [SerializeField] private Button infoButton;
     [SerializeField] private int id;
 
@@ -18,7 +20,11 @@ public class SelectableCharacterButton : MonoBehaviour
 
     private LoadSprite _loadSprite;
     private TeamController _teamController;
+
+    private bool _alreadyInParty;
     public int ID => id;
+
+    public static Action<int> OnClearSlot;
 
     private void Awake()
     {
@@ -42,9 +48,13 @@ public class SelectableCharacterButton : MonoBehaviour
     private void Initialize()
     {
         selectButton.onClick.AddListener(() => TeamController.Instance.SetHeroInSlot(characterSlotData));
-        selectButton.onClick.AddListener(() => DisableSelection());
+        selectButton.onClick.AddListener(() => SelectCharacter());
         selectButton.onClick.AddListener(() => ViewManager.ShowLast());
-        EnableSelection();
+        
+        deSelectButton.onClick.AddListener(() => DeSelectCharacter());
+        deSelectButton.onClick.AddListener(() => ViewManager.ShowLast());
+        
+        DeSelectCharacter();
     }
 
     public void Unlock()
@@ -61,14 +71,28 @@ public class SelectableCharacterButton : MonoBehaviour
         lockIcon.enabled = true;
     }
 
-    public void DisableSelection()
+    public void CheckIfSelected()
+    {
+        if (_alreadyInParty)
+        {
+            DeSelectCharacter();
+            return;
+        }
+        SelectCharacter();
+    }
+    
+    private void SelectCharacter()
     {
         characterSelectedBlock.SetActive(true);
+        _alreadyInParty = true;
     }
 
-    public void EnableSelection()
+    private void DeSelectCharacter()
     {
         Debug.Log($"<color=green>Re-Enabling Hero ID {characterSlotData.characterName}</color>");
         characterSelectedBlock.SetActive(false);
+        _alreadyInParty = false;
+
+        OnClearSlot?.Invoke(characterSlotData.id);
     }
 }

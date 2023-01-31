@@ -51,9 +51,8 @@ public class CharacterSlot : MonoBehaviour
 
     public void ClearCharacterData()
     {
-        slotData = null;
-
-        characterPortrait = null;
+        slotData = new CharacterSlotData();
+        
         characterPortrait.enabled = false;
 
         characterName.SetText("");

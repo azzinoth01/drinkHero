@@ -22,6 +22,8 @@ public class TeamController : MonoBehaviour
         _slotCount = characterSlots.Length;
 
         CurrentTeamIds = new[] { 0, 0, 0, 0 };
+
+        SelectableCharacterButton.OnClearSlot += ClearSlot;
     }
 
     public void SetHeroInSlot(CharacterSlotData heroData)
@@ -48,5 +50,13 @@ public class TeamController : MonoBehaviour
     {
         activeSlot = id;
         _activeSlotEmpty = isEmpty;
+    }
+
+    private void ClearSlot(int id)
+    {
+        foreach (var slot in characterSlots)
+        {
+            if(id == slot.slotData.id) slot.ClearCharacterData();
+        }
     }
 }
