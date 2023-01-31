@@ -3,11 +3,13 @@ using UnityEngine.UI;
 
 public class MainMenuView : View
 {
-    [Header("Ui Buttons")]
-    [SerializeField] private Button battlePreparationMenuButton;
+    [Header("Ui Buttons")] [SerializeField]
+    private Button battlePreparationMenuButton;
+
     [SerializeField] private Button gachaMenuButton;
     [SerializeField] private Button drinksMenuButton;
     [SerializeField] private Button optionsMenuButton;
+
     public override void Initialize()
     {
         battlePreparationMenuButton.onClick.AddListener(() => SceneLoader.Load(GameSceneEnum.BattlePreparationMenu));

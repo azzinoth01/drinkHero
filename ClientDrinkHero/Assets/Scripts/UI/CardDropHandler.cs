@@ -12,13 +12,13 @@ public class CardDropHandler : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        GameObject droppedCard = eventData.pointerDrag;
-        CardView cardView = droppedCard.GetComponent<CardView>();
-        
+        var droppedCard = eventData.pointerDrag;
+        var cardView = droppedCard.GetComponent<CardView>();
+
         if (droppedCard != null)
         {
-            Debug.Log ("Dropped object was: "  + eventData.pointerDrag);
-            int cardIndex = cardView.HandIndex;
+            Debug.Log("Dropped object was: " + eventData.pointerDrag);
+            var cardIndex = cardView.HandIndex;
 
             if (_battleView.PlayHandCardOnDrop(cardIndex))
             {

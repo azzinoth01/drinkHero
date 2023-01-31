@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterCardPreview : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int cost;
+    [SerializeField] private TextMeshProUGUI cardName;
+    [SerializeField] private TextMeshProUGUI cardDescription;
+    [SerializeField] private Image cardPortrait;
 
-    // Update is called once per frame
-    void Update()
+    public void SetData(CardData data)
     {
-        
+        cost = data.cost;
+        cardName.SetText(data.name);
+        cardDescription.SetText(data.description);
+        cardPortrait = data.portrait;
     }
 }

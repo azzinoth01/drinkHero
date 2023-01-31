@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,9 +7,13 @@ public class CharacterSelectView : View
     [SerializeField] private Button backButton;
     [SerializeField] private GameObject[] characterButtonObjects;
     [SerializeField] private SelectableCharacterButton[] characterButtons;
+    [SerializeField] private GameObject loadingPanel;
 
-    private AllHerosPreviewHandler _allHerosPreviewHandler;
-    private UnlockedHerosPreviewHandler _unlockedHerosPreviewHandler;
+    private AllHeroesPreviewHandler _allHeroesPreviewHandler;
+    private UnlockedHeroesPreviewHandler _unlockedHeroesPreviewHandler;
+
+    private List<HeroDatabase> _allHeroes;
+    public static List<HeroToUserDatabase> UnlockedHeroes;
 
     private int _listCounter;
 
@@ -18,57 +21,58 @@ public class CharacterSelectView : View
     {
         backButton.onClick.AddListener(() => ViewManager.ShowLast());
 
-        _allHerosPreviewHandler = new AllHerosPreviewHandler();
-        _unlockedHerosPreviewHandler = new UnlockedHerosPreviewHandler();
+        UnlockedHeroes = new List<HeroToUserDatabase>();
+        _allHeroes = new List<HeroDatabase>();
 
-        _allHerosPreviewHandler.LoadingFinished += CheckLists;
-        _unlockedHerosPreviewHandler.LoadingFinished += CheckLists;
-        
-        _allHerosPreviewHandler.RequestData();
-        _unlockedHerosPreviewHandler.RequestData();
+        _allHeroesPreviewHandler = new AllHeroesPreviewHandler();
+        _unlockedHeroesPreviewHandler = new UnlockedHeroesPreviewHandler();
+
+        _allHeroesPreviewHandler.LoadingFinished += CheckLists;
+        _unlockedHeroesPreviewHandler.LoadingFinished += CheckLists;
+
+        _allHeroesPreviewHandler.RequestData();
+        _unlockedHeroesPreviewHandler.RequestData();
+
+        ShowLoadingPanel();
     }
 
     private void PopulateCharacterList()
     {
-        List<HeroDatabase> allHeros = _allHerosPreviewHandler.Heros;
-        List<HeroToUserDatabase> unlockedHeros = _unlockedHerosPreviewHandler.UnlockedHeros;
-        List<SelectableCharacterButton> buttons = new List<SelectableCharacterButton>();
+        if (_allHeroes.Count == 0) _allHeroes = _allHeroesPreviewHandler.Heros;
 
-        for (int i = 0; i < characterButtonObjects.Length; i++)
+        UnlockedHeroes = _unlockedHeroesPreviewHandler.UnlockedHeros;
+
+        var selectableCharacterButtons = new List<SelectableCharacterButton>();
+
+        for (var i = 0; i < characterButtonObjects.Length; i++)
         {
             characterButtonObjects[i].SetActive(true);
-            
             var btn = characterButtonObjects[i].GetComponent<SelectableCharacterButton>();
             btn.Lock();
-            buttons.Add(btn);
+            selectableCharacterButtons.Add(btn);
         }
 
-        for (int i = 0; i < allHeros.Count; i++)
+        for (var i = 0; i < _allHeroes.Count; i++)
         {
             var data = new CharacterSlotData();
-            data.id = allHeros[i].Id;
-            data.characterName = allHeros[i].Name;
-            data.characterSpritePath = allHeros[i].SpritePath;
-            
-            buttons[i].SetData(data);
-            Debug.Log($"<color=red>Selectable Character Button {i}</color> set to id:{data.id}, SpritePath:{data.characterSpritePath}, id:{data.characterName}!");
-        }
-        
-        foreach (var unlockedHero in unlockedHeros)
-        {
-            for (int i = 0; i < buttons.Count; i++)
-            {
-                if(buttons[i].ID == unlockedHero.RefHero) buttons[i].Unlock();
-            }
+            data.id = _allHeroes[i].Id;
+            data.characterName = _allHeroes[i].Name;
+            data.characterSpritePath = _allHeroes[i].SpritePath;
+            selectableCharacterButtons[i].SetData(data);
         }
 
-        characterButtons = buttons.ToArray();
+        foreach (var unlockedHero in UnlockedHeroes)
+            for (var i = 0; i < selectableCharacterButtons.Count; i++)
+                if (selectableCharacterButtons[i].ID == unlockedHero.RefHero)
+                    selectableCharacterButtons[i].Unlock();
+
+        characterButtons = selectableCharacterButtons.ToArray();
     }
 
     private void Update()
     {
-        _allHerosPreviewHandler.Update();
-        _unlockedHerosPreviewHandler.Update();
+        _allHeroesPreviewHandler.Update();
+        _unlockedHeroesPreviewHandler.Update();
     }
 
     private void CheckLists()
@@ -77,16 +81,27 @@ public class CharacterSelectView : View
         if (_listCounter == 2)
         {
             PopulateCharacterList();
+            HideLoadingPanel();
         }
     }
-    
+
     private void DisableCharacter(int id)
     {
-        characterButtons[id-1].DisableSelection();
+        characterButtons[id - 1].DisableSelection();
     }
-    
+
     private void EnableCharacter(int id)
     {
-        characterButtons[id-1].EnableSelection();
+        characterButtons[id - 1].EnableSelection();
+    }
+
+    private void ShowLoadingPanel()
+    {
+        loadingPanel.SetActive(true);
+    }
+
+    private void HideLoadingPanel()
+    {
+        loadingPanel.SetActive(false);
     }
 }

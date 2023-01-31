@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 using UnityEngine.UI;
 
 [Serializable]
@@ -9,5 +8,4 @@ public class CharacterSlotData
     public string characterName;
     public string characterSpritePath;
     public Image characterFaction;
-    public Image characterPortrait;
 }

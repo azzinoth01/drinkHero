@@ -6,58 +6,45 @@ public class CharacterSlot : MonoBehaviour
 {
     [Header("Character Data")] 
     [SerializeField] private int slotID;
-    [SerializeField] private int currentHeroID;
-    [SerializeField] private CharacterSlotData slotData;
-    
+    [SerializeField] public CharacterSlotData slotData;
     [SerializeField] private Image characterPortrait;
     [SerializeField] private TextMeshProUGUI characterName;
+
+    public bool IsEmpty { get; set; }
     
+    private LoadSprite _loadSprite;
     private Button _slotButton;
-    public bool isEmpty;
+
     private void Awake()
     {
+        _loadSprite = GetComponent<LoadSprite>();
         _slotButton = GetComponent<Button>();
-        _slotButton.onClick.AddListener(() => TeamController.Instance.SetActiveSlot(slotID, isEmpty));
+        _slotButton.onClick.AddListener(() => TeamController.Instance.SetActiveSlot(slotID, IsEmpty));
     }
-    
+
     public void LoadCharacterData(CharacterSlotData data)
     {
-        if (data == null)
-        {
-            Debug.Log("Data is null!");
-            return;
-        }
-        
         slotData = data;
 
-        characterPortrait = slotData.characterPortrait;
+        _loadSprite.LoadNewSprite(data.characterSpritePath);
         characterPortrait.enabled = true;
 
         characterName.SetText(slotData.characterName);
         characterName.enabled = true;
 
-        currentHeroID = slotData.id;
-        
-        isEmpty = false;
+        IsEmpty = false;
     }
-    
+
     public void ClearCharacterData()
     {
         slotData = null;
-        
+
         characterPortrait = null;
         characterPortrait.enabled = false;
 
         characterName.SetText("");
         characterName.enabled = false;
 
-        currentHeroID = 0;
-        
-        isEmpty = true;
-    }
-
-    public void TransmitCharacterData()
-    {
-        
+        IsEmpty = true;
     }
 }

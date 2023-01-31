@@ -299,6 +299,7 @@ GameObject:
   - component: {fileID: 2799500751677112679}
   - component: {fileID: 6467644900788960381}
   - component: {fileID: 7009366842880726451}
+  - component: {fileID: 2277405616159238848}
   m_Layer: 5
   m_Name: CharacterSlot
   m_TagString: Untagged
@@ -354,8 +355,8 @@ MonoBehaviour:
   slotData:
     id: 0
     characterName: 
+    characterSpritePath: 
     characterFaction: {fileID: 6294797158777950353}
-    characterPortrait: {fileID: 5820964679754046556}
   characterPortrait: {fileID: 5820964679754046556}
   characterName: {fileID: 3459986115518882726}
   isEmpty: 1
@@ -403,6 +404,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2277405616159238848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2799500751677112602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7004e28c533a16948896470eb5c9e5d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRender: {fileID: 5820964679754046556}
+  _spritePath: 
+  _spritePathSufix: 
+  _slot: 0
+  _isEnemy: 0
+  _noSlot: 0
 --- !u!1 &6596503917181598044
 GameObject:
   m_ObjectHideFlags: 0
