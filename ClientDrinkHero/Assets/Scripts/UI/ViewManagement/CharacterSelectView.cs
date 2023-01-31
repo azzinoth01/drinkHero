@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,6 +37,13 @@ public class CharacterSelectView : View
         _unlockedHeroesPreviewHandler.RequestData();
 
         ShowLoadingPanel();
+    }
+
+    private void OnDestroy()
+    {
+        CharacterSlot.OnCharacterDeselect -= EnableCharacter;
+        _allHeroesPreviewHandler.LoadingFinished -= CheckLists;
+        _unlockedHeroesPreviewHandler.LoadingFinished -= CheckLists;
     }
 
     private void PopulateCharacterList()
@@ -90,7 +98,6 @@ public class CharacterSelectView : View
     private void EnableCharacter(int id)
     {
         Debug.Log($"<color=red>Attempting to (re-)enable {id - 1}</color>");
-        //characterButtons[id - 1].EnableSelection();
         characterButtons[id - 1].CheckIfSelected();
     }
 

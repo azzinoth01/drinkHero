@@ -26,6 +26,11 @@ public class TeamController : MonoBehaviour
         SelectableCharacterButton.OnClearSlot += ClearSlot;
     }
 
+    private void OnDestroy()
+    {
+        SelectableCharacterButton.OnClearSlot -= ClearSlot;
+    }
+
     public void SetHeroInSlot(CharacterSlotData heroData)
     {
         characterSlots[activeSlot].LoadCharacterData(heroData);

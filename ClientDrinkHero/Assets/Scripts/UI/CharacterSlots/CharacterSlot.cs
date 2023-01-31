@@ -53,11 +53,14 @@ public class CharacterSlot : MonoBehaviour
     {
         slotData = new CharacterSlotData();
         
+        _loadSprite.UnloadSprite();
         characterPortrait.enabled = false;
 
         characterName.SetText("");
         characterName.enabled = false;
 
+        _lastHeroIdInSlot = -1;
+        
         IsEmpty = true;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,11 @@ public class BattlePreparationMenuView : View
         optionsMenuButton.onClick.AddListener(() => ViewManager.Show<OptionsMenuView>());
 
         foreach (var slot in characterSlots) slot.onClick.AddListener(() => ViewManager.Show<CharacterSelectView>());
+    }
+
+    private void OnDestroy()
+    {
+        TeamController.OnTeamReady -= ToggleBattleButton;
     }
 
     private void ToggleBattleButton(bool state)
