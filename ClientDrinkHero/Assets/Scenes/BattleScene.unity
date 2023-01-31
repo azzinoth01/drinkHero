@@ -3564,7 +3564,7 @@ MonoBehaviour:
   enemyShieldCountText: {fileID: 959974113}
   endTurnButton: {fileID: 1194378435}
   optionsMenuButton: {fileID: 967701212}
-  mainMenuButton: {fileID: 951243851}
+  pauseMenuButton: {fileID: 0}
   debugText: {fileID: 1414805789}
 --- !u!114 &1694302108
 MonoBehaviour:
@@ -4055,9 +4055,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 918728288}
     m_Modifications:
+    - target: {fileID: 1265147654322918143, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265147654322918143, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265147654894426537, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.507
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265147654894426537, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265147654894426537, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.507
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265147655166177842, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265147655166177842, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265147655166177842, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1265147655291706575, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}
       propertyPath: m_Name
       value: OptionsMenuView
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265147655291706575, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1265147655291706576, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}
       propertyPath: m_Pivot.x
@@ -4142,6 +4178,14 @@ PrefabInstance:
     - target: {fileID: 1265147655291706576, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265147655442933079, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.507
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265147655442933079, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0963928e32b9a64f8f5421d632b7a37, type: 3}

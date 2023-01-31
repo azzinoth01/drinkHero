@@ -51,10 +51,7 @@ public class LoadSprite : MonoBehaviour, IAssetLoader {
             _spritePath = path;
 
             _spriteRender.enabled = true;
-
         }
-
-
     }
 
     public void UnloadSprite() {

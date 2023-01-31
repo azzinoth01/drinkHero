@@ -28,7 +28,7 @@ public class BattleView : View
     [Header("Buttons")] 
     [SerializeField] private Button endTurnButton;
     [SerializeField] private Button optionsMenuButton; 
-    [SerializeField] private Button mainMenuButton;
+    [SerializeField] private Button pauseMenuButton;
     
     [Header("Debug Related")]
     [SerializeField] private TextMeshProUGUI debugText;
@@ -213,6 +213,6 @@ public class BattleView : View
     public override void Initialize()
     { 
         optionsMenuButton.onClick.AddListener(() => ViewManager.Show<OptionsMenuView>());
-        mainMenuButton.onClick.AddListener(() => SceneLoader.Load(GameSceneEnum.MainMenuScene));
+        pauseMenuButton.onClick.AddListener(() => ViewManager.Show<PauseMenuView>());
     }
 }
