@@ -21,7 +21,7 @@ public class CharacterCardView : View
 
     public void LoadCharacterData(int id)
     {
-        var character = CharacterSelectView.UnlockedHeroes[id].Hero;
+        var character = CharacterSelectView.UnlockedHeroes[id-1].Hero;
         var cardList = character.CardList;
 
         var cards = new List<CardData>();

@@ -19,6 +19,8 @@ public class CharacterSelectView : View
 
     public override void Initialize()
     {
+        CharacterSlot.OnCharacterDeselect += EnableCharacter;
+        
         backButton.onClick.AddListener(() => ViewManager.ShowLast());
 
         UnlockedHeroes = new List<HeroToUserDatabase>();
@@ -92,6 +94,7 @@ public class CharacterSelectView : View
 
     private void EnableCharacter(int id)
     {
+        Debug.Log($"<color=red>Attempting to (re-)enable {id - 1}</color>");
         characterButtons[id - 1].EnableSelection();
     }
 

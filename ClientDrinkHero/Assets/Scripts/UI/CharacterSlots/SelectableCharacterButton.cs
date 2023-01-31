@@ -35,20 +35,22 @@ public class SelectableCharacterButton : MonoBehaviour
         id = data.id;
         _loadSprite.LoadNewSprite(characterSlotData.characterSpritePath);
         characterName.SetText(characterSlotData.characterName);
-        MakeSelectable();
+        
+        Initialize();
     }
 
-    private void MakeSelectable()
+    private void Initialize()
     {
         selectButton.onClick.AddListener(() => TeamController.Instance.SetHeroInSlot(characterSlotData));
-        selectButton.onClick.AddListener(() => EnableSelection());
+        selectButton.onClick.AddListener(() => DisableSelection());
         selectButton.onClick.AddListener(() => ViewManager.ShowLast());
+        EnableSelection();
     }
 
     public void Unlock()
     {
         selectButton.interactable = true;
-        infoButton.interactable = false;
+        infoButton.interactable = true;
         lockIcon.enabled = false;
     }
 
@@ -61,11 +63,12 @@ public class SelectableCharacterButton : MonoBehaviour
 
     public void DisableSelection()
     {
-        characterSelectedBlock.SetActive(false);
+        characterSelectedBlock.SetActive(true);
     }
 
     public void EnableSelection()
     {
-        characterSelectedBlock.SetActive(true);
+        Debug.Log($"<color=green>Re-Enabling Hero ID {characterSlotData.characterName}</color>");
+        characterSelectedBlock.SetActive(false);
     }
 }
