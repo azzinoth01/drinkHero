@@ -21,6 +21,10 @@ public interface IHandleRequest {
         set;
     }
 
+    public void AddToUpdateList(IGetUpdateFromServer obj);
+
+    public void CheckUpdateList();
+
     public int HandleRequest(string functionCall, Type type);
 
 }

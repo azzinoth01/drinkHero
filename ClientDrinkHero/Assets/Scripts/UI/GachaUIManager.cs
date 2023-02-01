@@ -8,7 +8,7 @@ public class GachaUIManager : MonoBehaviour
 
     public void LoadMainMenuScene()
     {
-        SceneLoader.Load(GameSceneEnum.MainMenu);
+        SceneLoader.Load(GameSceneEnum.MainMenuScene);
     }
 
     public void ShowHelpPanel()

@@ -7,5 +7,5 @@ public interface ICardDisplay {
     public string ShieldText();
     public string HealthText();
     public Sprite SpriteDisplay();
-
+    public string CardText();
 }

@@ -1,15 +1,14 @@
 
-
+#if SERVER
 using System.Reflection;
-using System.Text.RegularExpressions;
-
-#if CLIENT
-using System.Collections.Generic;
-using System;
-using System.IO;
 #endif
 
+
+using System.Text.RegularExpressions;
+
 public static class TransmissionControl {
+
+#if SERVER
     private static Dictionary<string, MethodInfo> _callableServerMethods;
 
     private static Dictionary<string, MethodInfo> CallableServerMethods {
@@ -35,6 +34,29 @@ public static class TransmissionControl {
         }
 
     }
+
+    public static string CommandMessage(ConnectedClient client, string message) {
+
+        string callFunctionName = RegexPatterns.GetCallFunctionName.Match(message).Value.Trim();
+        string parameterString = RegexPatterns.GetCallFunctionParameter.Match(message).Value.Trim();
+
+        if (CallableServerMethods.TryGetValue(callFunctionName, out MethodInfo method)) {
+            if (parameterString != null && parameterString != "") {
+                object[] parameterArray = new object[2];
+                parameterArray[0] = client;
+                parameterArray[1] = parameterString;
+
+                return (string)method.Invoke(null, parameterArray);
+            }
+            else {
+                object[] parameterArray = new object[1];
+                parameterArray[0] = client;
+                return (string)method.Invoke(null, parameterArray);
+            }
+        }
+        return null;
+    }
+# endif
 
     public static bool CheckHeartBeat(string message, out string remainingMessage) {
 
@@ -79,154 +101,6 @@ public static class TransmissionControl {
             return false;
         }
 
-        return null;
-    }
-
-    public static List<T> GetObjectData<T>(string message) where T : new() {
-
-
-        List<T> itemList = new List<T>();
-
-        MatchCollection matches = RegexPatterns.GetValueMessage.Matches(message);
-        TableMapping mapping = DatabaseManager.GetTableMapping<T>();
-        foreach (Match match in matches) {
-            T item = new T();
-            string value = match.Value;
-
-            string[] splitString = RegexPatterns.SplitValue.Split(value);
-
-            foreach (string parameter in splitString) {
-                string parameterName = RegexPatterns.PropertyName.Match(parameter).Value;
-                string parameterValue = RegexPatterns.PropertyValue.Match(parameter).Value;
-
-                if (mapping.ColumnsMapping.TryGetValue(parameterName, out string property)) {
-                    PropertyInfo info = item.GetType().GetProperty(property);
-                    if (info != null) {
-                        Type type = info.PropertyType;
-
-                        if (type == typeof(int)) {
-                            info.SetValue(item, int.Parse(parameterValue));
-                        }
-                        else if (type == typeof(long)) {
-                            info.SetValue(item, long.Parse(parameterValue));
-                        }
-                        else if (type == typeof(float)) {
-                            info.SetValue(item, float.Parse(parameterValue));
-                        }
-                        else if (type == typeof(string)) {
-                            info.SetValue(item, parameterValue);
-                        }
-                        else if (type == typeof(bool)) {
-                            info.SetValue(item, bool.Parse(parameterValue));
-                        }
-                        else if (type == typeof(int?)) {
-                            if (parameterValue != "" && parameterValue != null) {
-                                info.SetValue(item, int.Parse(parameterValue));
-                            }
-                            else {
-                                info.SetValue(item, null);
-                            }
-
-                        }
-                        else if (type == typeof(long?)) {
-                            if (parameterValue != "" && parameterValue != null) {
-                                info.SetValue(item, long.Parse(parameterValue));
-                            }
-                            else {
-                                info.SetValue(item, null);
-                            }
-                        }
-                        else if (type == typeof(float?)) {
-                            if (parameterValue != "" && parameterValue != null) {
-                                info.SetValue(item, float.Parse(parameterValue));
-                            }
-                            else {
-                                info.SetValue(item, null);
-                            }
-                        }
-                        else if (type == typeof(bool?)) {
-                            if (parameterValue != "" && parameterValue != null) {
-                                info.SetValue(item, bool.Parse(parameterValue));
-                            }
-                            else {
-                                info.SetValue(item, null);
-                            }
-                        }
-                    }
-                }
-            }
-            itemList.Add(item);
-        }
-        return itemList;
-    }
-    public static List<object> GetObjectData(string message, Type objectType) {
-
-
-        List<object> itemList = new List<object>();
-
-
-
-        MatchCollection matches = RegexPatterns.GetValueMessage.Matches(message);
-        TableMapping mapping = DatabaseManager.GetTableMapping(objectType);
-        foreach (Match match in matches) {
-            object item = Activator.CreateInstance(objectType);
-
-            string value = match.Value;
-
-            string[] splitString = RegexPatterns.SplitValue.Split(value);
-
-            foreach (string parameter in splitString) {
-                string parameterName = RegexPatterns.PropertyName.Match(parameter).Value;
-                string parameterValue = RegexPatterns.PropertyValue.Match(parameter).Value;
-
-                if (mapping.ColumnsMapping.TryGetValue(parameterName, out string property)) {
-                    PropertyInfo info = item.GetType().GetProperty(property);
-                    if (info != null) {
-                        Type type = info.PropertyType;
-
-                        if (type == typeof(int)) {
-                            info.SetValue(item, int.Parse(parameterValue));
-                        }
-                        else if (type == typeof(long)) {
-                            info.SetValue(item, long.Parse(parameterValue));
-                        }
-                        else if (type == typeof(float)) {
-                            info.SetValue(item, float.Parse(parameterValue));
-                        }
-                        else if (type == typeof(string)) {
-                            info.SetValue(item, parameterValue);
-                        }
-                        else if (type == typeof(bool)) {
-                            info.SetValue(item, bool.Parse(parameterValue));
-                        }
-                    }
-                }
-            }
-            itemList.Add(item);
-        }
-        return itemList;
-    }
-
-
-    public static string CommandMessage(StreamWriter stream, string message) {
-
-        string callFunctionName = RegexPatterns.GetCallFunctionName.Match(message).Value.Trim();
-        string parameterString = RegexPatterns.GetCallFunctionParameter.Match(message).Value.Trim();
-
-        if (CallableServerMethods.TryGetValue(callFunctionName, out MethodInfo method)) {
-            if (parameterString != null && parameterString != "") {
-                object[] parameterArray = new object[2];
-                parameterArray[0] = stream;
-                parameterArray[1] = parameterString;
-
-                return (string)method.Invoke(null, parameterArray);
-            }
-            else {
-                object[] parameterArray = new object[1];
-                parameterArray[0] = stream;
-                return (string)method.Invoke(null, parameterArray);
-            }
-        }
         return null;
     }
 

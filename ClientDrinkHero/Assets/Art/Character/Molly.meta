@@ -1,8 +1,14 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:ClientDrinkHero/Assets/Scripts/InterfaceClass/New Animator Controller.controller.meta
+guid: 7512ac7ac27832e44a4ef0a1ebae53a8
+NativeFormatImporter:
+========
 guid: 8def877e6fa77f24eac4feb69832874f
 folderAsset: yes
 DefaultImporter:
+>>>>>>>> origin/art:ClientDrinkHero/Assets/Art/Character/Molly.meta
   externalObjects: {}
+  mainObjectFileID: 9100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
