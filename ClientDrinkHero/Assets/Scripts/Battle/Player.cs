@@ -13,8 +13,8 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
     [SerializeField] private int _maxRessource;
     [SerializeField] private int _ressource;
 
-    [SerializeField] private List<CardDatabase> _handCards;
-    public List<CardDatabase> HandCards => _handCards;
+    [SerializeField] private List<DeckCardContainer> _handCards;
+    public List<DeckCardContainer> HandCards => _handCards;
 
     [SerializeField] private GameDeck _gameDeck;
 
@@ -68,7 +68,7 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
 
     private void ResetPlayer() {
         if (_gameDeck != null) {
-            _handCards = new List<CardDatabase>();
+            _handCards = new List<DeckCardContainer>();
             _gameDeck.RecreateDeck();
 
             //define max handcards globaly
@@ -99,7 +99,7 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
         _maxRessource = 10;
         _ressource = 0;
         _gameDeck = null;
-        _handCards = new List<CardDatabase>();
+        _handCards = new List<DeckCardContainer>();
 
     }
 
@@ -113,7 +113,8 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
 
     public bool PlayHandCard(int index) {
 
-        CardDatabase card = _handCards[index];
+        DeckCardContainer container = _handCards[index];
+        CardDatabase card = container.Card;
 
 
         if (card.Cost > _ressource) {
@@ -145,7 +146,7 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
         _buffMultihit = 1;
         _discardedHandCardsThisAction = 0;
 
-        _gameDeck.ScrapCard(card);
+        _gameDeck.ScrapCard(container);
 
         return true;
     }
@@ -287,7 +288,7 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
 
     private void DiscardCard() {
         int index = Random.Range(0, _handCards.Count);
-        CardDatabase card = _handCards[index];
+        DeckCardContainer card = _handCards[index];
 
         _handCards.RemoveAt(index);
         _gameDeck.ScrapCard(card);

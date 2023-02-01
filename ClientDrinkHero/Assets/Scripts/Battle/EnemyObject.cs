@@ -6,11 +6,8 @@ public class EnemyObject : MonoBehaviour {
     [SerializeField] private EnemyBattle _enemyData;
     [SerializeField] private DisolveSprite _disolveAnimation;
 
-
-    [SerializeField] private float _despawnDelay;
     [SerializeField] private float _spawnNextDelay;
-    [SerializeField] private float _deathAnimationDelay;
-    [SerializeField] private float _spawnAnimationDelay;
+
 
 
 
@@ -45,34 +42,23 @@ public class EnemyObject : MonoBehaviour {
     }
 
 
-    private IEnumerator DeathAnimation() {
-        yield return new WaitForSeconds(_deathAnimationDelay);
-        _disolveAnimation.enabled = true;
-    }
 
     private IEnumerator SpawnDelay() {
         yield return new WaitForSeconds(_spawnNextDelay);
+        UIDataContainer.Instance.EnemySlot.UnloadSprite();
+        _disolveAnimation.ResetEffect();
         _levelData.NextEnemy();
     }
-    private IEnumerator DespawnDelay() {
-        yield return new WaitForSeconds(_despawnDelay);
 
-        UIDataContainer.Instance.EnemySlot.UnloadSprite();
-    }
-    private IEnumerator SpawnAnimationDelay() {
-        yield return new WaitForSeconds(_spawnAnimationDelay);
 
-        //_vfx.SetBool("isOver", false);
-        //_vfx.SetTrigger("spawn");
-    }
 
 
     public void StartAnimations() {
 
-        StartCoroutine(DespawnDelay());
-        StartCoroutine(DeathAnimation());
+        _disolveAnimation.enabled = true;
+
         StartCoroutine(SpawnDelay());
-        StartCoroutine(SpawnAnimationDelay());
+
     }
 
     private void OnEnable() {

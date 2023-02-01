@@ -316,12 +316,17 @@ public class CardDatabase : DatabaseItem {
         return "";
     }
 
-    public Sprite SpriteDisplay() {
-        return null;
+    public string GetSpritePath() {
+        return _spritePath;
     }
 
     public string CardText() {
         return _text;
     }
+
+    public string CardName() {
+        return _name;
+    }
+
 #endif
 }

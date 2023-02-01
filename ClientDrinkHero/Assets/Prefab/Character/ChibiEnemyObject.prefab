@@ -157,11 +157,8 @@ MonoBehaviour:
     maxHealth: 0
     health: 0
     shield: 0
-  _disolveAnimation: {fileID: 0}
-  _despawnDelay: 0
+  _disolveAnimation: {fileID: 9210324937597198664}
   _spawnNextDelay: 0
-  _deathAnimationDelay: 0
-  _spawnAnimationDelay: 0
   _enemyDamagedSound: {fileID: 11400000, guid: bad3d2e4718b0504fa15cd5ef3eed15f, type: 2}
   _enemyDamageBlockedSound: {fileID: 11400000, guid: 0127b8d873bcda447805ef1d4cf7136e, type: 2}
   _enemyHealedSound: {fileID: 11400000, guid: 6027430e5123374419724e1af086e44d, type: 2}
