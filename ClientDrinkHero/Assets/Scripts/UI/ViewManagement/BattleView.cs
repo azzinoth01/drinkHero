@@ -1,35 +1,33 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BattleView : View
-{
+public class BattleView : View {
     [SerializeField] private List<CardView> currentPlayerHand;
 
-    [Header("Card Related")] 
+    [Header("Card Related")]
     [SerializeField] private GameObject playerCardObjectPrefab;
-    [SerializeField] private GameObject playerHandContainer; 
+    [SerializeField] private GameObject playerHandContainer;
     [SerializeField] private GameObject waitingForConnectionPanel;
 
-    [Header("Player Related")] 
+    [Header("Player Related")]
     [SerializeField] private Image playerHealthBar;
-    [SerializeField] private Image playerManaBar; 
+    [SerializeField] private Image playerManaBar;
     [SerializeField] private TextMeshProUGUI playerHealthLabelText;
     [SerializeField] private TextMeshProUGUI playerManaLabelText;
-    [SerializeField] private TextMeshProUGUI playerShieldCountText; 
-    
-    [Header("Enemy Related")] 
+    [SerializeField] private TextMeshProUGUI playerShieldCountText;
+
+    [Header("Enemy Related")]
     [SerializeField] private Image enemyHealthBar;
     [SerializeField] private TextMeshProUGUI enemyHealthLabelText;
     [SerializeField] private TextMeshProUGUI enemyShieldCountText;
 
-    [Header("Buttons")] 
+    [Header("Buttons")]
     [SerializeField] private Button endTurnButton;
-    [SerializeField] private Button optionsMenuButton; 
+    [SerializeField] private Button optionsMenuButton;
     [SerializeField] private Button pauseMenuButton;
-    
+
     [Header("Debug Related")]
     [SerializeField] private TextMeshProUGUI debugText;
 
@@ -46,13 +44,13 @@ public class BattleView : View
         UIDataContainer.Instance.Enemy.ShieldChange += UpdateEnemyShieldCounter;
 
         //UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel += ToggleWaitingPanel;
-        
+
         TurnManager.togglePlayerUiControls += TogglePlayerUIControls;
         TurnManager.updateDebugText += UpdateDebugText;
     }
 
     private void OnDisable() {
-        
+
         UIDataContainer.Instance.Player.HealthChange -= UpdatePlayerHealthBar;
         UIDataContainer.Instance.Player.ShieldChange -= UpdatePlayerShieldCounter;
         UIDataContainer.Instance.Player.RessourceChange -= UpdatePlayerEnergyBar;
@@ -63,7 +61,7 @@ public class BattleView : View
         UIDataContainer.Instance.Enemy.ShieldChange -= UpdateEnemyShieldCounter;
 
         //UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel -= ToggleWaitingPanel;
-        
+
         TurnManager.togglePlayerUiControls -= TogglePlayerUIControls;
         TurnManager.updateDebugText -= UpdateDebugText;
     }
@@ -80,13 +78,13 @@ public class BattleView : View
         var cardView = newCard.GetComponent<CardView>();
 
         currentPlayerHand.Add(cardView);
-        
+
         cardView.SetDisplayValues(card, index);
     }
 
     private void UpdateHandCards() {
         IHandCards playerHand = UIDataContainer.Instance.Player.GetHandCards();
-        
+
         if (playerHand == null) {
             return;
         }
@@ -94,7 +92,7 @@ public class BattleView : View
         int i;
         for (i = 0; i < playerHand.HandCardCount();) {
             ICardDisplay card = playerHand.GetHandCard(i);
-            
+
             if (currentPlayerHand.Count == i) {
                 AddHandCard(card, i);
             }
@@ -121,26 +119,23 @@ public class BattleView : View
         }
     }
 
-    private void CardClickEvent(int index, IHandCards playerHand) 
-    {
+    private void CardClickEvent(int index, IHandCards playerHand) {
         playerHand.PlayHandCard(index);
         UpdateHandCards();
     }
 
-    public bool PlayHandCardOnDrop(int index)
-    {
+    public bool PlayHandCardOnDrop(int index) {
         IHandCards playerHand = UIDataContainer.Instance.Player.GetHandCards();
-        
+
         bool cardWasPlayed = playerHand.PlayHandCard(index);
-        if (cardWasPlayed)
-        {
+        if (cardWasPlayed) {
             currentPlayerHand[index].gameObject.SetActive(false);
             UpdateHandCards();
         }
 
         return cardWasPlayed;
     }
-    
+
     private void InitUIValues() {
 
         UpdatePlayerHealthBar(0);
@@ -204,15 +199,13 @@ public class BattleView : View
         ViewManager.Show<GameOverView>();
     }
 
-    private void ToggleWaitingPanel(bool state)
-    {
+    private void ToggleWaitingPanel(bool state) {
         // create WaitForConnectionView 
         waitingForConnectionPanel.SetActive(state);
     }
 
-    public override void Initialize()
-    { 
+    public override void Initialize() {
         optionsMenuButton.onClick.AddListener(() => ViewManager.Show<OptionsMenuView>());
-        pauseMenuButton.onClick.AddListener(() => ViewManager.Show<PauseMenuView>());
+        // pauseMenuButton.onClick.AddListener(() => ViewManager.Show<PauseMenuView>());
     }
 }
