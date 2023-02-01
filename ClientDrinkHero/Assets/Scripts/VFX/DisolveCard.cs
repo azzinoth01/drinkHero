@@ -11,21 +11,13 @@ public class DisolveCard : MonoBehaviour {
     [SerializeField] private bool _loop;
     [SerializeField] private float _loopRestartTime;
     [SerializeField] private float _textDisapearTime;
+    [SerializeField] private bool _setGameObjectInactive;
     private bool _isTextDisapear;
     private float _time;
 
 
     private void OnEnable() {
-        _material = _image.material;
-
-        _material.SetColor("_DisolveColor", _disolveColor);
-        _material.SetFloat("_DisolveState", 1);
-        _time = 0;
-        _isTextDisapear = false;
-
-        foreach (Transform t in transform) {
-            t.gameObject.SetActive(true);
-        }
+        ResetEffect();
 
     }
 
@@ -52,13 +44,17 @@ public class DisolveCard : MonoBehaviour {
 
         if (_time >= _disolveTime) {
             enabled = false;
+            if (_setGameObjectInactive) {
+                gameObject.SetActive(false);
+            }
+
 
             if (_loop == true) {
                 StartCoroutine(LoopStart());
             }
         }
         if (_time >= _textDisapearTime && _isTextDisapear == false) {
-            Debug.Log("hit timer");
+
             foreach (Transform t in transform) {
                 t.gameObject.SetActive(false);
             }
@@ -74,5 +70,21 @@ public class DisolveCard : MonoBehaviour {
 
 
         enabled = true;
+    }
+
+    public void ResetEffect() {
+        _material = _image.material;
+
+        _material.SetColor("_DisolveColor", _disolveColor);
+        _material.SetFloat("_DisolveState", 1);
+        _time = 0;
+        _isTextDisapear = false;
+
+        foreach (Transform t in transform) {
+            t.gameObject.SetActive(true);
+        }
+        if (_setGameObjectInactive) {
+            gameObject.SetActive(true);
+        }
     }
 }
