@@ -1,5 +1,102 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3395537399739705316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6050480689028552613}
+  - component: {fileID: 7555028282978350601}
+  - component: {fileID: 2084171425094459289}
+  - component: {fileID: 5611775965638572873}
+  m_Layer: 5
+  m_Name: SpawnSmoke
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6050480689028552613
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3395537399739705316}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6880171208421943429}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 332, y: -175}
+  m_SizeDelta: {x: 768.5612, y: 424.0228}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7555028282978350601
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3395537399739705316}
+  m_CullTransparentMesh: 1
+--- !u!114 &2084171425094459289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3395537399739705316}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!95 &5611775965638572873
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3395537399739705316}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fede0ad9ffe09c54282bd4228a7ff9e8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6880171207486711353
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,6 +157,11 @@ MonoBehaviour:
     maxHealth: 0
     health: 0
     shield: 0
+  _disolveAnimation: {fileID: 0}
+  _despawnDelay: 0
+  _spawnNextDelay: 0
+  _deathAnimationDelay: 0
+  _spawnAnimationDelay: 0
   _enemyDamagedSound: {fileID: 11400000, guid: bad3d2e4718b0504fa15cd5ef3eed15f, type: 2}
   _enemyDamageBlockedSound: {fileID: 11400000, guid: 0127b8d873bcda447805ef1d4cf7136e, type: 2}
   _enemyHealedSound: {fileID: 11400000, guid: 6027430e5123374419724e1af086e44d, type: 2}
@@ -76,6 +178,8 @@ GameObject:
   - component: {fileID: 6880171208421943431}
   - component: {fileID: 6880171208421943430}
   - component: {fileID: 1950064952779645527}
+  - component: {fileID: 9210324937597198664}
+  - component: {fileID: 4728185756436725604}
   m_Layer: 5
   m_Name: EnemySprite
   m_TagString: Untagged
@@ -94,7 +198,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6050480689028552613}
   m_Father: {fileID: 6880171207486711354}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -158,3 +263,37 @@ MonoBehaviour:
   _spritePathSufix: .png
   _slot: 0
   _isEnemy: 1
+  _noSlot: 0
+--- !u!114 &9210324937597198664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6880171208421943428}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4e52d14a82cb348998dd39f6b767e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 6880171208421943430}
+  _disolveTime: 2
+  _disolveColor: {r: 0.6577053, g: 0, b: 1, a: 0}
+  _loop: 0
+  _loopRestartTime: 1
+--- !u!114 &4728185756436725604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6880171208421943428}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0034f28315c7aa4990ff5cc60fa6d0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveInDirection: -1
+  _moveInTime: 0.3
+  _animationKey: enemySpawn
+  _animator: {fileID: 5611775965638572873}

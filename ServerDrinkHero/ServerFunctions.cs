@@ -460,7 +460,7 @@ public static class ServerFunctions {
 
 
     [ServerFunction("GetUserToHeroByLoggedInUser")]
-    public static string GetUserToHeroByLoggedInUser(ConnectedClient client, string pair) {
+    public static string GetUserToHeroByLoggedInUser(ConnectedClient client) {
 
         return GetUserToHeroByKeyPair(client, "RefUser\"" + client.User.Id + "\"");
     }

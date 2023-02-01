@@ -67,7 +67,11 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         _shieldModifier = new ModifierStruct(0, 0);
 
 
+        VFXObjectContainer.Instance.PlayAnimation("enemySpawn");
+
         UIDataContainer.Instance.EnemySlot.LoadNewSprite(enemyData.SpritePath);
+
+
     }
 
     public void SetBaseModificator(ModifierStruct healthModificator, ModifierStruct dmgModificator) {

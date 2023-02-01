@@ -78,6 +78,7 @@ public class GameDeck {
         _remainingCardList = new List<CardDatabase>();
         foreach (HeroSlot heroSlot in _deck.HeroSlotList) {
             if (heroSlot.Hero.SpritePath != null) {
+                VFXObjectContainer.Instance.PlayAnimation("Slot" + heroSlot.SlotID);
                 UIDataContainer.Instance.CharacterSlots[heroSlot.SlotID].LoadNewSprite(heroSlot.Hero.SpritePath);
             }
             foreach (CardDatabase card in heroSlot.Hero.CardList) {
