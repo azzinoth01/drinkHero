@@ -13,22 +13,22 @@ public class AudioController : MonoBehaviour
 
     public bool debug;
 
-    public void PlayAudio(AudioType type)
+    public void PlayAudio(AudioType type, bool fade=false, float delay=0.0f)
     {
-        AddJob(new AudioJob(AudioJobType.Start, type));
+        AddJob(new AudioJob(AudioJobType.Start, type, fade, delay));
     }
     
-    public void StopAudio(AudioType type)
+    public void StopAudio(AudioType type, bool fade=false, float delay=0.0f)
     {
-        AddJob(new AudioJob(AudioJobType.Stop, type));
+        AddJob(new AudioJob(AudioJobType.Start, type, fade, delay));
     }
     
-    public void RestartAudio(AudioType type)
+    public void RestartAudio(AudioType type, bool fade=false, float delay=0.0f)
     {
-        AddJob(new AudioJob(AudioJobType.Restart, type));
+        AddJob(new AudioJob(AudioJobType.Start, type, fade, delay));
     }
-    
-    public AudioClip GetAudioClipFromAudioTrack(AudioType type, AudioTrack track)
+
+    private AudioClip GetAudioClipFromAudioTrack(AudioType type, AudioTrack track)
     {
         foreach (var audioObject in track.Audio)
         {
@@ -45,11 +45,15 @@ public class AudioController : MonoBehaviour
     {
         public AudioJobType JobType;
         public AudioType Type;
+        public bool Fade;
+        public float Delay;
 
-        public AudioJob(AudioJobType jobType, AudioType audioType)
+        public AudioJob(AudioJobType jobType, AudioType audioType, bool fade, float delay)
         {
             JobType = jobType;
             Type = audioType;
+            Fade = fade;
+            Delay = delay;
         }
     }
     
@@ -98,11 +102,15 @@ public class AudioController : MonoBehaviour
         IEnumerator jobRunner = RunAudioJob(audioJob);
         
         _jobTable.Add(audioJob.Type, jobRunner);
+        StartCoroutine(jobRunner);
+        
         Log($"Starting job on: {audioJob.Type} with operation: {audioJob.JobType}.");
     }
 
     private IEnumerator RunAudioJob(AudioJob audioJob)
     {
+        yield return new WaitForSeconds(audioJob.Delay);
+        
         AudioTrack track = (AudioTrack)_audioTable[audioJob.Type];
         track.Source.clip = GetAudioClipFromAudioTrack(audioJob.Type, track);
 
@@ -113,7 +121,10 @@ public class AudioController : MonoBehaviour
                 break;
             
             case AudioJobType.Stop:
-                track.Source.Stop();
+                if (!audioJob.Fade)
+                {
+                    track.Source.Stop();
+                }
                 break;
             
             case AudioJobType.Restart:
@@ -121,6 +132,32 @@ public class AudioController : MonoBehaviour
                 track.Source.Play();
                 break;
         }
+
+        if (audioJob.Fade)
+        {
+            // TODO: should take current volume into account
+            float initialVolume = audioJob.JobType is AudioJobType.Start or AudioJobType.Restart
+                ? 0f
+                : 1f;
+            float targetVolume = initialVolume == 0 ? 1 : 0;
+            float fadeDuration = 5f;
+
+            float timer = 0f;
+
+            while (timer <= fadeDuration)
+            {
+                track.Source.volume = Mathf.Lerp(initialVolume, targetVolume, timer / fadeDuration);
+                timer += Time.deltaTime;
+                
+                yield return null;
+            }
+
+            if (audioJob.JobType == AudioJobType.Stop)
+            {
+                track.Source.Stop();
+            }
+        }
+        
         _jobTable.Remove(audioJob.Type);
         Log($"Job Count: {_jobTable.Count}.");
 

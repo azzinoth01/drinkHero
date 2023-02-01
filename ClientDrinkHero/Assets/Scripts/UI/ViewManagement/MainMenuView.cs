@@ -15,5 +15,9 @@ public class MainMenuView : View
         battlePreparationMenuButton.onClick.AddListener(() => SceneLoader.Load(GameSceneEnum.BattlePreparationMenu));
         gachaMenuButton.onClick.AddListener(() => SceneLoader.Load(GameSceneEnum.GachaMenuScene));
         optionsMenuButton.onClick.AddListener(() => ViewManager.Show<OptionsMenuView>());
+        
+        optionsMenuButton.onClick.AddListener(() => AudioController.Instance.PlayAudio(AudioType.SFXButtonYes));
+        
+        AudioController.Instance.PlayAudio(AudioType.MainMenuTheme, true, 0f);
     }
 }
