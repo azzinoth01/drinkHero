@@ -6,6 +6,7 @@ public class HandleRequests : IHandleRequest {
 
 
     private static HandleRequests _instance;
+    private List<IGetUpdateFromServer> _updateList;
 
     public static HandleRequests Instance {
         get {
@@ -53,8 +54,26 @@ public class HandleRequests : IHandleRequest {
 
     }
 
+    public void AddToUpdateList(IGetUpdateFromServer obj) {
+        if (_updateList.Contains(obj) == false) {
+            _updateList.Add(obj);
+        }
+
+    }
+
+    public void CheckUpdateList() {
+        for (int i = _updateList.Count; i > 0;) {
+            i = i - 1;
+
+            if (_updateList[i].GetUpdateFromServer()) {
+                _updateList.RemoveAt(i);
+            }
+        }
+    }
+
     private HandleRequests() {
         LastIndex = 0;
+        _updateList = new List<IGetUpdateFromServer>();
         RequestData = new Dictionary<int, string>();
         RequestDataStatus = new Dictionary<int, DataRequestStatusEnum>();
         RequestDataType = new Dictionary<int, Type>();

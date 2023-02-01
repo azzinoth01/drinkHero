@@ -1,0 +1,581 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 097b9986aa3f90e42a806d5b9b0ba19d
+  m_SerializeEntries:
+  - m_GUID: 1f0142b90a09eff4fa157826349679ba
+    m_Address: Assets/Art/Character
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 81782760c43fe7d4d852dcc42f548c6d
+    m_Address: Assets/Art/Character/Beatrice
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b34705fad24920a468c2af32242c1a57
+    m_Address: Assets/Art/Character/Laeticia
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 543ba82a3094a744f93d4839bd73c9ee
+    m_Address: Assets/Art/Character/Enemies
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 15f0b34176fa504429cad365ca403e1a
+    m_Address: Assets/Art/Character/FR4N
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7512ac7ac27832e44a4ef0a1ebae53a8
+    m_Address: Assets/Art/Character/Molly
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 56ff94e6a613c1a4d91a59c2df53d371
+    m_Address: Assets/Art/Character/Rubia
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 37dc0e088b42d1b47a6f380c922ef8ca
+    m_Address: Assets/Art/Character/LadyScarlet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d94df09dd231be7439df0a2325388627
+    m_Address: Assets/Art/Character/Sophie
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9bf70df58038eea40b2305dd673cf5df
+    m_Address: Assets/Art/Character/Lola
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bc2dee5c60fa9ff4c987255aed657d5d
+    m_Address: Assets/Art/Character/Ceri
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a14243864b53d1f439793288f81f5f70
+    m_Address: Assets/Art/Character/Beatrice/Beatrice_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 32b269a1c1808cd4a936bac67d810b71
+    m_Address: Assets/Art/Character/Beatrice/Beatrice_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b452be94b276a3b4d97d439ffba47c9f
+    m_Address: Assets/Art/Character/Beatrice/Beatrice_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7a96729fbe75727429accd70d4bc4b3c
+    m_Address: Assets/Art/Character/Beatrice/Beatrice_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9e267c02851425a4aa27376fc4371fef
+    m_Address: Assets/Art/Character/Beatrice/Beatrice_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f5e0d0875e5c88c4aa7e84dc3247b9b8
+    m_Address: Assets/Art/Character/Ceri/Ceri_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8794ba8bfd7fe644c8579625d4d4d0d6
+    m_Address: Assets/Art/Character/Ceri/Ceri_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c91cf065146188347bcdfeb8fd26d454
+    m_Address: Assets/Art/Character/Ceri/Ceri_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: be6d91d77a7de444bae405b8a0650fa9
+    m_Address: Assets/Art/Character/Ceri/Ceri_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7f352a302179df94f805aa2993c0e2fe
+    m_Address: Assets/Art/Character/Ceri/Ceri_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7df49dc4528e9d94fbe0c939802fb4e2
+    m_Address: Assets/Art/Character/Enemies/Slime
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3488b8eff93affa4ea6c4c6405b20b02
+    m_Address: Assets/Art/Character/Enemies/Slime/Slime_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 76033bb245e3ace4abf0f18ba4b8169a
+    m_Address: Assets/Art/Character/Enemies/Slime/Slime_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e710ddd26f1dde1499bb6e4afe6a7b1b
+    m_Address: Assets/Art/Character/Enemies/Slime/Slime_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4b4e89c10c3e8434fb64f92bfaae658b
+    m_Address: Assets/Art/Character/Enemies/Slime/Slime_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a09945e6ef078fc498678f98d1df6f00
+    m_Address: Assets/Art/Character/FR4N/FR4N_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 315cce18a05725242997157e015463df
+    m_Address: Assets/Art/Character/FR4N/FR4N_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2268d689ac3052d47971ac262c89fc5e
+    m_Address: Assets/Art/Character/FR4N/FR4N_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fd34e6e35c7f7854f836367a211c57d9
+    m_Address: Assets/Art/Character/FR4N/FR4N_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8e6e75a215863bf4a8ae612e2475ba27
+    m_Address: Assets/Art/Character/FR4N/FR4N_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f533de87070e9494b9b61c12dd270545
+    m_Address: Assets/Art/Character/Lady Scarlet/LadyScarlet_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 36ffed64ee17a4845a9ab3ea95284280
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarlet_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e7893035aa6a15c4bb912760e3b232d6
+    m_Address: Assets/Art/Character/Lady Scarlet/LadyScarlet_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f7d7f452ad032954fb7e7ec3ad32bf0b
+    m_Address: Assets/Art/Character/Lady Scarlet/LadyScarlet_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1d2a792b4e2380d489729245c5d0b7f5
+    m_Address: Assets/Art/Character/Lady Scarlet/LadyScarlet_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 13c519a75eb3bba4a9a7461231dc2abd
+    m_Address: Assets/Art/Character/Laeticia/Laeticia_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 292f9b0a8ab0bc947b87859d40bbc746
+    m_Address: Assets/Art/Character/Laeticia/Laeticia_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2b801de262b6ea7408450c7ab4e67905
+    m_Address: Assets/Art/Character/Laeticia/Laeticia_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fbc498da1958f0545be616c144b9e71a
+    m_Address: Assets/Art/Character/Laeticia/Laeticia_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ade38e8434228e545a03780e4b0537b9
+    m_Address: Assets/Art/Character/Laeticia/Laeticia_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a0746cbb14ed24e41b8f55e70b556de6
+    m_Address: Assets/Art/Character/Lola/Lola_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 48503d23526f8244384c439a3eb3c655
+    m_Address: Assets/Art/Character/Lola/Lola_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4854a8a89e7489543b7f40ce01fb7abd
+    m_Address: Assets/Art/Character/Lola/Lola_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ae6a4fd4682b3664f80fca3b705002f3
+    m_Address: Assets/Art/Character/Lola/Lola_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2f8b7508afd79284b845741cb4b93b5e
+    m_Address: Assets/Art/Character/Lola/Lola_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8bb756131cd30f04a87f35b92d5ad545
+    m_Address: Assets/Art/Character/Molly/Molly_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: aad15331dfb7c724d8864d0b7db8a16a
+    m_Address: Assets/Art/Character/Molly/Molly_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 38fafe80ebbb1ce42b62aabb518d9723
+    m_Address: Assets/Art/Character/Molly/Molly_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b77c0314679fc9548936db22a0e33ab7
+    m_Address: Assets/Art/Character/Molly/Molly_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f210406fc30e80c4187d056262826ad9
+    m_Address: Assets/Art/Character/Molly/Molly_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ee7801adb9b35fb45ba3b1e280b4ee52
+    m_Address: Assets/Art/Character/Rubia/Rubia_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e9d28f8729828f44280bc7b81da44e0d
+    m_Address: Assets/Art/Character/Rubia/Rubia_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 17baff7dac3a0f841997c9eb485e3610
+    m_Address: Assets/Art/Character/Rubia/Rubia_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 359e194e70c75b042a6f872a10ed9819
+    m_Address: Assets/Art/Character/Rubia/Rubia_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a2ca62fea6a43ff44ab32d7a8cb5a8c3
+    m_Address: Assets/Art/Character/Rubia/Rubia_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 01bd43e4c4364bd4ea5a506c2ea14ffb
+    m_Address: Assets/Art/Character/Sophie/Sophie_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 45696f42148480b428fda2664b7c7d2f
+    m_Address: Assets/Art/Character/Sophie/Sophie_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d72e2bc573027f94aaff335558a61861
+    m_Address: Assets/Art/Character/Sophie/Sophie_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3998b1d498965e64f952f43dcb3c6ab1
+    m_Address: Assets/Art/Character/Sophie/Sophie_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6fc41c4dd61133747be9083ccc403662
+    m_Address: Assets/Art/Character/Sophie/Sophie_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9146d5f0811f7af4ab19164ee3631501
+    m_Address: Assets/Art
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7f5893df1b70a5f4392a3a7ef7354e87
+    m_Address: Assets/Art/Character/Daniela/Daniela_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1bb102cc272c24849abb0cf2f36812f2
+    m_Address: Assets/Art/Character/Shiro
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d7e840485ed326048a61e8b4a8d39fe8
+    m_Address: Assets/Art/Character/Melia
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3cfde92652c87c74f9f49ec5bee18a74
+    m_Address: Assets/Art/Character/Sophie/Sophie_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b3ffb8f887c3be346a8acfc8e19cbda3
+    m_Address: Assets/Art/Character/Shiro/Shiro_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6b11123836c1045409e0ed9c5e384d9b
+    m_Address: Assets/Art/Character/Shiro/Shiro_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fb3354c61326d414581254b370d04f2f
+    m_Address: Assets/Art/Character/Shiro/Shiro_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0eefc63122c46714694bf6b93d7ba59f
+    m_Address: Assets/Art/Character/Shiro/Shiro_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1eab4e4c1c029604f9c3219356196c8f
+    m_Address: Assets/Art/Character/Shiro/Shiro_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5f5678e6c49704e4eadc5ed688193245
+    m_Address: Assets/Art/Character/Shiro/Shiro_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0627b7fde7e995244b14b589f09166b6
+    m_Address: Assets/Art/Character/Rubia/Rubia_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 97057b2f712ae584eaee3b44b6d00a89
+    m_Address: Assets/Art/Character/Molly/Molly_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a420562fd0a1e5c45be2bbd108840cfd
+    m_Address: Assets/Art/Character/Beatrice/Beatrice_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a8afecdf01cd643439023ef9954e545f
+    m_Address: Assets/Art/Character/Blanc
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d8043d5a8b6640343b99e9781cb7e67d
+    m_Address: Assets/Art/Character/Blanc/Blanc_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 223865a86504d6f418477875e204d0c0
+    m_Address: Assets/Art/Character/Blanc/Blanc_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3a231657a65090f47931e17dd7ffb976
+    m_Address: Assets/Art/Character/Blanc/Blanc_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 63702a1e2d9aca44b9020b53b10529b2
+    m_Address: Assets/Art/Character/Blanc/Blanc_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 378e392363d6d9246aa0a2b29ce0ed3a
+    m_Address: Assets/Art/Character/Blanc/Blanc_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6538c8c9e7719db4a80e0e4ee3b5e6fc
+    m_Address: Assets/Art/Character/Blanc/Blanc_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e7400472c5db67445bb78da12377dbf7
+    m_Address: Assets/Art/Character/Ceri/Ceri_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 007b977f38bad294baba6b2e54f66e8a
+    m_Address: Assets/Art/Character/Coze
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d45057ffd0d3cf74db6294117705f44a
+    m_Address: Assets/Art/Character/Coze/Coze_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 396d24e0b20ff0247b6c4686c68a2d53
+    m_Address: Assets/Art/Character/Coze/Coze_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ed0f27deb1f50ed48bd927431c51403c
+    m_Address: Assets/Art/Character/Coze/Coze_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1d597390b3c598540bdb093632560798
+    m_Address: Assets/Art/Character/Coze/Coze_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b14a0ef2e31fbf94ba2e424bd08deb13
+    m_Address: Assets/Art/Character/Coze/Coze_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cd22ca94a39c7714396bc42a6b5ece62
+    m_Address: Assets/Art/Character/Daniela
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b9bb71006b1323a49abd3a8b11b333b1
+    m_Address: Assets/Art/Character/Daniela/Daniela_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 89f0bf610f511fe40bb102fbecff9852
+    m_Address: Assets/Art/Character/Daniela/Daniela_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 01892b104aafd394c8c25a41c31fd506
+    m_Address: Assets/Art/Character/Daniela/Daniela_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4db4c19199f743b48a430e473b8b2cf3
+    m_Address: Assets/Art/Character/Daniela/Daniela_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 987ea0e2cd450fa44b669b224502b45c
+    m_Address: Assets/Art/Character/Daniela/Daniela_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 990372b777b68334c8aa8b069741d628
+    m_Address: Assets/Art/Character/Enemies/Ghost
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 11bc4c26eb6534e45803b008330a19d3
+    m_Address: Assets/Art/Character/Enemies/Ghost/Ghost_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e3f849aae4dfc5f40a632b843f8888b7
+    m_Address: Assets/Art/Character/Enemies/Ghost/Ghost_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f4b428786ca155a438f22d5ba99d4288
+    m_Address: Assets/Art/Character/Enemies/Ghost/Ghost_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9d2e969b5fda0494bbfcee1fbdc26903
+    m_Address: Assets/Art/Character/Enemies/Ghost/Ghost_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ef2001e71f583d54e850698701e4fd8d
+    m_Address: Assets/Art/Character/Enemies/Girls
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d00e4b870eec13f47a1bb664951a3769
+    m_Address: Assets/Art/Character/Enemies/Girls/Sophie_Enemy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 630faffd73be152499d394d2b70ca1f0
+    m_Address: Assets/Art/Character/Enemies/Girls/Beatrice_Enemy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 30e591d0ceb113e499708cfe27bc5441
+    m_Address: Assets/Art/Character/Enemies/Girls/Scarlet_Enemy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 14dd36df903d9214f921ffb4711b58d9
+    m_Address: Assets/Art/Character/Enemies/Girls/Rubia_Enemy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ac22152b874667143bba1e2ed00ae77d
+    m_Address: Assets/Art/Character/Enemies/Girls/Daniela_Enemy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cf5826a37ad638142ba7e407903dc745
+    m_Address: Assets/Art/Character/Enemies/Girls/Molly_Enemy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 77f505f136c711944a3745be1cf42763
+    m_Address: Assets/Art/Character/Enemies/Girls/FR4N_Enemy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5df451cad93f7a8429db1ca92cf34a13
+    m_Address: Assets/Art/Character/Enemies/Girls/Lola_Enemy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dde73a4ea5c7a094cae75ed9c55ae144
+    m_Address: Assets/Art/Character/Enemies/Girls/Ceri_Enemy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 366c9fabdb8a2ce4f9cccaa14bda4482
+    m_Address: Assets/Art/Character/Enemies/Girls/Coze_Enemy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1275d6591b4b76f459b5972c1fa178fa
+    m_Address: Assets/Art/Character/Enemies/Girls/Shiro_Enemy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 94f934f910284c8428d9700069afbe88
+    m_Address: Assets/Art/Character/Enemies/Girls/Laeticia_Enemy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b4fbbacb32c5dbe43b46104ad525cb26
+    m_Address: Assets/Art/Character/Enemies/Girls/Melia_Enemy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 53545276120784e41a985c97016974dd
+    m_Address: Assets/Art/Character/Enemies/Plant
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5cd9c48e59607ab4cb7ca438e7976ab5
+    m_Address: Assets/Art/Character/Enemies/Plant/Plant_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 11dca45ff8e66894c83f2178183bfb2b
+    m_Address: Assets/Art/Character/Enemies/Plant/Plant_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: aad5a2c709576cd44b9d3f49b3573e66
+    m_Address: Assets/Art/Character/Enemies/Plant/Plant_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4785b25168f6e1247ba5ba144b094549
+    m_Address: Assets/Art/Character/Enemies/Plant/Plant_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4fd6687188f57834c949c9c15de270d6
+    m_Address: Assets/Art/Character/Enemies/Robot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 50bcb0db2835f804c8729d6c71f0cbc9
+    m_Address: Assets/Art/Character/Enemies/Robot/Robot_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 31e8d5d8bf0c2af4a95932400ad3d932
+    m_Address: Assets/Art/Character/Enemies/Robot/Robot_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d197ed20905c0f64cbf2ed4826081fc8
+    m_Address: Assets/Art/Character/Enemies/Robot/Robot_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2c3f7ff6ea590af4682379750fa91593
+    m_Address: Assets/Art/Character/Enemies/Robot/Robot_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: aa6a1ec0d45236a48a34f634c1ae144e
+    m_Address: Assets/Art/Character/Enemies/Tentacle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 80847d8e3b9b12b41b20c132403c371f
+    m_Address: Assets/Art/Character/Enemies/Tentacle/Tentacle_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2a79da1556f86ca48827f476438ad3c6
+    m_Address: Assets/Art/Character/Enemies/Tentacle/Tentacle_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8d50c97e42c6cf44990960b36dd59338
+    m_Address: Assets/Art/Character/Enemies/Tentacle/Tentacle_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ad768975740d00b498beade3ae6fe4a8
+    m_Address: Assets/Art/Character/Enemies/Tentacle/Tentacle_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2e0dab9fc0570a94d93a32ceb5c2b722
+    m_Address: Assets/Art/Character/FR4N/FR4N_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9f0fb6bf14046ce4fa54fce41475ca46
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarlet_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c199d41f6e550224f8daf30213198ba0
+    m_Address: Assets/Art/Character/Laeticia/Leaticia_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c3ab5a767fa39fc4ca834f672cb87bdf
+    m_Address: Assets/Art/Character/Lola/Lola_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 15802de2151b71644a310418fd2f1836
+    m_Address: Assets/Art/Character/Melia/Melia_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: df602aa9d8d654a4086738d156791256
+    m_Address: Assets/Art/Character/Melia/Melia_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 70235ebf4125ebe499d9bba3941ee940
+    m_Address: Assets/Art/Character/Melia/Melia_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: adb409701d1b1b84992ea10b3e87aa02
+    m_Address: Assets/Art/Character/Melia/Melia_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f4c30670ca273af4f9f3a6d6b80ac2e1
+    m_Address: Assets/Art/Character/Melia/Melia_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f451be88436e3594c9f215d08afe1db5
+    m_Address: Assets/Art/Character/Melia/Melia_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: eec1fc06f579f5f42a362364ce39639f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f65c127e0c5ca7044916a3997072f154, type: 2}
+    - {fileID: 11400000, guid: f957227743b13db49b2fbfed58a65512, type: 2}

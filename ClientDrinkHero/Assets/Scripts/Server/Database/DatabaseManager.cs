@@ -134,6 +134,9 @@ public static class DatabaseManager {
         if (_db == null || index == null) {
             return null;
         }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
+        }
 
         TableMapping mapping = GetTableMapping<T>();
 
@@ -155,9 +158,89 @@ public static class DatabaseManager {
         reader.Close();
         return item;
     }
+    public static T GetDatabaseItem<T>(string foreigenKeys, int keyValue) where T : DatabaseItem, new() {
+        if (_db == null) {
+            return null;
+        }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
+        }
+
+        TableMapping mapping = GetTableMapping<T>();
+
+        string sqlCommand = "SELECT * FROM " + mapping.TableName + " WHERE " + foreigenKeys + "=" + keyValue + " ";
+
+        MySqlCommand command = _db.CreateCommand();
+
+        command.CommandText = sqlCommand;
+
+        //Console.Write("SQL Command: " + sqlCommand + "\r\n");
+
+
+        T item = new T();
+
+        MySqlDataReader reader = command.ExecuteReader();
+
+        while (reader.Read()) {
+
+
+            item = ReadRow<T>(reader, mapping.ColumnsMapping);
+            break;
+
+        }
+        reader.Close();
+        return item;
+    }
+    public static T GetDatabaseItem<T>(List<string> foreigenKeys, List<int> keyValue) where T : DatabaseItem, new() {
+        if (_db == null || foreigenKeys.Count == 0 || keyValue.Count == 0) {
+            return null;
+        }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
+        }
+
+        TableMapping mapping = GetTableMapping<T>();
+
+
+
+        string sqlCommand = "SELECT * FROM " + mapping.TableName + " WHERE " + foreigenKeys[0] + "=" + keyValue[0] + " ";
+
+        for (int i = 1; i < foreigenKeys.Count;) {
+
+            sqlCommand = sqlCommand + "AND " + foreigenKeys[i] + "=" + keyValue[i] + " ";
+
+
+            i = i + 1;
+        }
+
+
+        MySqlCommand command = _db.CreateCommand();
+
+        command.CommandText = sqlCommand;
+
+        //Console.Write("SQL Command: " + sqlCommand + "\r\n");
+
+
+        T item = new T();
+
+        MySqlDataReader reader = command.ExecuteReader();
+
+        while (reader.Read()) {
+
+
+            item = ReadRow<T>(reader, mapping.ColumnsMapping);
+            break;
+
+        }
+        reader.Close();
+        return item;
+    }
     public static List<T> GetDatabaseList<T>() where T : DatabaseItem, new() {
         if (_db == null) {
             return null;
+        }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
         }
 
         TableMapping mapping = GetTableMapping<T>();
@@ -167,6 +250,8 @@ public static class DatabaseManager {
         MySqlCommand command = _db.CreateCommand();
 
         command.CommandText = sqlCommand;
+
+        //Console.Write("SQL Command: " + sqlCommand + "\r\n");
 
         List<T> list = new List<T>();
 
@@ -184,6 +269,9 @@ public static class DatabaseManager {
         if (_db == null) {
             return null;
         }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
+        }
 
         TableMapping mapping = GetTableMapping<T>();
 
@@ -191,6 +279,159 @@ public static class DatabaseManager {
 
         MySqlCommand command = _db.CreateCommand();
 
+        command.CommandText = sqlCommand;
+
+        //Console.Write("SQL Command: " + sqlCommand + "\r\n");
+
+
+        List<T> list = new List<T>();
+
+        MySqlDataReader reader = command.ExecuteReader();
+
+        while (reader.Read()) {
+
+
+            list.Add(ReadRow<T>(reader, mapping.ColumnsMapping));
+        }
+        reader.Close();
+        return list;
+    }
+
+    public static List<T> GetDatabaseList<T>(List<string> foreigenKeys, List<int> keyValue) where T : DatabaseItem, new() {
+        if (_db == null || foreigenKeys.Count == 0 || keyValue.Count == 0) {
+            return null;
+        }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
+        }
+
+        TableMapping mapping = GetTableMapping<T>();
+
+
+
+        string sqlCommand = "SELECT * FROM " + mapping.TableName + " WHERE " + foreigenKeys[0] + "=" + keyValue[0] + " ";
+
+        for (int i = 1; i < foreigenKeys.Count;) {
+
+            sqlCommand = sqlCommand + "AND " + foreigenKeys[i] + "=" + keyValue[i] + " ";
+
+
+            i = i + 1;
+        }
+
+
+        MySqlCommand command = _db.CreateCommand();
+
+        command.CommandText = sqlCommand;
+
+        //Console.Write("SQL Command: " + sqlCommand + "\r\n");
+
+
+        List<T> list = new List<T>();
+
+        MySqlDataReader reader = command.ExecuteReader();
+
+        while (reader.Read()) {
+
+
+            list.Add(ReadRow<T>(reader, mapping.ColumnsMapping));
+
+
+        }
+        reader.Close();
+        return list;
+    }
+    public static List<T> GetDatabaseList<T>(string viewName, List<string> foreigenKeys, List<int> keyValue) where T : DatabaseItem, new() {
+        if (_db == null || foreigenKeys.Count == 0 || keyValue.Count == 0) {
+            return null;
+        }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
+        }
+
+        TableMapping mapping = GetTableMapping<T>();
+
+
+
+        string sqlCommand = "SELECT * FROM " + viewName + " WHERE " + foreigenKeys[0] + "=" + keyValue[0] + " ";
+
+        for (int i = 1; i < foreigenKeys.Count;) {
+
+            sqlCommand = sqlCommand + "AND " + foreigenKeys[i] + "=" + keyValue[i] + " ";
+
+
+            i = i + 1;
+        }
+
+
+        MySqlCommand command = _db.CreateCommand();
+
+        command.CommandText = sqlCommand;
+
+        //Console.Write("SQL Command: " + sqlCommand + "\r\n");
+
+
+        List<T> list = new List<T>();
+
+        MySqlDataReader reader = command.ExecuteReader();
+
+        while (reader.Read()) {
+
+
+            list.Add(ReadRow<T>(reader, mapping.ColumnsMapping));
+
+
+        }
+        reader.Close();
+        return list;
+    }
+
+    public static List<T> GetDatabaseList<T>(string foreigenKey, int keyValue, int entityCount, string OrderByKey, string OrderType) where T : DatabaseItem, new() {
+        if (_db == null) {
+            return null;
+        }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
+        }
+
+        TableMapping mapping = GetTableMapping<T>();
+
+        string sqlCommand = "SELECT * FROM " + mapping.TableName + " WHERE " + foreigenKey.Trim() + " = " + keyValue + " ORDER BY " + OrderByKey + " " + OrderType + " LIMIT " + entityCount;
+
+        MySqlCommand command = _db.CreateCommand();
+
+        command.CommandText = sqlCommand;
+
+        //Console.Write("SQL Command: " + sqlCommand + "\r\n");
+
+
+        List<T> list = new List<T>();
+
+        MySqlDataReader reader = command.ExecuteReader();
+
+        while (reader.Read()) {
+
+
+            list.Add(ReadRow<T>(reader, mapping.ColumnsMapping));
+        }
+        reader.Close();
+        return list;
+    }
+
+
+    public static List<T> GetDatabaseList<T>(string viewName) where T : DatabaseItem, new() {
+        if (_db == null) {
+            return null;
+        }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
+        }
+
+        TableMapping mapping = GetTableMapping<T>();
+
+        string sqlCommand = "SELECT * FROM " + viewName;
+
+        MySqlCommand command = _db.CreateCommand();
         command.CommandText = sqlCommand;
 
         List<T> list = new List<T>();
@@ -210,6 +451,9 @@ public static class DatabaseManager {
     public static void UpdateDatabaseItem<T>(T item) where T : DatabaseItem, new() {
         if (_db == null) {
             return;
+        }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
         }
 
 
@@ -254,6 +498,9 @@ public static class DatabaseManager {
     public static void InsertDatabaseItem<T>(T item) where T : DatabaseItem, new() {
         if (_db == null) {
             return;
+        }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
         }
 
 
@@ -312,6 +559,97 @@ public static class DatabaseManager {
 
         command.ExecuteNonQuery();
 
+    }
+    public static int InsertDatabaseItemAndReturnKey<T>(T item) where T : DatabaseItem, new() {
+        if (_db == null) {
+            return -1;
+        }
+        if (_db.State != System.Data.ConnectionState.Open) {
+            _db.Open();
+        }
+
+
+        TableMapping mapping = GetTableMapping<T>();
+
+        string sqlCommand = "INSERT INTO " + mapping.TableName + " ( ";
+        bool firstLoop = false;
+        foreach (string key in mapping.ColumnsMapping.Keys) {
+            if (key == mapping.PrimaryKeyColumn) {
+                continue;
+            }
+
+            if (firstLoop == false) {
+                firstLoop = true;
+                sqlCommand = sqlCommand + " " + key;
+            }
+            else {
+                sqlCommand = sqlCommand + ", " + key;
+            }
+
+        }
+
+        sqlCommand = sqlCommand + " ) VALUES (";
+        firstLoop = false;
+
+        foreach (string key in mapping.ColumnsMapping.Keys) {
+            if (key == mapping.PrimaryKeyColumn) {
+                continue;
+            }
+
+            if (firstLoop == false) {
+                firstLoop = true;
+                sqlCommand = sqlCommand + " @" + key;
+            }
+            else {
+                sqlCommand = sqlCommand + ", @" + key;
+            }
+
+        }
+        sqlCommand = sqlCommand + " ) ";
+
+
+        MySqlCommand command = _db.CreateCommand();
+
+        MySqlTransaction transaction = _db.BeginTransaction();
+
+        command.Connection = _db;
+        command.Transaction = transaction;
+
+        command.CommandText = sqlCommand;
+
+        foreach (KeyValuePair<string, string> pair in mapping.ColumnsMapping) {
+            if (pair.Key == mapping.PrimaryKeyColumn) {
+                continue;
+            }
+
+            command.Parameters.AddWithValue("@" + pair.Key, item.GetType().GetProperty(pair.Value).GetValue(item));
+
+        }
+
+        Console.WriteLine(command.CommandText + " \r\n");
+
+        command.ExecuteNonQuery();
+        command.CommandText = "SELECT LAST_INSERT_ID()";
+
+        Console.WriteLine(command.CommandText + " \r\n");
+
+        MySqlDataReader reader = command.ExecuteReader();
+
+        int id = -1;
+        while (reader.Read()) {
+
+
+            id = reader.GetInt32(0);
+
+
+
+        }
+        reader.Close();
+
+        transaction.Commit();
+
+
+        return id;
     }
 #endif
 }
