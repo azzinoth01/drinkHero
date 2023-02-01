@@ -11,12 +11,6 @@ public class CardView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI cardName;
     [SerializeField] private TextMeshProUGUI cardDescription;
 
-    [Header("Sound Effect(s)")] [SerializeField]
-    private SimpleAudioEvent clickOnCardSound;
-
-    [SerializeField] private SimpleAudioEvent cardPlayedSound;
-    [SerializeField] private SimpleAudioEvent cardNotPlayedSound;
-
     [Header("Card Zoom Values")] [SerializeField]
     private Ease dragScaleEaseMode;
 
@@ -75,13 +69,9 @@ public class CardView : MonoBehaviour
 
     public void ClickCardSound()
     {
-        PlayCardSoundEffect(clickOnCardSound);
+        //PlayCardSoundEffect(clickOnCardSound);
     }
 
-    private void PlayCardSoundEffect(SimpleAudioEvent audioEvent)
-    {
-        GlobalAudioManager.Instance.Play(audioEvent);
-    }
 
     public void DisableAllRayCastTargets()
     {

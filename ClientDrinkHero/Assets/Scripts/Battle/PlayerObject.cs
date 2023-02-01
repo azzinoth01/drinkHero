@@ -3,12 +3,9 @@ using UnityEngine;
 
 public class PlayerObject : MonoBehaviour {
     [SerializeField] private Player _player;
-    [SerializeField] private SimpleAudioEvent _playerDamageSound, _playerDamageBlockedSound, _playerhealedSound, _playerShieldUpSound;
 
     private List<HeroHandler> _heroHandlerList;
-
-
-
+    
     public Player Player => _player;
 
     //remove after prototype
@@ -89,19 +86,19 @@ public class PlayerObject : MonoBehaviour {
     //    Deck deck = testUserField.Users.DeckList[0];
 
     private void PlayerDamageFeedback() {
-        GlobalAudioManager.Instance.Play(_playerDamageSound);
+        //GlobalAudioManager.Instance.Play(_playerDamageSound);
     }
 
     private void PlayerDamageBlockedFeedback() {
-        GlobalAudioManager.Instance.Play(_playerDamageBlockedSound);
+        //GlobalAudioManager.Instance.Play(_playerDamageBlockedSound);
     }
 
     private void PlayerHealedFeedback() {
-        GlobalAudioManager.Instance.Play(_playerhealedSound);
+        //GlobalAudioManager.Instance.Play(_playerhealedSound);
     }
 
     private void PlayerShieldUpFeedback() {
-        GlobalAudioManager.Instance.Play(_playerShieldUpSound);
+        //GlobalAudioManager.Instance.Play(_playerShieldUpSound);
     }
 
     [ContextMenu("play Card 0")]
