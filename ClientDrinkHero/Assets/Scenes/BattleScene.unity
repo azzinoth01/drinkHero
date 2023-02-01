@@ -329,6 +329,10 @@ PrefabInstance:
       propertyPath: _spritePathSufix
       value: _Chibi.png
       objectReference: {fileID: 0}
+    - target: {fileID: 2301979895341934700, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: _animationKey
+      value: Slot1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
 --- !u!224 &123499403 stripped
@@ -489,6 +493,10 @@ PrefabInstance:
     - target: {fileID: 1583913935006106169, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: _spritePathSufix
       value: _Chibi.png
+      objectReference: {fileID: 0}
+    - target: {fileID: 2301979895341934700, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: _animationKey
+      value: Slot3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
@@ -2543,6 +2551,10 @@ PrefabInstance:
       propertyPath: _spritePathSufix
       value: _Chibi.png
       objectReference: {fileID: 0}
+    - target: {fileID: 2301979895341934700, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: _animationKey
+      value: Slot2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
 --- !u!224 &997314292 stripped
@@ -4334,7 +4346,7 @@ PrefabInstance:
       objectReference: {fileID: 212775303}
     - target: {fileID: 5626899109704554698, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
       propertyPath: _despawnDelay
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5626899109704554698, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
       propertyPath: enemy._shield
@@ -4342,11 +4354,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5626899109704554698, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
       propertyPath: _spawnNextDelay
-      value: 2.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5626899109704554698, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
       propertyPath: _spawnAnimationDelay
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6880171207486711353, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
       propertyPath: m_Name
@@ -4443,10 +4455,10 @@ PrefabInstance:
     - target: {fileID: 6880171208421943430, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 3488b8eff93affa4ea6c4c6405b20b02, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6880171208421943430, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6880171208421943430, guid: 9a2732d066b182e4f95224d3a0a5f034, type: 3}
       propertyPath: m_Material

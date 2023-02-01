@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyObject : MonoBehaviour {
 
     [SerializeField] private EnemyBattle _enemyData;
-    [SerializeField] private Animator _vfx;
+    [SerializeField] private DisolveSprite _disolveAnimation;
 
 
     [SerializeField] private float _despawnDelay;
@@ -47,10 +47,7 @@ public class EnemyObject : MonoBehaviour {
 
     private IEnumerator DeathAnimation() {
         yield return new WaitForSeconds(_deathAnimationDelay);
-
-
-        _vfx.SetBool("isOver", false);
-        _vfx.SetTrigger("die");
+        _disolveAnimation.enabled = true;
     }
 
     private IEnumerator SpawnDelay() {
@@ -65,8 +62,8 @@ public class EnemyObject : MonoBehaviour {
     private IEnumerator SpawnAnimationDelay() {
         yield return new WaitForSeconds(_spawnAnimationDelay);
 
-        _vfx.SetBool("isOver", false);
-        _vfx.SetTrigger("spawn");
+        //_vfx.SetBool("isOver", false);
+        //_vfx.SetTrigger("spawn");
     }
 
 
