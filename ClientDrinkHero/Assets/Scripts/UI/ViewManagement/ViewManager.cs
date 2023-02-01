@@ -10,33 +10,25 @@ public class ViewManager : MonoBehaviour
 
     private View _currentView;
 
-    private readonly Stack<View> _history = new ();
+    private readonly Stack<View> _history = new();
 
     public T GetView<T>() where T : View
     {
-        for (int i = 0; i < Instance._views.Length; i++)
-        {
+        for (var i = 0; i < Instance._views.Length; i++)
             if (Instance._views[i] is T tView)
-            {
                 return tView;
-            }
-        }
 
         return null;
     }
 
     public static void Show<T>(bool remember = true) where T : View
     {
-        for (int i = 0; i < Instance._views.Length; i++)
-        {
+        for (var i = 0; i < Instance._views.Length; i++)
             if (Instance._views[i] is T)
             {
                 if (Instance._currentView != null)
                 {
-                    if (remember)
-                    {
-                        Instance._history.Push(Instance._currentView);
-                    }
+                    if (remember) Instance._history.Push(Instance._currentView);
 
                     Instance._currentView.Hide();
                 }
@@ -45,17 +37,13 @@ public class ViewManager : MonoBehaviour
 
                 Instance._currentView = Instance._views[i];
             }
-        }
     }
 
     public static void Show(View view, bool remember = true)
     {
         if (Instance._currentView != null)
         {
-            if (remember)
-            {
-                Instance._history.Push(Instance._currentView);
-            }
+            if (remember) Instance._history.Push(Instance._currentView);
 
             Instance._currentView.Hide();
         }
@@ -67,26 +55,23 @@ public class ViewManager : MonoBehaviour
 
     public static void ShowLast()
     {
-        if (Instance._history.Count != 0)
-        {
-            Show(Instance._history.Pop(), false);
-        }
+        if (Instance._history.Count != 0) Show(Instance._history.Pop(), false);
     }
 
-    private void Awake() => Instance = this;
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
-        for (int i = 0; i < _views.Length; i++)
+        for (var i = 0; i < _views.Length; i++)
         {
             _views[i].Initialize();
 
             _views[i].Hide();
         }
 
-        if (_startingView != null)
-        {
-            Show(_startingView, true);
-        }
+        if (_startingView != null) Show(_startingView, true);
     }
 }

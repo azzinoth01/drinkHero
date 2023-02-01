@@ -508,8 +508,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8077983593282135626}
-  - component: {fileID: 4031614044691084969}
   - component: {fileID: 7055122538721834204}
+  - component: {fileID: 427617120511661316}
   m_Layer: 5
   m_Name: CharacterCardPreviewObject
   m_TagString: Untagged
@@ -524,7 +524,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8077983593282135627}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -543,29 +543,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 220, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4031614044691084969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8077983593282135627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 816fd2bbadf86864e92aefe65a0a7f88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costText: {fileID: 8077983591628836067}
-  cardName: {fileID: 993123931147480908}
-  cardDescription: {fileID: 4702869932047538062}
-  clickOnCardSound: {fileID: 11400000, guid: 110ebf90b55afeb43b20237870eed601, type: 2}
-  cardPlayedSound: {fileID: 0}
-  cardNotPlayedSound: {fileID: 0}
-  dragScaleEaseMode: 28
-  dragScaleFactor: 1.75
-  dragScaleDuration: 0.25
-  returnMoveDuration: 0.5
-  returnMoveEaseMode: 28
 --- !u!114 &7055122538721834204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,7 +587,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4031614044691084969}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerCardUI, Assembly-CSharp
         m_MethodName: ClickCardSound
         m_Mode: 1
@@ -622,6 +599,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &427617120511661316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8077983593282135627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07bc9f890721514da8fb8ba58e4c195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 0
+  cardName: {fileID: 993123931147480908}
+  cardDescription: {fileID: 4702869932047538062}
+  cardPortrait: {fileID: 262865070767119518}
 --- !u!1 &8938463946329699954
 GameObject:
   m_ObjectHideFlags: 0

@@ -260,6 +260,7 @@ MonoBehaviour:
   _spritePathSufix: 
   _slot: 0
   _isEnemy: 0
+  _noSlot: 0
 --- !u!1 &1487478762714087895
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,14 +541,17 @@ MonoBehaviour:
   characterSlotData:
     id: 0
     characterName: 
+    characterSpritePath: 
     characterFaction: {fileID: 0}
-    characterPortrait: {fileID: 0}
   characterName: {fileID: 3162023867172827401}
   characterFactionImage: {fileID: 4055031490661561953}
   characterPortraitImage: {fileID: 5417175555570667251}
   lockIcon: {fileID: 3179028079710756571}
   selectButton: {fileID: 4963675911102721779}
+  deSelectButton: {fileID: 2409046728913822030}
   infoButton: {fileID: 428371457282781424}
+  id: 0
+  characterCardView: {fileID: 0}
 --- !u!1 &4447269050569648057
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,7 +618,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Beatrice
+  m_text: None
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8ac110942513e6d4f8594d9c19948ee5, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 93e6763b776c8c9418d78b746bcc3b2a, type: 2}
@@ -641,7 +645,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.65
+  m_fontSize: 38.2
   m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -822,6 +826,7 @@ MonoBehaviour:
   _spritePathSufix: _0.png
   _slot: 0
   _isEnemy: 0
+  _noSlot: 1
 --- !u!1 &6698458815533476161
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,7 +1265,7 @@ GameObject:
   - component: {fileID: 3819643508343744827}
   - component: {fileID: 2409046728913822030}
   m_Layer: 5
-  m_Name: CharacterSelectedBG
+  m_Name: DeselectButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

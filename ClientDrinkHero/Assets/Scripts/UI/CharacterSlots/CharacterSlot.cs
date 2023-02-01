@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,58 +7,60 @@ public class CharacterSlot : MonoBehaviour
 {
     [Header("Character Data")] 
     [SerializeField] private int slotID;
-    [SerializeField] private int currentHeroID;
-    [SerializeField] private CharacterSlotData slotData;
-    
+    [SerializeField] public CharacterSlotData slotData;
     [SerializeField] private Image characterPortrait;
     [SerializeField] private TextMeshProUGUI characterName;
+
+    private int _lastHeroIdInSlot;
+    public bool IsEmpty { get; set; }
     
+    private LoadSprite _loadSprite;
     private Button _slotButton;
-    public bool isEmpty;
+
+    public static Action<int> OnCharacterDeselect;
+
     private void Awake()
     {
+        IsEmpty = true;
+        _loadSprite = GetComponent<LoadSprite>();
         _slotButton = GetComponent<Button>();
-        _slotButton.onClick.AddListener(() => TeamController.Instance.SetActiveSlot(slotID, isEmpty));
+        _slotButton.onClick.AddListener(() => TeamController.Instance.SetActiveSlot(slotID, IsEmpty));
     }
-    
+
     public void LoadCharacterData(CharacterSlotData data)
     {
-        if (data == null)
+        if (!IsEmpty)
         {
-            Debug.Log("Data is null!");
-            return;
+            //Tell CharacterSelectView to deselect lastHeroId
+            Debug.Log($"<color=red>Re-Enabling Hero ID {_lastHeroIdInSlot}</color>");
+            OnCharacterDeselect?.Invoke(_lastHeroIdInSlot);
         }
-        
+            
         slotData = data;
 
-        characterPortrait = slotData.characterPortrait;
+        _loadSprite.LoadNewSprite(data.characterSpritePath);
         characterPortrait.enabled = true;
 
         characterName.SetText(slotData.characterName);
         characterName.enabled = true;
 
-        currentHeroID = slotData.id;
+        _lastHeroIdInSlot = slotData.id;
         
-        isEmpty = false;
+        IsEmpty = false;
     }
-    
+
     public void ClearCharacterData()
     {
-        slotData = null;
+        slotData = new CharacterSlotData();
         
-        characterPortrait = null;
+        _loadSprite.UnloadSprite();
         characterPortrait.enabled = false;
 
         characterName.SetText("");
         characterName.enabled = false;
 
-        currentHeroID = 0;
+        _lastHeroIdInSlot = -1;
         
-        isEmpty = true;
-    }
-
-    public void TransmitCharacterData()
-    {
-        
+        IsEmpty = true;
     }
 }

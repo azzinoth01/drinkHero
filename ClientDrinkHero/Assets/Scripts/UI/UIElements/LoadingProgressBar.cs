@@ -9,12 +9,9 @@ public class LoadingProgressBar : MonoBehaviour
     {
         _loadingProgressBar = GetComponent<Image>();
     }
-    
+
     private void Update()
     {
-        if (_loadingProgressBar.fillAmount < SceneLoader.GetLoadingProgress())
-        {
-            _loadingProgressBar.fillAmount += 0.1f; 
-        }
+        if (_loadingProgressBar.fillAmount < SceneLoader.GetLoadingProgress()) _loadingProgressBar.fillAmount += 0.1f;
     }
 }

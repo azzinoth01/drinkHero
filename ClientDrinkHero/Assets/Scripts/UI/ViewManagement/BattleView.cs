@@ -3,37 +3,40 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BattleView : View {
+public class BattleView : View
+{
     [SerializeField] private List<CardView> currentPlayerHand;
 
-    [Header("Card Related")]
-    [SerializeField] private GameObject playerCardObjectPrefab;
+    [Header("Card Related")] [SerializeField]
+    private GameObject playerCardObjectPrefab;
+
     [SerializeField] private GameObject playerHandContainer;
     [SerializeField] private GameObject waitingForConnectionPanel;
 
-    [Header("Player Related")]
-    [SerializeField] private Image playerHealthBar;
+    [Header("Player Related")] [SerializeField]
+    private Image playerHealthBar;
+
     [SerializeField] private Image playerManaBar;
     [SerializeField] private TextMeshProUGUI playerHealthLabelText;
     [SerializeField] private TextMeshProUGUI playerManaLabelText;
     [SerializeField] private TextMeshProUGUI playerShieldCountText;
 
-    [Header("Enemy Related")]
-    [SerializeField] private Image enemyHealthBar;
+    [Header("Enemy Related")] [SerializeField]
+    private Image enemyHealthBar;
+
     [SerializeField] private TextMeshProUGUI enemyHealthLabelText;
     [SerializeField] private TextMeshProUGUI enemyShieldCountText;
 
-    [Header("Buttons")]
-    [SerializeField] private Button endTurnButton;
+    [Header("Buttons")] [SerializeField] private Button endTurnButton;
     [SerializeField] private Button optionsMenuButton;
     [SerializeField] private Button pauseMenuButton;
 
-    [Header("Debug Related")]
-    [SerializeField] private TextMeshProUGUI debugText;
+    [Header("Debug Related")] [SerializeField]
+    private TextMeshProUGUI debugText;
 
     // TODO: Observer Pattern?
-    private void OnEnable() {
-
+    private void OnEnable()
+    {
         UIDataContainer.Instance.Player.HealthChange += UpdatePlayerHealthBar;
         UIDataContainer.Instance.Player.ShieldChange += UpdatePlayerShieldCounter;
         UIDataContainer.Instance.Player.RessourceChange += UpdatePlayerEnergyBar;
@@ -49,8 +52,8 @@ public class BattleView : View {
         TurnManager.updateDebugText += UpdateDebugText;
     }
 
-    private void OnDisable() {
-
+    private void OnDisable()
+    {
         UIDataContainer.Instance.Player.HealthChange -= UpdatePlayerHealthBar;
         UIDataContainer.Instance.Player.ShieldChange -= UpdatePlayerShieldCounter;
         UIDataContainer.Instance.Player.RessourceChange -= UpdatePlayerEnergyBar;
@@ -66,13 +69,14 @@ public class BattleView : View {
         TurnManager.updateDebugText -= UpdateDebugText;
     }
 
-    void Start() {
-
+    private void Start()
+    {
         UpdateHandCards();
         InitUIValues();
     }
 
-    private void AddHandCard(ICardDisplay card, int index) {
+    private void AddHandCard(ICardDisplay card, int index)
+    {
         var newCard = Instantiate(playerCardObjectPrefab, playerHandContainer.transform.position,
             Quaternion.identity, playerHandContainer.transform);
         var cardView = newCard.GetComponent<CardView>();
@@ -82,53 +86,57 @@ public class BattleView : View {
         cardView.SetDisplayValues(card, index);
     }
 
-    private void UpdateHandCards() {
-        IHandCards playerHand = UIDataContainer.Instance.Player.GetHandCards();
+    private void UpdateHandCards()
+    {
+        var playerHand = UIDataContainer.Instance.Player.GetHandCards();
 
-        if (playerHand == null) {
-            return;
-        }
+        if (playerHand == null) return;
 
         int i;
-        for (i = 0; i < playerHand.HandCardCount();) {
-            ICardDisplay card = playerHand.GetHandCard(i);
+        for (i = 0; i < playerHand.HandCardCount();)
+        {
+            var card = playerHand.GetHandCard(i);
 
-            if (currentPlayerHand.Count == i) {
+            if (currentPlayerHand.Count == i)
+            {
                 AddHandCard(card, i);
             }
-            else {
+            else
+            {
                 currentPlayerHand[i].gameObject.SetActive(true);
                 currentPlayerHand[i].GetComponent<CardView>().SetDisplayValues(card, i);
             }
 
-            int index = i;
-            Button button = currentPlayerHand[i].GetComponent<Button>();
+            var index = i;
+            var button = currentPlayerHand[i].GetComponent<Button>();
             button.onClick.RemoveAllListeners();
 
-            button.onClick.AddListener(delegate {
-                CardClickEvent(index, playerHand);
-            });
+            button.onClick.AddListener(delegate { CardClickEvent(index, playerHand); });
 
             i = i + 1;
         }
 
-        for (; i < currentPlayerHand.Count;) {
+        for (; i < currentPlayerHand.Count;)
+        {
             currentPlayerHand[i].gameObject.SetActive(false);
 
             i = i + 1;
         }
     }
 
-    private void CardClickEvent(int index, IHandCards playerHand) {
+    private void CardClickEvent(int index, IHandCards playerHand)
+    {
         playerHand.PlayHandCard(index);
         UpdateHandCards();
     }
 
-    public bool PlayHandCardOnDrop(int index) {
-        IHandCards playerHand = UIDataContainer.Instance.Player.GetHandCards();
+    public bool PlayHandCardOnDrop(int index)
+    {
+        var playerHand = UIDataContainer.Instance.Player.GetHandCards();
 
-        bool cardWasPlayed = playerHand.PlayHandCard(index);
-        if (cardWasPlayed) {
+        var cardWasPlayed = playerHand.PlayHandCard(index);
+        if (cardWasPlayed)
+        {
             currentPlayerHand[index].gameObject.SetActive(false);
             UpdateHandCards();
         }
@@ -136,8 +144,8 @@ public class BattleView : View {
         return cardWasPlayed;
     }
 
-    private void InitUIValues() {
-
+    private void InitUIValues()
+    {
         UpdatePlayerHealthBar(0);
         UpdatePlayerEnergyBar(0);
         UpdatePlayerShieldCounter(0);
@@ -146,66 +154,74 @@ public class BattleView : View {
         UpdateEnemyShieldCounter(0);
     }
 
-    private void UpdatePlayerHealthBar(int deltaValue) {
+    private void UpdatePlayerHealthBar(int deltaValue)
+    {
         ICharacter character = UIDataContainer.Instance.Player;
         UpdateBarDisplay(character.CurrentHealth(), character.MaxHealth(), playerHealthLabelText, playerHealthBar);
     }
 
-    private void UpdatePlayerEnergyBar(int deltaValue) {
-        IPlayer player = UIDataContainer.Instance.Player;
+    private void UpdatePlayerEnergyBar(int deltaValue)
+    {
+        var player = UIDataContainer.Instance.Player;
         UpdateBarDisplay(player.CurrentRessource(), player.MaxRessource(), playerManaLabelText, playerManaBar);
     }
 
-    private void UpdateEnemyHealthBar(int deltaValue) {
-        ICharacter character = UIDataContainer.Instance.Enemy;
+    private void UpdateEnemyHealthBar(int deltaValue)
+    {
+        var character = UIDataContainer.Instance.Enemy;
         UpdateBarDisplay(character.CurrentHealth(), character.MaxHealth(), enemyHealthLabelText, enemyHealthBar);
     }
 
-    private static void UpdateBarDisplay(float currentValue, float maxValue, TextMeshProUGUI label, Image bar) {
+    private static void UpdateBarDisplay(float currentValue, float maxValue, TextMeshProUGUI label, Image bar)
+    {
         label.SetText(currentValue.ToString());
         bar.fillAmount = currentValue / maxValue;
     }
 
-    private void UpdateEnemyShieldCounter(int deltaValue) {
-        ICharacter character = UIDataContainer.Instance.Enemy;
+    private void UpdateEnemyShieldCounter(int deltaValue)
+    {
+        var character = UIDataContainer.Instance.Enemy;
         UpdateShieldCounterDisplay(enemyShieldCountText, character.CurrentShield());
     }
 
-    private void UpdatePlayerShieldCounter(int deltaValue) {
+    private void UpdatePlayerShieldCounter(int deltaValue)
+    {
         ICharacter character = UIDataContainer.Instance.Player;
         UpdateShieldCounterDisplay(playerShieldCountText, character.CurrentShield());
     }
 
-    private void UpdateShieldCounterDisplay(TextMeshProUGUI counterText, int value) {
-        if (counterText != null) {
-            counterText.SetText(value.ToString());
-        }
+    private void UpdateShieldCounterDisplay(TextMeshProUGUI counterText, int value)
+    {
+        if (counterText != null) counterText.SetText(value.ToString());
     }
 
-    private void UpdateDebugText(string text) {
+    private void UpdateDebugText(string text)
+    {
         debugText.SetText(text);
     }
 
-    private void TogglePlayerUIControls(bool state) {
+    private void TogglePlayerUIControls(bool state)
+    {
         // get all cards currently held and toggle their state 
-        foreach (var cardButton in currentPlayerHand) {
-            cardButton.GetComponent<Button>().interactable = state;
-        }
+        foreach (var cardButton in currentPlayerHand) cardButton.GetComponent<Button>().interactable = state;
 
         endTurnButton.interactable = state;
     }
 
-    private void ShowGameOverScreen() {
+    private void ShowGameOverScreen()
+    {
         ViewManager.Show<GameOverView>();
     }
 
-    private void ToggleWaitingPanel(bool state) {
+    private void ToggleWaitingPanel(bool state)
+    {
         // create WaitForConnectionView 
         waitingForConnectionPanel.SetActive(state);
     }
 
-    public override void Initialize() {
+    public override void Initialize()
+    {
         optionsMenuButton.onClick.AddListener(() => ViewManager.Show<OptionsMenuView>());
-        // pauseMenuButton.onClick.AddListener(() => ViewManager.Show<PauseMenuView>());
+        pauseMenuButton.onClick.AddListener(() => ViewManager.Show<PauseMenuView>());
     }
 }
