@@ -590,6 +590,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5995649209521695686, guid: ba0858b4ddaa9944f9a723d470f3b9cb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 26.099976
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995649209521695686, guid: ba0858b4ddaa9944f9a723d470f3b9cb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -36.099976
+      objectReference: {fileID: 0}
     - target: {fileID: 5995649209521695687, guid: ba0858b4ddaa9944f9a723d470f3b9cb, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -709,6 +717,18 @@ PrefabInstance:
     - target: {fileID: 8929981219153055091, guid: ba0858b4ddaa9944f9a723d470f3b9cb, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929981219153055091, guid: ba0858b4ddaa9944f9a723d470f3b9cb, type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929981219153055091, guid: ba0858b4ddaa9944f9a723d470f3b9cb, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8929981219153055091, guid: ba0858b4ddaa9944f9a723d470f3b9cb, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba0858b4ddaa9944f9a723d470f3b9cb, type: 3}
