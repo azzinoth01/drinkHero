@@ -38,7 +38,6 @@ public class BattleView : View {
     [SerializeField]
     private TextMeshProUGUI turnAnnouncerText;
 
-    // TODO: Observer Pattern?
     private void OnEnable() {
         UIDataContainer.Instance.Player.HealthChange += UpdatePlayerHealthBar;
         UIDataContainer.Instance.Player.ShieldChange += UpdatePlayerShieldCounter;
@@ -94,7 +93,6 @@ public class BattleView : View {
         DisolveCard disolveCard = cardView.GetComponent<DisolveCard>();
         disolveCard.ResetEffect();
     }
-
 
     [ContextMenu("Update Hand cards")]
     private void UpdateHandCards() {
@@ -235,13 +233,10 @@ public class BattleView : View {
         ViewManager.Show<GameOverView>();
     }
 
-    private void ToggleWaitingPanel(bool state) {
-        // create WaitForConnectionView 
-        waitingForConnectionPanel.SetActive(state);
-    }
-
     public override void Initialize() {
         optionsMenuButton.onClick.AddListener(() => ViewManager.Show<OptionsMenuView>());
-        //pauseMenuButton.onClick.AddListener(() => ViewManager.Show<PauseMenuView>());
+        pauseMenuButton.onClick.AddListener(() => ViewManager.Show<PauseMenuView>());
+        
+        AudioController.Instance.PlayAudio(AudioType.BattleTheme, true, 0f);
     }
 }

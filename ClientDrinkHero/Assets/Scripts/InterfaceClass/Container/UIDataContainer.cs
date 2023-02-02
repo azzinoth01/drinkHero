@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-
 public class UIDataContainer {
-
 
     private static UIDataContainer _instance;
     private IPlayer _player;
@@ -15,6 +12,8 @@ public class UIDataContainer {
     private IFlyingTextHandler _enemyText;
     private IFlyingTextHandler _playerText;
 
+
+    public static int[] TeamIds;
 
     public static UIDataContainer Instance {
         get {
