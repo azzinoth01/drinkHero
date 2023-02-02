@@ -288,7 +288,7 @@ public abstract class Character : ICharacterAction, ICharacter {
     }
 
     public void SkipTurn(int value) {
-        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "STUNNED +" + value);
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "STUNNED");
         _skipTurn = value;
     }
 

@@ -13,6 +13,7 @@ public class DebuffStun : Effect, IDebuff {
         if (ActivationTimeEnum.turnStart == activation) {
             value = Random.Range(_minValue, _maxValue + 1);
             target.SkipTurn((int)value);
+            target.CallEffectText("STUNNED");
             if (_durationType == (int)DurationTypeEnum.uses) {
                 ReduceDuration();
                 SetIsOver();

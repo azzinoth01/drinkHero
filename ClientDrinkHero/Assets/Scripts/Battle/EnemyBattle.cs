@@ -321,7 +321,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     }
 
     public void SkipTurn(int value) {
-        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "STUNNED +" + value);
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "STUNNED");
         _skipTurn = value;
     }
 
