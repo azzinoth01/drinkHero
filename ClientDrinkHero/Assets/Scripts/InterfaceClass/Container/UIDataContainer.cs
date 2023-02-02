@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 
 public class UIDataContainer {
-
-
+    
     private static UIDataContainer _instance;
     private IPlayer _player;
     private ICharacter _enemy;
@@ -12,6 +11,8 @@ public class UIDataContainer {
     private Dictionary<int, IAssetLoader> _characterSlots;
     private IAssetLoader _enemySlot;
 
+    public static int[] TeamIds;
+    
     public static UIDataContainer Instance {
         get {
             if (_instance == null) {

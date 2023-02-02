@@ -11,8 +11,7 @@ public class EnemyObject : MonoBehaviour {
     public static int GoldGotThisSession;
     
     public static LevelContainer LevelData;
-
-
+    
     public EnemyBattle Enemy {
         get {
             return _enemyData;
