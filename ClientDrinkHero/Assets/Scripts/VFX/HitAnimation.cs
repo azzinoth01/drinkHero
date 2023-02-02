@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitAnimation : MonoBehaviour {
+public class HitAnimation : MonoBehaviour, IAnimation {
 
     [SerializeField] private IdleAnimation _idleAnimation;
     [SerializeField] private AnimationCurve _curve;
