@@ -10,6 +10,7 @@ public class LoadSprite : MonoBehaviour, IAssetLoader {
     [SerializeField] private int _slot;
     [SerializeField] private bool _isEnemy;
     [SerializeField] private bool _noSlot;
+    [SerializeField] private bool _loadIntoMaterial;
     public int Slot {
         get {
             return _slot;
@@ -22,7 +23,18 @@ public class LoadSprite : MonoBehaviour, IAssetLoader {
             Sprite sprite = AssetLoader.Instance.BorrowSprite(_spritePath + _spritePathSufix);
             if (sprite != null) {
 
-                _spriteRender.sprite = sprite;
+                if (_loadIntoMaterial == true) {
+                    _spriteRender.sprite = null;
+                    _spriteRender.material.SetTexture("_MainTex", sprite.texture);
+
+                    // reset image componete to reforce load sprite
+                    _spriteRender.enabled = false;
+                    _spriteRender.enabled = true;
+
+                }
+                else {
+                    _spriteRender.sprite = sprite;
+                }
                 _spriteRender.enabled = true;
             }
         }
@@ -43,10 +55,28 @@ public class LoadSprite : MonoBehaviour, IAssetLoader {
     }
 
     public void LoadNewSprite(string path) {
+
+        if (path == _spritePath) {
+            return;
+        }
+
         Sprite sprite = AssetLoader.Instance.BorrowSprite(path + _spritePathSufix);
         if (sprite != null) {
             //Debug.Log("Loaded Sprite Paht: " + path);
-            _spriteRender.sprite = sprite;
+
+            if (_loadIntoMaterial == true) {
+                _spriteRender.sprite = null;
+
+                _spriteRender.material.SetTexture("_MainTex", sprite.texture);
+                // reset image componete to reforce load sprite
+                _spriteRender.enabled = false;
+                _spriteRender.enabled = true;
+
+            }
+            else {
+                _spriteRender.sprite = sprite;
+            }
+
             AssetLoader.Instance.ReturnSprite(_spritePath + _spritePathSufix);
             _spritePath = path;
 
@@ -57,6 +87,13 @@ public class LoadSprite : MonoBehaviour, IAssetLoader {
     public void UnloadSprite() {
         _spriteRender.enabled = false;
         _spriteRender.sprite = null;
+        if (_loadIntoMaterial == true) {
+            // reset image componete to reforce load sprite
+            _spriteRender.enabled = false;
+            _spriteRender.enabled = true;
+            _spriteRender.material.SetTexture("_MainTex", null);
+
+        }
         AssetLoader.Instance.ReturnSprite(_spritePath + _spritePathSufix);
     }
 }

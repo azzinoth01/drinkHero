@@ -96,6 +96,8 @@ public class BattleView : View {
         disolveCard.ResetEffect();
     }
 
+
+    [ContextMenu("Update Hand cards")]
     private void UpdateHandCards() {
         var playerHand = UIDataContainer.Instance.Player.GetHandCards();
 
@@ -105,6 +107,8 @@ public class BattleView : View {
         int i;
         for (i = 0; i < playerHand.HandCardCount();) {
             var card = playerHand.GetHandCard(i);
+
+
 
             if (currentPlayerHand.Count == i) {
                 AddHandCard(card, i);
@@ -132,6 +136,8 @@ public class BattleView : View {
         for (; i < currentPlayerHand.Count;) {
             var button = currentPlayerHand[i].GetComponent<Button>();
             button.onClick.RemoveAllListeners();
+
+
 
             DisolveCard disolveCard = currentPlayerHand[i].GetComponent<DisolveCard>();
             disolveCard.enabled = true;

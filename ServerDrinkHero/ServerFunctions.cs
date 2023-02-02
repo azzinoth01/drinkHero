@@ -487,6 +487,8 @@ public static class ServerFunctions {
         UserDatabase user = new UserDatabase();
         user = AddDataToDatabase<UserDatabase>(user);
 
+        user.Money = 10000;
+
         for (int i = 1; i < 5;) {
             AddHeroToUser(user, i);
 
