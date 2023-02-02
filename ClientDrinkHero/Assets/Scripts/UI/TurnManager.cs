@@ -32,8 +32,8 @@ public class TurnManager : MonoBehaviour
 
     private IEnumerator InitCombat()
     {
-        updateDebugText?.Invoke("Combat Initiated!");
-        yield return new WaitForSeconds(1f);
+        updateDebugText?.Invoke("FIGHT!");
+        yield return new WaitForSeconds(2f);
 
         _turnState = TurnStateEnum.PlayerTurn;
         _playerTurn = true;
@@ -44,8 +44,8 @@ public class TurnManager : MonoBehaviour
     private IEnumerator PlayerTurn()
     {
         togglePlayerUiControls?.Invoke(true);
-        updateDebugText?.Invoke("Player Turn!");
-        yield return new WaitForSeconds(1f);
+        updateDebugText?.Invoke("PLAYER TURN!");
+        yield return new WaitForSeconds(2f);
 
         UIDataContainer.Instance.Player.StartTurn();
 
@@ -55,8 +55,8 @@ public class TurnManager : MonoBehaviour
     private IEnumerator EnemyTurn()
     {
         togglePlayerUiControls?.Invoke(false);
-        updateDebugText?.Invoke("Enemy Turn!");
-        yield return new WaitForSeconds(1f);
+        updateDebugText?.Invoke("ENEMY TURN!");
+        yield return new WaitForSeconds(2f);
 
         UIDataContainer.Instance.Enemy.StartTurn();
 

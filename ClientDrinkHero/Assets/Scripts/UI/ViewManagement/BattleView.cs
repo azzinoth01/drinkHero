@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,7 +36,7 @@ public class BattleView : View {
 
     [Header("Debug Related")]
     [SerializeField]
-    private TextMeshProUGUI debugText;
+    private TextMeshProUGUI turnAnnouncerText;
 
     // TODO: Observer Pattern?
     private void OnEnable() {
@@ -51,7 +52,7 @@ public class BattleView : View {
         //UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel += ToggleWaitingPanel;
 
         TurnManager.togglePlayerUiControls += TogglePlayerUIControls;
-        TurnManager.updateDebugText += UpdateDebugText;
+        TurnManager.updateDebugText += UpdateTurnAnnouncer;
     }
 
     private void OnDisable() {
@@ -67,7 +68,7 @@ public class BattleView : View {
         //UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel -= ToggleWaitingPanel;
 
         TurnManager.togglePlayerUiControls -= TogglePlayerUIControls;
-        TurnManager.updateDebugText -= UpdateDebugText;
+        TurnManager.updateDebugText -= UpdateTurnAnnouncer;
     }
 
     private void Start() {
@@ -83,8 +84,6 @@ public class BattleView : View {
         Material materialPrefab = image.material;
 
         image.material = Instantiate<Material>(materialPrefab);
-
-
 
         var cardView = newCard.GetComponent<CardView>();
 
@@ -107,8 +106,6 @@ public class BattleView : View {
         int i;
         for (i = 0; i < playerHand.HandCardCount();) {
             var card = playerHand.GetHandCard(i);
-
-
 
             if (currentPlayerHand.Count == i) {
                 AddHandCard(card, i);
@@ -214,8 +211,16 @@ public class BattleView : View {
             counterText.SetText(value.ToString());
     }
 
-    private void UpdateDebugText(string text) {
-        debugText.SetText(text);
+    private void UpdateTurnAnnouncer(string text) {
+        turnAnnouncerText.SetText(text);
+        
+        Sequence sequence = DOTween.Sequence();
+        RectTransform rectTransform = turnAnnouncerText.GetComponent<RectTransform>();
+
+        sequence.Append(rectTransform.DOScale(0.85f,0.5f))
+            .SetEase(Ease.InBounce)
+            .Append(rectTransform.DOScale(1,0.5f))
+            .SetEase(Ease.OutSine).OnComplete(() => turnAnnouncerText.SetText(""));
     }
 
     private void TogglePlayerUIControls(bool state) {

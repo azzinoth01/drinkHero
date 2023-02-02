@@ -7,14 +7,7 @@ public class EnemyObject : MonoBehaviour {
     [SerializeField] private DisolveSprite _disolveAnimation;
 
     [SerializeField] private float _spawnNextDelay;
-
-
-
-
-    [SerializeField]
-    private SimpleAudioEvent _enemyDamagedSound, _enemyDamageBlockedSound, _enemyHealedSound, _enemyShielUpSound;
-
-
+    
     private LevelContainer _levelData;
 
     public EnemyBattle Enemy {
@@ -75,20 +68,21 @@ public class EnemyObject : MonoBehaviour {
         EnemyBattle.enemyShieldUp += EnemyShieldUpFeedback;
     }
 
+    //TODO: clean up and replace audio logic
     private void EnemyDamageFeedback() {
-        GlobalAudioManager.Instance.Play(_enemyDamagedSound);
+        //GlobalAudioManager.Instance.Play(_enemyDamagedSound);
     }
 
     private void EnemyDamageBlockedFeedback() {
-        GlobalAudioManager.Instance.Play(_enemyDamageBlockedSound);
+        //GlobalAudioManager.Instance.Play(_enemyDamageBlockedSound);
     }
 
     private void EnemyHealedFeedback() {
-        GlobalAudioManager.Instance.Play(_enemyHealedSound);
+        //GlobalAudioManager.Instance.Play(_enemyHealedSound);
     }
 
     private void EnemyShieldUpFeedback() {
-        GlobalAudioManager.Instance.Play(_enemyShielUpSound);
+        //GlobalAudioManager.Instance.Play(_enemyShielUpSound);
     }
 
 }
