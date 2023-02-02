@@ -8,7 +8,7 @@ public class EnemyObject : MonoBehaviour {
 
     [SerializeField] private float _spawnNextDelay;
 
-
+    public static int GoldGotThisSession;
 
 
     [SerializeField]
@@ -27,6 +27,8 @@ public class EnemyObject : MonoBehaviour {
 
 
     private void Awake() {
+        GoldGotThisSession = 0;
+
         _enemyData = new EnemyBattle();
 
 
