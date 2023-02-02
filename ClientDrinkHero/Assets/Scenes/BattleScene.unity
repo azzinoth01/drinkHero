@@ -1469,6 +1469,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 893972363730087549, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 893972363730087549, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
@@ -1511,6 +1515,10 @@ PrefabInstance:
     - target: {fileID: 3482286323347852882, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: m_Intensity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5710238598842800141, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: _speed.y
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
