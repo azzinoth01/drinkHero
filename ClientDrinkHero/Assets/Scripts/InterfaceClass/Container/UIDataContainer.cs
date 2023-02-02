@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class UIDataContainer {
 
     private static UIDataContainer _instance;
