@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrystalBottleCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 594643185947486161, guid: 5508ba2231ac20544866b9c6ec1af580, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2244673537899240318, guid: 5508ba2231ac20544866b9c6ec1af580, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -363,7 +367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6611156578172910162, guid: 5508ba2231ac20544866b9c6ec1af580, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -279
+      value: 78
       objectReference: {fileID: 0}
     - target: {fileID: 6611156578172910162, guid: 5508ba2231ac20544866b9c6ec1af580, type: 3}
       propertyPath: m_AnchoredPosition.y

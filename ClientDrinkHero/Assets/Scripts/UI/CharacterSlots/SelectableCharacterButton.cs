@@ -10,7 +10,7 @@ public class SelectableCharacterButton : MonoBehaviour
     [SerializeField] private TextMeshProUGUI characterName;
     [SerializeField] private Image characterFactionImage;
     [SerializeField] private Image characterPortraitImage;
-    [SerializeField] private Image lockIcon;
+    [SerializeField] private GameObject lockIcon;
     [SerializeField] private Button selectButton;
     [SerializeField] private Button deSelectButton;
     [SerializeField] private Button infoButton;
@@ -61,14 +61,14 @@ public class SelectableCharacterButton : MonoBehaviour
     {
         selectButton.interactable = true;
         infoButton.interactable = true;
-        lockIcon.enabled = false;
+        lockIcon.SetActive(false);
     }
 
     public void Lock()
     {
         selectButton.interactable = false;
         infoButton.interactable = false;
-        lockIcon.enabled = true;
+        lockIcon.SetActive(true);
     }
 
     public void CheckIfSelected()

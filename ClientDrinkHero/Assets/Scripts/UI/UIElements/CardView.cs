@@ -3,30 +3,22 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardView : MonoBehaviour {
-    [Header("Text Labels")]
-    [SerializeField]
+public class CardView : MonoBehaviour
+{
+    [Header("Text Labels")] [SerializeField]
     private TextMeshProUGUI costText;
 
     [SerializeField] private TextMeshProUGUI cardName;
     [SerializeField] private TextMeshProUGUI cardDescription;
 
-    [Header("Sound Effect(s)")]
-    [SerializeField]
-    private SimpleAudioEvent clickOnCardSound;
-
-    [SerializeField] private SimpleAudioEvent cardPlayedSound;
-    [SerializeField] private SimpleAudioEvent cardNotPlayedSound;
-
-    [Header("Card Zoom Values")]
-    [SerializeField]
+    [Header("Card Zoom Values")] [SerializeField]
     private Ease dragScaleEaseMode;
 
     [SerializeField] private float dragScaleFactor = 1.5f;
     [SerializeField] private float dragScaleDuration = 0.25f;
+    private IAssetLoader _loadCardSprite;
 
-    [Header("Card Return Movement Values")]
-    [SerializeField]
+    [Header("Card Return Movement Values")] [SerializeField]
     private float returnMoveDuration;
 
     [SerializeField] private Ease returnMoveEaseMode;
@@ -36,7 +28,7 @@ public class CardView : MonoBehaviour {
 
     private Image[] _images;
 
-    [SerializeField] private IAssetLoader _loadCardSprite;
+    private Sprite _cardSprite;
     private Sprite _cardLevelBorder;
 
     private RectTransform _cardTransform;
@@ -45,25 +37,30 @@ public class CardView : MonoBehaviour {
     private Transform _dragParent;
     private Transform _baseParent;
 
-    private void Awake() {
+    private void Awake()
+    {
         _cardTransform = GetComponent<RectTransform>();
         _baseParent = _cardTransform.parent;
         _dragParent = _baseParent.parent;
 
+        _loadCardSprite = GetComponent<IAssetLoader>();
+
         _images = GetComponentsInChildren<Image>();
-        _loadCardSprite = gameObject.GetComponent<IAssetLoader>();
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         ResetCardView();
     }
 
-    public void InitializePosition(Vector2 position) {
+    public void InitializePosition(Vector2 position)
+    {
         _lastAnchoredPosition = position;
         Debug.Log($"Card Position: {_lastAnchoredPosition}");
     }
 
-    public void SetDisplayValues(ICardDisplay card, int index) {
+    public void SetDisplayValues(ICardDisplay card, int index)
+    {
         if (card == null)
             return;
 
@@ -75,49 +72,53 @@ public class CardView : MonoBehaviour {
         _handIndex = index;
     }
 
-    public void ClickCardSound() {
-        PlayCardSoundEffect(clickOnCardSound);
+    public void ClickCardSound()
+    {
+        //PlayCardSoundEffect(clickOnCardSound);
     }
 
-    private void PlayCardSoundEffect(SimpleAudioEvent audioEvent) {
-        GlobalAudioManager.Instance.Play(audioEvent);
+
+    public void DisableAllRayCastTargets()
+    {
+        foreach (var target in _images) target.raycastTarget = false;
     }
 
-    public void DisableAllRayCastTargets() {
-        foreach (var target in _images)
-            target.raycastTarget = false;
+    public void EnableAllRaycastTargets()
+    {
+        foreach (var target in _images) target.raycastTarget = true;
     }
 
-    public void EnableAllRaycastTargets() {
-        foreach (var target in _images)
-            target.raycastTarget = true;
-    }
-
-    public void ReturnCardToHand() {
+    public void ReturnCardToHand()
+    {
         //_cardTransform.DOMove(_lastAnchoredPosition, returnMoveDuration, true).SetEase(returnMoveEaseMode);
         _cardTransform.anchoredPosition = _lastAnchoredPosition;
     }
 
-    public void ZoomIn() {
+    public void ZoomIn()
+    {
         DisableAllRayCastTargets();
         transform.DOScale(Vector3.one * dragScaleFactor, dragScaleDuration).SetEase(dragScaleEaseMode);
     }
 
-    public void ZoomOut() {
+    public void ZoomOut()
+    {
         EnableAllRaycastTargets();
         transform.DOScale(Vector3.one, dragScaleDuration).SetEase(dragScaleEaseMode);
     }
 
-    public void ResetCardView() {
+    public void ResetCardView()
+    {
         _cardTransform.localScale = Vector3.one;
         EnableAllRaycastTargets();
     }
 
-    public void ResetCardViewParent() {
+    public void ResetCardViewParent()
+    {
         _cardTransform.parent = _baseParent;
     }
 
-    public void UnparentCardView() {
+    public void UnparentCardView()
+    {
         _cardTransform.parent = _dragParent;
     }
 }
