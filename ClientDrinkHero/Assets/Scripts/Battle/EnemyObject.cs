@@ -9,13 +9,9 @@ public class EnemyObject : MonoBehaviour {
     [SerializeField] private float _spawnNextDelay;
 
     public static int GoldGotThisSession;
+    
+    public static LevelContainer LevelData;
 
-
-    [SerializeField]
-    private SimpleAudioEvent _enemyDamagedSound, _enemyDamageBlockedSound, _enemyHealedSound, _enemyShielUpSound;
-
-
-    private LevelContainer _levelData;
 
     public EnemyBattle Enemy {
         get {
@@ -33,14 +29,14 @@ public class EnemyObject : MonoBehaviour {
 
 
 
-        _levelData = new LevelContainer(_enemyData);
+        LevelData = new LevelContainer(_enemyData);
 
         _enemyData.DiedEvent += StartAnimations;
     }
 
     private void Update() {
 
-        _levelData.Update();
+        LevelData.Update();
     }
 
 
@@ -49,7 +45,7 @@ public class EnemyObject : MonoBehaviour {
         yield return new WaitForSeconds(_spawnNextDelay);
         UIDataContainer.Instance.EnemySlot.UnloadSprite();
         _disolveAnimation.ResetEffect();
-        _levelData.NextEnemy();
+        LevelData.NextEnemy();
     }
 
 
@@ -78,19 +74,19 @@ public class EnemyObject : MonoBehaviour {
     }
 
     private void EnemyDamageFeedback() {
-        GlobalAudioManager.Instance.Play(_enemyDamagedSound);
+        //GlobalAudioManager.Instance.Play(_enemyDamagedSound);
     }
 
     private void EnemyDamageBlockedFeedback() {
-        GlobalAudioManager.Instance.Play(_enemyDamageBlockedSound);
+        //GlobalAudioManager.Instance.Play(_enemyDamageBlockedSound);
     }
 
     private void EnemyHealedFeedback() {
-        GlobalAudioManager.Instance.Play(_enemyHealedSound);
+        //GlobalAudioManager.Instance.Play(_enemyHealedSound);
     }
 
     private void EnemyShieldUpFeedback() {
-        GlobalAudioManager.Instance.Play(_enemyShielUpSound);
+        //GlobalAudioManager.Instance.Play(_enemyShielUpSound);
     }
 
 }
