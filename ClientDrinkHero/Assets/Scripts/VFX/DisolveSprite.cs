@@ -15,11 +15,7 @@ public class DisolveSprite : MonoBehaviour {
 
 
     private void OnEnable() {
-        _material = _image.material;
-
-        _material.SetColor("_DisolveColor", _disolveColor);
-        _material.SetFloat("_DisolveState", 1);
-        _time = 0;
+        ResetEffect();
     }
 
     // Start is called before the first frame update
@@ -60,4 +56,11 @@ public class DisolveSprite : MonoBehaviour {
         enabled = true;
     }
 
+    public void ResetEffect() {
+        _material = _image.material;
+
+        _material.SetColor("_DisolveColor", _disolveColor);
+        _material.SetFloat("_DisolveState", 1);
+        _time = 0;
+    }
 }

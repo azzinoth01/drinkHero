@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 4895028633899145788}
   - component: {fileID: 8929981219153055091}
   - component: {fileID: 8184501340626246655}
+  - component: {fileID: 2354009611197974605}
   m_Layer: 5
   m_Name: PlayerCardObject
   m_TagString: Untagged
@@ -434,7 +435,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 0
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -467,6 +468,25 @@ MonoBehaviour:
   _loopRestartTime: 1
   _textDisapearTime: 1
   _setGameObjectInactive: 1
+--- !u!114 &2354009611197974605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5995649211077427565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7004e28c533a16948896470eb5c9e5d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRender: {fileID: 8929981219153055091}
+  _spritePath: 
+  _spritePathSufix: _Portrait.png
+  _slot: 0
+  _isEnemy: 0
+  _noSlot: 1
+  _loadIntoMaterial: 1
 --- !u!1 &6856130023716475220
 GameObject:
   m_ObjectHideFlags: 0

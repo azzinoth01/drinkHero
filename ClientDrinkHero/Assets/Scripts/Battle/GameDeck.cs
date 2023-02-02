@@ -5,26 +5,27 @@ using Random = UnityEngine.Random;
 
 [Serializable]
 public class GameDeck {
-    [SerializeField] private List<CardDatabase> _scrappedCardList;
-    [SerializeField] private List<CardDatabase> _remainingCardList;
+    [SerializeField] private List<DeckCardContainer> _scrappedCardList;
+    [SerializeField] private List<DeckCardContainer> _remainingCardList;
     [SerializeField] private Deck _deck;
 
 
     public GameDeck(Deck deck) {
-        _scrappedCardList = new List<CardDatabase>();
-        _remainingCardList = new List<CardDatabase>();
+        _scrappedCardList = new List<DeckCardContainer>();
+        _remainingCardList = new List<DeckCardContainer>();
         _deck = deck;
         foreach (HeroSlot heroSlot in _deck.HeroSlotList) {
             foreach (CardDatabase card in heroSlot.Hero.CardList) {
-                _remainingCardList.Add(card);
+                DeckCardContainer container = new DeckCardContainer(card, heroSlot.Hero);
+                _remainingCardList.Add(container);
             }
         }
     }
 
     public GameDeck() {
 
-        _scrappedCardList = new List<CardDatabase>();
-        _remainingCardList = new List<CardDatabase>();
+        _scrappedCardList = new List<DeckCardContainer>();
+        _remainingCardList = new List<DeckCardContainer>();
     }
 
     public Deck Deck {
@@ -41,18 +42,18 @@ public class GameDeck {
     }
 
 
-    public void ScrapCard(CardDatabase card) {
+    public void ScrapCard(DeckCardContainer card) {
         _scrappedCardList.Add(card);
     }
 
-    public CardDatabase DrawCard() {
+    public DeckCardContainer DrawCard() {
         if (_remainingCardList.Count == 0 && _scrappedCardList.Count == 0) {
             return null;
         }
         int i = _remainingCardList.Count;
 
         if (i == 0) {
-            foreach (CardDatabase card in _scrappedCardList) {
+            foreach (DeckCardContainer card in _scrappedCardList) {
                 _remainingCardList.Add(card);
             }
             _scrappedCardList.Clear();
@@ -67,22 +68,23 @@ public class GameDeck {
         i = Random.Range(0, i);
 
 
-        CardDatabase returnCard = _remainingCardList[i];
+        DeckCardContainer returnCard = _remainingCardList[i];
         _remainingCardList.RemoveAt(i);
 
         return returnCard;
     }
 
     public void RecreateDeck() {
-        _scrappedCardList = new List<CardDatabase>();
-        _remainingCardList = new List<CardDatabase>();
+        _scrappedCardList = new List<DeckCardContainer>();
+        _remainingCardList = new List<DeckCardContainer>();
         foreach (HeroSlot heroSlot in _deck.HeroSlotList) {
             if (heroSlot.Hero.SpritePath != null) {
                 VFXObjectContainer.Instance.PlayAnimation("Slot" + heroSlot.SlotID);
                 UIDataContainer.Instance.CharacterSlots[heroSlot.SlotID].LoadNewSprite(heroSlot.Hero.SpritePath);
             }
             foreach (CardDatabase card in heroSlot.Hero.CardList) {
-                _remainingCardList.Add(card);
+                DeckCardContainer container = new DeckCardContainer(card, heroSlot.Hero);
+                _remainingCardList.Add(container);
             }
         }
     }
