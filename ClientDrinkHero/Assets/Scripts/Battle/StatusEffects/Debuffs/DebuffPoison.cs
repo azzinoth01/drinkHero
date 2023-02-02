@@ -9,6 +9,7 @@ public class DebuffPoison : Effect, IDebuff {
         }
 
         if (ActivationTimeEnum.onCast == activation || ActivationTimeEnum.turnStart == activation) {
+            target.CallEffectText("POISON");
             target.TakeDmg(_maxValue);
             if (_durationType == (int)DurationTypeEnum.uses) {
                 ReduceDuration();

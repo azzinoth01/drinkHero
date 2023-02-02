@@ -14,6 +14,27 @@ public class FlyingText : MonoBehaviour, IAnimation {
 
     [SerializeField] private TextMeshProUGUI _text;
 
+    private FlyingTextContainer _container;
+    [SerializeField] private FlyingTextEnum _type;
+
+
+
+    public FlyingTextContainer Container {
+        get {
+            return _container;
+        }
+
+        set {
+            _container = value;
+        }
+    }
+
+    public FlyingTextEnum Type {
+        get {
+            return _type;
+        }
+
+    }
 
     private void Awake() {
 
@@ -78,5 +99,9 @@ public class FlyingText : MonoBehaviour, IAnimation {
     public void SetText(string text) {
         _text.SetText(text);
 
+    }
+
+    private void OnDisable() {
+        _container.FlyingTextList[_type].Add(this);
     }
 }

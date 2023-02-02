@@ -12,6 +12,10 @@ public class UIDataContainer {
     private Dictionary<int, IAssetLoader> _characterSlots;
     private IAssetLoader _enemySlot;
 
+    private IFlyingTextHandler _enemyText;
+    private IFlyingTextHandler _playerText;
+
+
     public static UIDataContainer Instance {
         get {
             if (_instance == null) {
@@ -65,6 +69,26 @@ public class UIDataContainer {
 
         set {
             _enemySlot = value;
+        }
+    }
+
+    public IFlyingTextHandler EnemyText {
+        get {
+            return _enemyText;
+        }
+
+        set {
+            _enemyText = value;
+        }
+    }
+
+    public IFlyingTextHandler PlayerText {
+        get {
+            return _playerText;
+        }
+
+        set {
+            _playerText = value;
         }
     }
 
