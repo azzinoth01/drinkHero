@@ -5,7 +5,7 @@ public class PlayerObject : MonoBehaviour {
     [SerializeField] private Player _player;
 
     private List<HeroHandler> _heroHandlerList;
-    
+
     public Player Player => _player;
 
     //remove after prototype
@@ -23,7 +23,9 @@ public class PlayerObject : MonoBehaviour {
         _loadcounter = 0;
         for (int i = 0; i < 4;) {
             HeroHandler heroHandler = new HeroHandler();
-            heroHandler.RequestData((int)UserSingelton.Instance.UserObject.User.HeroDatabasesList[i].RefHero);
+            heroHandler.RequestData(UIDataContainer.TeamIds[i]);
+
+            //heroHandler.RequestData((int)UserSingelton.Instance.UserObject.User.HeroDatabasesList[i].RefHero);
             heroHandler.LoadingFinished += HerosLoaded;
 
             _heroHandlerList.Add(heroHandler);
