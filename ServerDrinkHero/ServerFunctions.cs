@@ -523,6 +523,13 @@ public static class ServerFunctions {
         DatabaseManager.UpdateDatabaseItem<UserDatabase>(client.User);
         return SendData<UserDatabase>(client.StreamWriter, "ID\"" + client.User.Id + "\"");
     }
+    [ServerFunction("AddMoneyToUser")]
+    public static string AddMoneyToUser(ConnectedClient client, string amount) {
+        client.User.Money = client.User.Money + int.Parse(amount);
+
+        DatabaseManager.UpdateDatabaseItem<UserDatabase>(client.User);
+        return SendData<UserDatabase>(client.StreamWriter, "ID\"" + client.User.Id + "\"");
+    }
 
 
     [ServerFunction("PullGachaSingel")]

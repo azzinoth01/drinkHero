@@ -15,6 +15,7 @@ public class EnemyDatabase : DatabaseItem {
     [SerializeField] private int _shield;
     [SerializeField] private string _spritePath;
     [SerializeField] private bool _isBoss;
+    [SerializeField] private int _moneyDrop;
     private List<EnemyToEnemySkill> _enemyToEnemySkills;
 
     public static Dictionary<string, EnemyDatabase> _cachedData = new Dictionary<string, EnemyDatabase>();
@@ -28,6 +29,7 @@ public class EnemyDatabase : DatabaseItem {
     private int _shield;
     private string _spritePath;
     private bool _isBoss;
+    private int _moneyDrop;
     private List<EnemyToEnemySkill> _enemyToEnemySkills;
 
 #endif
@@ -84,6 +86,16 @@ public class EnemyDatabase : DatabaseItem {
 
         set {
             _isBoss = value;
+        }
+    }
+    [Column("MoneyDrop")]
+    public int MoneyDrop {
+        get {
+            return _moneyDrop;
+        }
+
+        set {
+            _moneyDrop = value;
         }
     }
 

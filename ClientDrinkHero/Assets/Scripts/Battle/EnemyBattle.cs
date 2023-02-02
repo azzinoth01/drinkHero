@@ -230,6 +230,9 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
         if (health <= 0) {
 
+            ClientFunctions.AddMoneyToUser(_enemyBaseData.MoneyDrop);
+            EnemyObject.GoldGotThisSession = EnemyObject.GoldGotThisSession + _enemyBaseData.MoneyDrop;
+
             DiedEvent?.Invoke();
 
         }
