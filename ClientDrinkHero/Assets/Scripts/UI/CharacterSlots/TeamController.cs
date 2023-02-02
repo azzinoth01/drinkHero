@@ -37,7 +37,7 @@ public class TeamController : MonoBehaviour
         CheckSlots();
     }
 
-    private void CheckSlots()
+    public void CheckSlots()
     {
         foreach (var slot in characterSlots)
             if (slot.IsEmpty)

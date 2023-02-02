@@ -11,6 +11,8 @@ public class GachaMenuView : View
     [SerializeField] private Button singlePullButton;
     [SerializeField] private Button optionsMenuButton;
 
+    [SerializeField] private Sprite backButtonClicked;
+    
     private int _requestId;
     private int _multiPullRequestId;
     private int _singlePullRequestId;
@@ -21,11 +23,19 @@ public class GachaMenuView : View
 
     public override void Initialize()
     {
-        backButton.onClick.AddListener(() => SceneLoader.Load(GameSceneEnum.MainMenuScene));
-        optionsMenuButton.onClick.AddListener(() => ViewManager.Show<OptionsMenuView>());
+        optionsMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(optionsMenuButton, 
+            optionsMenuButton.image.sprite, () => ViewManager.Show<OptionsMenuView>()));
+        
+        backButton.onClick.AddListener(ViewTweener.ButtonClickTween(backButton, 
+            backButtonClicked, () => SceneLoader.Load(GameSceneEnum.MainMenuScene)));
 
-        multiPullButton.onClick.AddListener(() => MultiPull());
-        singlePullButton.onClick.AddListener(() => SinglePull());
+        multiPullButton.onClick.AddListener(ViewTweener.ButtonClickTween(multiPullButton, 
+            multiPullButton.image.sprite, () => MultiPull()));
+        
+        singlePullButton.onClick.AddListener(ViewTweener.ButtonClickTween(singlePullButton, 
+            singlePullButton.image.sprite, () => SinglePull()));
+        
+        AudioController.Instance.PlayAudio(AudioType.MainMenuTheme, true, 0f);
     }
 
     private void MultiPull()

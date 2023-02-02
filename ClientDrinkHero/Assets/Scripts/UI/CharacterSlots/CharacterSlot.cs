@@ -53,7 +53,6 @@ public class CharacterSlot : MonoBehaviour
     {
         slotData = new CharacterSlotData();
         
-        _loadSprite.UnloadSprite();
         characterPortrait.enabled = false;
 
         characterName.SetText("");
@@ -62,5 +61,7 @@ public class CharacterSlot : MonoBehaviour
         _lastHeroIdInSlot = -1;
         
         IsEmpty = true;
+        
+        TeamController.Instance.CheckSlots();
     }
 }

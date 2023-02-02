@@ -47,12 +47,21 @@ public class SelectableCharacterButton : MonoBehaviour
 
     private void Initialize()
     {
-        selectButton.onClick.AddListener(() => TeamController.Instance.SetHeroInSlot(characterSlotData));
-        selectButton.onClick.AddListener(() => SelectCharacter());
-        selectButton.onClick.AddListener(() => ViewManager.ShowLast());
+        // selectButton.onClick.AddListener(() => TeamController.Instance.SetHeroInSlot(characterSlotData));
+        //  selectButton.onClick.AddListener(() => SelectCharacter());
+        //  selectButton.onClick.AddListener(() => ViewManager.ShowLast());
+        
+        selectButton.onClick.AddListener(ViewTweener.ButtonClickTween(selectButton, 
+            selectButton.image.sprite, () =>
+            {
+                TeamController.Instance.SetHeroInSlot(characterSlotData);
+                SelectCharacter();
+                ViewManager.ShowLast();
+            }));
         
         deSelectButton.onClick.AddListener(() => DeSelectCharacter());
         deSelectButton.onClick.AddListener(() => ViewManager.ShowLast());
+        deSelectButton.onClick.AddListener(() => AudioController.Instance.PlayAudio(AudioType.SFXButtonNo));
         
         DeSelectCharacter();
     }

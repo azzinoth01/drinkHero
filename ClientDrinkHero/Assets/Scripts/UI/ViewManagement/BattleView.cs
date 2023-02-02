@@ -234,7 +234,9 @@ public class BattleView : View {
     }
 
     public override void Initialize() {
-        optionsMenuButton.onClick.AddListener(() => ViewManager.Show<OptionsMenuView>());
+        optionsMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(optionsMenuButton, 
+            optionsMenuButton.image.sprite, () => ViewManager.Show<OptionsMenuView>()));
+        
         pauseMenuButton.onClick.AddListener(() => ViewManager.Show<PauseMenuView>());
         
         AudioController.Instance.PlayAudio(AudioType.BattleTheme, true, 0f);

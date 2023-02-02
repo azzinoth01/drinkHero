@@ -17,40 +17,30 @@ public class MainMenuView : View
     [SerializeField] private Sprite drinksMenuClicked;
     [SerializeField] private Sprite gachaMenuClicked;
     [SerializeField] private Sprite creditsMenuClicked;
+    private Sprite _creditsMenuSprite;
     
     public override void Initialize()
     {
-        battlePreparationMenuButton.onClick.AddListener(ButtonClickTween(battlePreparationMenuButton, 
+        battlePreparationMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(battlePreparationMenuButton, 
             battlePreparationClicked, () => SceneLoader.Load(GameSceneEnum.BattlePreparationMenu)));
         
-        gachaMenuButton.onClick.AddListener(ButtonClickTween(gachaMenuButton, 
+        gachaMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(gachaMenuButton, 
             gachaMenuClicked, () => SceneLoader.Load(GameSceneEnum.GachaMenuScene)));
+
+        optionsMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(optionsMenuButton, 
+            optionsMenuButton.image.sprite, () => ViewManager.Show<OptionsMenuView>()));
         
-        //gachaMenuButton.onClick.AddListener(() => SceneLoader.Load(GameSceneEnum.GachaMenuScene));
-        optionsMenuButton.onClick.AddListener(() => ViewManager.Show<OptionsMenuView>());
-        
-        optionsMenuButton.onClick.AddListener(() => AudioController.Instance.PlayAudio(AudioType.SFXButtonYes));
-        
+        creditsMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(creditsMenuButton, 
+            creditsMenuClicked, () => ViewManager.Show<OptionsMenuView>()));
+
         AudioController.Instance.PlayAudio(AudioType.MainMenuTheme, true, 0f);
+
+        _creditsMenuSprite = creditsMenuButton.image.sprite;
     }
 
-    private UnityAction ButtonClickTween(Button button, Sprite clickedSprite, TweenCallback callback, AudioType type=AudioType.SFXButtonYes)
+    public override void Show()
     {
-        UnityAction action = () =>
-        {
-            AudioController.Instance.PlayAudio(type);
-
-            button.image.sprite = clickedSprite;
-
-            Sequence sequence = DOTween.Sequence();
-            RectTransform rectTransform = button.GetComponent<RectTransform>();
-
-            sequence.Append(rectTransform.DOScale(0.85f, 0.1f))
-                .SetEase(Ease.InBounce)
-                .Append(rectTransform.DOScale(1, 0.1f))
-                .SetEase(Ease.OutSine).OnComplete(callback);
-        };
-
-        return action;
+        base.Show();
+        creditsMenuButton.image.sprite = _creditsMenuSprite;
     }
 }
