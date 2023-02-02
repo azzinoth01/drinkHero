@@ -124,8 +124,10 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
 
         //start Animation
 
+        if (card.AnimationKey != null && card.AnimationKey != "") {
+            VFXObjectContainer.Instance.PlayAnimation(card.AnimationKey);
 
-        VFXObjectContainer.Instance.PlayAnimation(card.AnimationKey);
+        }
 
 
         // do card effect

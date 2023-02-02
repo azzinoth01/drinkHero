@@ -110,6 +110,8 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     }
 
     public void EndTurn() {
+        CheckDebuffsAndBuffs(ActivationTimeEnum.turnEnd);
+
         Debug.Log("turn end");
     }
 

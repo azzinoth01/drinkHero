@@ -94,6 +94,8 @@ public class LoadSprite : MonoBehaviour, IAssetLoader {
             _spriteRender.material.SetTexture("_MainTex", null);
 
         }
+
         AssetLoader.Instance.ReturnSprite(_spritePath + _spritePathSufix);
+        _spritePath = "";
     }
 }

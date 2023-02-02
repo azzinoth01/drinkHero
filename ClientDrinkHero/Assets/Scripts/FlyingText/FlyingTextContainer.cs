@@ -42,6 +42,7 @@ public class FlyingTextContainer : MonoBehaviour, IFlyingTextHandler {
         }
         else {
             StartCoroutine(SpawnText());
+            _inExecution = true;
         }
 
 
@@ -60,11 +61,16 @@ public class FlyingTextContainer : MonoBehaviour, IFlyingTextHandler {
         if (_flyingTextList.TryGetValue(type, out List<FlyingText> list)) {
             if (list.Count == 0) {
                 flyingTextObject = GetAddObject(type);
+                flyingTextObject.SetText(text);
+                flyingTextObject.Play();
 
             }
             else {
                 flyingTextObject = list[list.Count - 1];
                 list.RemoveAt(list.Count - 1);
+                flyingTextObject.SetText(text);
+                flyingTextObject.Play();
+
 
             }
         }
@@ -72,11 +78,12 @@ public class FlyingTextContainer : MonoBehaviour, IFlyingTextHandler {
             list = new List<FlyingText>();
             _flyingTextList[type] = list;
             flyingTextObject = GetAddObject(type);
+            flyingTextObject.SetText(text);
+            flyingTextObject.Play();
+
 
         }
-        flyingTextObject.SetText(text);
-        flyingTextObject.Play();
-
+        _inExecution = false;
     }
 
 
