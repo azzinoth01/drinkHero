@@ -23,6 +23,7 @@ public class CardDatabase : DatabaseItem, ICardDisplay {
     [SerializeField] private List<CardToEffect> _cardEffectList;
     [SerializeField] private int? _refUpgradeItem;
     [SerializeField] private int _upgradeItemAmount;
+    [SerializeField] private string _animationKey;
 
     private static Dictionary<string, CardDatabase> _cachedData = new Dictionary<string, CardDatabase>();
 
@@ -42,6 +43,7 @@ public class CardDatabase : DatabaseItem {
 
     private int? _refUpgradeItem;
     private int _upgradeItemAmount;
+    private string _animationKey;
 
 #endif
     [Column("ID"), PrimaryKey]
@@ -126,6 +128,17 @@ public class CardDatabase : DatabaseItem {
 
         set {
             _upgradeItemAmount = value;
+        }
+    }
+
+    [Column("AnimationKey")]
+    public string AnimationKey {
+        get {
+            return _animationKey;
+        }
+
+        set {
+            _animationKey = value;
         }
     }
 

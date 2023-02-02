@@ -121,7 +121,20 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
             return false;
         }
 
+
+        //start Animation
+
+
+        VFXObjectContainer.Instance.PlayAnimation(card.AnimationKey);
+
+
+        // do card effect
+
+
         _handCards.RemoveAt(index);
+
+
+
 
         _ressource = _ressource - card.Cost;
         RessourceChange?.Invoke(-card.Cost);

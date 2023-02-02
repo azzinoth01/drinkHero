@@ -6,26 +6,29 @@ public class SpawnAnimation : MonoBehaviour, IAnimation {
     [SerializeField] private float _moveInTime;
     [SerializeField] private string _animationKey;
     [SerializeField] private Animator _animator;
-    private Vector3 _startPosition;
-    private Vector3 _moveInSpeed;
-    private float _time;
+    [SerializeField] private Vector3 _startPosition;
+    [SerializeField] private Vector3 _moveInSpeed;
+    [SerializeField] private float _time;
 
 
     private void Awake() {
-        _startPosition = transform.position;
+        _startPosition = transform.localPosition;
 
         VFXObjectContainer.Instance.AddAnimation(_animationKey, this);
+
+        //Debug.Log(transform.position);
+        //Debug.Log(transform.localPosition);
     }
 
 
     private void Update() {
 
 
-        transform.position = transform.position - (_moveInSpeed * Time.deltaTime);
+        transform.localPosition = transform.localPosition - (_moveInSpeed * Time.deltaTime);
         _time = _time + Time.deltaTime;
 
         if (_time >= _moveInTime) {
-            transform.position = _startPosition;
+            transform.localPosition = _startPosition;
             enabled = false;
         }
 
@@ -34,11 +37,12 @@ public class SpawnAnimation : MonoBehaviour, IAnimation {
     [ContextMenu("PlaySpawn")]
     public void Play() {
 
+        Debug.Log(transform.position);
+        float moveoutside = Screen.width * 2 * (_moveInDirection * -1);
 
-        float moveoutside = Screen.width * 1.5f * (_moveInDirection * -1);
 
 
-        transform.position = new Vector3(transform.position.x + moveoutside, transform.position.y, transform.position.z);
+        transform.localPosition = new Vector3(transform.localPosition.x + moveoutside, transform.localPosition.y, transform.localPosition.z);
 
         _moveInSpeed = new Vector3(moveoutside / _moveInTime, 0, 0);
         _time = 0;

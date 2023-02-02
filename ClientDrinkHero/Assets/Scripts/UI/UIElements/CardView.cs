@@ -70,7 +70,7 @@ public class CardView : MonoBehaviour {
         _loadCardSprite.LoadNewSprite(card.GetSpritePath());
         costText.SetText(card.CostText());
         cardDescription.SetText(card.CardText());
-        cardName.SetText(card.)
+        cardName.SetText(card.CardName());
 
         _handIndex = index;
     }
