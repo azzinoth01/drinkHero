@@ -80,7 +80,7 @@ public static class EffectConverter {
         else if (item.ClassType == "ShieldDmgOnly") {
             converted = new ShieldDmgOnly(item);
         }
-        else if (item.ClassType == "SwapShieldWithEnemy") {
+        else if (item.ClassType == "ShieldSwap") {
             converted = new SwapShieldWithEnemy(item);
         }
         else {
