@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7294929275903345853}
-  - component: {fileID: 7294929275903345851}
   - component: {fileID: 128615164781901571}
   m_Layer: 5
-  m_Name: FireBlastEnemy
+  m_Name: Night Harvest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,14 +37,6 @@ RectTransform:
   m_AnchoredPosition: {x: -282, y: 250}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &7294929275903345851
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7294929275903345854}
-  m_CullTransparentMesh: 1
 --- !u!114 &128615164781901571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1251fbf12ae12479bed075c6ebe7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationKey: FireBlastEnemy
-  _animator:
-  - {fileID: 0}
+  _animationKey: 4
+  _animator: []
   _animations: []
+  _particleEffects: []

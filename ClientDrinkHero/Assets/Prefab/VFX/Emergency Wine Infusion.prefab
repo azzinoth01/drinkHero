@@ -9,11 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 128987064856913979}
-  - component: {fileID: 128987064856913959}
-  - component: {fileID: 128987064856913958}
   - component: {fileID: 128987064856913976}
   m_Layer: 5
-  m_Name: HealPlayer
+  m_Name: Emergency Wine Infusion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,34 +37,6 @@ RectTransform:
   m_AnchoredPosition: {x: -495.99994, y: 114}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &128987064856913959
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 128987064856913978}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e3d5e936337afdd4ab8d68cd34cfbfe4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!222 &128987064856913958
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 128987064856913978}
-  m_CullTransparentMesh: 1
 --- !u!114 &128987064856913976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,10 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1251fbf12ae12479bed075c6ebe7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationKey: HealPlayer
-  _animator:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _animationKey: 1
+  _animator: []
   _animations: []
+  _particleEffects: []

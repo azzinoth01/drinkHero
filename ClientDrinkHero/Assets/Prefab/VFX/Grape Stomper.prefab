@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6045981765988375507}
   - component: {fileID: 3685321075412661088}
   m_Layer: 5
-  m_Name: StunEnemy
+  m_Name: Grape Stomper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1251fbf12ae12479bed075c6ebe7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationKey: StunEnemy
-  _animator:
-  - {fileID: 0}
+  _animationKey: 2
+  _animator: []
   _animations: []
+  _particleEffects: []
