@@ -14,7 +14,9 @@ public class UIDataContainer {
     private IFlyingTextHandler _enemyText;
     private IFlyingTextHandler _playerText;
 
-
+    public static float MusicVolume = 1f;
+    public static float SfxVolume = 1f;
+    
     public static int[] TeamIds;
 
     public static UIDataContainer Instance {

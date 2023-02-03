@@ -34,6 +34,7 @@ public class BattlePreparationMenuView : View
             slot.onClick.AddListener(ViewTweener.ScaleTransformTween(transform, () => ViewManager.Show<CharacterSelectView>()));
         }
         
+        AudioController.Instance.PlayAudio(AudioType.MainMenuTheme, true);
     }
 
     private void OnDestroy()

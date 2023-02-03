@@ -22,11 +22,11 @@ public class OptionsMenuView : View
         base.Show();
         GetCurrentVolume();
     }
-
+    
     private void GetCurrentVolume()
     {
-        musicVolumeSlider.value = tracks[0].Source.volume;
-        sfxVolumeSlider.value = tracks[1].Source.volume;
+        musicVolumeSlider.value = UIDataContainer.MusicVolume;
+        sfxVolumeSlider.value = UIDataContainer.SfxVolume;
     }
     
     void OnEnable()
@@ -38,11 +38,13 @@ public class OptionsMenuView : View
     void ChangeMusicVolume(float sliderValue)
     {
         tracks[0].Source.volume = sliderValue;
+        UIDataContainer.MusicVolume = sliderValue;
     }
     
     void ChangeSfxVolume(float sliderValue)
     {
         tracks[1].Source.volume = sliderValue;
+        UIDataContainer.SfxVolume = sliderValue;
     }
 
     void OnDisable()

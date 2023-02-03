@@ -33,7 +33,7 @@ public class MainMenuView : View
         creditsMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(creditsMenuButton, 
             creditsMenuClicked, () => ViewManager.Show<CreditsView>()));
 
-        AudioController.Instance.PlayAudio(AudioType.MainMenuTheme, true, 0f);
+        AudioController.Instance.PlayAudio(AudioType.MainMenuTheme, true);
 
         _creditsMenuSprite = creditsMenuButton.image.sprite;
     }
