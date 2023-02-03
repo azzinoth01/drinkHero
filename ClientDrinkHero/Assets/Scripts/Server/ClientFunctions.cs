@@ -1,6 +1,12 @@
 public static class ClientFunctions {
 
 
+    //returns ResponsMessageObject FAILURE / SUCCESS
+    public static string GetGachaInfo() {
+        string callName = "GetGachaInfo";
+        return GetWriteString(callName, "ID\"" + 1 + "\"");
+    }
+
     //returns UpgradeItemDatabase
     public static string GetUpgradeItemDatabaseByKey(string pair) {
         string callName = "GetUpgradeItemDatabaseByKey";

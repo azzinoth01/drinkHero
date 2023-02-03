@@ -449,6 +449,11 @@ public static class ServerFunctions {
 
         return SendData<UpgradeItemDatabase>(client.StreamWriter, pair);
 
+    }
+    [ServerFunction("GetGachaInfo")]
+    public static string GetGachaInfo(ConnectedClient client, string pair) {
+
+        return SendData<GachaDatabase>(client.StreamWriter, pair);
 
     }
 
