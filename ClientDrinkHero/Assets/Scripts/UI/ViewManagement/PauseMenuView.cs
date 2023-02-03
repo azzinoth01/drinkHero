@@ -8,7 +8,10 @@ public class PauseMenuView : View
 
     public override void Initialize()
     {
-        returnButton.onClick.AddListener(() => ViewManager.ShowLast());
-        mainMenuButton.onClick.AddListener(() => SceneLoader.Load(GameSceneEnum.MainMenuScene));
+        returnButton.onClick.AddListener(ViewTweener.ButtonClickTween(returnButton, 
+            returnButton.image.sprite, () => ViewManager.ShowLast()));
+        
+        mainMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(mainMenuButton, 
+            mainMenuButton.image.sprite, () => SceneLoader.Load(GameSceneEnum.MainMenuScene)));
     }
 }

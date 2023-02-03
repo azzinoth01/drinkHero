@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
@@ -34,9 +35,36 @@ public class BattleView : View {
     [SerializeField] private Button optionsMenuButton;
     [SerializeField] private Button pauseMenuButton;
 
+    [Header("Drop Zone Related")] [SerializeField]
+    private Image dropZone;
+    [SerializeField] private Color dropZoneVisibleColor;
+    [SerializeField] private Color dropZoneInvisibleColor;
+    
     [Header("Debug Related")]
     [SerializeField]
     private TextMeshProUGUI turnAnnouncerText;
+
+    private void ShowDropZone()
+    {
+        dropZone.color = dropZoneVisibleColor;
+    }
+
+    private void HideDropZone()
+    {
+        dropZone.color = dropZoneInvisibleColor;
+    }
+    
+    public override void Initialize() {
+        optionsMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(optionsMenuButton,
+            optionsMenuButton.image.sprite, () => ViewManager.Show<OptionsMenuView>()));
+
+        pauseMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(pauseMenuButton, 
+            pauseMenuButton.image.sprite, () => ViewManager.Show<PauseMenuView>()));
+        
+        //pauseMenuButton.onClick.AddListener(() => ViewManager.Show<PauseMenuView>());
+
+        AudioController.Instance.PlayAudio(AudioType.BattleTheme, true, 0f);
+    }
 
     private void OnEnable() {
         UIDataContainer.Instance.Player.HealthChange += UpdatePlayerHealthBar;
@@ -52,9 +80,12 @@ public class BattleView : View {
 
         TurnManager.togglePlayerUiControls += TogglePlayerUIControls;
         TurnManager.updateDebugText += UpdateTurnAnnouncer;
+
+        CardDragHandler.OnShowDropZone += ShowDropZone;
+        CardDropHandler.OnHideDropZone += HideDropZone;
     }
 
-    private void OnDisable() {
+    private void OnDestroy() {
         UIDataContainer.Instance.Player.HealthChange -= UpdatePlayerHealthBar;
         UIDataContainer.Instance.Player.ShieldChange -= UpdatePlayerShieldCounter;
         UIDataContainer.Instance.Player.RessourceChange -= UpdatePlayerEnergyBar;
@@ -68,6 +99,9 @@ public class BattleView : View {
 
         TurnManager.togglePlayerUiControls -= TogglePlayerUIControls;
         TurnManager.updateDebugText -= UpdateTurnAnnouncer;
+        
+        CardDragHandler.OnShowDropZone -= ShowDropZone;
+        CardDropHandler.OnHideDropZone -= HideDropZone;
     }
 
     private void Start() {
@@ -115,6 +149,8 @@ public class BattleView : View {
                 DisolveCard disolveCard = currentPlayerHand[i].GetComponent<DisolveCard>();
                 disolveCard.enabled = false;
                 disolveCard.ResetEffect();
+                
+                
             }
 
             var index = i;
@@ -156,22 +192,44 @@ public class BattleView : View {
         IHandCards playerHand = UIDataContainer.Instance.Player.GetHandCards();
 
         Debug.Log("playerhand " + playerHand);
-
         bool cardWasPlayed = playerHand.PlayHandCard(index);
+        
         Debug.Log("card was played");
         if (cardWasPlayed) {
-            currentPlayerHand[index].gameObject.SetActive(false);
-            Button button = currentPlayerHand[index].GetComponent<Button>();
-            Debug.Log("button " + button);
-            button.onClick.RemoveAllListeners();
-
+            // currentPlayerHand[index].gameObject.SetActive(false);
+            // Button button = currentPlayerHand[index].GetComponent<Button>();
+            // Debug.Log("button " + button);
+            // button.onClick.RemoveAllListeners();
+            
+            // DisolveCard disolveCard = currentPlayerHand[index].GetComponent<DisolveCard>();
+            // Debug.Log("disolve " + disolveCard);
+            // disolveCard.enabled = true;
+            
+            // UpdateHandCards();
+            
             DisolveCard disolveCard = currentPlayerHand[index].GetComponent<DisolveCard>();
             Debug.Log("disolve " + disolveCard);
             disolveCard.enabled = true;
-            UpdateHandCards();
+            
+            StartCoroutine(DelayCardReset(index, 3f));
+            Debug.Log("COROUTINE STARTED!");
         }
 
         return cardWasPlayed;
+    }
+    
+    private IEnumerator DelayCardReset(int index, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        
+        currentPlayerHand[index].gameObject.SetActive(false);
+        Button button = currentPlayerHand[index].GetComponent<Button>();
+        Debug.Log("button " + button);
+        button.onClick.RemoveAllListeners();
+        
+        yield return new WaitForSeconds(delay);
+        
+        UpdateHandCards();
     }
 
     private void InitUIValues() {
@@ -240,14 +298,5 @@ public class BattleView : View {
 
     private void ShowGameOverScreen() {
         ViewManager.Show<GameOverView>();
-    }
-
-    public override void Initialize() {
-        optionsMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(optionsMenuButton,
-            optionsMenuButton.image.sprite, () => ViewManager.Show<OptionsMenuView>()));
-
-        pauseMenuButton.onClick.AddListener(() => ViewManager.Show<PauseMenuView>());
-
-        AudioController.Instance.PlayAudio(AudioType.BattleTheme, true, 0f);
     }
 }

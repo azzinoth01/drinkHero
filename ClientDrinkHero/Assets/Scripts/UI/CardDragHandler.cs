@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,21 +16,24 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     private Vector3 _velocity;
 
     private Transform _handCardContainer;
-    private Transform _battleView;
+    private Transform _battleViewTransform;
 
     private Vector2 _initialAnchoredPosition;
     private bool _firstDrag;
 
+    public static event Action OnShowDropZone;
     private void Awake()
     {
         _cardView = GetComponent<CardView>();
         _cardTransform = GetComponent<RectTransform>();
         _handCardContainer = _cardTransform.parent;
-        _battleView = _handCardContainer.parent;
+        _battleViewTransform = _handCardContainer.parent;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        OnShowDropZone?.Invoke();
+        
         if (!_firstDrag)
         {
             _initialAnchoredPosition = _cardTransform.anchoredPosition;
@@ -54,9 +58,12 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     public void OnEndDrag(PointerEventData eventData)
     {
         if (!eventData.pointerCurrentRaycast.gameObject.CompareTag("CardDropZone"))
+        {
             _cardView.ReturnCardToHand();
-        else
+        }
+        else{
             Debug.Log("Pointer Over Dropzone!");
+        }
 
         _cardView.ZoomOut();
         _cardView.ResetCardViewParent();
