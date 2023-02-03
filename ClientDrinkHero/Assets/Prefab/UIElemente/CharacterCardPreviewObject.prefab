@@ -614,10 +614,12 @@ MonoBehaviour:
   cost: 0
   cardName: {fileID: 993123931147480908}
   cardDescription: {fileID: 4702869932047538062}
+  cardCostText: {fileID: 8077983591628836067}
   cardPortrait: {fileID: 262865070767119518}
   clickScaleEaseMode: 0
   clickScaleFactor: 1.5
   clickScaleDuration: 0.25
+  zoomParent: {fileID: 0}
 --- !u!1 &8938463946329699954
 GameObject:
   m_ObjectHideFlags: 0

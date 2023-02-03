@@ -7,6 +7,8 @@ public class CharacterCardPreviewController : MonoBehaviour
 
     private void Awake()
     {
+        CharacterCardView.OnZoomReset += ResetZoom;
+        
         foreach (var preview in _cardPreviews)
         {
             preview.OnZoomIn += HandleZoom;
@@ -15,13 +17,15 @@ public class CharacterCardPreviewController : MonoBehaviour
 
     private void OnDestroy()
     {
+        CharacterCardView.OnZoomReset -= ResetZoom;
+        
         foreach (var preview in _cardPreviews)
         {
             preview.OnZoomIn -= HandleZoom;
         }
     }
 
-    public void HandleZoom(CharacterCardPreview cardPreview)
+    private void HandleZoom(CharacterCardPreview cardPreview)
     {
         foreach (var preview in _cardPreviews)
         {
@@ -29,6 +33,14 @@ public class CharacterCardPreviewController : MonoBehaviour
             {
                 preview.ZoomOut();
             }
+        }
+    }
+
+    private void ResetZoom()
+    {
+        foreach (var preview in _cardPreviews)
+        {
+            preview.ZoomOut();
         }
     }
 }

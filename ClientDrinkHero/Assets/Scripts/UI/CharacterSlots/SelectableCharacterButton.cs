@@ -31,9 +31,17 @@ public class SelectableCharacterButton : MonoBehaviour
     {
         characterSlotData = new CharacterSlotData();
         _loadSprite = characterPortraitImage.GetComponent<LoadSprite>();
-        characterCardView = ViewManager.Instance.GetView<CharacterCardView>();
+        
         infoButton.onClick.AddListener(() => ViewManager.Show<CharacterCardView>());
         infoButton.onClick.AddListener(() => characterCardView.LoadCharacterData(id));
+    }
+
+    private void Start()
+    {
+        if (!characterCardView)
+        {
+            characterCardView = ViewManager.Instance.GetView<CharacterCardView>();
+        }
     }
 
     public void SetData(CharacterSlotData data)

@@ -9,6 +9,7 @@ public class CharacterCardPreview : MonoBehaviour
     [SerializeField] private int cost;
     [SerializeField] private TextMeshProUGUI cardName;
     [SerializeField] private TextMeshProUGUI cardDescription;
+    [SerializeField] private TextMeshProUGUI cardCostText;
     [SerializeField] private Image cardPortrait;
 
     private Button _cardPreviewButton;
@@ -37,7 +38,7 @@ public class CharacterCardPreview : MonoBehaviour
 
     public void SetData(CardData data)
     {
-        cost = data.cost;
+        cardCostText.SetText(data.cost.ToString());
         cardName.SetText(data.name);
         cardDescription.SetText(data.description);
         cardPortrait = data.portrait;

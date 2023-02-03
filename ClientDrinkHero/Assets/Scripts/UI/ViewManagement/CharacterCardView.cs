@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class CharacterCardView : View
     
     private LoadSprite _loadSprite;
 
+    public static event Action OnZoomReset;
+    
     public override void Initialize()
     {
         backButton.onClick.AddListener(ViewTweener.ButtonClickTween(backButton, 
@@ -51,5 +54,11 @@ public class CharacterCardView : View
     {
         base.Show();
         backButton.image.sprite = _backButtonInitial;
+    }
+
+    public override void Hide()
+    {
+        base.Hide();
+        OnZoomReset?.Invoke();
     }
 }
