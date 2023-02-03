@@ -34,7 +34,7 @@ public class GachaResultView : View {
 
         int i = 0;
         foreach (GachaResultDisplayItem item in _displayList) {
-            if (pulls.Count >= i) {
+            if (pulls.Count > i) {
                 item.SetData(pulls[i]);
             }
             else {

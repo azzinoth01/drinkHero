@@ -103,7 +103,7 @@ public class GachaResultDisplayItem : MonoBehaviour {
         //just in case
         _pullData = new PullHistoryDatabase();
         _pullData = null;
-
+        _itemName.SetText("");
         _loadSprite.UnloadSprite();
 
         _loaded = true;
