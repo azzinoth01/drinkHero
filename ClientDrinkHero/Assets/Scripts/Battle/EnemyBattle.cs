@@ -20,6 +20,8 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     [SerializeField] protected ModifierStruct _defenceModifier;
     [SerializeField] protected ModifierStruct _shieldModifier;
 
+    private bool _alreadyDead;
+
     private int _skipTurn;
     private int _buffMultihit;
 
@@ -48,6 +50,8 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         UIDataContainer.Instance.Enemy = this;
     }
     public void ResetEnemy(EnemyDatabase enemyData) {
+
+        _alreadyDead = false;
         _enemyBaseData = enemyData;
         maxHealth = enemyData.MaxHealth;
         health = maxHealth;
@@ -238,11 +242,15 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         value = DmgHealth(value);
 
 
-        if (health <= 0) {
+        if (health <= 0 && _alreadyDead == false) {
 
-            ClientFunctions.AddMoneyToUser(_enemyBaseData.MoneyDrop);
+            string request = ClientFunctions.AddMoneyToUser(_enemyBaseData.MoneyDrop);
+
+            UserSingelton.Instance.UserObject.UpdateUserDataRequest(request);
+
+
             EnemyObject.GoldGotThisSession = EnemyObject.GoldGotThisSession + _enemyBaseData.MoneyDrop;
-
+            _alreadyDead = true;
             DiedEvent?.Invoke();
 
         }

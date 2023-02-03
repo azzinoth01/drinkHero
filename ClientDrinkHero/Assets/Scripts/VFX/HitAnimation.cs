@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HitAnimation : MonoBehaviour, IAnimation {
@@ -8,7 +7,6 @@ public class HitAnimation : MonoBehaviour, IAnimation {
     [SerializeField] private float _duration;
     [SerializeField] private Vector3 _range;
 
-    [SerializeField] private Queue<bool> _playQueue;
     private Vector3 _startPosition;
     private float _time;
     private bool _inExecution;
@@ -17,7 +15,6 @@ public class HitAnimation : MonoBehaviour, IAnimation {
 
         _time = 0;
         _startPosition = transform.localPosition;
-        _playQueue = new Queue<bool>();
         _inExecution = false;
     }
 
@@ -29,6 +26,7 @@ public class HitAnimation : MonoBehaviour, IAnimation {
         if (_inExecution == false) {
             enabled = false;
             _idleAnimation.enabled = true;
+            _time = 0;
             return;
         }
 
@@ -38,9 +36,6 @@ public class HitAnimation : MonoBehaviour, IAnimation {
         _time = _time + Time.deltaTime;
 
 
-        //float curveTime = _curve[_curve.length - 1].time;
-
-        //curveTime = curveTime * _duration;
 
         transform.localPosition = _startPosition + (_curve.Evaluate(_time / _duration) * _range);
         if (_time >= _duration) {

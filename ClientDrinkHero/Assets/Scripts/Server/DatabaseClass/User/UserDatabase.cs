@@ -134,6 +134,9 @@ public class UserDatabase : DatabaseItem {
 
         foreach (string[] obj in objectStrings) {
             UserDatabase item = new UserDatabase();
+
+            //bool userExist = false;
+
             foreach (string parameter in obj) {
                 string parameterName = RegexPatterns.PropertyName.Match(parameter).Value;
                 string parameterValue = RegexPatterns.PropertyValue.Match(parameter).Value;
@@ -141,7 +144,8 @@ public class UserDatabase : DatabaseItem {
                 if (parameterName == mapping.PrimaryKeyColumn) {
                     if (_cachedData.TryGetValue(parameterValue, out UserDatabase existingItem)) {
                         item = existingItem;
-                        break;
+                        //userExist = true;
+                        //break;
                     }
                     else {
                         _cachedData.Add(parameterValue, item);
@@ -154,6 +158,21 @@ public class UserDatabase : DatabaseItem {
                     DatabaseItemCreationHelper.ParseParameterValues(item, info, parameterValue);
                 }
             }
+            // overwrite existing values
+            //if (userExist == true) {
+            //    foreach (string parameter in obj) {
+            //        string parameterName = RegexPatterns.PropertyName.Match(parameter).Value;
+            //        string parameterValue = RegexPatterns.PropertyValue.Match(parameter).Value;
+
+            //        if (parameterName == mapping.PrimaryKeyColumn) {
+            //        }
+            //        else if (mapping.ColumnsMapping.TryGetValue(parameterName, out string property)) {
+            //            PropertyInfo info = item.GetType().GetProperty(property);
+            //            DatabaseItemCreationHelper.ParseParameterValues(item, info, parameterValue);
+            //        }
+            //    }
+            //}
+
             list.Add(item);
         }
 

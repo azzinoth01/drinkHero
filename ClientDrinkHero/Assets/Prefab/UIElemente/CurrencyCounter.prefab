@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 3238223279241964457}
   - component: {fileID: 5663630034632519003}
   - component: {fileID: 5659103523373942192}
+  - component: {fileID: 4420390807271126691}
   m_Layer: 5
   m_Name: CurrencyCounter
   m_TagString: Untagged
@@ -175,6 +176,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4420390807271126691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920293972574569160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469854a92ab8d78478790022fcc33116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _counter: {fileID: 5659103523373942192}
 --- !u!1 &6672889179736224189
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,4 +40,8 @@ public class UserObject : MonoBehaviour {
         _userHandle.LoadingFinished -= UserLoaded;
     }
 
+    public void UpdateUserDataRequest(string request) {
+        _userHandle.RequestData(request);
+    }
+
 }
