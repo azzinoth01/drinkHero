@@ -1124,12 +1124,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 2707883631914187268}
     m_Modifications:
     - target: {fileID: -1656362505894786700, guid: 65024688239a11a4eaf5aa1bd4f34ee7, type: 3}
+      propertyPath: _duration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1656362505894786700, guid: 65024688239a11a4eaf5aa1bd4f34ee7, type: 3}
       propertyPath: _hitAnimation
       value: 
       objectReference: {fileID: 4375846514216593749}
     - target: {fileID: -1656362505894786700, guid: 65024688239a11a4eaf5aa1bd4f34ee7, type: 3}
       propertyPath: _playHitAfter
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2427786012956944605, guid: 65024688239a11a4eaf5aa1bd4f34ee7, type: 3}
       propertyPath: m_RootOrder
