@@ -172,12 +172,17 @@ public class BattleView : View {
             var button = currentPlayerHand[i].GetComponent<Button>();
             button.onClick.RemoveAllListeners();
 
-
-
+            if (currentPlayerHand[i].gameObject.activeSelf == true) {
+                DisolveCard disolveCard = currentPlayerHand[i].GetComponent<DisolveCard>();
+                disolveCard.enabled = true;
+            }
+            else {
+                currentPlayerHand[i].gameObject.SetActive(false);
+            }
             //DisolveCard disolveCard = currentPlayerHand[i].GetComponent<DisolveCard>();
             //disolveCard.enabled = true;
             //Debug.Log("Disolve Card");
-            currentPlayerHand[i].gameObject.SetActive(false);
+
 
             i = i + 1;
         }
