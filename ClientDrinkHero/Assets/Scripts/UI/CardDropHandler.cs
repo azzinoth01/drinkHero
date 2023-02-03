@@ -22,7 +22,7 @@ public class CardDropHandler : MonoBehaviour, IDropHandler
 
         var cardView = droppedCard.GetComponent<CardView>();
         
-        _battleView.playerCardDummy.SetPosition(dropPosition);
+        //_battleView.playerCardDummy.SetPosition(dropPosition);
         
         if (droppedCard != null)
         {

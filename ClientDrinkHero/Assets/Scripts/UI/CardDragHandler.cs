@@ -21,9 +21,12 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     private Vector2 _initialAnchoredPosition;
     private bool _firstDrag;
 
+    private BattleView _battleView;
     public static event Action OnShowDropZone;
     private void Awake()
     {
+        _battleView = ViewManager.Instance.GetView<BattleView>();
+        
         _cardView = GetComponent<CardView>();
         _cardTransform = GetComponent<RectTransform>();
         _handCardContainer = _cardTransform.parent;
@@ -33,6 +36,11 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     public void OnBeginDrag(PointerEventData eventData)
     {
         OnShowDropZone?.Invoke();
+
+        var cview = eventData.pointerDrag.GetComponent<CardView>();
+        ICardDisplay cardDisplay = UIDataContainer.Instance.Player.GetHandCards().GetHandCard(cview.HandIndex);
+        
+        _battleView.playerCardDummy.SetDisplayValues(cardDisplay, cview.HandIndex);
         
         if (!_firstDrag)
         {

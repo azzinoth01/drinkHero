@@ -28,9 +28,7 @@ public class CardView : MonoBehaviour {
 
     private int _handIndex;
     public int HandIndex => _handIndex;
-
-
-
+    
     private Image[] _images;
 
     private Sprite _cardSprite;

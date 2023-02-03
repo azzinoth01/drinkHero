@@ -12,7 +12,7 @@ public class BattleView : View {
     [SerializeField]
     private GameObject playerCardObjectPrefab;
 
-    [SerializeField] public CardDummy playerCardDummy;
+    [SerializeField] public CardView playerCardDummy;
     [SerializeField] private GameObject playerHandContainer;
     [SerializeField] private GameObject waitingForConnectionPanel;
 
@@ -200,7 +200,9 @@ public class BattleView : View {
 
         Debug.Log("card was played");
         if (cardWasPlayed) {
-            playerCardDummy.Show();
+            // playerCardDummy.SetDummyData(card.CostText(), card.CardName(), card.CardText(), card.GetSpritePath());
+            // playerCardDummy.Show();
+            
             
             currentPlayerHand[index].gameObject.SetActive(false);
             Button button = currentPlayerHand[index].GetComponent<Button>();

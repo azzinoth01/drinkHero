@@ -330,6 +330,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2100650838}
     m_Modifications:
+    - target: {fileID: 84361122607225760, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 218223797338913055, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: cameraShake.useMainCamera
       value: 0
@@ -954,6 +958,10 @@ PrefabInstance:
       propertyPath: cameraShake.cameras.Array.data[0]
       value: 
       objectReference: {fileID: 1144324191}
+    - target: {fileID: 8892863943604232875, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9101966207917434141, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1013,6 +1021,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2100650838}
     m_Modifications:
+    - target: {fileID: 84361122607225760, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 218223797338913055, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: clearBehavior
       value: 0
@@ -1737,6 +1749,10 @@ PrefabInstance:
       propertyPath: cameraShake.cameras.Array.data[0]
       value: 
       objectReference: {fileID: 1144324191}
+    - target: {fileID: 8892863943604232875, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9002458979153171514, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: looping
       value: 1
@@ -2462,6 +2478,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2100650838}
     m_Modifications:
+    - target: {fileID: 84361122607225760, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 218223797338913055, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: clearBehavior
       value: 0
@@ -3206,6 +3226,10 @@ PrefabInstance:
       propertyPath: cameraShake.cameras.Array.data[0]
       value: 
       objectReference: {fileID: 1144324191}
+    - target: {fileID: 8892863943604232875, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9101966207917434141, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -5287,6 +5311,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2100650838}
     m_Modifications:
+    - target: {fileID: 84361122607225760, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 218223797338913055, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: clearBehavior
       value: 0
@@ -6003,6 +6031,10 @@ PrefabInstance:
       propertyPath: cameraShake.cameras.Array.data[0]
       value: 
       objectReference: {fileID: 1144324191}
+    - target: {fileID: 8892863943604232875, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9101966207917434141, guid: b24f64ac22abe024da12e5ec8a5e4be2, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -8777,7 +8809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8904498553716453180, guid: e5865cf5f9a0fbd409adc4020ab25569, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8904498553716453180, guid: e5865cf5f9a0fbd409adc4020ab25569, type: 3}
       propertyPath: m_AnchorMax.x
@@ -8857,19 +8889,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8904498553716453181, guid: e5865cf5f9a0fbd409adc4020ab25569, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5865cf5f9a0fbd409adc4020ab25569, type: 3}
 --- !u!114 &573655180615878864 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6583736284627130609, guid: e5865cf5f9a0fbd409adc4020ab25569, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5275841298512085577, guid: e5865cf5f9a0fbd409adc4020ab25569, type: 3}
   m_PrefabInstance: {fileID: 573655180615878863}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed72f8aab40a75b4b9382e08c40928f8, type: 3}
+  m_Script: {fileID: 11500000, guid: 816fd2bbadf86864e92aefe65a0a7f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1238918477617702541
@@ -9305,7 +9337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3172160976885218012, guid: 4fa2a0698f3b1734bb1cacf9319e9139, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3172160976885218012, guid: 4fa2a0698f3b1734bb1cacf9319e9139, type: 3}
       propertyPath: m_AnchorMax.x
