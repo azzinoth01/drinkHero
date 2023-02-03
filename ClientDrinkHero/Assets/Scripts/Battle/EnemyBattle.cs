@@ -168,6 +168,8 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         //}
         AttackEnemy(5);
 
+        VFXObjectContainer.Instance.PlayAnimation("41");
+
         CheckDebuffsAndBuffs(ActivationTimeEnum.actionFinished);
 
         ClientFunctions.SendMessageToDatabase("Enemy Turn End");
