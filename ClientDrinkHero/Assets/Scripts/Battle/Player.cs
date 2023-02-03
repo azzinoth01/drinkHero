@@ -259,7 +259,7 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
     }
 
     private void DrawCardsFromDeck(int value) {
-
+        AudioController.Instance.PlayAudio(AudioType.SFXDrawCards);
         for (int i = 0; i < value;) {
             if (_handCards.Count >= MaxHandCards) {
                 break;

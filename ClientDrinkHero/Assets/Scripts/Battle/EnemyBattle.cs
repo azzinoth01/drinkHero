@@ -168,6 +168,8 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         //}
         AttackEnemy(5);
 
+        VFXObjectContainer.Instance.PlayAnimation("41");
+
         CheckDebuffsAndBuffs(ActivationTimeEnum.actionFinished);
 
         ClientFunctions.SendMessageToDatabase("Enemy Turn End");
@@ -247,6 +249,8 @@ public class EnemyBattle : ICharacter, ICharacterAction {
             string request = ClientFunctions.AddMoneyToUser(_enemyBaseData.MoneyDrop);
 
             UserSingelton.Instance.UserObject.UpdateUserDataRequest(request);
+
+
 
 
             EnemyObject.GoldGotThisSession = EnemyObject.GoldGotThisSession + _enemyBaseData.MoneyDrop;

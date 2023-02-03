@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,13 +17,31 @@ public class GachaMenuView : View {
 
     private int _requestId;
     private int _multiPullRequestId;
-    private int _singlePullRequestId;
+    //private int _singlePullRequestId;
+
+    private int _gachaInfoRequestId;
 
     private bool _dataIsLoading;
     private ResponsMessageObject _response;
     private PullHistoryDatabase _pullHistory;
 
+    [SerializeField] GachaResultView _gachaResultView;
+
+    [SerializeField] TextMeshProUGUI _singlePullCost;
+    [SerializeField] TextMeshProUGUI _multiPullCost;
+
+
+    private GachaDatabase _gachaInfo;
+
     public override void Initialize() {
+
+        string request = ClientFunctions.GetGachaInfo();
+        _gachaInfoRequestId = HandleRequests.Instance.HandleRequest(request, typeof(GachaDatabase));
+        NetworkDataContainer.Instance.WaitForServer.AddWaitOnServer();
+
+
+
+
         optionsMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(optionsMenuButton,
             optionsMenuButton.image.sprite, () => ViewManager.Show<OptionsMenuView>()));
 
@@ -53,6 +73,32 @@ public class GachaMenuView : View {
         StartCoroutine(WaitForPullStatus(1));
     }
 
+    private void OnEnable() {
+        StartCoroutine(WaitForGachaInfo());
+    }
+
+    private IEnumerator WaitForGachaInfo() {
+        while (HandleRequests.Instance.RequestDataStatus[_gachaInfoRequestId] != DataRequestStatusEnum.RecievedAccepted) {
+            if (HandleRequests.Instance.RequestDataStatus[_gachaInfoRequestId] == DataRequestStatusEnum.Recieved) {
+                _gachaInfo = GachaDatabase.CreateObjectDataFromString(HandleRequests.Instance.RequestData[_gachaInfoRequestId])[0];
+
+
+                HandleRequests.Instance.RequestDataStatus[_gachaInfoRequestId] = DataRequestStatusEnum.RecievedAccepted;
+
+                NetworkDataContainer.Instance.WaitForServer.FinishedWaitOnServer();
+
+
+                _singlePullCost.SetText("x" + _gachaInfo.CostSingelPull);
+                _multiPullCost.SetText("x" + _gachaInfo.CostMultiPull);
+                yield break;
+
+            }
+            yield return null;
+
+        }
+    }
+
+
 
     private IEnumerator WaitForPullStatus(int pullAmount) {
 
@@ -67,8 +113,10 @@ public class GachaMenuView : View {
                 if (_response.Message == "SUCCESS") {
                     // 1-Singlepull 10-Multipull
                     var request = ClientFunctions.GetLastPullResult(pullAmount);
+
                     _multiPullRequestId = HandleRequests.Instance.HandleRequest(request, typeof(PullHistoryDatabase));
                     NetworkDataContainer.Instance.WaitForServer.AddWaitOnServer();
+
                     string requestUserDataUpdate = ClientFunctions.GetUserData();
                     UserSingelton.Instance.UserObject.UpdateUserDataRequest(requestUserDataUpdate);
 
@@ -92,22 +140,15 @@ public class GachaMenuView : View {
             if (HandleRequests.Instance.RequestDataStatus[_multiPullRequestId] == DataRequestStatusEnum.Recieved) {
 
                 HandleRequests.Instance.RequestDataStatus[_multiPullRequestId] = DataRequestStatusEnum.RecievedAccepted;
-                var list = PullHistoryDatabase.CreateObjectDataFromString(
-              HandleRequests.Instance.RequestData[_multiPullRequestId]);
-
-                foreach (var pull in list)
-                    if (pull.Type == "Hero")
-                        Debug.Log("You Unlocked a Hero!");
-                    //use pull.TypeId to check HeroList and print Hero name
-                    else if (pull.Type == "Item")
-                        Debug.Log("You got an Item!");
-                //use pull.TypeId to check ItemList and print Item name
-                //_pullHistory.Type "Hero", "Item"
-                //_pullHistory.TypeID is the id in the table, used to discern which exact item or hero was pulled
-                //get all heroes/items in awake, then use id to tell which is which after pull(s)
+                List<PullHistoryDatabase> list = PullHistoryDatabase.CreateObjectDataFromString(HandleRequests.Instance.RequestData[_multiPullRequestId]);
 
                 HandleRequests.Instance.RequestDataStatus[_multiPullRequestId] = DataRequestStatusEnum.RecievedAccepted;
                 NetworkDataContainer.Instance.WaitForServer.FinishedWaitOnServer();
+
+
+                ViewManager.Show(_gachaResultView);
+
+                _gachaResultView.PopulateDisplayList(list);
                 EnableGachaButtons();
                 yield break;
             }
@@ -128,4 +169,6 @@ public class GachaMenuView : View {
         singlePullButton.interactable = true;
         multiPullButton.interactable = true;
     }
+
+
 }

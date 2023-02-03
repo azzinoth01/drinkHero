@@ -18,6 +18,16 @@ public class LoadSprite : MonoBehaviour, IAssetLoader {
 
     }
 
+    public string SpritePathSufix {
+        get {
+            return _spritePathSufix;
+        }
+
+        set {
+            _spritePathSufix = value;
+        }
+    }
+
     private void Awake() {
         if (_spritePath != "" && _spritePath != null) {
             Sprite sprite = AssetLoader.Instance.BorrowSprite(_spritePath + _spritePathSufix);

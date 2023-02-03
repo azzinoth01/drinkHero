@@ -58,6 +58,37 @@ public class FlyingTextContainer : MonoBehaviour, IFlyingTextHandler {
         FlyingTextEnum type = item.Item1;
         string text = item.Item2;
         FlyingText flyingTextObject = null;
+
+        if (type == FlyingTextEnum.dmg && text != "0") {
+            AudioController.Instance.PlayAudio(AudioType.SFXDamage);
+        }
+        else if (type == FlyingTextEnum.shield && text != "0") {
+            AudioController.Instance.PlayAudio(AudioType.SFXShield);
+        }
+        else if (type == FlyingTextEnum.heal && text != "0") {
+            AudioController.Instance.PlayAudio(AudioType.SFXHeal);
+        }
+        else if (type == FlyingTextEnum.effect && text.Contains("POISON")) {
+            AudioController.Instance.PlayAudio(AudioType.SFXPoison);
+        }
+        else if (type == FlyingTextEnum.effect && (text.Contains("ATT UP") || text.Contains("DEF UP"))) {
+            AudioController.Instance.PlayAudio(AudioType.SFXBuff);
+        }
+        else if (type == FlyingTextEnum.effect && (text.Contains("ATT DOWN") || text.Contains("DEF DOWN"))) {
+            AudioController.Instance.PlayAudio(AudioType.SFXDebuff);
+        }
+        else if (type == FlyingTextEnum.effect && text.Contains("REMOVE SHIELD")) {
+            AudioController.Instance.PlayAudio(AudioType.SFXShieldBreak);
+        }
+        else if (type == FlyingTextEnum.effect && text.Contains("REMOVE DEBUFF")) {
+            AudioController.Instance.PlayAudio(AudioType.SFXCleanse);
+        }
+        else if (type == FlyingTextEnum.effect) {
+            AudioController.Instance.PlayAudio(AudioType.SFXDebuff);
+        }
+
+
+
         if (_flyingTextList.TryGetValue(type, out List<FlyingText> list)) {
             if (list.Count == 0) {
                 flyingTextObject = GetAddObject(type);
@@ -90,26 +121,6 @@ public class FlyingTextContainer : MonoBehaviour, IFlyingTextHandler {
     public void SpawnFlyingText(FlyingTextEnum type, string text) {
         _spawnQueue.Enqueue((type, text));
 
-        //FlyingText flyingTextObject = null;
-        //if (_flyingTextList.TryGetValue(type, out List<FlyingText> list)) {
-        //    if (list.Count == 0) {
-        //        flyingTextObject = GetAddObject(type);
-
-        //    }
-        //    else {
-        //        flyingTextObject = list[list.Count - 1];
-        //        list.RemoveAt(list.Count - 1);
-
-        //    }
-        //}
-        //else {
-        //    list = new List<FlyingText>();
-        //    _flyingTextList[type] = list;
-        //    flyingTextObject = GetAddObject(type);
-
-        //}
-        //flyingTextObject.SetText(text);
-        //flyingTextObject.Play();
     }
 
 
