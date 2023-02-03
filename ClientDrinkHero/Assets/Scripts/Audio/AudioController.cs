@@ -68,8 +68,16 @@ public class AudioController : MonoBehaviour
         {
             Configure();
         }
+
+        GetCurrentVolume();
     }
 
+    private void GetCurrentVolume()
+    {
+        tracks[0].Source.volume = 0f;
+        tracks[1].Source.volume = UIDataContainer.SfxVolume;
+    }
+    
     private void OnDisable()
     {
         Dispose();
@@ -134,10 +142,14 @@ public class AudioController : MonoBehaviour
         if (audioJob.Fade)
         {
             // TODO: should take current volume into account
+            float lastVolume = UIDataContainer.MusicVolume;
+            
             float initialVolume = audioJob.JobType is AudioJobType.Start or AudioJobType.Restart
                 ? 0f
                 : 1f;
-            float targetVolume = initialVolume == 0 ? 1 : 0;
+            //float targetVolume = initialVolume == 0 ? 1 : 0;
+            float targetVolume = initialVolume == 0 ? lastVolume : 0;
+            
             float fadeDuration = 5f;
 
             float timer = 0f;

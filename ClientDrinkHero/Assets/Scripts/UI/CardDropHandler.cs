@@ -6,11 +6,9 @@ public class CardDropHandler : MonoBehaviour, IDropHandler
 {
     [SerializeField] private float dropDelay = 1f;
     private BattleView _battleView;
-    
 
     private void Awake()
     {
-        //_battleView = transform.parent.GetComponent<BattleView>();
         _battleView = ViewManager.Instance.GetView<BattleView>();
     }
 
