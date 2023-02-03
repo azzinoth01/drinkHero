@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 8337779272971423314}
   - component: {fileID: 6068069032965340796}
   - component: {fileID: 262865070767119518}
+  - component: {fileID: 6471703235043799793}
   m_Layer: 5
   m_Name: CharacterPortrait
   m_TagString: Untagged
@@ -212,6 +213,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6471703235043799793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5626548294316103789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7004e28c533a16948896470eb5c9e5d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRender: {fileID: 262865070767119518}
+  _spritePath: 
+  _spritePathSufix: _Card.png
+  _slot: 0
+  _isEnemy: 0
+  _noSlot: 1
+  _loadIntoMaterial: 0
 --- !u!1 &6482465010897992034
 GameObject:
   m_ObjectHideFlags: 0
