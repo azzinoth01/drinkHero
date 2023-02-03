@@ -47,13 +47,13 @@ public class IdleAnimation : MonoBehaviour {
 
             if (_isGoingUp == true) {
                 if (g.transform.localPosition.x >= targetPosition.x && g.transform.localPosition.y >= targetPosition.y && g.transform.localPosition.z >= targetPosition.z) {
-                    g.transform.localPosition = targetPosition;
+                    //g.transform.localPosition = targetPosition;
                     _positionReached[i] = true;
                 }
             }
             else {
                 if (g.transform.localPosition.x <= targetPosition.x && g.transform.localPosition.y <= targetPosition.y && g.transform.localPosition.z <= targetPosition.z) {
-                    g.transform.localPosition = targetPosition;
+                    //g.transform.localPosition = targetPosition;
                     _positionReached[i] = true;
                 }
             }

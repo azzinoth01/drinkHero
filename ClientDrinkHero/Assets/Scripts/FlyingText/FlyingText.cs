@@ -64,7 +64,7 @@ public class FlyingText : MonoBehaviour, IAnimation {
         float time = 0;
 
         while (time < _xDuration) {
-            Debug.Log("xMove Time");
+            //Debug.Log("xMove Time");
             transform.localPosition = new Vector3(_startposition.x + (_xAnimationCurve.Evaluate(time) * _xRange), transform.localPosition.y, transform.localPosition.z);
 
             time = time + Time.deltaTime;

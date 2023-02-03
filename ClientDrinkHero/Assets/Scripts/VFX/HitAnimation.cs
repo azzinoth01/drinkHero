@@ -26,16 +26,12 @@ public class HitAnimation : MonoBehaviour, IAnimation {
     // Update is called once per frame
     void Update() {
 
-        if (_playQueue.Count == 0 && _inExecution == false) {
+        if (_inExecution == false) {
             enabled = false;
             _idleAnimation.enabled = true;
             return;
         }
-        if (_inExecution == false) {
-            _playQueue.Dequeue();
-            ResetValues();
 
-        }
 
 
 
@@ -59,11 +55,10 @@ public class HitAnimation : MonoBehaviour, IAnimation {
     [ContextMenu("Play")]
     public void Play() {
 
-        _playQueue.Enqueue(true);
-
-        if (enabled == false) {
-            enabled = true;
+        if (_inExecution == false) {
+            ResetValues();
         }
+
 
 
     }
@@ -74,6 +69,14 @@ public class HitAnimation : MonoBehaviour, IAnimation {
         _idleAnimation.enabled = false;
         enabled = true;
         _inExecution = true;
+    }
+
+    public void StopAnimation() {
+        _time = 0;
+
+        _startPosition = transform.localPosition;
+        _idleAnimation.enabled = true;
+        _inExecution = false;
     }
 
 }

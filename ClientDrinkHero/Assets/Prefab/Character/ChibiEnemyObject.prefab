@@ -360,6 +360,7 @@ MonoBehaviour:
   _startPosition: {x: 0, y: 0, z: 0}
   _moveInSpeed: {x: 0, y: 0, z: 0}
   _time: 0
+  _hitAnimation: {fileID: 2665163040179344853}
 --- !u!114 &7634994259923663692
 MonoBehaviour:
   m_ObjectHideFlags: 0

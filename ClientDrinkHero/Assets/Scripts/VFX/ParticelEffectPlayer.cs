@@ -19,7 +19,7 @@ public class ParticelEffectPlayer : MonoBehaviour, IAnimation {
             _particle.Stop();
             gameObject.SetActive(false);
             PlayAgain();
-            if (_playHitAfter == true) {
+            if (_hitAnimation != null) {
                 _hitAnimation.Play();
             }
         }
@@ -32,7 +32,10 @@ public class ParticelEffectPlayer : MonoBehaviour, IAnimation {
         gameObject.SetActive(true);
         _particle.Play();
         if (_playHitAfter == false) {
-            _hitAnimation.Play();
+            if (_hitAnimation != null) {
+                _hitAnimation.Play();
+            }
+
         }
     }
 
@@ -44,7 +47,9 @@ public class ParticelEffectPlayer : MonoBehaviour, IAnimation {
             gameObject.SetActive(true);
             _particle.Play();
             if (_playHitAfter == false) {
-                _hitAnimation.Play();
+                if (_hitAnimation != null) {
+                    _hitAnimation.Play();
+                }
             }
         }
 
