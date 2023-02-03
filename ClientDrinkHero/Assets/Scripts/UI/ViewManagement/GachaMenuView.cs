@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,8 @@ public class GachaMenuView : View {
     private bool _dataIsLoading;
     private ResponsMessageObject _response;
     private PullHistoryDatabase _pullHistory;
+
+    [SerializeField] GachaResultView _gachaResultView;
 
     public override void Initialize() {
         optionsMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(optionsMenuButton,
@@ -67,8 +70,10 @@ public class GachaMenuView : View {
                 if (_response.Message == "SUCCESS") {
                     // 1-Singlepull 10-Multipull
                     var request = ClientFunctions.GetLastPullResult(pullAmount);
+
                     _multiPullRequestId = HandleRequests.Instance.HandleRequest(request, typeof(PullHistoryDatabase));
                     NetworkDataContainer.Instance.WaitForServer.AddWaitOnServer();
+
                     string requestUserDataUpdate = ClientFunctions.GetUserData();
                     UserSingelton.Instance.UserObject.UpdateUserDataRequest(requestUserDataUpdate);
 
@@ -92,22 +97,28 @@ public class GachaMenuView : View {
             if (HandleRequests.Instance.RequestDataStatus[_multiPullRequestId] == DataRequestStatusEnum.Recieved) {
 
                 HandleRequests.Instance.RequestDataStatus[_multiPullRequestId] = DataRequestStatusEnum.RecievedAccepted;
-                var list = PullHistoryDatabase.CreateObjectDataFromString(
-              HandleRequests.Instance.RequestData[_multiPullRequestId]);
+                List<PullHistoryDatabase> list = PullHistoryDatabase.CreateObjectDataFromString(HandleRequests.Instance.RequestData[_multiPullRequestId]);
 
-                foreach (var pull in list)
-                    if (pull.Type == "Hero")
-                        Debug.Log("You Unlocked a Hero!");
-                    //use pull.TypeId to check HeroList and print Hero name
-                    else if (pull.Type == "Item")
-                        Debug.Log("You got an Item!");
-                //use pull.TypeId to check ItemList and print Item name
-                //_pullHistory.Type "Hero", "Item"
-                //_pullHistory.TypeID is the id in the table, used to discern which exact item or hero was pulled
-                //get all heroes/items in awake, then use id to tell which is which after pull(s)
+                //foreach (var pull in list) {
+                //    if (pull.Type == "Hero") {
+                //        Debug.Log("You Unlocked a Hero!");
+                //    }
+
+                //    else if (pull.Type == "Item") {
+                //        Debug.Log("You got an Item!");
+                //    }
+
+                //}
+
+
 
                 HandleRequests.Instance.RequestDataStatus[_multiPullRequestId] = DataRequestStatusEnum.RecievedAccepted;
                 NetworkDataContainer.Instance.WaitForServer.FinishedWaitOnServer();
+
+
+                ViewManager.Show(_gachaResultView);
+
+                _gachaResultView.PopulateDisplayList(list);
                 EnableGachaButtons();
                 yield break;
             }

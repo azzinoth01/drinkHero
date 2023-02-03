@@ -249,6 +249,8 @@ public class EnemyBattle : ICharacter, ICharacterAction {
             UserSingelton.Instance.UserObject.UpdateUserDataRequest(request);
 
 
+
+
             EnemyObject.GoldGotThisSession = EnemyObject.GoldGotThisSession + _enemyBaseData.MoneyDrop;
             _alreadyDead = true;
             DiedEvent?.Invoke();

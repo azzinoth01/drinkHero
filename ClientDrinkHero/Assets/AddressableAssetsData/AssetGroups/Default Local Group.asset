@@ -625,6 +625,30 @@ MonoBehaviour:
     m_Address: Assets/Art/Character/Sophie/Sophie_Card.png
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 53cd27a7cceaf2447bafcee8bb668214
+    m_Address: Assets/Art/UI/Menus/Upgrade_mat_01.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8d7aa63a141367f4aada9657cab54d4a
+    m_Address: Assets/Art/UI/Menus/Upgrade_mat_02.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f8606abc609737041929a146722f4177
+    m_Address: Assets/Art/UI/Menus/Upgrade_mat_03.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 29fefdf58b6890f45b11e06cd3b8f891
+    m_Address: Assets/Art/UI/Menus/Upgrade_mat_04.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bccf45c5a2040fc40b9b0bf900434256
+    m_Address: Assets/Art/UI/Menus
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f1070e4dfc5c662439624183500cd636
+    m_Address: Assets/Art/UI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: eec1fc06f579f5f42a362364ce39639f, type: 2}
   m_SchemaSet:

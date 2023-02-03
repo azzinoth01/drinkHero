@@ -444,6 +444,14 @@ public static class ServerFunctions {
 
     }
 
+    [ServerFunction("GetUpgradeItemDatabaseByKey")]
+    public static string GetUpgradeItemDatabaseByKey(ConnectedClient client, string pair) {
+
+        return SendData<UpgradeItemDatabase>(client.StreamWriter, pair);
+
+
+    }
+
 
     [ServerFunction("GetUserToHero")]
     public static string GetUserToHero(ConnectedClient client) {

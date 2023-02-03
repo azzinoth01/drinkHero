@@ -1,11 +1,19 @@
 public static class ClientFunctions {
 
+
+    //returns UpgradeItemDatabase
+    public static string GetUpgradeItemDatabaseByKey(string pair) {
+        string callName = "GetUpgradeItemDatabaseByKey";
+        return GetWriteString(callName, pair);
+    }
+
+
     //returns User
     public static string AddMoneyToUser(int amount) {
         string callName = "AddMoneyToUser";
         return GetWriteString(callName, amount.ToString());
     }
-
+    //returns User
     public static string GetUserData() {
         string callName = "GetUserData";
         return GetWriteString(callName);
