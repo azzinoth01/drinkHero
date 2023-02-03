@@ -531,6 +531,11 @@ public static class ServerFunctions {
         return SendData<UserDatabase>(client.StreamWriter, "ID\"" + client.User.Id + "\"");
     }
 
+    [ServerFunction("GetUserData")]
+    public static string GetUserData(ConnectedClient client) {
+        return SendData<UserDatabase>(client.StreamWriter, "ID\"" + client.User.Id + "\"");
+    }
+
 
     [ServerFunction("PullGachaSingel")]
     public static string PullGachaSingel(ConnectedClient client, string pair) {
