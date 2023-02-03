@@ -9,6 +9,8 @@ public class GachaResultDisplayItem : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI _itemName;
     [SerializeField] private Image _characterPortraitImage;
 
+    [SerializeField] private GachaItemAppear _itemAppearEffect;
+
     private LoadSprite _loadSprite;
 
     private GachaResultView _view;
@@ -73,19 +75,21 @@ public class GachaResultDisplayItem : MonoBehaviour {
             if (HandleRequests.Instance.RequestDataStatus[_requestId] == DataRequestStatusEnum.Recieved) {
 
                 if (_pullData.Type == "Hero") {
-
+                    _itemAppearEffect.ResetState();
                     HeroDatabase hero = HeroDatabase.CreateObjectDataFromString(HandleRequests.Instance.RequestData[_requestId])[0];
                     _loadSprite.SpritePathSufix = "_Slot.png";
                     _loadSprite.LoadNewSprite(hero.SpritePath);
                     _itemName.SetText(hero.Name);
+                    _itemAppearEffect.Play();
                 }
 
                 else if (_pullData.Type == "Item") {
-
+                    _itemAppearEffect.ResetState();
                     UpgradeItemDatabase item = UpgradeItemDatabase.CreateObjectDataFromString(HandleRequests.Instance.RequestData[_requestId])[0];
                     _loadSprite.SpritePathSufix = ".png";
                     _loadSprite.LoadNewSprite(item.SpritePath);
                     _itemName.SetText(item.Name);
+                    _itemAppearEffect.Play();
                 }
 
 
@@ -107,7 +111,7 @@ public class GachaResultDisplayItem : MonoBehaviour {
         _loadSprite.UnloadSprite();
 
         _loaded = true;
-
+        _itemAppearEffect.ResetState();
     }
 
 

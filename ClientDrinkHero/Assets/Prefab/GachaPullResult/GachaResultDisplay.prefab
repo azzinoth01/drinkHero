@@ -364,6 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: {fileID: 3823400760427787377}
   _characterPortraitImage: {fileID: 6179815242770221963}
+  _itemAppearEffect: {fileID: 3091199821858772053}
 --- !u!1 &4763407087903566905
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,6 +469,7 @@ GameObject:
   - component: {fileID: 7349483299148117282}
   - component: {fileID: 6179815242770221963}
   - component: {fileID: 2751681800878906758}
+  - component: {fileID: 3091199821858772053}
   m_Layer: 5
   m_Name: CharacterPortraitImage
   m_TagString: Untagged
@@ -515,7 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 82596ae322e80d44b875047897b3a59a, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -552,3 +554,18 @@ MonoBehaviour:
   _isEnemy: 0
   _noSlot: 1
   _loadIntoMaterial: 0
+--- !u!114 &3091199821858772053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6809540412976148107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a555a16c51e0edf4eb70bd270d5267f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 6179815242770221963}
+  _duration: 2
+  _disolveColor: {r: 0, g: 0.95535755, b: 1, a: 0}
