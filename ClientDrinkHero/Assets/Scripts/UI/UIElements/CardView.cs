@@ -16,6 +16,7 @@ public class CardView : MonoBehaviour
 
     [SerializeField] private float dragScaleFactor = 1.5f;
     [SerializeField] private float dragScaleDuration = 0.25f;
+    private IAssetLoader _loadCardSprite;
 
     [Header("Card Return Movement Values")] [SerializeField]
     private float returnMoveDuration;
@@ -42,6 +43,8 @@ public class CardView : MonoBehaviour
         _baseParent = _cardTransform.parent;
         _dragParent = _baseParent.parent;
 
+        _loadCardSprite = GetComponent<IAssetLoader>();
+
         _images = GetComponentsInChildren<Image>();
     }
 
@@ -58,11 +61,13 @@ public class CardView : MonoBehaviour
 
     public void SetDisplayValues(ICardDisplay card, int index)
     {
-        if (card == null) return;
+        if (card == null)
+            return;
 
-        _cardSprite = card.SpriteDisplay();
+        _loadCardSprite.LoadNewSprite(card.GetSpritePath());
         costText.SetText(card.CostText());
         cardDescription.SetText(card.CardText());
+        cardName.SetText(card.CardName());
 
         _handIndex = index;
     }

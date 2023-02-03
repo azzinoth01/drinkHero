@@ -11,6 +11,8 @@ public class SpawnAnimation : MonoBehaviour, IAnimation {
     [SerializeField] private float _time;
 
 
+    [SerializeField] private HitAnimation _hitAnimation;
+
     private void Awake() {
         _startPosition = transform.localPosition;
 
@@ -37,7 +39,12 @@ public class SpawnAnimation : MonoBehaviour, IAnimation {
     [ContextMenu("PlaySpawn")]
     public void Play() {
 
-        Debug.Log(transform.position);
+        if (_hitAnimation != null) {
+            _hitAnimation.StopAnimation();
+        }
+
+
+        //Debug.Log(transform.position);
         float moveoutside = Screen.width * 2 * (_moveInDirection * -1);
 
 

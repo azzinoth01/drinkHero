@@ -1,15 +1,20 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterSelectView : View
 {
     [SerializeField] private Button backButton;
+    [SerializeField] private Sprite backButtonClicked;
+    private Sprite _backButtonInitial;
+    
     [SerializeField] private GameObject[] characterButtonObjects;
     [SerializeField] private SelectableCharacterButton[] characterButtons;
     [SerializeField] private GameObject loadingPanel;
-
+    [SerializeField] private TextMeshProUGUI loadingText;
+    
     private AllHeroesPreviewHandler _allHeroesPreviewHandler;
     private UnlockedHeroesPreviewHandler _unlockedHeroesPreviewHandler;
 
@@ -20,9 +25,14 @@ public class CharacterSelectView : View
 
     public override void Initialize()
     {
-        CharacterSlot.OnCharacterDeselect += EnableCharacter;
+        ViewTweener.PulseTextTween(loadingText);
         
-        backButton.onClick.AddListener(() => ViewManager.ShowLast());
+        CharacterSlot.OnCharacterDeselect += EnableCharacter;
+
+        backButton.onClick.AddListener(ViewTweener.ButtonClickTween(backButton, 
+            backButtonClicked, () => ViewManager.ShowLast()));
+
+        _backButtonInitial = backButton.image.sprite;
 
         UnlockedHeroes = new List<HeroToUserDatabase>();
         _allHeroes = new List<HeroDatabase>();
@@ -109,5 +119,11 @@ public class CharacterSelectView : View
     private void HideLoadingPanel()
     {
         loadingPanel.SetActive(false);
+    }
+
+    public override void Show()
+    {
+        base.Show();
+        backButton.image.sprite = _backButtonInitial;
     }
 }

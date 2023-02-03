@@ -2,7 +2,6 @@ using System.Collections.Generic;
 
 public class UIDataContainer {
 
-
     private static UIDataContainer _instance;
     private IPlayer _player;
     private ICharacter _enemy;
@@ -11,6 +10,12 @@ public class UIDataContainer {
 
     private Dictionary<int, IAssetLoader> _characterSlots;
     private IAssetLoader _enemySlot;
+
+    private IFlyingTextHandler _enemyText;
+    private IFlyingTextHandler _playerText;
+
+
+    public static int[] TeamIds;
 
     public static UIDataContainer Instance {
         get {
@@ -65,6 +70,26 @@ public class UIDataContainer {
 
         set {
             _enemySlot = value;
+        }
+    }
+
+    public IFlyingTextHandler EnemyText {
+        get {
+            return _enemyText;
+        }
+
+        set {
+            _enemyText = value;
+        }
+    }
+
+    public IFlyingTextHandler PlayerText {
+        get {
+            return _playerText;
+        }
+
+        set {
+            _playerText = value;
         }
     }
 

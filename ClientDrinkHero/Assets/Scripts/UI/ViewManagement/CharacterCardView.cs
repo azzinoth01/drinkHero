@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,12 +11,20 @@ public class CharacterCardView : View
     [SerializeField] private Image characterPortraitImage;
     [SerializeField] private CharacterCardPreview[] cardPreviews;
     [SerializeField] private Button backButton;
-
+    [SerializeField] private Sprite backButtonClicked;
+    private Sprite _backButtonInitial;
+    
     private LoadSprite _loadSprite;
 
+    public static event Action OnZoomReset;
+    
     public override void Initialize()
     {
-        backButton.onClick.AddListener(() => ViewManager.ShowLast());
+        backButton.onClick.AddListener(ViewTweener.ButtonClickTween(backButton, 
+            backButtonClicked, () => ViewManager.ShowLast()));
+
+        _backButtonInitial = backButton.image.sprite;
+        
         _loadSprite = characterPortraitImage.GetComponent<LoadSprite>();
     }
 
@@ -39,5 +48,17 @@ public class CharacterCardView : View
 
         _loadSprite.LoadNewSprite(character.SpritePath);
         characterNameLabel.SetText(character.Name);
+    }
+    
+    public override void Show()
+    {
+        base.Show();
+        backButton.image.sprite = _backButtonInitial;
+    }
+
+    public override void Hide()
+    {
+        base.Hide();
+        OnZoomReset?.Invoke();
     }
 }

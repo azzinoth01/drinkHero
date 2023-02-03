@@ -124,8 +124,10 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
 
         //start Animation
 
+        if (card.AnimationKey != null && card.AnimationKey != "") {
+            VFXObjectContainer.Instance.PlayAnimation(card.AnimationKey);
 
-        VFXObjectContainer.Instance.PlayAnimation(card.AnimationKey);
+        }
 
 
         // do card effect
@@ -271,6 +273,10 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
 
 
     public override void SwapShieldWithEnemy() {
+
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "SHIELD SWAP");
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "SHIELD SWAP");
+
         int tempShield = GlobalGameInfos.Instance.EnemyObject.Enemy.shield;
         GlobalGameInfos.Instance.EnemyObject.Enemy.shield = Shield;
         Shield = tempShield;
@@ -287,6 +293,8 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
     }
 
     public override void DiscardHandCards(int value) {
+
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "DISCARD CARDS -" + value);
         for (int i = 0; i < value;) {
             if (_handCards.Count == 0) {
                 break;
@@ -308,11 +316,13 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
     }
 
     public override void Mana(int value) {
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "MANA +" + value);
         _ressource = _ressource + value;
         RessourceChange?.Invoke(value);
     }
 
     public override void DrawCard(int value) {
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "DRAW CARD +" + value);
         DrawCardsFromDeck(value);
     }
 }

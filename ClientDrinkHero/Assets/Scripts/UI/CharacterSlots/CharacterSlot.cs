@@ -31,7 +31,6 @@ public class CharacterSlot : MonoBehaviour
     {
         if (!IsEmpty)
         {
-            //Tell CharacterSelectView to deselect lastHeroId
             Debug.Log($"<color=red>Re-Enabling Hero ID {_lastHeroIdInSlot}</color>");
             OnCharacterDeselect?.Invoke(_lastHeroIdInSlot);
         }
@@ -53,7 +52,6 @@ public class CharacterSlot : MonoBehaviour
     {
         slotData = new CharacterSlotData();
         
-        _loadSprite.UnloadSprite();
         characterPortrait.enabled = false;
 
         characterName.SetText("");
@@ -62,5 +60,7 @@ public class CharacterSlot : MonoBehaviour
         _lastHeroIdInSlot = -1;
         
         IsEmpty = true;
+        
+        TeamController.Instance.CheckSlots();
     }
 }

@@ -5,7 +5,7 @@ public class TeamController : MonoBehaviour
 {
     public static TeamController Instance;
 
-    public static int[] CurrentTeamIds;
+    private int[] CurrentTeamIds;
 
     public static Action<bool> OnTeamReady;
     [SerializeField] private CharacterSlot[] characterSlots;
@@ -37,7 +37,7 @@ public class TeamController : MonoBehaviour
         CheckSlots();
     }
 
-    private void CheckSlots()
+    public void CheckSlots()
     {
         foreach (var slot in characterSlots)
             if (slot.IsEmpty)
@@ -47,7 +47,11 @@ public class TeamController : MonoBehaviour
                 return;
             }
 
-        for (var i = 0; i < characterSlots.Length; i++) CurrentTeamIds[i] = characterSlots[i].slotData.id;
+        for (var i = 0; i < characterSlots.Length; i++)
+        {
+            CurrentTeamIds[i] = characterSlots[i].slotData.id;
+            UIDataContainer.TeamIds = CurrentTeamIds;
+        }
         OnTeamReady?.Invoke(true);
     }
 
