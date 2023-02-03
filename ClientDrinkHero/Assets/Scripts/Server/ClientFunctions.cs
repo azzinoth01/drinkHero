@@ -6,6 +6,10 @@ public static class ClientFunctions {
         return GetWriteString(callName, amount.ToString());
     }
 
+    public static string GetUserData() {
+        string callName = "GetUserData";
+        return GetWriteString(callName);
+    }
 
     //returns User
     public static string RenameUser(string pair) {
