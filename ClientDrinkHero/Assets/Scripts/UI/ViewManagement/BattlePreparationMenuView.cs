@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,8 +27,13 @@ public class BattlePreparationMenuView : View
 
         optionsMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(optionsMenuButton, 
             optionsMenuButton.image.sprite, () => ViewManager.Show<OptionsMenuView>()));
-
-        foreach (var slot in characterSlots) slot.onClick.AddListener(() => ViewManager.Show<CharacterSelectView>());
+        
+        foreach (var slot in characterSlots)
+        {
+            Transform transform = slot.gameObject.transform;
+            slot.onClick.AddListener(ViewTweener.ScaleTransformTween(transform, () => ViewManager.Show<CharacterSelectView>()));
+        }
+        
     }
 
     private void OnDestroy()

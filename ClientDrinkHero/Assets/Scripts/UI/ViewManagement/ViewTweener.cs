@@ -37,5 +37,18 @@ public static class ViewTweener
             .Append(rectTransform.DOScale(1,0.5f))
             .SetEase(Ease.OutSine).SetLoops(-1, LoopType.Yoyo);
     }
-    
+
+    public static UnityAction ScaleTransformTween(Transform target, TweenCallback callback, float scaleFactor=0.85f, float duration=0.1f, Ease easeMode=Ease.InOutBounce,  AudioType type=AudioType.SFXButtonYes)
+    {
+        UnityAction action = () =>
+        {
+            AudioController.Instance.PlayAudio(type);
+            Sequence sequence = DOTween.Sequence();
+
+            sequence.Append(target.DOScale(Vector3.one * scaleFactor, duration).SetEase(easeMode))
+                .Append(target.DOScale(Vector3.one, duration).SetEase(easeMode)).OnComplete(callback);
+        };
+
+        return action;
+    }
 }

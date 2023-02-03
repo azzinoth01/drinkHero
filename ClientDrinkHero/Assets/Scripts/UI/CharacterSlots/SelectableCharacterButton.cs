@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -51,14 +52,6 @@ public class SelectableCharacterButton : MonoBehaviour
         selectButton.onClick.AddListener(() => SelectCharacter());
         selectButton.onClick.AddListener(() => ViewManager.ShowLast());
         selectButton.onClick.AddListener(() => AudioController.Instance.PlayAudio(AudioType.SFXButtonYes));;
-        
-        // selectButton.onClick.AddListener(ViewTweener.ButtonClickTween(selectButton, 
-        //     selectButton.image.sprite, () =>
-        //     {
-        //         TeamController.Instance.SetHeroInSlot(characterSlotData);
-        //         SelectCharacter();
-        //         ViewManager.ShowLast();
-        //     }));
         
         deSelectButton.onClick.AddListener(() => DeSelectCharacter());
         deSelectButton.onClick.AddListener(() => ViewManager.ShowLast());
