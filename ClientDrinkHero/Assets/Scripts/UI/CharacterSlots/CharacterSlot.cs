@@ -31,7 +31,6 @@ public class CharacterSlot : MonoBehaviour
     {
         if (!IsEmpty)
         {
-            //Tell CharacterSelectView to deselect lastHeroId
             Debug.Log($"<color=red>Re-Enabling Hero ID {_lastHeroIdInSlot}</color>");
             OnCharacterDeselect?.Invoke(_lastHeroIdInSlot);
         }
