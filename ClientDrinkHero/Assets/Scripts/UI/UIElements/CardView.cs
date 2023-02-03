@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -69,6 +70,7 @@ public class CardView : MonoBehaviour {
 
     private void OnDisable() {
         ResetCardView();
+        ResetCardViewParent();
     }
 
     public void InitializePosition(Vector2 position) {
@@ -104,7 +106,7 @@ public class CardView : MonoBehaviour {
     }
 
     public void ReturnCardToHand() {
-        //_cardTransform.DOMove(_lastAnchoredPosition, returnMoveDuration, true).SetEase(returnMoveEaseMode);
+
         _cardTransform.anchoredPosition = _lastAnchoredPosition;
     }
 
