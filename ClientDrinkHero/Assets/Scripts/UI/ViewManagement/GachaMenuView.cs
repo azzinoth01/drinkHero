@@ -73,10 +73,12 @@ public class GachaMenuView : View {
                     UserSingelton.Instance.UserObject.UpdateUserDataRequest(requestUserDataUpdate);
 
                     StartCoroutine(WaitForPullHistory());
-
+                    yield break;
                 }
                 else {
                     Debug.Log("Pull FAILED");
+                    EnableGachaButtons();
+                    yield break;
                 }
             }
             yield return null;
@@ -106,10 +108,13 @@ public class GachaMenuView : View {
 
                 HandleRequests.Instance.RequestDataStatus[_multiPullRequestId] = DataRequestStatusEnum.RecievedAccepted;
                 NetworkDataContainer.Instance.WaitForServer.FinishedWaitOnServer();
+                EnableGachaButtons();
+                yield break;
             }
             yield return null;
 
         }
+        EnableGachaButtons();
     }
 
 
