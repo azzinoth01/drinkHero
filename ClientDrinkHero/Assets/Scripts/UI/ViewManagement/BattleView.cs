@@ -1,11 +1,11 @@
-using System.Collections.Generic;
 using DG.Tweening;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BattleView : View {
-    [SerializeField] private List<CardView> currentPlayerHand;
+    [SerializeField] public List<CardView> currentPlayerHand;
 
     [Header("Card Related")]
     [SerializeField]
@@ -149,15 +149,24 @@ public class BattleView : View {
     }
 
     public bool PlayHandCardOnDrop(int index) {
-        var playerHand = UIDataContainer.Instance.Player.GetHandCards();
+        Debug.Log("index " + index);
 
-        var cardWasPlayed = playerHand.PlayHandCard(index);
+        //Debug.Log("player " + UIDataContainer.Instance.Player);
+
+        IHandCards playerHand = UIDataContainer.Instance.Player.GetHandCards();
+
+        Debug.Log("playerhand " + playerHand);
+
+        bool cardWasPlayed = playerHand.PlayHandCard(index);
+        Debug.Log("card was played");
         if (cardWasPlayed) {
-            //currentPlayerHand[index].gameObject.SetActive(false);
-            var button = currentPlayerHand[index].GetComponent<Button>();
+            currentPlayerHand[index].gameObject.SetActive(false);
+            Button button = currentPlayerHand[index].GetComponent<Button>();
+            Debug.Log("button " + button);
             button.onClick.RemoveAllListeners();
 
             DisolveCard disolveCard = currentPlayerHand[index].GetComponent<DisolveCard>();
+            Debug.Log("disolve " + disolveCard);
             disolveCard.enabled = true;
             UpdateHandCards();
         }
@@ -211,13 +220,13 @@ public class BattleView : View {
 
     private void UpdateTurnAnnouncer(string text) {
         turnAnnouncerText.SetText(text);
-        
+
         Sequence sequence = DOTween.Sequence();
         RectTransform rectTransform = turnAnnouncerText.GetComponent<RectTransform>();
 
-        sequence.Append(rectTransform.DOScale(0.85f,0.5f))
+        sequence.Append(rectTransform.DOScale(0.85f, 0.5f))
             .SetEase(Ease.InBounce)
-            .Append(rectTransform.DOScale(1,0.5f))
+            .Append(rectTransform.DOScale(1, 0.5f))
             .SetEase(Ease.OutSine).OnComplete(() => turnAnnouncerText.SetText(""));
     }
 
@@ -234,11 +243,11 @@ public class BattleView : View {
     }
 
     public override void Initialize() {
-        optionsMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(optionsMenuButton, 
+        optionsMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(optionsMenuButton,
             optionsMenuButton.image.sprite, () => ViewManager.Show<OptionsMenuView>()));
-        
+
         pauseMenuButton.onClick.AddListener(() => ViewManager.Show<PauseMenuView>());
-        
+
         AudioController.Instance.PlayAudio(AudioType.BattleTheme, true, 0f);
     }
 }
