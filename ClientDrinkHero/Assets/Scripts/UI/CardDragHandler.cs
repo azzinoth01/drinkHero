@@ -1,11 +1,12 @@
-using System;
 using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class CardDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
-{
-    [Header("Movement Tween Values")] [SerializeField]
+public class CardDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler {
+    [Header("Movement Tween Values")]
+    [SerializeField]
     private float dragDampingSpeed = .05f;
 
     [SerializeField] private float returnMoveDuration = 0.25f;
@@ -23,27 +24,32 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 
     private BattleView _battleView;
     public static event Action OnShowDropZone;
-    private void Awake()
-    {
+    private void Awake() {
         _battleView = ViewManager.Instance.GetView<BattleView>();
-        
+
         _cardView = GetComponent<CardView>();
         _cardTransform = GetComponent<RectTransform>();
         _handCardContainer = _cardTransform.parent;
         _battleViewTransform = _handCardContainer.parent;
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
-    {
+    public void OnBeginDrag(PointerEventData eventData) {
         OnShowDropZone?.Invoke();
 
         var cview = eventData.pointerDrag.GetComponent<CardView>();
+        eventData.pointerDrag.gameObject.GetComponent<Image>().enabled = false;
+        foreach (Transform t in eventData.pointerDrag.gameObject.transform) {
+            t.gameObject.SetActive(false);
+        }
+
         ICardDisplay cardDisplay = UIDataContainer.Instance.Player.GetHandCards().GetHandCard(cview.HandIndex);
-        
+
+
+        _battleView.playerCardDummy.gameObject.SetActive(true);
+
         _battleView.playerCardDummy.SetDisplayValues(cardDisplay, cview.HandIndex);
-        
-        if (!_firstDrag)
-        {
+
+        if (!_firstDrag) {
             _initialAnchoredPosition = _cardTransform.anchoredPosition;
             _cardView.InitializePosition(_initialAnchoredPosition);
             _firstDrag = true;
@@ -55,21 +61,21 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         _cardView.ClickCardSound();
     }
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(_cardTransform, eventData.position,
-                eventData.pressEventCamera, out var globalPointerPosition))
-            _cardTransform.position = Vector3.SmoothDamp(_cardTransform.position, globalPointerPosition,
-                ref _velocity, dragDampingSpeed);
+    public void OnDrag(PointerEventData eventData) {
+        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(_cardTransform, eventData.position, eventData.pressEventCamera, out var globalPointerPosition)) {
+            //_cardTransform.position = Vector3.SmoothDamp(_cardTransform.position, globalPointerPosition, ref _velocity, dragDampingSpeed);
+            _battleView.playerCardDummy.transform.position = Vector3.SmoothDamp(_battleView.playerCardDummy.transform.position, globalPointerPosition, ref _velocity, dragDampingSpeed);
+        }
+
     }
 
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        if (!eventData.pointerCurrentRaycast.gameObject.CompareTag("CardDropZone"))
-        {
+    public void OnEndDrag(PointerEventData eventData) {
+        Debug.Log("END DRAG");
+
+        if (!eventData.pointerCurrentRaycast.gameObject.CompareTag("CardDropZone")) {
             _cardView.ReturnCardToHand();
         }
-        else{
+        else {
             Debug.Log("Pointer Over Dropzone!");
         }
 

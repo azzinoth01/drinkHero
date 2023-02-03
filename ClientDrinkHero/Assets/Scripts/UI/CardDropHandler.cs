@@ -1,48 +1,40 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardDropHandler : MonoBehaviour, IDropHandler
-{
+public class CardDropHandler : MonoBehaviour, IDropHandler {
     private BattleView _battleView;
     public static event Action OnHideDropZone;
 
-    private void Awake()
-    {
+    private void Awake() {
         _battleView = ViewManager.Instance.GetView<BattleView>();
     }
 
-    public void OnDrop(PointerEventData eventData)
-    {
+    public void OnDrop(PointerEventData eventData) {
+
+        Debug.Log("CARD DROPED");
+
         OnHideDropZone?.Invoke();
-        
-        var droppedCard = eventData.pointerDrag;
-        var dropPosition = eventData.pointerDrag.transform.position;
 
-        var cardView = droppedCard.GetComponent<CardView>();
-        
-        //_battleView.playerCardDummy.SetPosition(dropPosition);
-        
-        if (droppedCard != null)
-        {
-            Debug.Log("Dropped object was: " + eventData.pointerDrag);
+
+
+        var cardView = _battleView.playerCardDummy;
+
+
+
+
+        if (cardView != null) {
+
             var cardIndex = cardView.HandIndex;
-            Debug.Log("Card Index " + cardIndex);
 
-            Debug.Log("playerhand: " + cardView.HandCards);
-
-            Debug.Log("battleview " + _battleView);
 
             _battleView = ViewManager.Instance.GetView<BattleView>();
 
-            if (_battleView.PlayHandCardOnDrop(cardIndex))
-            {
+            if (_battleView.PlayHandCardOnDrop(cardIndex)) {
                 Debug.Log("Card was played successfully.");
                 cardView.ResetCardViewParent();
             }
-            else
-            {
+            else {
                 Debug.Log("Not enough Mana.");
                 cardView.ReturnCardToHand();
             }

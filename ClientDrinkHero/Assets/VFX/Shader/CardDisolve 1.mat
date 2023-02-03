@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CardDisolve
+  m_Name: CardDisolve 1
   m_Shader: {fileID: -6465566751694194690, guid: ba2ebfad7e9d12e4db35011d10e0b110, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
