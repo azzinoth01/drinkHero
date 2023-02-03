@@ -18,7 +18,11 @@ public class CardDropHandler : MonoBehaviour, IDropHandler
         OnHideDropZone?.Invoke();
         
         var droppedCard = eventData.pointerDrag;
+        var dropPosition = eventData.pointerDrag.transform.position;
+
         var cardView = droppedCard.GetComponent<CardView>();
+        
+        _battleView.playerCardDummy.SetPosition(dropPosition);
         
         if (droppedCard != null)
         {

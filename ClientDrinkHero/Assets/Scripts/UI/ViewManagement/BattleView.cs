@@ -12,6 +12,7 @@ public class BattleView : View {
     [SerializeField]
     private GameObject playerCardObjectPrefab;
 
+    [SerializeField] public CardDummy playerCardDummy;
     [SerializeField] private GameObject playerHandContainer;
     [SerializeField] private GameObject waitingForConnectionPanel;
 
@@ -191,47 +192,31 @@ public class BattleView : View {
 
         IHandCards playerHand = UIDataContainer.Instance.Player.GetHandCards();
 
+        var card = playerHand.GetHandCard(index);
+        
+        
         Debug.Log("playerhand " + playerHand);
         bool cardWasPlayed = playerHand.PlayHandCard(index);
-        
+
         Debug.Log("card was played");
         if (cardWasPlayed) {
-            // currentPlayerHand[index].gameObject.SetActive(false);
-            // Button button = currentPlayerHand[index].GetComponent<Button>();
-            // Debug.Log("button " + button);
-            // button.onClick.RemoveAllListeners();
+            playerCardDummy.Show();
             
-            // DisolveCard disolveCard = currentPlayerHand[index].GetComponent<DisolveCard>();
-            // Debug.Log("disolve " + disolveCard);
-            // disolveCard.enabled = true;
-            
-            // UpdateHandCards();
+            currentPlayerHand[index].gameObject.SetActive(false);
+            Button button = currentPlayerHand[index].GetComponent<Button>();
+            Debug.Log("button " + button);
+            button.onClick.RemoveAllListeners();
             
             DisolveCard disolveCard = currentPlayerHand[index].GetComponent<DisolveCard>();
             Debug.Log("disolve " + disolveCard);
             disolveCard.enabled = true;
-            
-            StartCoroutine(DelayCardReset(index, 3f));
-            Debug.Log("COROUTINE STARTED!");
+
+            UpdateHandCards();
         }
 
         return cardWasPlayed;
     }
     
-    private IEnumerator DelayCardReset(int index, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        
-        currentPlayerHand[index].gameObject.SetActive(false);
-        Button button = currentPlayerHand[index].GetComponent<Button>();
-        Debug.Log("button " + button);
-        button.onClick.RemoveAllListeners();
-        
-        yield return new WaitForSeconds(delay);
-        
-        UpdateHandCards();
-    }
-
     private void InitUIValues() {
         UpdatePlayerHealthBar(0);
         UpdatePlayerEnergyBar(0);
