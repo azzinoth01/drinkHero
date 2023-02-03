@@ -5,6 +5,7 @@ public class UserLoader {
     public int requestId;
     public UserDatabase user;
     public bool loadData;
+    private bool _userDataOld;
 
 
     public event Action LoadingFinished;
@@ -31,9 +32,17 @@ public class UserLoader {
         requestId = HandleRequests.Instance.HandleRequest(request, typeof(UserDatabase));
         user = null;
         loadData = true;
-
+        _userDataOld = true;
         NetworkDataContainer.Instance.WaitForServer.AddWaitOnServer();
     }
+
+    public void RequestData(string request) {
+        requestId = HandleRequests.Instance.HandleRequest(request, typeof(UserDatabase));
+        loadData = true;
+        NetworkDataContainer.Instance.WaitForServer.AddWaitOnServer();
+        _userDataOld = true;
+    }
+
 
     private bool LoadUserData() {
         bool check = true;
@@ -69,8 +78,9 @@ public class UserLoader {
             UserSave save = new UserSave();
             save.Id = user.Id;
             save.SaveUserID();
+            _userDataOld = false;
         }
-        if (user != null) {
+        if (user != null && _userDataOld == false) {
             if (LoadUserData()) {
                 loadData = false;
                 LoadingFinished?.Invoke();

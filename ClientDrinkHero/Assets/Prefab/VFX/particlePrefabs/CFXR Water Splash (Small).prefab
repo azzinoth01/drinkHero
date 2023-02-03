@@ -8,10 +8,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 114389566158634072, guid: 60c88e966a0f8324da766221921ee65f, type: 3}
-      propertyPath: clearBehavior
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114389566158634072, guid: 60c88e966a0f8324da766221921ee65f, type: 3}
       propertyPath: cameraShake.useMainCamera
       value: 0
       objectReference: {fileID: 0}
