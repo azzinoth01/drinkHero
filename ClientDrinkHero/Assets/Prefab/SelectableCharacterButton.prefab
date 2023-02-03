@@ -261,6 +261,7 @@ MonoBehaviour:
   _slot: 0
   _isEnemy: 0
   _noSlot: 0
+  _loadIntoMaterial: 0
 --- !u!1 &1487478762714087895
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,6 +905,7 @@ MonoBehaviour:
   _slot: 0
   _isEnemy: 0
   _noSlot: 1
+  _loadIntoMaterial: 0
 --- !u!1 &6698458815533476161
 GameObject:
   m_ObjectHideFlags: 0

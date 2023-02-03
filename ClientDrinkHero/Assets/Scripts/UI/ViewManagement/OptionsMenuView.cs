@@ -12,7 +12,9 @@ public class OptionsMenuView : View
     public override void Initialize()
     {
         tracks = AudioController.Instance.tracks;
-        returnButton.onClick.AddListener(() => ViewManager.ShowLast());
+
+        returnButton.onClick.AddListener(ViewTweener.ButtonClickTween(returnButton, 
+            returnButton.image.sprite, () => ViewManager.ShowLast()));
     }
 
     public override void Show()
