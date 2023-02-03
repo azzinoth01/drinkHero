@@ -332,9 +332,6 @@ MonoBehaviour:
   costText: {fileID: 5995649209521695685}
   cardName: {fileID: 3379485892717627498}
   cardDescription: {fileID: 7092574847088455848}
-  clickOnCardSound: {fileID: 11400000, guid: 110ebf90b55afeb43b20237870eed601, type: 2}
-  cardPlayedSound: {fileID: 0}
-  cardNotPlayedSound: {fileID: 0}
   dragScaleEaseMode: 28
   dragScaleFactor: 1.75
   dragScaleDuration: 0.25
@@ -482,7 +479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteRender: {fileID: 8929981219153055091}
   _spritePath: 
-  _spritePathSufix: _Portrait.png
+  _spritePathSufix: _Card.png
   _slot: 0
   _isEnemy: 0
   _noSlot: 1

@@ -8,7 +8,7 @@ public class BuffHealOverTime : Effect, IBuff {
 
 
         if (ActivationTimeEnum.turnStart == activation || ActivationTimeEnum.onCast == activation) {
-
+            target.CallEffectText("HEAL OVER TIME");
             target.Heal(_maxValue);
 
 

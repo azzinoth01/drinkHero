@@ -569,6 +569,62 @@ MonoBehaviour:
     m_Address: Assets/Art/Character/Melia/Melia_3.png
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 94fc6135ef1e0b842a7225e116c67782
+    m_Address: Assets/Art/Character/Beatrice/Beatrice_Card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c762a1b2f5b17f144894e14fb32da3d1
+    m_Address: Assets/Art/Character/Blanc/Blanc_Card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a3f547b37255bfd41a87cf3ce3d57827
+    m_Address: Assets/Art/Character/Ceri/Ceri_Card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5fb86d8fbad81f244a9bbd0a045693a6
+    m_Address: Assets/Art/Character/Coze/Coze_Card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1b10255e578129b4ea161d1a4e7908f2
+    m_Address: Assets/Art/Character/Daniela/Daniela_Card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ae5c72069426afa419f8482313e28cc9
+    m_Address: Assets/Art/Character/FR4N/FR4N_Card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 60ec9dd554fa63a4a91b16c5ae97ef57
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarlet_Card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3905b599499562646b1cd1492bee3f56
+    m_Address: Assets/Art/Character/Laeticia/Laeticia_Card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 65f577a0a942b6e4dacf6f38be51f2ff
+    m_Address: Assets/Art/Character/Lola/Lola_Card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 739be26182e4b5d4a99d67783103568f
+    m_Address: Assets/Art/Character/Melia/Melia_Card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 063a3d3071412cd41a1b81e467bac698
+    m_Address: Assets/Art/Character/Molly/Molly_Card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ea9a47099fe267747b96cf2b807cf984
+    m_Address: Assets/Art/Character/Rubia/Rubia_Card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fd86fa971350c184493b0474788fc2d2
+    m_Address: Assets/Art/Character/Shiro/Shiro_Card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b04d78ee473ba124693fadee35f421ff
+    m_Address: Assets/Art/Character/Sophie/Sophie_Card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: eec1fc06f579f5f42a362364ce39639f, type: 2}
   m_SchemaSet:

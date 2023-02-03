@@ -16,6 +16,8 @@ public interface ICharacterAction {
     public void ShieldAttack();
     public void RemoveDebuff(int value);
 
+    public void CallEffectText(string Text);
+
 
 
 }

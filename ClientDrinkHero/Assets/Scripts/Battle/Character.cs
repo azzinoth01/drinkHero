@@ -137,6 +137,7 @@ public abstract class Character : ICharacterAction, ICharacter {
         if (_health > _maxHealth) {
             _health = _maxHealth;
         }
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.heal, "+" + value);
         HealthChange?.Invoke(value);
     }
 
@@ -155,7 +156,10 @@ public abstract class Character : ICharacterAction, ICharacter {
 
             }
             ShieldChange?.Invoke(shieldDmg);
+            UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.shield, shieldDmg.ToString());
         }
+
+
         return value;
     }
 
@@ -173,6 +177,7 @@ public abstract class Character : ICharacterAction, ICharacter {
         }
 
         HealthChange?.Invoke(healthDmg);
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.dmg, healthDmg.ToString());
         return value;
     }
 
@@ -201,6 +206,9 @@ public abstract class Character : ICharacterAction, ICharacter {
         value = _shieldModifier.CalcValue(value);
 
         _shield = _shield + value;
+
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.shield, "+" + value);
+
         ShieldChange?.Invoke(value);
     }
 
@@ -230,35 +238,63 @@ public abstract class Character : ICharacterAction, ICharacter {
     }
 
     public void AddAttackModifier(int value) {
+
+        if (value > 0) {
+            UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "ATT UP");
+        }
+        else {
+            UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "ATT DOWN");
+        }
         _dmgModifier.AddModifier(value);
 
     }
 
     public void AddDefenceModifier(int value) {
+        if (value > 0) {
+            UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "DEF UP");
+        }
+        else {
+            UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "DEF DOWN");
+        }
         _defenceModifier.AddModifier(value);
     }
 
     public void AddFixedAttackModifier(int value) {
+        if (value > 0) {
+            UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "ATT UP");
+        }
+        else {
+            UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "ATT DOWN");
+        }
         _dmgModifier.addFixedModifier(value);
 
     }
 
     public void AddFixedDefenceModifier(int value) {
+        if (value > 0) {
+            UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "DEF UP");
+        }
+        else {
+            UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "DEF DOWN");
+        }
         _defenceModifier.addFixedModifier(value);
     }
 
     public abstract void SwapShieldWithEnemy();
 
     public void RemoveShield() {
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "REMOVE SHIELD");
         _shield = 0;
     }
 
     public void SkipTurn(int value) {
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "STUNNED");
         _skipTurn = value;
     }
 
 
     public void SetBuffMultihit(int value) {
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "MULTIHIT +" + value);
         _buffMultihit = value;
     }
 
@@ -296,7 +332,7 @@ public abstract class Character : ICharacterAction, ICharacter {
     public abstract void Mana(int value);
 
     public void RemoveDebuff(int value) {
-
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "REMOVE DEBUFF +" + value);
         for (int i = 0; i < value;) {
             if (_debuffList.Count == 0) {
                 break;
@@ -307,4 +343,8 @@ public abstract class Character : ICharacterAction, ICharacter {
     }
 
     public abstract void DrawCard(int value);
+
+    public void CallEffectText(string Text) {
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, Text);
+    }
 }

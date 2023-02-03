@@ -14,6 +14,27 @@ public class FlyingText : MonoBehaviour, IAnimation {
 
     [SerializeField] private TextMeshProUGUI _text;
 
+    private FlyingTextContainer _container;
+    [SerializeField] private FlyingTextEnum _type;
+
+
+
+    public FlyingTextContainer Container {
+        get {
+            return _container;
+        }
+
+        set {
+            _container = value;
+        }
+    }
+
+    public FlyingTextEnum Type {
+        get {
+            return _type;
+        }
+
+    }
 
     private void Awake() {
 
@@ -43,7 +64,7 @@ public class FlyingText : MonoBehaviour, IAnimation {
         float time = 0;
 
         while (time < _xDuration) {
-            Debug.Log("xMove Time");
+            //Debug.Log("xMove Time");
             transform.localPosition = new Vector3(_startposition.x + (_xAnimationCurve.Evaluate(time) * _xRange), transform.localPosition.y, transform.localPosition.z);
 
             time = time + Time.deltaTime;
@@ -78,5 +99,9 @@ public class FlyingText : MonoBehaviour, IAnimation {
     public void SetText(string text) {
         _text.SetText(text);
 
+    }
+
+    private void OnDisable() {
+        _container.FlyingTextList[_type].Add(this);
     }
 }

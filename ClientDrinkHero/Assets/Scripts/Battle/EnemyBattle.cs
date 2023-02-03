@@ -110,6 +110,8 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     }
 
     public void EndTurn() {
+        CheckDebuffsAndBuffs(ActivationTimeEnum.turnEnd);
+
         Debug.Log("turn end");
     }
 
@@ -175,6 +177,9 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         if (health > maxHealth) {
             health = maxHealth;
         }
+
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.heal, "+" + value.ToString());
+
         HealthChange?.Invoke(value);
         enemyHealed?.Invoke();
     }
@@ -195,6 +200,9 @@ public class EnemyBattle : ICharacter, ICharacterAction {
                 shield = 0;
 
             }
+
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.shield, shieldDmg.ToString());
+
             ShieldChange?.Invoke(shieldDmg);
             enemyDamageBlocked?.Invoke();
         }
@@ -213,6 +221,8 @@ public class EnemyBattle : ICharacter, ICharacterAction {
             health -= value;
             value = 0;
         }
+
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.dmg, healthDmg.ToString());
 
         HealthChange?.Invoke(healthDmg);
         enemyDamageReceived?.Invoke();
@@ -247,21 +257,45 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
     void ICharacterAction.Shield(int value) {
         shield = shield + value;
+
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.shield, "+" + value.ToString());
+
         ShieldChange?.Invoke(value);
         enemyShieldUp?.Invoke();
     }
 
     public void AddAttackModifier(int value) {
 
+        if (value > 0) {
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "ATT UP");
+        }
+        else {
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "ATT DOWN");
+        }
+
+
         _dmgModifier.AddModifier(value);
 
     }
 
     public void AddDefenceModifier(int value) {
+        if (value > 0) {
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "DEF UP");
+        }
+        else {
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "DEF DOWN");
+        }
+
         _defenceModifier.AddModifier(value);
     }
 
     public void SwapShieldWithEnemy() {
+
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "SHIELD SWAP");
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "SHIELD SWAP");
+
+
+
 
 
         int tempShield = GlobalGameInfos.Instance.PlayerObject.Player.Shield;
@@ -281,15 +315,18 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     }
 
     public void RemoveShield() {
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "REMOVE SHIELD");
         shield = 0;
         ShieldChange?.Invoke(0);
     }
 
     public void SkipTurn(int value) {
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "STUNNED");
         _skipTurn = value;
     }
 
     public void SetBuffMultihit(int value) {
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "MULTIHIT +" + value);
         _buffMultihit = value;
     }
 
@@ -315,28 +352,41 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         AttackEnemy(shield);
     }
 
-    public void DiscardHandCards(int value) {
-        Debug.Log("enemy can't discard cards");
-    }
+    //public void DiscardHandCards(int value) {
+    //    Debug.Log("enemy can't discard cards");
+    //}
 
     public void AddFixedAttackModifier(int value) {
+        if (value > 0) {
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "ATT UP");
+        }
+        else {
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "ATT DOWN");
+        }
         _dmgModifier.addFixedModifier(value);
     }
 
     public void AddFixedDefenceModifier(int value) {
+        if (value > 0) {
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "DEF UP");
+        }
+        else {
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "DEF DOWN");
+        }
         _defenceModifier.addFixedModifier(value);
     }
 
-    public int GetDiscadHandCardsCount() {
-        Debug.Log("enemy has no discard cards");
-        return 0;
-    }
+    //public int GetDiscadHandCardsCount() {
+    //    Debug.Log("enemy has no discard cards");
+    //    return 0;
+    //}
 
-    public void Mana(int value) {
-        Debug.Log("enemy has no mana");
-    }
+    //public void Mana(int value) {
+    //    Debug.Log("enemy has no mana");
+    //}
 
     public void RemoveDebuff(int value) {
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "REMOVE DEBUFF +" + value);
         for (int i = 0; i < value;) {
             if (_debuffList.Count == 0) {
                 break;
@@ -346,7 +396,13 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         }
     }
 
-    public void DrawCard(int value) {
-        Debug.Log("enemy can't draw cards");
+    public void CallEffectText(string Text) {
+
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, Text);
+
     }
+
+    //public void DrawCard(int value) {
+    //    Debug.Log("enemy can't draw cards");
+    //}
 }
