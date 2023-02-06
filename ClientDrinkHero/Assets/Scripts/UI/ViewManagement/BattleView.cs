@@ -82,7 +82,10 @@ public class BattleView : View {
         TurnManager.updateDebugText += UpdateTurnAnnouncer;
 
         CardDragHandler.OnShowDropZone += ShowDropZone;
-        CardDropHandler.OnHideDropZone += HideDropZone;
+        CardDragHandler.OnHideDropZone += HideDropZone;
+
+
+
     }
 
     private void OnDestroy() {
@@ -101,7 +104,7 @@ public class BattleView : View {
         TurnManager.updateDebugText -= UpdateTurnAnnouncer;
 
         CardDragHandler.OnShowDropZone -= ShowDropZone;
-        CardDropHandler.OnHideDropZone -= HideDropZone;
+        CardDragHandler.OnHideDropZone -= HideDropZone;
     }
 
     private void Start() {
@@ -129,7 +132,7 @@ public class BattleView : View {
     }
 
     [ContextMenu("Update Hand cards")]
-    private void UpdateHandCards() {
+    public void UpdateHandCards() {
         var playerHand = UIDataContainer.Instance.Player.GetHandCards();
 
         if (playerHand == null)
@@ -172,18 +175,16 @@ public class BattleView : View {
             var button = currentPlayerHand[i].GetComponent<Button>();
             button.onClick.RemoveAllListeners();
 
-            if (currentPlayerHand[i].gameObject.activeSelf == true) {
-                DisolveCard disolveCard = currentPlayerHand[i].GetComponent<DisolveCard>();
-                disolveCard.enabled = true;
-            }
-            else {
-                currentPlayerHand[i].gameObject.SetActive(false);
-            }
-            //DisolveCard disolveCard = currentPlayerHand[i].GetComponent<DisolveCard>();
-            //disolveCard.enabled = true;
-            //Debug.Log("Disolve Card");
+            //if (currentPlayerHand[i].gameObject.activeSelf == true) {
+            //    DisolveCard disolveCard = currentPlayerHand[i].GetComponent<DisolveCard>();
+            //    disolveCard.enabled = true;
+            //}
+            //else {
+            //    currentPlayerHand[i].gameObject.SetActive(false);
+            //}
 
 
+            currentPlayerHand[i].gameObject.SetActive(false);
             i = i + 1;
         }
     }
@@ -211,6 +212,7 @@ public class BattleView : View {
 
             playerDisolveCard.gameObject.SetActive(true);
             playerDisolveCard.SetDisplayValues(card, -1);
+            playerDisolveCard.ZoomIn();
 
             DisolveCard disolveCard = playerDisolveCard.GetComponent<DisolveCard>();
             disolveCard.ResetEffect();

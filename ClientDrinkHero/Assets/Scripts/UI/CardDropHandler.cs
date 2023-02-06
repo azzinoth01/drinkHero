@@ -14,10 +14,9 @@ public class CardDropHandler : MonoBehaviour, IDropHandler {
 
         Debug.Log("CARD DROPED");
 
-        OnHideDropZone?.Invoke();
 
 
-
+        _battleView = ViewManager.Instance.GetView<BattleView>();
         var cardView = _battleView.playerCardDummy;
 
 

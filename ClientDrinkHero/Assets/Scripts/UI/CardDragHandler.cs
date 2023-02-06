@@ -24,6 +24,7 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 
     private BattleView _battleView;
     public static event Action OnShowDropZone;
+    public static event Action OnHideDropZone;
     private void Awake() {
         _battleView = ViewManager.Instance.GetView<BattleView>();
 
@@ -44,26 +45,29 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 
         ICardDisplay cardDisplay = UIDataContainer.Instance.Player.GetHandCards().GetHandCard(cview.HandIndex);
 
-
+        _battleView = ViewManager.Instance.GetView<BattleView>();
         _battleView.playerCardDummy.gameObject.SetActive(true);
 
         _battleView.playerCardDummy.SetDisplayValues(cardDisplay, cview.HandIndex);
+        _battleView.playerCardDummy.ZoomIn();
 
-        if (!_firstDrag) {
-            _initialAnchoredPosition = _cardTransform.anchoredPosition;
-            _cardView.InitializePosition(_initialAnchoredPosition);
-            _firstDrag = true;
-        }
+        //if (!_firstDrag) {
+        //    _initialAnchoredPosition = _cardTransform.anchoredPosition;
+        //    _cardView.InitializePosition(_initialAnchoredPosition);
+        //    _firstDrag = true;
+        //}
 
-        _cardView.UnparentCardView();
-        _cardView.ZoomIn();
+        //_cardView.UnparentCardView();
+        //_cardView.ZoomIn();
 
         _cardView.ClickCardSound();
     }
 
     public void OnDrag(PointerEventData eventData) {
+        _battleView = ViewManager.Instance.GetView<BattleView>();
         if (RectTransformUtility.ScreenPointToWorldPointInRectangle(_cardTransform, eventData.position, eventData.pressEventCamera, out var globalPointerPosition)) {
             //_cardTransform.position = Vector3.SmoothDamp(_cardTransform.position, globalPointerPosition, ref _velocity, dragDampingSpeed);
+
             _battleView.playerCardDummy.transform.position = Vector3.SmoothDamp(_battleView.playerCardDummy.transform.position, globalPointerPosition, ref _velocity, dragDampingSpeed);
         }
 
@@ -72,14 +76,29 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     public void OnEndDrag(PointerEventData eventData) {
         Debug.Log("END DRAG");
 
+
+        if (eventData.pointerCurrentRaycast.gameObject == null) {
+            ViewManager.Instance.GetView<BattleView>().UpdateHandCards();
+            OnHideDropZone?.Invoke();
+
+
+            _battleView.playerCardDummy.gameObject.SetActive(false);
+            _battleView.playerCardDummy.ZoomOut();
+            return;
+        }
+
         if (!eventData.pointerCurrentRaycast.gameObject.CompareTag("CardDropZone")) {
-            _cardView.ReturnCardToHand();
+            //_cardView.ReturnCardToHand();
         }
         else {
             Debug.Log("Pointer Over Dropzone!");
         }
+        ViewManager.Instance.GetView<BattleView>().UpdateHandCards();
 
-        _cardView.ZoomOut();
-        _cardView.ResetCardViewParent();
+
+        OnHideDropZone?.Invoke();
+
+        _battleView.playerCardDummy.gameObject.SetActive(false);
+        _battleView.playerCardDummy.ZoomOut();
     }
 }
