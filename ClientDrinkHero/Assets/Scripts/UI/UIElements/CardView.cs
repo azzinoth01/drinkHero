@@ -1,4 +1,3 @@
-using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -27,8 +26,9 @@ public class CardView : MonoBehaviour {
     [SerializeField] private Ease returnMoveEaseMode;
 
     private int _handIndex;
-    public int HandIndex => _handIndex;
-    
+
+
+
     private Image[] _images;
 
     private Sprite _cardSprite;
@@ -41,16 +41,21 @@ public class CardView : MonoBehaviour {
     private Transform _baseParent;
 
 
-    private IHandCards _handCards;
+    private ICardDisplay _cardDisplay;
 
-
-    public IHandCards HandCards {
+    public ICardDisplay CardDisplay {
         get {
-            return _handCards;
+            return _cardDisplay;
+        }
+    }
+
+    public int HandIndex {
+        get {
+            return _handIndex;
         }
 
         set {
-            _handCards = value;
+            _handIndex = value;
         }
     }
 
@@ -63,7 +68,7 @@ public class CardView : MonoBehaviour {
 
         _images = GetComponentsInChildren<Image>();
 
-        _handCards = UIDataContainer.Instance.Player.GetHandCards();
+
     }
 
     private void OnDisable() {
@@ -77,15 +82,20 @@ public class CardView : MonoBehaviour {
     }
 
     public void SetDisplayValues(ICardDisplay card, int index) {
-        if (card == null)
+        _handIndex = index;
+        _cardDisplay = card;
+        if (card == null) {
             return;
-        _handCards = UIDataContainer.Instance.Player.GetHandCards();
+
+        }
+
+
         _loadCardSprite.LoadNewSprite(card.GetSpritePath());
         costText.SetText(card.CostText());
         cardDescription.SetText(card.CardText());
         cardName.SetText(card.CardName());
 
-        _handIndex = index;
+
     }
 
     public void ClickCardSound() {

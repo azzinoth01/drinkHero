@@ -86,7 +86,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DisolveState: -0.0027917624
+    - _DisolveState: -0.00021457672
     - _EnableExternalAlpha: 0
     - _QueueControl: 0
     - _QueueOffset: 0

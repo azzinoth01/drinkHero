@@ -8,6 +8,7 @@ public interface IPlayer : ICharacter {
     public event Action<int> RessourceChange;
     public event Action UpdateHandCards;
     public event Action GameOverEvent;
+    public event Action<int> DiscardCardAction;
 
 
 }

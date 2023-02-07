@@ -16,6 +16,9 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
     [SerializeField] private List<DeckCardContainer> _handCards;
     public List<DeckCardContainer> HandCards => _handCards;
 
+    private Dictionary<int, DeckCardContainer> _hand;
+
+
     [SerializeField] private GameDeck _gameDeck;
 
     public int PlayerEnergy => _ressource;
@@ -37,7 +40,7 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
     public event Action<int> RessourceChange;
     public event Action UpdateHandCards;
     public event Action GameOverEvent;
-
+    public event Action<int> DiscardCardAction;
 
 
     public GameDeck GameDeck {
@@ -65,6 +68,7 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
         UIDataContainer.Instance.Player = this;
 
     }
+
 
     private void ResetPlayer() {
         if (_gameDeck != null) {
@@ -214,6 +218,9 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
     }
 
     public ICardDisplay GetHandCard(int index) {
+        if (index < 0 || index >= HandCards.Count) {
+            return null;
+        }
         return HandCards[index];
     }
 
@@ -266,6 +273,7 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
             }
             _handCards.Add(_gameDeck.DrawCard());
 
+
             i = i + 1;
         }
 
@@ -310,6 +318,8 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
     private void DiscardCard() {
         int index = Random.Range(0, _handCards.Count);
         DeckCardContainer card = _handCards[index];
+
+        DiscardCardAction?.Invoke(index);
 
         _handCards.RemoveAt(index);
         _gameDeck.ScrapCard(card);

@@ -562,6 +562,8 @@ public static class ServerFunctions {
 
         GachaDatabase gacha = GetItemFromDatabaseByKeyPair<GachaDatabase>(pair);
 
+        client.User = DatabaseManager.GetDatabaseItem<UserDatabase>(client.User.Id);
+
 
         if (CheckHasMoney(gacha, client.User) == true) {
 
@@ -591,6 +593,7 @@ public static class ServerFunctions {
 
         GachaDatabase gacha = GetItemFromDatabaseByKeyPair<GachaDatabase>(pair);
 
+        client.User = DatabaseManager.GetDatabaseItem<UserDatabase>(client.User.Id);
 
 
         if (CheckHasMoney(gacha, client.User) == true) {

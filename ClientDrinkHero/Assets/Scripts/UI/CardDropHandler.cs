@@ -14,28 +14,31 @@ public class CardDropHandler : MonoBehaviour, IDropHandler {
 
         Debug.Log("CARD DROPED");
 
-
+        OnHideDropZone?.Invoke();
 
         _battleView = ViewManager.Instance.GetView<BattleView>();
-        var cardView = _battleView.playerCardDummy;
+        CardView cardView = _battleView.playerCardDummy;
 
 
 
 
         if (cardView != null) {
 
-            var cardIndex = cardView.HandIndex;
+            int cardIndex = cardView.HandIndex;
 
+            if (cardIndex == -1) {
+                return;
+            }
 
             _battleView = ViewManager.Instance.GetView<BattleView>();
 
             if (_battleView.PlayHandCardOnDrop(cardIndex)) {
                 Debug.Log("Card was played successfully.");
-                cardView.ResetCardViewParent();
+                //cardView.ResetCardViewParent();
             }
             else {
                 Debug.Log("Not enough Mana.");
-                cardView.ReturnCardToHand();
+                //cardView.ReturnCardToHand();
             }
         }
     }

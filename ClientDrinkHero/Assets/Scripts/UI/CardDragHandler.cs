@@ -38,6 +38,12 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         OnShowDropZone?.Invoke();
 
         var cview = eventData.pointerDrag.GetComponent<CardView>();
+
+        if (cview.HandIndex == -1) {
+            return;
+        }
+
+
         eventData.pointerDrag.gameObject.GetComponent<Image>().enabled = false;
         foreach (Transform t in eventData.pointerDrag.gameObject.transform) {
             t.gameObject.SetActive(false);
@@ -75,7 +81,7 @@ public class CardDragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 
     public void OnEndDrag(PointerEventData eventData) {
         Debug.Log("END DRAG");
-
+        OnHideDropZone?.Invoke();
 
         if (eventData.pointerCurrentRaycast.gameObject == null) {
             ViewManager.Instance.GetView<BattleView>().UpdateHandCards();
