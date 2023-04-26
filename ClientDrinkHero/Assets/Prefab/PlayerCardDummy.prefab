@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 7730802503432549484}
   - component: {fileID: 6001710515341468451}
   - component: {fileID: 6427412830095209903}
-  - component: {fileID: 6583736284627130609}
+  - component: {fileID: 5275841298512085577}
   - component: {fileID: 1308435799540152253}
   m_Layer: 5
   m_Name: PlayerCardDummy
@@ -372,7 +372,7 @@ MonoBehaviour:
   _loopRestartTime: 1
   _textDisapearTime: 1
   _setGameObjectInactive: 1
---- !u!114 &6583736284627130609
+--- !u!114 &5275841298512085577
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -381,14 +381,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8904498553716453181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed72f8aab40a75b4b9382e08c40928f8, type: 3}
+  m_Script: {fileID: 11500000, guid: 816fd2bbadf86864e92aefe65a0a7f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   costText: {fileID: 8904498554270434709}
   cardName: {fileID: 450828297845106234}
   cardDescription: {fileID: 5389140037075164920}
-  hideAfterSeconds: 5
-  _disolveCard: {fileID: 6427412830095209903}
+  dragScaleEaseMode: 0
+  dragScaleFactor: 1.5
+  dragScaleDuration: 0.25
+  returnMoveDuration: 0
+  returnMoveEaseMode: 0
 --- !u!114 &1308435799540152253
 MonoBehaviour:
   m_ObjectHideFlags: 0

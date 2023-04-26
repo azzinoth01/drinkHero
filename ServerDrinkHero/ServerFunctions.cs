@@ -500,7 +500,9 @@ public static class ServerFunctions {
         UserDatabase user = new UserDatabase();
         user = AddDataToDatabase<UserDatabase>(user);
 
-        user.Money = 10000;
+        user.Money = 100;
+
+        DatabaseManager.UpdateDatabaseItem<UserDatabase>(client.User);
 
         for (int i = 1; i < 5;) {
             AddHeroToUser(user, i);
@@ -560,23 +562,24 @@ public static class ServerFunctions {
 
         GachaDatabase gacha = GetItemFromDatabaseByKeyPair<GachaDatabase>(pair);
 
-        UserDatabase user = client.User;
+        client.User = DatabaseManager.GetDatabaseItem<UserDatabase>(client.User.Id);
 
-        if (CheckHasMoney(gacha, user) == true) {
 
-            GachaPullInstance pullInstance = new GachaPullInstance(user, gacha);
+        if (CheckHasMoney(gacha, client.User) == true) {
+
+            GachaPullInstance pullInstance = new GachaPullInstance(client.User, gacha);
 
             List<int> pullList = pullInstance.Pull(1);
 
-            ResolvePullId(user, pullList);
+            ResolvePullId(client.User, pullList);
 
             if (gacha.CostType == "Gold") {
-                user.Money = user.Money - gacha.CostSingelPull;
+                client.User.Money = client.User.Money - gacha.CostSingelPull;
             }
             else if (gacha.CostType == "CrystalBottle") {
-                user.CrystalBottles = user.CrystalBottles - gacha.CostSingelPull;
+                client.User.CrystalBottles = client.User.CrystalBottles - gacha.CostSingelPull;
             }
-            DatabaseManager.UpdateDatabaseItem<UserDatabase>(user);
+            DatabaseManager.UpdateDatabaseItem<UserDatabase>(client.User);
             messageObject.Message = "SUCCESS";
         }
         return SendDataObject(client.StreamWriter, messageObject);
@@ -590,23 +593,24 @@ public static class ServerFunctions {
 
         GachaDatabase gacha = GetItemFromDatabaseByKeyPair<GachaDatabase>(pair);
 
-        UserDatabase user = client.User;
+        client.User = DatabaseManager.GetDatabaseItem<UserDatabase>(client.User.Id);
 
-        if (CheckHasMoney(gacha, user) == true) {
 
-            GachaPullInstance pullInstance = new GachaPullInstance(user, gacha);
+        if (CheckHasMoney(gacha, client.User) == true) {
+
+            GachaPullInstance pullInstance = new GachaPullInstance(client.User, gacha);
 
             List<int> pullList = pullInstance.Pull(gacha.MultiPullAmount);
 
-            ResolvePullId(user, pullList);
+            ResolvePullId(client.User, pullList);
 
             if (gacha.CostType == "Gold") {
-                user.Money = user.Money - gacha.CostMultiPull;
+                client.User.Money = client.User.Money - gacha.CostMultiPull;
             }
             else if (gacha.CostType == "CrystalBottle") {
-                user.CrystalBottles = user.CrystalBottles - gacha.CostMultiPull;
+                client.User.CrystalBottles = client.User.CrystalBottles - gacha.CostMultiPull;
             }
-            DatabaseManager.UpdateDatabaseItem<UserDatabase>(user);
+            DatabaseManager.UpdateDatabaseItem<UserDatabase>(client.User);
             messageObject.Message = "SUCCESS";
         }
         return SendDataObject(client.StreamWriter, messageObject);

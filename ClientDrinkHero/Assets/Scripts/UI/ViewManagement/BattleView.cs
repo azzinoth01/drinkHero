@@ -1,4 +1,3 @@
-using System.Collections;
 using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
@@ -7,12 +6,14 @@ using UnityEngine.UI;
 
 public class BattleView : View {
     [SerializeField] public List<CardView> currentPlayerHand;
+    private CardView _handCardDisolveObject;
 
     [Header("Card Related")]
     [SerializeField]
     private GameObject playerCardObjectPrefab;
 
-    [SerializeField] public CardDummy playerCardDummy;
+    [SerializeField] public CardView playerCardDummy;
+    [SerializeField] public CardView playerDisolveCard;
     [SerializeField] private GameObject playerHandContainer;
     [SerializeField] private GameObject waitingForConnectionPanel;
 
@@ -36,32 +37,31 @@ public class BattleView : View {
     [SerializeField] private Button optionsMenuButton;
     [SerializeField] private Button pauseMenuButton;
 
-    [Header("Drop Zone Related")] [SerializeField]
+    [Header("Drop Zone Related")]
+    [SerializeField]
     private Image dropZone;
     [SerializeField] private Color dropZoneVisibleColor;
     [SerializeField] private Color dropZoneInvisibleColor;
-    
+
     [Header("Debug Related")]
     [SerializeField]
     private TextMeshProUGUI turnAnnouncerText;
 
-    private void ShowDropZone()
-    {
+    private void ShowDropZone() {
         dropZone.color = dropZoneVisibleColor;
     }
 
-    private void HideDropZone()
-    {
+    private void HideDropZone() {
         dropZone.color = dropZoneInvisibleColor;
     }
-    
+
     public override void Initialize() {
         optionsMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(optionsMenuButton,
             optionsMenuButton.image.sprite, () => ViewManager.Show<OptionsMenuView>()));
 
-        pauseMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(pauseMenuButton, 
+        pauseMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(pauseMenuButton,
             pauseMenuButton.image.sprite, () => ViewManager.Show<PauseMenuView>()));
-        
+
         //pauseMenuButton.onClick.AddListener(() => ViewManager.Show<PauseMenuView>());
 
         AudioController.Instance.PlayAudio(AudioType.BattleTheme, true, 0f);
@@ -72,6 +72,9 @@ public class BattleView : View {
         UIDataContainer.Instance.Player.ShieldChange += UpdatePlayerShieldCounter;
         UIDataContainer.Instance.Player.RessourceChange += UpdatePlayerEnergyBar;
         UIDataContainer.Instance.Player.UpdateHandCards += UpdateHandCards;
+
+        UIDataContainer.Instance.Player.DiscardCardAction += DiscardCard;
+
         UIDataContainer.Instance.Player.GameOverEvent += ShowGameOverScreen;
 
         UIDataContainer.Instance.Enemy.HealthChange += UpdateEnemyHealthBar;
@@ -83,7 +86,10 @@ public class BattleView : View {
         TurnManager.updateDebugText += UpdateTurnAnnouncer;
 
         CardDragHandler.OnShowDropZone += ShowDropZone;
+        CardDragHandler.OnHideDropZone += HideDropZone;
+
         CardDropHandler.OnHideDropZone += HideDropZone;
+
     }
 
     private void OnDestroy() {
@@ -91,6 +97,9 @@ public class BattleView : View {
         UIDataContainer.Instance.Player.ShieldChange -= UpdatePlayerShieldCounter;
         UIDataContainer.Instance.Player.RessourceChange -= UpdatePlayerEnergyBar;
         UIDataContainer.Instance.Player.UpdateHandCards -= UpdateHandCards;
+
+        UIDataContainer.Instance.Player.DiscardCardAction -= DiscardCard;
+
         UIDataContainer.Instance.Player.GameOverEvent -= ShowGameOverScreen;
 
         UIDataContainer.Instance.Enemy.HealthChange -= UpdateEnemyHealthBar;
@@ -100,18 +109,36 @@ public class BattleView : View {
 
         TurnManager.togglePlayerUiControls -= TogglePlayerUIControls;
         TurnManager.updateDebugText -= UpdateTurnAnnouncer;
-        
+
         CardDragHandler.OnShowDropZone -= ShowDropZone;
+        CardDragHandler.OnHideDropZone -= HideDropZone;
+
+
         CardDropHandler.OnHideDropZone -= HideDropZone;
     }
 
     private void Start() {
         UpdateHandCards();
         InitUIValues();
+        InitDisolveHandCard();
+    }
+    private void InitDisolveHandCard() {
+        GameObject obj = Instantiate(playerCardObjectPrefab, playerHandContainer.transform.position, Quaternion.identity, playerHandContainer.transform);
+        Image image = obj.GetComponent<Image>();
+        Material materialPrefab = image.material;
+
+        image.material = Instantiate<Material>(materialPrefab);
+        CardView cardView = obj.GetComponent<CardView>();
+        DisolveCard disolveCard = cardView.GetComponent<DisolveCard>();
+        disolveCard.ResetEffect();
+
+        _handCardDisolveObject = cardView;
+        _handCardDisolveObject.gameObject.SetActive(false);
     }
 
+
     private void AddHandCard(ICardDisplay card, int index) {
-        var newCard = Instantiate(playerCardObjectPrefab, playerHandContainer.transform.position,
+        GameObject newCard = Instantiate(playerCardObjectPrefab, playerHandContainer.transform.position,
             Quaternion.identity, playerHandContainer.transform);
 
         Image image = newCard.GetComponent<Image>();
@@ -119,7 +146,7 @@ public class BattleView : View {
 
         image.material = Instantiate<Material>(materialPrefab);
 
-        var cardView = newCard.GetComponent<CardView>();
+        CardView cardView = newCard.GetComponent<CardView>();
 
         currentPlayerHand.Add(cardView);
 
@@ -130,55 +157,70 @@ public class BattleView : View {
     }
 
     [ContextMenu("Update Hand cards")]
-    private void UpdateHandCards() {
-        var playerHand = UIDataContainer.Instance.Player.GetHandCards();
+    public void UpdateHandCards() {
+        IHandCards playerHand = UIDataContainer.Instance.Player.GetHandCards();
 
         if (playerHand == null)
             return;
 
         int i;
         for (i = 0; i < playerHand.HandCardCount();) {
-            var card = playerHand.GetHandCard(i);
+            ICardDisplay card = playerHand.GetHandCard(i);
 
             if (currentPlayerHand.Count == i) {
                 AddHandCard(card, i);
             }
             else {
                 currentPlayerHand[i].gameObject.SetActive(true);
+                currentPlayerHand[i].gameObject.GetComponent<Image>().enabled = true;
+                foreach (Transform t in currentPlayerHand[i].gameObject.transform) {
+                    t.gameObject.SetActive(true);
+                }
                 currentPlayerHand[i].GetComponent<CardView>().SetDisplayValues(card, i);
 
                 DisolveCard disolveCard = currentPlayerHand[i].GetComponent<DisolveCard>();
                 disolveCard.enabled = false;
                 disolveCard.ResetEffect();
-                
-                
             }
 
-            var index = i;
-            var button = currentPlayerHand[i].GetComponent<Button>();
-            button.onClick.RemoveAllListeners();
+            //int index = i;
+            //Button button = currentPlayerHand[i].GetComponent<Button>();
+            //button.onClick.RemoveAllListeners();
 
-            button.onClick.AddListener(delegate {
-                CardClickEvent(index, playerHand);
-            });
+            //button.onClick.AddListener(delegate {
+            //    CardClickEvent(index, playerHand);
+            //});
 
             i = i + 1;
         }
 
         for (; i < currentPlayerHand.Count;) {
-            var button = currentPlayerHand[i].GetComponent<Button>();
-            button.onClick.RemoveAllListeners();
+            //Button button = currentPlayerHand[i].GetComponent<Button>();
+            //button.onClick.RemoveAllListeners();
 
-
-
-            DisolveCard disolveCard = currentPlayerHand[i].GetComponent<DisolveCard>();
-            disolveCard.enabled = true;
-            Debug.Log("Disolve Card");
-            //currentPlayerHand[i].gameObject.SetActive(false);
-
+            currentPlayerHand[i].gameObject.SetActive(false);
+            currentPlayerHand[i].HandIndex = -1;
             i = i + 1;
         }
+
     }
+
+    public void DiscardCard(int index) {
+        UpdateHandCards();
+        foreach (CardView card in currentPlayerHand) {
+            if (card.HandIndex == index) {
+                int pos = card.gameObject.transform.GetSiblingIndex();
+                _handCardDisolveObject.gameObject.transform.SetSiblingIndex(pos);
+                _handCardDisolveObject.SetDisplayValues(card.CardDisplay, -1);
+                _handCardDisolveObject.gameObject.SetActive(true);
+
+                DisolveCard disolveCard = _handCardDisolveObject.GetComponent<DisolveCard>();
+                disolveCard.ResetEffect();
+                disolveCard.enabled = true;
+            }
+        }
+    }
+
 
     private void CardClickEvent(int index, IHandCards playerHand) {
         playerHand.PlayHandCard(index);
@@ -186,37 +228,41 @@ public class BattleView : View {
     }
 
     public bool PlayHandCardOnDrop(int index) {
-        Debug.Log("index " + index);
 
-        //Debug.Log("player " + UIDataContainer.Instance.Player);
 
         IHandCards playerHand = UIDataContainer.Instance.Player.GetHandCards();
 
-        var card = playerHand.GetHandCard(index);
-        
-        
-        Debug.Log("playerhand " + playerHand);
+        ICardDisplay card = playerHand.GetHandCard(index);
+
+        if (card == null) {
+            return false;
+        }
+
+
         bool cardWasPlayed = playerHand.PlayHandCard(index);
 
-        Debug.Log("card was played");
+
         if (cardWasPlayed) {
-            playerCardDummy.Show();
-            
-            currentPlayerHand[index].gameObject.SetActive(false);
-            Button button = currentPlayerHand[index].GetComponent<Button>();
-            Debug.Log("button " + button);
-            button.onClick.RemoveAllListeners();
-            
-            DisolveCard disolveCard = currentPlayerHand[index].GetComponent<DisolveCard>();
-            Debug.Log("disolve " + disolveCard);
+            // playerCardDummy.SetDummyData(card.CostText(), card.CardName(), card.CardText(), card.GetSpritePath());
+            // playerCardDummy.Show();
+
+            playerDisolveCard.gameObject.SetActive(true);
+            playerDisolveCard.SetDisplayValues(card, -1);
+            playerDisolveCard.ZoomIn();
+
+            DisolveCard disolveCard = playerDisolveCard.GetComponent<DisolveCard>();
+            disolveCard.ResetEffect();
             disolveCard.enabled = true;
+
+
+
 
             UpdateHandCards();
         }
-
+        playerCardDummy.gameObject.SetActive(false);
         return cardWasPlayed;
     }
-    
+
     private void InitUIValues() {
         UpdatePlayerHealthBar(0);
         UpdatePlayerEnergyBar(0);
