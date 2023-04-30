@@ -194,7 +194,7 @@ public static class ServerFunctions {
     private static T AddDataToDatabase<T>(T item) where T : DatabaseItem, new() {
 
         int? id = DatabaseManager.InsertDatabaseItemAndReturnKey<T>(item);
-
+        Console.Write("ID: " + id);
         return DatabaseManager.GetDatabaseItem<T>(id);
 
 
@@ -502,7 +502,7 @@ public static class ServerFunctions {
 
         user.Money = 100;
 
-        DatabaseManager.UpdateDatabaseItem<UserDatabase>(client.User);
+        DatabaseManager.UpdateDatabaseItem<UserDatabase>(user);
 
         for (int i = 1; i < 5;) {
             AddHeroToUser(user, i);
