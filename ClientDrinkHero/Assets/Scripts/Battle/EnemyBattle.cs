@@ -169,6 +169,11 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         AttackEnemy(5);
 
         VFXObjectContainer.Instance.PlayAnimation("41");
+        if(UnityEngine.Random.value > 0.5f)
+            PlayerTeam.Instance.PlayAnimation("Hurt");
+        else 
+            PlayerTeam.Instance.PlayAnimation("HurtDizzy");
+
 
         CheckDebuffsAndBuffs(ActivationTimeEnum.actionFinished);
 
