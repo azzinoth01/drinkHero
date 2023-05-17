@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42453426fdae7d944877785cdc975644, type: 3}
   m_Name: Hero_Beatrice
   m_EditorClassIdentifier: 
+  ID: 1
   SecretaryPrefab: {fileID: 2749582525335488037, guid: f419641c5a61f99459ddc00ec3a1150b, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: 9e267c02851425a4aa27376fc4371fef, type: 3}
   SecretaryQuotes:

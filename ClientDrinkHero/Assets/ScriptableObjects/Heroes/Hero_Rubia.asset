@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42453426fdae7d944877785cdc975644, type: 3}
   m_Name: Hero_Rubia
   m_EditorClassIdentifier: 
+  ID: 2
   SecretaryPrefab: {fileID: 2749582525335488037, guid: 280f165349d3b5745af74bee6078b637, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: 0627b7fde7e995244b14b589f09166b6, type: 3}
   SecretaryQuotes:

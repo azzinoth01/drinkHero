@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42453426fdae7d944877785cdc975644, type: 3}
   m_Name: Hero_FR4N
   m_EditorClassIdentifier: 
+  ID: 9
   SecretaryPrefab: {fileID: 2749582525335488037, guid: 8e31d153b0d5b444389fd30987bbbb5a, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: 8e6e75a215863bf4a8ae612e2475ba27, type: 3}
   SecretaryQuotes:

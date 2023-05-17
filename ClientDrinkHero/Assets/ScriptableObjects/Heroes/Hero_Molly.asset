@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42453426fdae7d944877785cdc975644, type: 3}
   m_Name: Hero_Molly
   m_EditorClassIdentifier: 
+  ID: 3
   SecretaryPrefab: {fileID: 2749582525335488037, guid: 1614dc3831c9ae14e9de33f85b646329, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: 8bb756131cd30f04a87f35b92d5ad545, type: 3}
   SecretaryQuotes:
