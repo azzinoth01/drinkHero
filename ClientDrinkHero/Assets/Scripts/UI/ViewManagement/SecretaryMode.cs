@@ -2,30 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(LoadSprite))]
 public class SecretaryMode : MonoBehaviour
 {
+    [SerializeField] private List<Hero> heroes = new List<Hero>();
+    [SerializeField] private GameObject dialogTextBox;
     [SerializeField] private TextMeshProUGUI dialogText;
-    private LoadSprite _loadSprite;
+    [SerializeField] private Transform secretaryHolder;
+    [SerializeField] private float dialogTime = 5f;
     private int currentSelectionIndex = 0;
-    private HeroListHandler heroListHandler;
-    private void Awake()
-    {
-        _loadSprite = this.GetComponent<LoadSprite>();
-    }
+    private GameObject currentSecretary;
+    private float textBoxTimer;
 
     void Start()
     {
-        heroListHandler = new HeroListHandler();
-        heroListHandler.LoadingFinished += HeroListHandler_LoadingFinished;
-        heroListHandler.RequestData();
-
-    }
-
-    private void HeroListHandler_LoadingFinished()
-    {
-        Debug.Log(heroListHandler.Heros);
         LoadSecretary(currentSelectionIndex);
     }
 
@@ -33,17 +24,47 @@ public class SecretaryMode : MonoBehaviour
     {
         currentSelectionIndex += increment;
         if (currentSelectionIndex < 0)
-            currentSelectionIndex = heroListHandler.Heros.Count - 1;
-        if (currentSelectionIndex >= heroListHandler.Heros.Count)
+            currentSelectionIndex = heroes.Count - 1;
+        if (currentSelectionIndex >= heroes.Count)
             currentSelectionIndex = 0;
 
-        _loadSprite.SpritePathSufix = "_0.png";
-        _loadSprite.LoadNewSprite(heroListHandler.Heros[currentSelectionIndex].SpritePath);
-        dialogText.SetText(heroListHandler.Heros[currentSelectionIndex].Name);
+        if (currentSecretary)
+            Destroy(currentSecretary);
+
+        currentSecretary = Instantiate(heroes[currentSelectionIndex].SecretaryPrefab, secretaryHolder);
+        currentSecretary.GetComponentInChildren<Button>().onClick.AddListener(TouchSpecial);
+
+        SetText(heroes[currentSelectionIndex].SecretaryQuotes[Random.Range(0, heroes[currentSelectionIndex].SecretaryQuotes.Count)]);
+    }
+
+    public void TouchSpecial()
+    {
+        currentSecretary.GetComponentInChildren<Image>().sprite = heroes[currentSelectionIndex].SecretarySpezialTouchImage;
+        SetText(heroes[currentSelectionIndex].SecretarySpezialTouchQuote);
+    }
+
+    private void SetText(string text)
+    {
+        dialogTextBox.SetActive(true);
+        dialogText.text = text;
+        textBoxTimer = 0;
+    }
+
+    private void DisableTextBox()
+    {
+        dialogTextBox.SetActive(false);
+        dialogText.text = "";
     }
 
     private void Update()
     {
-        heroListHandler.Update();
+        if (textBoxTimer < dialogTime)
+        {
+            textBoxTimer += Time.deltaTime;
+        }
+        else
+        {
+            DisableTextBox();
+        }
     }
 }
