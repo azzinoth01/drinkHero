@@ -22,6 +22,7 @@ public class CardDatabase : DatabaseItem, ICardDisplay {
     [SerializeField] private List<CardToHero> _heroList;
     [SerializeField] private List<CardToEffect> _cardEffectList;
     [SerializeField] private int? _refUpgradeItem;
+    [SerializeField] private UpgradeItemDatabase _upgradeItem;
     [SerializeField] private int _upgradeItemAmount;
     [SerializeField] private string _animationKey;
 
@@ -237,6 +238,72 @@ public class CardDatabase : DatabaseItem {
         }
     }
 
+    public CardDatabase UpgradeTo {
+
+        get {
+            if (_refUpgradeTo == null) {
+                return null;
+            }
+            else if (_upgradeTo != null) {
+
+                return _upgradeTo;
+            }
+
+
+            //request data from server
+            string name = GetPropertyName();
+
+            if (AlreadyRequested(name)) {
+                return null;
+            }
+
+
+            RequestUpgradeCard(name);
+
+            return null;
+
+
+        }
+
+        set {
+
+            _upgradeTo = value;
+
+        }
+    }
+
+    public UpgradeItemDatabase UpgradeItem {
+        get {
+            if (_refUpgradeItem == null) {
+                return null;
+            }
+            else if (_upgradeItem != null) {
+
+                return _upgradeItem;
+            }
+
+
+            //request data from server
+            string name = GetPropertyName();
+
+            if (AlreadyRequested(name)) {
+                return null;
+            }
+
+
+            RequestUpgradeItem(name);
+
+            return null;
+
+
+        }
+
+        set {
+
+            _upgradeItem = value;
+
+        }
+    }
 
     private void RequestHeroList(string name) {
         string functionCall = ClientFunctions.GetCardToHeroByKeyPair("RefCard\"" + _id + "\"");
@@ -247,6 +314,21 @@ public class CardDatabase : DatabaseItem {
         string functionCall = ClientFunctions.GetCardToEffectByKeyPair("RefCard\"" + _id + "\"");
         int index = SendRequest(functionCall, typeof(CardToEffect));
         _propertyToRequestedId[index] = name;
+    }
+
+    private void RequestUpgradeCard(string name) {
+        if (_refUpgradeTo != null) {
+            string functionCall = ClientFunctions.GetCardDatabaseByKeyPair("ID\"" + _refUpgradeTo + "\"");
+            int index = SendRequest(functionCall, typeof(CardDatabase));
+            _propertyToRequestedId[index] = name;
+        }
+    }
+    private void RequestUpgradeItem(string name) {
+        if (_refUpgradeItem != null) {
+            string functionCall = ClientFunctions.GetUpgradeItemDatabaseByKey("ID\"" + _refUpgradeItem + "\"");
+            int index = SendRequest(functionCall, typeof(UpgradeItemDatabase));
+            _propertyToRequestedId[index] = name;
+        }
     }
 
     public static List<CardDatabase> CreateObjectDataFromString(string message) {
@@ -296,7 +378,14 @@ public class CardDatabase : DatabaseItem {
         if (AlreadyRequested(name) == false) {
             RequestCardEffectList(name);
         }
-
+        name = nameof(UpgradeTo);
+        if (AlreadyRequested(name) == false) {
+            RequestUpgradeCard(name);
+        }
+        name = nameof(UpgradeItem);
+        if (AlreadyRequested(name) == false) {
+            RequestUpgradeItem(name);
+        }
     }
 
 
@@ -305,6 +394,7 @@ public class CardDatabase : DatabaseItem {
 
     public CardDatabase() : base() {
         _refUpgradeTo = null;
+        _refUpgradeItem = null;
         _cardEffectList = new List<CardToEffect>();
         _heroList = new List<CardToHero>();
     }

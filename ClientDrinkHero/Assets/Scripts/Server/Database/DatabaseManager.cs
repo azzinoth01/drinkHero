@@ -148,6 +148,8 @@ public static class DatabaseManager {
 
         T item = new T();
 
+        Console.WriteLine(sqlCommand + "\r\n");
+
         MySqlDataReader reader = command.ExecuteReader();
 
         while (reader.Read()) {
@@ -178,6 +180,8 @@ public static class DatabaseManager {
 
 
         T item = new T();
+
+        Console.WriteLine(sqlCommand + "\r\n");
 
         MySqlDataReader reader = command.ExecuteReader();
 
@@ -223,6 +227,8 @@ public static class DatabaseManager {
 
         T item = new T();
 
+        Console.WriteLine(sqlCommand + "\r\n");
+
         MySqlDataReader reader = command.ExecuteReader();
 
         while (reader.Read()) {
@@ -255,6 +261,8 @@ public static class DatabaseManager {
 
         List<T> list = new List<T>();
 
+        Console.WriteLine(sqlCommand + "\r\n");
+
         MySqlDataReader reader = command.ExecuteReader();
 
         while (reader.Read()) {
@@ -286,6 +294,8 @@ public static class DatabaseManager {
 
         List<T> list = new List<T>();
 
+        Console.WriteLine(sqlCommand + "\r\n");
+
         MySqlDataReader reader = command.ExecuteReader();
 
         while (reader.Read()) {
@@ -307,9 +317,12 @@ public static class DatabaseManager {
 
         TableMapping mapping = GetTableMapping<T>();
 
+        int index = 0;
 
 
         string sqlCommand = "SELECT * FROM " + mapping.TableName + " WHERE " + foreigenKeys[0] + "=" + keyValue[0] + " ";
+
+
 
         for (int i = 1; i < foreigenKeys.Count;) {
 
@@ -320,6 +333,8 @@ public static class DatabaseManager {
         }
 
 
+        // Console.WriteLine(sqlCommand + "\r\n");
+
         MySqlCommand command = _db.CreateCommand();
 
         command.CommandText = sqlCommand;
@@ -328,6 +343,8 @@ public static class DatabaseManager {
 
 
         List<T> list = new List<T>();
+
+        Console.WriteLine(sqlCommand + "\r\n");
 
         MySqlDataReader reader = command.ExecuteReader();
 
@@ -373,6 +390,8 @@ public static class DatabaseManager {
 
         List<T> list = new List<T>();
 
+        Console.WriteLine(sqlCommand + "\r\n");
+
         MySqlDataReader reader = command.ExecuteReader();
 
         while (reader.Read()) {
@@ -407,6 +426,8 @@ public static class DatabaseManager {
 
         List<T> list = new List<T>();
 
+        Console.WriteLine(sqlCommand + "\r\n");
+
         MySqlDataReader reader = command.ExecuteReader();
 
         while (reader.Read()) {
@@ -435,6 +456,8 @@ public static class DatabaseManager {
         command.CommandText = sqlCommand;
 
         List<T> list = new List<T>();
+
+        Console.WriteLine(sqlCommand + "\r\n");
 
         MySqlDataReader reader = command.ExecuteReader();
 
@@ -491,6 +514,8 @@ public static class DatabaseManager {
 
             command.Parameters.AddWithValue("@" + pair.Key, item.GetType().GetProperty(pair.Value).GetValue(item));
         }
+
+        Console.WriteLine(sqlCommand + "\r\n");
 
         command.ExecuteNonQuery();
 
@@ -555,7 +580,7 @@ public static class DatabaseManager {
             command.Parameters.AddWithValue("@" + pair.Key, item.GetType().GetProperty(pair.Value).GetValue(item));
 
         }
-
+        Console.WriteLine(sqlCommand + "\r\n");
 
         command.ExecuteNonQuery();
 
@@ -627,6 +652,8 @@ public static class DatabaseManager {
         }
 
         Console.WriteLine(command.CommandText + " \r\n");
+
+        Console.WriteLine(sqlCommand + "\r\n");
 
         command.ExecuteNonQuery();
         command.CommandText = "SELECT LAST_INSERT_ID()";

@@ -47,7 +47,7 @@ public static class ServerFunctions {
 
 
     private static string SendData<T>(StreamWriter stream, string pair = "") where T : DatabaseItem, new() {
-
+        Console.WriteLine("Send Data Pair: " + pair + "\r\n");
         List<T> items;
         if (pair == "") {
             items = DatabaseManager.GetDatabaseList<T>();
@@ -493,6 +493,13 @@ public static class ServerFunctions {
 
 
     }
+    [ServerFunction("GetUserToUpgradeItemByLoggedinUser")]
+    public static string GetUserToUpgradeItemByLoggedinUser(ConnectedClient client) {
+
+        return SendData<UserToUpradeItemDatabase>(client.StreamWriter, "RefUser\"" + client.User.Id + "\"");
+
+
+    }
 
     [ServerFunction("CreateNewUser")]
     public static string CreateNewUser(ConnectedClient client) {
@@ -672,7 +679,7 @@ public static class ServerFunctions {
         foreigenKey.Add("RefUser");
         keyValue.Add(client.User.Id);
 
-        UserHeroToCardDatabase upgradeCard = DatabaseManager.GetDatabaseList<UserHeroToCardDatabase>("", foreigenKey, keyValue)[0];
+        UserHeroToCardDatabase upgradeCard = DatabaseManager.GetDatabaseList<UserHeroToCardDatabase>("UserHeroToCardView", foreigenKey, keyValue)[0];
 
         //check if card is upgradeable
         if (upgradeCard.Card.RefUpgradeTo == null) {

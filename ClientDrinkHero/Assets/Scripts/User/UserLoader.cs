@@ -54,6 +54,11 @@ public class UserLoader {
                 check = check & heroToUser.WaitingOnDataCount == 0;
 
             }
+            foreach (UserToUpradeItemDatabase upgradeItem in user.UserToUpgradeItemDatabaseList) {
+                upgradeItem.RequestLoadReferenzData();
+                check = check & upgradeItem.WaitingOnDataCount == 0;
+
+            }
         }
 
 

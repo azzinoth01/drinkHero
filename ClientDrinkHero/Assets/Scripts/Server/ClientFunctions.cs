@@ -1,6 +1,12 @@
 public static class ClientFunctions {
 
 
+    // returns UserToUpradeItemDatabase 
+    public static string GetUserToUpgradeItemList() {
+        string callName = "GetUserToUpgradeItemByLoggedinUser";
+        return GetWriteString(callName);
+    }
+
     //returns ResponsMessageObject FAILURE / SUCCESS
     public static string GetGachaInfo() {
         string callName = "GetGachaInfo";

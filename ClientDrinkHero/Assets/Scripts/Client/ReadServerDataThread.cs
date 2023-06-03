@@ -181,11 +181,21 @@ public class ReadServerDataThread {
             while (readData != "") {
 
                 TransmissionControl.CheckHeartBeat(readData, out readData);
+
+
+
+                Debug.Log("Read Data: " + readData);
                 string message = TransmissionControl.GetMessageObject(readData, out readData);
                 Debug.Log(message);
-                if (message == "" || message == null) {
-                    if (TransmissionControl.CheckIfDataIsEmpty(readData, out readData)) {
 
+
+
+                if (message == "" || message == null) {
+
+                    if (TransmissionControl.CheckIfDataIsEmpty(readData, out readData)) {
+                        Debug.LogError("EMPTY DATA");
+                        (int, Type) writeBackData = ServerRequests.writeServerDataToHandleRequests.Dequeue();
+                        GetDataByTypeAndSendBack(writeBackData.Item1, writeBackData.Item2, "");
                         continue;
                     }
                     else {

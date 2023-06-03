@@ -241,6 +241,24 @@ public abstract class DatabaseItem {
                 info.SetValue(this, list);
             }
         }
+        else if (type == typeof(UpgradeItemDatabase)) {
+            List<UpgradeItemDatabase> list = UpgradeItemDatabase.CreateObjectDataFromString(data);
+            if (isList == false) {
+                info.SetValue(this, list[0]);
+            }
+            else {
+                info.SetValue(this, list);
+            }
+        }
+        else if (type == typeof(UserToUpradeItemDatabase)) {
+            List<UserToUpradeItemDatabase> list = UserToUpradeItemDatabase.CreateObjectDataFromString(data);
+            if (isList == false) {
+                info.SetValue(this, list[0]);
+            }
+            else {
+                info.SetValue(this, list);
+            }
+        }
     }
 
     public bool GetUpdateFromServer() {

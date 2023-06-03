@@ -85,6 +85,14 @@ public static class TransmissionControl {
 
         Match match = RegexPatterns.GetCompleteMessage.Match(message);
 
+        string checkString = message.Substring(0, match.Index);
+
+        if (CheckIfDataIsEmpty(checkString, out checkString)) {
+            remainingMessage = message;
+            return "";
+        }
+
+
         remainingMessage = message.Substring(match.Index + match.Length);
 
         return match.Value;

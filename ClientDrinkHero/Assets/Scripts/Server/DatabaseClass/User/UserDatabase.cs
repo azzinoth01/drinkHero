@@ -16,6 +16,7 @@ public class UserDatabase : DatabaseItem {
     [SerializeField] private int _money;
     [SerializeField] private int _crystalBottles;
     [SerializeField] private List<HeroToUserDatabase> _heroToUserDatabasesList;
+    [SerializeField] private List<UserToUpradeItemDatabase> _userToUpgradeItemDatabaseList;
 
 
     public static Dictionary<string, UserDatabase> _cachedData = new Dictionary<string, UserDatabase>();
@@ -111,6 +112,31 @@ public class UserDatabase : DatabaseItem {
             _heroToUserDatabasesList = value;
         }
     }
+    public List<UserToUpradeItemDatabase> UserToUpgradeItemDatabaseList {
+        get {
+
+            if (_userToUpgradeItemDatabaseList.Count != 0) {
+                return _userToUpgradeItemDatabaseList;
+            }
+            else {
+
+
+                string name = GetPropertyName();
+
+                if (AlreadyRequested(name)) {
+                    return _userToUpgradeItemDatabaseList;
+                }
+
+                RequestUserToUpgradeItem(name);
+            }
+
+            return _userToUpgradeItemDatabaseList;
+        }
+
+        set {
+            _userToUpgradeItemDatabaseList = value;
+        }
+    }
 
 
 
@@ -119,6 +145,14 @@ public class UserDatabase : DatabaseItem {
 
 
         int index = SendRequest(functionCall, typeof(HeroToUserDatabase));
+        _propertyToRequestedId[index] = name;
+    }
+
+    private void RequestUserToUpgradeItem(string name) {
+        string functionCall = ClientFunctions.GetUserToUpgradeItemList();
+
+
+        int index = SendRequest(functionCall, typeof(UserToUpradeItemDatabase));
         _propertyToRequestedId[index] = name;
     }
 
@@ -190,7 +224,10 @@ public class UserDatabase : DatabaseItem {
         if (AlreadyRequested(name) == false) {
             RequestHeroToUser(name);
         }
-
+        name = nameof(UserToUpgradeItemDatabaseList);
+        if (AlreadyRequested(name) == false) {
+            RequestUserToUpgradeItem(name);
+        }
     }
 
 
@@ -203,6 +240,7 @@ public class UserDatabase : DatabaseItem {
 
     public UserDatabase() : base() {
         _heroToUserDatabasesList = new List<HeroToUserDatabase>();
+        _userToUpgradeItemDatabaseList = new List<UserToUpradeItemDatabase>();
         _id = 0;
 
     }

@@ -41,8 +41,16 @@ public class HandleRequests : IHandleRequest {
         set;
     }
 
+    public Dictionary<int, string> ServerRequestStrings {
+        get;
+        set;
+    }
+
     public int HandleRequest(string functionCall, Type type) {
         int index = LastIndex;
+
+
+        ServerRequestStrings.Add(index, functionCall);
 
         ServerRequests.writeServerDataToHandleRequests.Enqueue((index, type));
         ServerRequests.serverRequestQueue.Enqueue(functionCall);
@@ -73,6 +81,7 @@ public class HandleRequests : IHandleRequest {
 
     private HandleRequests() {
         LastIndex = 0;
+        ServerRequestStrings = new Dictionary<int, string>();
         _updateList = new List<IGetUpdateFromServer>();
         RequestData = new Dictionary<int, string>();
         RequestDataStatus = new Dictionary<int, DataRequestStatusEnum>();

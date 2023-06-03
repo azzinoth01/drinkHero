@@ -22,6 +22,8 @@ public class ConnectedClient {
     private StreamReader _streamReader;
     private StreamWriter _streamWriter;
 
+    private int _comandCount;
+
     public ConnectedClient(Socket socket) {
 
         _connection = socket;
@@ -40,7 +42,7 @@ public class ConnectedClient {
 
         _timeoutCheckIntervall = 3000;
         _timeoutCheck = _timeoutCheckIntervall;
-
+        _comandCount = -1;
 
     }
 
@@ -154,6 +156,8 @@ public class ConnectedClient {
         }
         else if (isCommand == true) {
             //Console.Write(message);
+            Console.WriteLine("COMMAND COUNT: " + _comandCount.ToString());
+            _comandCount = _comandCount + 1;
             LogManager.LogQueue.Enqueue("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {RECIEVED} " + message + "\r\n");
             Console.WriteLine("[" + DateTime.Now.ToString() + "] (" + RemoteIp + ") {RECIEVED} " + message + "\r\n");
             string log = TransmissionControl.CommandMessage(this, message);
