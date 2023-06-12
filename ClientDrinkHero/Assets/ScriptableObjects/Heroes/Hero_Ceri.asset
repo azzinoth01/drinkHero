@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42453426fdae7d944877785cdc975644, type: 3}
+  m_Name: Hero_Ceri
+  m_EditorClassIdentifier: 
+  ID: 6
+  SecretaryPrefab: {fileID: 2749582525335488037, guid: 4dfbe9fa08e10fb49a61b31cf003aea9, type: 3}
+  SecretarySpezialTouchImage: {fileID: 21300000, guid: c91cf065146188347bcdfeb8fd26d454, type: 3}
+  SecretaryQuotes:
+  - Text1
+  - Text2
+  - Text3
+  - Text4
+  SecretarySpezialTouchQuote: Fuck off, you pervert!

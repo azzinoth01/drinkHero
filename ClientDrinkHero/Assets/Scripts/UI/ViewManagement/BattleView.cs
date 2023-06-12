@@ -29,6 +29,7 @@ public class BattleView : View {
     [Header("Enemy Related")]
     [SerializeField]
     private Image enemyHealthBar;
+    private int currentEnemyIndex = 0;
 
     [SerializeField] private TextMeshProUGUI enemyHealthLabelText;
     [SerializeField] private TextMeshProUGUI enemyShieldCountText;
@@ -79,6 +80,7 @@ public class BattleView : View {
 
         UIDataContainer.Instance.Enemy.HealthChange += UpdateEnemyHealthBar;
         UIDataContainer.Instance.Enemy.ShieldChange += UpdateEnemyShieldCounter;
+        ((EnemyBattle)UIDataContainer.Instance.Enemy).DiedEvent += BattleView_DiedEvent;
 
         //UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel += ToggleWaitingPanel;
 
@@ -90,6 +92,21 @@ public class BattleView : View {
 
         CardDropHandler.OnHideDropZone += HideDropZone;
 
+    }
+
+    private void BattleView_DiedEvent()
+    {
+        if (PlayerPrefs.GetString("GameMode") != "Level")
+            return;
+
+        currentEnemyIndex++;
+        int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
+
+        if (currentLevel > currentEnemyIndex)
+            return;
+
+        PlayerPrefs.SetInt("MaxLevel", Mathf.Max(PlayerPrefs.GetInt("MaxLevel"), currentLevel + 1));
+        ShowGameOverScreen();
     }
 
     private void OnDestroy() {
@@ -104,6 +121,7 @@ public class BattleView : View {
 
         UIDataContainer.Instance.Enemy.HealthChange -= UpdateEnemyHealthBar;
         UIDataContainer.Instance.Enemy.ShieldChange -= UpdateEnemyShieldCounter;
+        ((EnemyBattle)UIDataContainer.Instance.Enemy).DiedEvent -= BattleView_DiedEvent;
 
         //UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel -= ToggleWaitingPanel;
 

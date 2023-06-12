@@ -27,15 +27,21 @@ public class LogManager {
 
         int currentSeconds = 0;
         while (_keepRunning) {
-            if (LogQueue.Count >= 1000) {
-                WriteLog();
-            }
-            else if (currentSeconds >= _logCheckTimeInSeconds) {
-                currentSeconds = 0;
-                if (LogQueue.Count != 0) {
-                    WriteLog();
-                }
 
+
+
+            //if (LogQueue.Count >= 1000) {
+            //    WriteLog();
+            //}
+            //else
+            if (currentSeconds >= _logCheckTimeInSeconds) {
+                currentSeconds = 0;
+                //if (LogQueue.Count != 0) {
+                //    WriteLog();
+                //}
+
+                DatabaseManager.GetDatabaseItem<UpgradeItemDatabase>(1);
+                LogQueue.Clear();
             }
             Thread.Sleep(1000);
             currentSeconds = currentSeconds + 1;
