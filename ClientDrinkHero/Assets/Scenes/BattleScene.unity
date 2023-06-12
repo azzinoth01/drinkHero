@@ -8923,18 +8923,18 @@ MonoBehaviour:
   - {fileID: 1042985822}
   playerCharacterPrefabs:
   - {fileID: 0}
+  - {fileID: 6206749736483379237, guid: f068dbc3afa0fa74f896b558764c8d07, type: 3}
+  - {fileID: 6737728011757709234, guid: f4fbab77124113246afb203ffb7048fb, type: 3}
+  - {fileID: 490438465247785664, guid: 7bbeb4a4b780c1643b87fbf76cff7b26, type: 3}
+  - {fileID: 8115661590948429477, guid: b6be440dfaffb7840a0aff19eaef63d7, type: 3}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 8207373821863490152, guid: adf822e4007e784419c17e60066ae94d, type: 3}
   - {fileID: 0}
+  - {fileID: 7935824741664598851, guid: 8bfc53b89f0f17a4c83fbc88f3f8286a, type: 3}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 2597091937945155679, guid: 8bfc53b89f0f17a4c83fbc88f3f8286a, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3197279577085230165, guid: 3819b8668b8e2b949903929cf264872a, type: 3}
+  - {fileID: 7014747158392843487, guid: 6b4d9406fa2fa314aa7156e75346b61d, type: 3}
   - {fileID: 8531456242909474957, guid: 51b522de6e6376848b1f753635ace020, type: 3}
   playerCharacters: []
 --- !u!1 &2128304700 stripped
