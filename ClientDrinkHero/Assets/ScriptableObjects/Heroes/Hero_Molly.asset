@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Hero_Molly
   m_EditorClassIdentifier: 
   ID: 3
+  Name: Molly
+  Unlocked: 0
   SecretaryPrefab: {fileID: 2749582525335488037, guid: 1614dc3831c9ae14e9de33f85b646329, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: 8bb756131cd30f04a87f35b92d5ad545, type: 3}
   SecretaryQuotes:

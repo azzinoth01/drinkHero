@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Hero_Laeticia
   m_EditorClassIdentifier: 
   ID: 4
+  Name: Laeticia
+  Unlocked: 0
   SecretaryPrefab: {fileID: 2749582525335488037, guid: b5a3ea463e3fcf549a0080a44a696d20, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: fbc498da1958f0545be616c144b9e71a, type: 3}
   SecretaryQuotes:

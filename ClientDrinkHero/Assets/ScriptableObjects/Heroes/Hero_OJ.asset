@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42453426fdae7d944877785cdc975644, type: 3}
-  m_Name: Hero_Coze
+  m_Name: Hero_OJ
   m_EditorClassIdentifier: 
-  ID: 11
-  Name: Coze
+  ID: 15
+  Name: OJ
   Unlocked: 0
-  SecretaryPrefab: {fileID: 2749582525335488037, guid: 1a83c2c10e096cb49a76a9f1e9c750ae, type: 3}
-  SecretarySpezialTouchImage: {fileID: 21300000, guid: ed0f27deb1f50ed48bd927431c51403c, type: 3}
+  SecretaryPrefab: {fileID: 2749582525335488037, guid: db5cf2c0e98c245419b0eede26e79756, type: 3}
+  SecretarySpezialTouchImage: {fileID: 21300000, guid: 36a5ef6801586354e96f0a25f959c734, type: 3}
   SecretaryQuotes:
   - Text1
   - Text2

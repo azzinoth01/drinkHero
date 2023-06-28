@@ -55,6 +55,10 @@ public class PullHistoryDatabase : DatabaseItem {
 
         set {
             _typeID = value;
+            if (_type == "Hero")
+            {
+                HeroHolder.Instance.GetHeroById((int)_typeID).Unlocked = true;
+            }
         }
     }
     [Column("RefUser")]

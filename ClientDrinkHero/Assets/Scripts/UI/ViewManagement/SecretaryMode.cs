@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class SecretaryMode : MonoBehaviour
 {
-    [SerializeField] private List<Hero> heroes = new List<Hero>();
     [SerializeField] private List<Hero> unlockedHeroes = new List<Hero>();
     [SerializeField] private GameObject dialogTextBox;
     [SerializeField] private GameObject buttons;
@@ -22,25 +21,19 @@ public class SecretaryMode : MonoBehaviour
 
     void Start()
     {
-        _unlockedHeroesPreviewHandler = new UnlockedHeroesPreviewHandler();
-
-        _unlockedHeroesPreviewHandler.LoadingFinished += _unlockedHeroesPreviewHandler_LoadingFinished;
-        _unlockedHeroesPreviewHandler.RequestData();
-
         buttons.SetActive(false);
         DisableTextBox();
-    }
 
-    private void _unlockedHeroesPreviewHandler_LoadingFinished()
-    {
-        buttons.SetActive(true);
-        foreach (HeroToUserDatabase dbHero in _unlockedHeroesPreviewHandler.UnlockedHeros)
+        foreach (Hero hero in HeroHolder.Instance.Heroes)
         {
-            Hero newHero = heroes.FirstOrDefault(x => x.ID == dbHero.Hero.Id);
-            if(newHero != null)
-                unlockedHeroes.Add(newHero);
+            if (hero.Unlocked)
+            {
+                unlockedHeroes.Add(hero);
+            }
         }
         LoadSecretary(currentSelectionIndex);
+
+        buttons.SetActive(true);
     }
 
     public void LoadSecretary(int increment)
@@ -61,7 +54,10 @@ public class SecretaryMode : MonoBehaviour
     }
     public void Touch()
     {
-        SetText(unlockedHeroes[currentSelectionIndex].SecretaryQuotes[Random.Range(0, unlockedHeroes[currentSelectionIndex].SecretaryQuotes.Count)]);
+        int randomQuoteIndex = Random.Range(0, unlockedHeroes[currentSelectionIndex].SecretaryQuotes.Count);
+        SetText(unlockedHeroes[currentSelectionIndex].SecretaryQuotes[randomQuoteIndex]);
+        string heroName = unlockedHeroes[currentSelectionIndex].Name;
+        currentSecretary.GetComponentInChildren<Image>().sprite = AssetLoader.Instance.BorrowSprite("Assets/Art/Character/" + heroName + "/"  + heroName + "_" + randomQuoteIndex + ".png");
     }
 
     public void TouchSpecial()
@@ -85,7 +81,6 @@ public class SecretaryMode : MonoBehaviour
 
     private void Update()
     {
-        _unlockedHeroesPreviewHandler.Update();
         if (textBoxTimer < dialogTime)
         {
             textBoxTimer += Time.deltaTime;

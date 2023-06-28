@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Hero_Ceri
   m_EditorClassIdentifier: 
   ID: 6
+  Name: Ceri
+  Unlocked: 0
   SecretaryPrefab: {fileID: 2749582525335488037, guid: 4dfbe9fa08e10fb49a61b31cf003aea9, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: c91cf065146188347bcdfeb8fd26d454, type: 3}
   SecretaryQuotes:

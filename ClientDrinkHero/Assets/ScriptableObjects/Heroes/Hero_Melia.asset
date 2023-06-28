@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Hero_Melia
   m_EditorClassIdentifier: 
   ID: 13
+  Name: Melia
+  Unlocked: 0
   SecretaryPrefab: {fileID: 2749582525335488037, guid: b2adba1d099a8c24fb8b6f735e12f1e9, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: f451be88436e3594c9f215d08afe1db5, type: 3}
   SecretaryQuotes:
