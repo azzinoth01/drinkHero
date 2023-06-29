@@ -18,8 +18,7 @@ MonoBehaviour:
   SecretaryPrefab: {fileID: 2749582525335488037, guid: 7db2d5b1dbfaa5d48a11a6512c3e1b92, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: a8db8488f6c41204a9976adaccce2118, type: 3}
   SecretaryQuotes:
-  - Text1
-  - Text2
-  - Text3
-  - Text4
-  SecretarySpezialTouchQuote: Fuck off, you pervert!
+  - Hey pal, are you waiting for a ride or do you want to have a drink?
+  - Why do people keep badmouthing me? It's not like I'm doing much.
+  - There's no chance, that you're faster than me on a bike! no one is, haha!
+  SecretarySpezialTouchQuote: I don't think this is appropriate...

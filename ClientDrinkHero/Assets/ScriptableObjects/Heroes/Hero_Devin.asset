@@ -18,8 +18,9 @@ MonoBehaviour:
   SecretaryPrefab: {fileID: 2749582525335488037, guid: cbdc7651c1bce4b49a0c498cc938bf48, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: 61de33627dee6764db744814a392a808, type: 3}
   SecretaryQuotes:
-  - Text1
-  - Text2
-  - Text3
-  - Text4
-  SecretarySpezialTouchQuote: Fuck off, you pervert!
+  - Oh, hey there, didn't see you... Not like I'm watching you... at least not all
+    the time. hehe...
+  - You're not using me? ... No, no, that's fine, no problem at all.....
+  - I'll get rid of all those little pests. Just tell me when.
+  SecretarySpezialTouchQuote: Oh, so you do want to... Just you and me... yes, just
+    you and me, hehehe...

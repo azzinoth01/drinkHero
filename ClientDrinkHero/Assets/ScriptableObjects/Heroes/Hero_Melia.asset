@@ -18,8 +18,7 @@ MonoBehaviour:
   SecretaryPrefab: {fileID: 2749582525335488037, guid: b2adba1d099a8c24fb8b6f735e12f1e9, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: f451be88436e3594c9f215d08afe1db5, type: 3}
   SecretaryQuotes:
-  - Text1
-  - Text2
-  - Text3
-  - Text4
-  SecretarySpezialTouchQuote: Fuck off, you pervert!
+  - Melia on the job! I saw that in a game and always wanted to say that.
+  - This is the last time I participate in any sort of beach activity!
+  - I often overhear people talking about melons. Looks like I'm quite popular!
+  SecretarySpezialTouchQuote: Oh stop it, you...

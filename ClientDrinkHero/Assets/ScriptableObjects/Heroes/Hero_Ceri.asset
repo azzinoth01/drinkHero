@@ -18,8 +18,7 @@ MonoBehaviour:
   SecretaryPrefab: {fileID: 2749582525335488037, guid: 4dfbe9fa08e10fb49a61b31cf003aea9, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: c91cf065146188347bcdfeb8fd26d454, type: 3}
   SecretaryQuotes:
-  - Text1
-  - Text2
-  - Text3
-  - Text4
-  SecretarySpezialTouchQuote: Fuck off, you pervert!
+  - Cherry Bomb! ... Just kidding, I can't do that. ... yet.
+  - No, I didn't fall down. I just wasn't able to take of with my little wings...
+  - Why do people always ask if I'm sweet or sour? Both is delicious!
+  SecretarySpezialTouchQuote: Wha-! You... You can't do that!

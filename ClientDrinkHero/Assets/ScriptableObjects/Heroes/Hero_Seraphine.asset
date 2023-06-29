@@ -18,8 +18,9 @@ MonoBehaviour:
   SecretaryPrefab: {fileID: 2749582525335488037, guid: 6ba5227bdf648ba49b439263f688b29a, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: bcfc5a97b9e1b6a43aec8469025ba19a, type: 3}
   SecretaryQuotes:
-  - Text1
-  - Text2
-  - Text3
-  - Text4
-  SecretarySpezialTouchQuote: Fuck off, you pervert!
+  - The lords endless wisdom has led me here. What can his humble servant do for
+    you?
+  - Now why would I want to do that?
+  - Say that again and you'll get a special meeting with my hop cone.
+  SecretarySpezialTouchQuote: The lord has blessed this pact. Do this with someone
+    else and feel our wrath.

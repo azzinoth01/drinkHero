@@ -18,8 +18,9 @@ MonoBehaviour:
   SecretaryPrefab: {fileID: 2749582525335488037, guid: f7adde7cd6104ba498b6a296727438f8, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: 6538c8c9e7719db4a80e0e4ee3b5e6fc, type: 3}
   SecretaryQuotes:
-  - Text1
-  - Text2
-  - Text3
-  - Text4
-  SecretarySpezialTouchQuote: Fuck off, you pervert!
+  - Good evening. To what do I owe the pleasure?
+  - Why do people like my sister Scarlet more than me?
+  - I often think about the origin of monsters. Where do they come from and what
+    do they want?
+  SecretarySpezialTouchQuote: How dare you insolent fool try to do such an outrageous
+    thing?!

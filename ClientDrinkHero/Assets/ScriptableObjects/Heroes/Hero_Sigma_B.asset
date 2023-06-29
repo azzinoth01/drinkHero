@@ -18,8 +18,8 @@ MonoBehaviour:
   SecretaryPrefab: {fileID: 2749582525335488037, guid: 3d14f5d21a7c2724bb29ebd00e5a57a7, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: dc331a56b243e734495ae4f2864cc587, type: 3}
   SecretaryQuotes:
-  - Text1
-  - Text2
-  - Text3
-  - Text4
-  SecretarySpezialTouchQuote: Fuck off, you pervert!
+  - Sigma B. at your service. What do you need?
+  - What about my cosin FR4N. I don't prefer talking about her.
+  - No I don't have 7 lives, why do ask?!
+  SecretarySpezialTouchQuote: While I don't mind the attention, I must remind you
+    that there are others nearby.

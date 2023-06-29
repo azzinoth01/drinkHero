@@ -18,8 +18,8 @@ MonoBehaviour:
   SecretaryPrefab: {fileID: 2749582525335488037, guid: d7f830f649334fd4f93467f3ea04489d, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: 2f8b7508afd79284b845741cb4b93b5e, type: 3}
   SecretaryQuotes:
-  - Text1
-  - Text2
-  - Text3
-  - Text4
-  SecretarySpezialTouchQuote: Fuck off, you pervert!
+  - Let's have cans of fun together!
+  - I just had a fight with my cousin. After all these years, me and Pep still don't
+    get along...
+  - Some woman just called me unhealthy, can you belive that?!
+  SecretarySpezialTouchQuote: Oh, I have something in mind to quell your thirst.
