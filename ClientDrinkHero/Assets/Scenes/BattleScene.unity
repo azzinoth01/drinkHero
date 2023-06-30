@@ -8922,24 +8922,24 @@ MonoBehaviour:
   - {fileID: 2033555191}
   - {fileID: 1042985822}
   playerCharacterPrefabs:
-  - {fileID: 0}
+  - {fileID: 1956794946603943148, guid: 2d27758956925f94b9fa34e36dcb5f7d, type: 3}
   - {fileID: 6206749736483379237, guid: f068dbc3afa0fa74f896b558764c8d07, type: 3}
   - {fileID: 6737728011757709234, guid: f4fbab77124113246afb203ffb7048fb, type: 3}
   - {fileID: 490438465247785664, guid: 7bbeb4a4b780c1643b87fbf76cff7b26, type: 3}
   - {fileID: 8115661590948429477, guid: b6be440dfaffb7840a0aff19eaef63d7, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 643466915039563581, guid: af03b4f7d1381f94898bffc28b15752d, type: 3}
+  - {fileID: 5498367802293388109, guid: adae042b4d6fcaa4b82f0538bfbbfcef, type: 3}
   - {fileID: 8207373821863490152, guid: adf822e4007e784419c17e60066ae94d, type: 3}
-  - {fileID: 0}
+  - {fileID: 8758025253038595760, guid: c652d76b4e3747d4d8bf161d31eead2f, type: 3}
   - {fileID: 7935824741664598851, guid: 8bfc53b89f0f17a4c83fbc88f3f8286a, type: 3}
-  - {fileID: 0}
+  - {fileID: 2598167853312401598, guid: f890e0fd9474b68439de1a637ac2f1d7, type: 3}
   - {fileID: 3197279577085230165, guid: 3819b8668b8e2b949903929cf264872a, type: 3}
   - {fileID: 7014747158392843487, guid: 6b4d9406fa2fa314aa7156e75346b61d, type: 3}
   - {fileID: 8531456242909474957, guid: 51b522de6e6376848b1f753635ace020, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 9040752931762484950, guid: 611b47ca80df0bd44a0c743293e0ecc3, type: 3}
+  - {fileID: 8954444727681691477, guid: 320c453c12f5b024d9111432dac97420, type: 3}
+  - {fileID: 7268183098049330300, guid: 21d2c75c9d4788a48a570623d6db2bba, type: 3}
+  - {fileID: 5694489200329751735, guid: 8d9eca721639ede43a3a81f92bc28db8, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
