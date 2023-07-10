@@ -8940,8 +8940,8 @@ MonoBehaviour:
   - {fileID: 8954444727681691477, guid: 320c453c12f5b024d9111432dac97420, type: 3}
   - {fileID: 7268183098049330300, guid: 21d2c75c9d4788a48a570623d6db2bba, type: 3}
   - {fileID: 5694489200329751735, guid: 8d9eca721639ede43a3a81f92bc28db8, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4038282329253489954, guid: 19d535ef1ca8d1443ae57ab6555a6e70, type: 3}
+  - {fileID: 7027705097714153855, guid: 1c8d962826731814db3c43fb61018bdf, type: 3}
   - {fileID: 0}
   playerCharacters: []
 --- !u!1 &2128304700 stripped
