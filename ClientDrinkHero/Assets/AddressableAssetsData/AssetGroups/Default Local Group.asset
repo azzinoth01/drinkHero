@@ -649,6 +649,162 @@ MonoBehaviour:
     m_Address: Assets/Art/UI
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: c5f5e84f0c048af4cae3ab38deb0d718
+    m_Address: Assets/Art/UI/Cards/Icons/NO/EmergencyWineInfusion_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b103bd980b49cd846afbee6a540d103f
+    m_Address: Assets/Art/UI/Cards/Icons/NO/GrapeStomper_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 411d599109e459044b6d7935b3036db5
+    m_Address: Assets/Art/UI/Cards/Icons/NO/AlcoholPoisoning_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 54efeb02f5ea2354db1ee2a4b643cf14
+    m_Address: Assets/Art/UI/Cards/Icons/NO/NightHarvest_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5f0ca1c9508c6334c8e0f09f7e9ac9d5
+    m_Address: Assets/Art/UI/Cards/Icons/NO/WaveringFists_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4020b6d9239073844aa9875b65d12e89
+    m_Address: Assets/Art/UI/Cards/Icons/NO/ByeByeBraincells_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 85576f111758cdb45968ac59ced11c48
+    m_Address: Assets/Art/UI/Cards/Icons/NO/ButEnoughTalk_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cb126f6c0587540409f8eedc8f96bc01
+    m_Address: Assets/Art/UI/Cards/Icons/NO/WateredDown_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 649068a7b8a12154cb614af5916d5329
+    m_Address: Assets/Art/UI/Cards/Icons/NO/SwigSwap_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ca2935a32d815bb43851a68c8306f89e
+    m_Address: Assets/Art/UI/Cards/Icons/NO/BloodToIron_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: eb5b3fa9c61937a4795b26eb3bc95b96
+    m_Address: Assets/Art/UI/Cards/Icons/TF/KegThrow_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 73968fd4088322a4f944c38dc8c20147
+    m_Address: Assets/Art/UI/Cards/Icons/TF/OakBarrelFortress_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: deb04102d1bb9a44ea0ca8ac688a746d
+    m_Address: Assets/Art/UI/Cards/Icons/TF/YeastMeUp_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bff9f951bc4dc254cbe19198f37a22cf
+    m_Address: Assets/Art/UI/Cards/Icons/TF/MashTheirGrainsIn_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 104b6a2c9cfa8a244bedaa1dc8ab6703
+    m_Address: Assets/Art/UI/Cards/Icons/TF/BeerBong_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c8a2db81de4c11f4d9fba0dc0f08f600
+    m_Address: Assets/Art/UI/Cards/Icons/TF/HeavyFermentation_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3729ba8155a00eb40bffe2cff88aa525
+    m_Address: Assets/Art/UI/Cards/Icons/TF/ShieldBash_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7a4a6c8ab7a107b43ade706cd67e4596
+    m_Address: Assets/Art/UI/Cards/Icons/TF/DefensiveDrinker_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 96d54701d94b8f1419b23ec327c8593c
+    m_Address: Assets/Art/UI/Cards/Icons/TF/BarrelAged_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 153360716cd802a4f8b7e1cb1522b990
+    m_Address: Assets/Art/UI/Cards/Icons/TF/ShieldDrain_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b586bdff408448d409c4295283f6c9af
+    m_Address: Assets/Art/UI/Cards/Icons/JC/Windfall_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: efd19204d2a7dfe4f82b4ee42eb82048
+    m_Address: Assets/Art/UI/Cards/Icons/JC/JuiceFast_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 78b225dd2ad111749800756c2f80ae11
+    m_Address: Assets/Art/UI/Cards/Icons/JC/GetPeeled_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2c813d36f0e17ba49a1935e69d799c22
+    m_Address: Assets/Art/UI/Cards/Icons/JC/JuiceCleanse_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d04af7dc0356df34aadc9ef2f2b4115d
+    m_Address: Assets/Art/UI/Cards/Icons/JC/Immunize_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 52b272adb0e5c7d4fb2d91f65dfc6897
+    m_Address: Assets/Art/UI/Cards/Icons/JC/BIGHeal_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 63f9bb5b3964d004fb1d54acf3f8db88
+    m_Address: Assets/Art/UI/Cards/Icons/JC/JuiceExtractor_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ae028f83da6adcf4095a75ef7b69dcb1
+    m_Address: Assets/Art/UI/Cards/Icons/JC/VitaminShock_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 129990d1c9ea3414c920079ebb790c98
+    m_Address: Assets/Art/UI/Cards/Icons/JC/JuiceMustFlow_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2b8ba275220541e4f9b8028e0c74d1b6
+    m_Address: Assets/Art/UI/Cards/Icons/JC/Debuff_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3343ec08605cf8b428dde76aa4ff8403
+    m_Address: Assets/Art/UI/Cards/Icons/SDI/BottleBarrage_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 408d32b8222781248be814b31afffcf2
+    m_Address: Assets/Art/UI/Cards/Icons/SDI/CaffeineRush_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: eb72bcfc4aa80114db9ece571d583572
+    m_Address: Assets/Art/UI/Cards/Icons/SDI/SugarTooth_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 79eddda4b817ec84fbe5b98e4178773d
+    m_Address: Assets/Art/UI/Cards/Icons/SDI/StreamOfSoda_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e64bfa2cb3e32d04c88918fd9b64a0e6
+    m_Address: Assets/Art/UI/Cards/Icons/SDI/HealthHazard_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5d83b5509911cbd42ab9008d8f41d6a9
+    m_Address: Assets/Art/UI/Cards/Icons/SDI/AcidReflux_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f8decb0a8235a1e45acd354f22b9dc00
+    m_Address: Assets/Art/UI/Cards/Icons/SDI/QuickRefresher_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b9b9de10aae206f41b0e22b081188540
+    m_Address: Assets/Art/UI/Cards/Icons/SDI/IntimidatingBurp_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b90ad24d0a2468f43bd8b5b2a0cc89d7
+    m_Address: Assets/Art/UI/Cards/Icons/SDI/Shield_card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: eec1fc06f579f5f42a362364ce39639f, type: 2}
   m_SchemaSet:
