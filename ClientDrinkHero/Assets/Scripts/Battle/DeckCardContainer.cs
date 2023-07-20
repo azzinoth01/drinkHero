@@ -49,7 +49,13 @@ public class DeckCardContainer : ICardDisplay {
     }
 
     public string GetSpritePath() {
-        return _hero.SpritePath;
+        Debug.Log("GETSPRIEPATH");
+        return _card.GetIconPath();
+    }
+    public string GetIconPath()
+    {
+        Debug.Log("GETSPRIEPATH");
+        return _card.GetIconPath();
     }
 
     public string CardText() {
