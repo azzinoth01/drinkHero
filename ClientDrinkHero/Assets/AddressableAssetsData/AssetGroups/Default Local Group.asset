@@ -805,6 +805,222 @@ MonoBehaviour:
     m_Address: Assets/Art/UI/Cards/Icons/SDI/Shield_card.png
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 61de33627dee6764db744814a392a808
+    m_Address: Assets/Art/Character/Devin/Devin_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3c55a43bf13be5c439df88fd8a88938a
+    m_Address: Assets/Art/Character/Devin/Devin_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c0e4363ae85b3b24781a9afe8634b9f9
+    m_Address: Assets/Art/Character/Devin/Devin_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6436e765af395ea4ca561b6cc1e6455d
+    m_Address: Assets/Art/Character/Devin/Devin_chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: db3a5b36c499a94489a992dc32eccdc6
+    m_Address: Assets/Art/Character/Devin/Devin_portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bc590f781345c2645add64f24f3e8324
+    m_Address: Assets/Art/Character/Devin/Devin_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0e772726e30142f4d91cb95df1b2dd29
+    m_Address: Assets/Art/Character/Devin/Devin_slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a5a90e24eee23844fb053d14ae79f3cf
+    m_Address: Assets/Art/Character/Jackie/Jackie_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 59d41b135bb2a79499a83dff853fb242
+    m_Address: Assets/Art/Character/Jackie/Jackie_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 32f156be50b10954481ea4519d2491a8
+    m_Address: Assets/Art/Character/Jackie/Jackie_portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 39ac1bd3df48d1644a5b63dbf1399afd
+    m_Address: Assets/Art/Character/Jackie/Jackie_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bb5c23e82d0b4594c884b2065c876238
+    m_Address: Assets/Art/Character/Jackie/Jackie_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2ef2f1630ca1ab24db5f7a9cc1a4aaf5
+    m_Address: Assets/Art/Character/Jackie/Jackie_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5f6fd55516b913d428e257f41a1fecef
+    m_Address: Assets/Art/Character/Jackie/Jackie_slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 36a5ef6801586354e96f0a25f959c734
+    m_Address: Assets/Art/Character/OJ/OJ_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 77662f2cc130d1d42ac599e368ab9cd7
+    m_Address: Assets/Art/Character/OJ/OJ_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e15576c88dc104e49b6d80a81da6338a
+    m_Address: Assets/Art/Character/OJ/OJ_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b4ffa0ea11fe21642877712c0f8cdc23
+    m_Address: Assets/Art/Character/OJ/OJ_slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4604bf1277dd86647a98670c7606f56b
+    m_Address: Assets/Art/Character/OJ/OJ_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4909472e9192c8a4b8618077961df1ca
+    m_Address: Assets/Art/Character/OJ/OJ_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4aacd1fdcb7abfc45afeb3feea588b5e
+    m_Address: Assets/Art/Character/OJ/OJ_portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a8db8488f6c41204a9976adaccce2118
+    m_Address: Assets/Art/Character/Ramon/Ramon_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 00a45a7afdc68834db5e2f9a54d638a6
+    m_Address: Assets/Art/Character/Ramon/Ramon_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ea483547b06c3d548bb55fa540f09bcc
+    m_Address: Assets/Art/Character/Ramon/Ramon_slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: db006a7b661cc234589036580787ad69
+    m_Address: Assets/Art/Character/Ramon/Ramon_portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fb0d2d4f652e59f47bb6c439f771c92f
+    m_Address: Assets/Art/Character/Ramon/Ramon_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5cd1c282d6109564b88076d37176a359
+    m_Address: Assets/Art/Character/Ramon/Ramon_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: adf6e1b7f8a1c6d438fed92ff331b51a
+    m_Address: Assets/Art/Character/Ramon/Ramon_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bcfc5a97b9e1b6a43aec8469025ba19a
+    m_Address: Assets/Art/Character/Seraphine/Seraphine_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 004323d5aa27d414d964ccf5ca293af3
+    m_Address: Assets/Art/Character/Seraphine/Seraphine_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 60a71cd73703d12459b53b8531d28ab2
+    m_Address: Assets/Art/Character/Seraphine/Seraphine_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 56d31dc0678c83c4d89cb1c4e8e21469
+    m_Address: Assets/Art/Character/Seraphine/Seraphine_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a8f9b7e63ca6c6f46ae6783621111c7b
+    m_Address: Assets/Art/Character/Seraphine/Seraphine_portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9e968b8d388fdca439039342fa5c953d
+    m_Address: Assets/Art/Character/Seraphine/Seraphine_slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dc331a56b243e734495ae4f2864cc587
+    m_Address: Assets/Art/Character/Sigma_B/Sigma_B_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5a1083d38369e5a44a57d81e54459870
+    m_Address: Assets/Art/Character/Sigma_B/Sigma_B_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 28a51ff53b47fbb41b92f845675f3fea
+    m_Address: Assets/Art/Character/Sigma_B/Sigma_B_slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2e941aa4ae089d145bec0f2560e013de
+    m_Address: Assets/Art/Character/Sigma_B/Sigma_B_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4e18accc38d0d5543bd2847be0bdec2c
+    m_Address: Assets/Art/Character/Sigma_B/Sigma_B_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dfa01a8038868974aad5114f198891f1
+    m_Address: Assets/Art/Character/Sigma_B/Sigma_B_portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2e218a3b3d5167649ba07dcbaa69eedf
+    m_Address: Assets/Art/Character/Saki/Saki_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ba31a2ccbb81d2840afe863b1faf2995
+    m_Address: Assets/Art/Character/Saki/Saki_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b17f2570ad12fbc478b829533106eb67
+    m_Address: Assets/Art/Character/Saki/Saki_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 298cbeb689212484a9a6028e8d176211
+    m_Address: Assets/Art/Character/Saki/Saki_portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ca1f1be62c313df408bd4ba9130a5d6c
+    m_Address: Assets/Art/Character/Saki/Saki_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4d1824b8a20043e45af43f243ea0f1e3
+    m_Address: Assets/Art/Character/Saki/Saki_slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1f084d77dbb5521429bcce4cbd729c37
+    m_Address: Assets/Art/Character/Saki/Saki_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4d8665717c34c5d4a9fc0e047f24ab23
+    m_Address: Assets/Art/Character/Devin
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 21c5c8f986a859740aba76af190afece
+    m_Address: Assets/Art/Character/Jackie
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3ee6f4a253a9b494989c702b4ce0a7a4
+    m_Address: Assets/Art/Character/OJ
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f6888ad2425938241ad1a5da31d4343d
+    m_Address: Assets/Art/Character/Sigma_B
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f094b52866fd37247bd9447d686cd825
+    m_Address: Assets/Art/Character/Seraphine
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1f7de04ac238a06478f0b8eff44aff57
+    m_Address: Assets/Art/Character/Saki
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 17fd846003253334d9d8c652cb0418fe
+    m_Address: Assets/Art/Character/Ramon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: eec1fc06f579f5f42a362364ce39639f, type: 2}
   m_SchemaSet:
