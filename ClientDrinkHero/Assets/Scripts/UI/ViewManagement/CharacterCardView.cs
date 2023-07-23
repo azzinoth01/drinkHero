@@ -46,11 +46,12 @@ public class CharacterCardView : View {
             data.cost = card.Cost;
             data.description = card.Text;
             data.name = card.Name;
+            data.spritePath = card.GetSpritePath();
             cards.Add(data);
         }
 
         for (var i = 0; i < cardPreviews.Length; i++) {
-            cardPreviews[i].SetData(cards[i], character.SpritePath);
+            cardPreviews[i].SetData(cards[i]);
         }
 
 

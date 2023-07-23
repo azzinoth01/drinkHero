@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42453426fdae7d944877785cdc975644, type: 3}
+  m_Name: Hero_Coze
+  m_EditorClassIdentifier: 
+  ID: 11
+  Name: Coze
+  Unlocked: 0
+  SecretaryPrefab: {fileID: 2749582525335488037, guid: 1a83c2c10e096cb49a76a9f1e9c750ae, type: 3}
+  SecretarySpezialTouchImage: {fileID: 21300000, guid: ed0f27deb1f50ed48bd927431c51403c, type: 3}
+  SecretaryQuotes:
+  - Cans of fun, but no sugar baby!
+  - People tend to treat me like some cheap rip-off, just because my sister is so
+    popular.
+  - Yes, I know about the artificial sweeteners, but try beeing succesful and not
+    taste sweet!
+  SecretarySpezialTouchQuote: Taking the suit off takes a while, so be a dear and
+    wait until tonight, will ya?

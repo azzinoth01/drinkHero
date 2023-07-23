@@ -150,6 +150,7 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
         CheckDebuffsAndBuffs(ActivationTimeEnum.actionStart);
 
 
+        PlayerTeam.Instance.PlayAnimation("Attack");
         // Action
         for (int i = 0; i < _buffMultihit;) {
             Action(card);

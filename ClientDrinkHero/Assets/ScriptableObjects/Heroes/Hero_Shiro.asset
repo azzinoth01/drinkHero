@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42453426fdae7d944877785cdc975644, type: 3}
+  m_Name: Hero_Shiro
+  m_EditorClassIdentifier: 
+  ID: 14
+  Name: Shiro
+  Unlocked: 0
+  SecretaryPrefab: {fileID: 2749582525335488037, guid: 3e64f4b46e610d54c8e1946a7345ae20, type: 3}
+  SecretarySpezialTouchImage: {fileID: 21300000, guid: 5f5678e6c49704e4eadc5ed688193245, type: 3}
+  SecretaryQuotes:
+  - Heya, what can this lovely maid do for you?
+  - If you think I'll clean after you, than you're nuts. Do it yourself!
+  - I'll show these monsters what the devotion of a maid feels like!
+  SecretarySpezialTouchQuote: I'm not sure you should have such a relationship with
+    your servant.

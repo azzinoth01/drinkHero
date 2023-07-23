@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42453426fdae7d944877785cdc975644, type: 3}
+  m_Name: Hero_Ramon
+  m_EditorClassIdentifier: 
+  ID: 16
+  Name: Ramon
+  Unlocked: 0
+  SecretaryPrefab: {fileID: 2749582525335488037, guid: 7db2d5b1dbfaa5d48a11a6512c3e1b92, type: 3}
+  SecretarySpezialTouchImage: {fileID: 21300000, guid: a8db8488f6c41204a9976adaccce2118, type: 3}
+  SecretaryQuotes:
+  - Hey pal, are you waiting for a ride or do you want to have a drink?
+  - Why do people keep badmouthing me? It's not like I'm doing much.
+  - There's no chance, that you're faster than me on a bike! no one is, haha!
+  SecretarySpezialTouchQuote: I don't think this is appropriate...

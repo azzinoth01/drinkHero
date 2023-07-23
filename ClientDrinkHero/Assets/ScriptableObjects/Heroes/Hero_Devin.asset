@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42453426fdae7d944877785cdc975644, type: 3}
+  m_Name: Hero_Devin
+  m_EditorClassIdentifier: 
+  ID: 19
+  Name: Devin
+  Unlocked: 0
+  SecretaryPrefab: {fileID: 2749582525335488037, guid: cbdc7651c1bce4b49a0c498cc938bf48, type: 3}
+  SecretarySpezialTouchImage: {fileID: 21300000, guid: 61de33627dee6764db744814a392a808, type: 3}
+  SecretaryQuotes:
+  - Oh, hey there, didn't see you... Not like I'm watching you... at least not all
+    the time. hehe...
+  - You're not using me? ... No, no, that's fine, no problem at all.....
+  - I'll get rid of all those little pests. Just tell me when.
+  SecretarySpezialTouchQuote: Oh, so you do want to... Just you and me... yes, just
+    you and me, hehehe...

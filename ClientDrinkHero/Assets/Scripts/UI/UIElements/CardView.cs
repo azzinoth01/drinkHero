@@ -89,7 +89,7 @@ public class CardView : MonoBehaviour {
 
         }
 
-
+        Debug.Log(card.GetSpritePath());
         _loadCardSprite.LoadNewSprite(card.GetSpritePath());
         costText.SetText(card.CostText());
         cardDescription.SetText(card.CardText());

@@ -17,6 +17,7 @@ public class CardDatabase : DatabaseItem, ICardDisplay {
     [SerializeField] private string _text;
     [SerializeField] private int _cost;
     [SerializeField] private string _spritePath;
+    [SerializeField] private string _iconPath;
     private int? _refUpgradeTo;
     [SerializeField] private CardDatabase _upgradeTo;
     [SerializeField] private List<CardToHero> _heroList;
@@ -37,6 +38,7 @@ public class CardDatabase : DatabaseItem {
     private string _text;
     private int _cost;
     private string _spritePath;
+    private string _iconPath;
     private int? _refUpgradeTo;
     private CardDatabase _upgradeTo;
     private List<CardToHero> _heroList;
@@ -86,6 +88,16 @@ public class CardDatabase : DatabaseItem {
 
         set {
             _spritePath = value;
+        }
+    }
+    [Column("IconPath")]
+    public string IconPath {
+        get {
+            return _iconPath;
+        }
+
+        set {
+            _iconPath = value;
         }
     }
     [Column("RefUpgradeTo")]
@@ -420,7 +432,7 @@ public class CardDatabase : DatabaseItem {
     }
 
     public string GetSpritePath() {
-        return _spritePath;
+        return _iconPath;
     }
 
     public string CardText() {

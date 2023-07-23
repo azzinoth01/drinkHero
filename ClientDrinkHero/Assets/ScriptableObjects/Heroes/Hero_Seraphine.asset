@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42453426fdae7d944877785cdc975644, type: 3}
+  m_Name: Hero_Seraphine
+  m_EditorClassIdentifier: 
+  ID: 18
+  Name: Seraphine
+  Unlocked: 0
+  SecretaryPrefab: {fileID: 2749582525335488037, guid: 6ba5227bdf648ba49b439263f688b29a, type: 3}
+  SecretarySpezialTouchImage: {fileID: 21300000, guid: bcfc5a97b9e1b6a43aec8469025ba19a, type: 3}
+  SecretaryQuotes:
+  - The lords endless wisdom has led me here. What can his humble servant do for
+    you?
+  - Now why would I want to do that?
+  - Say that again and you'll get a special meeting with my hop cone.
+  SecretarySpezialTouchQuote: The lord has blessed this pact. Do this with someone
+    else and feel our wrath.

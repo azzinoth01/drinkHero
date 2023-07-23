@@ -37,15 +37,12 @@ public class CharacterCardPreview : MonoBehaviour {
         _loadSprite = cardPortrait.GetComponent<LoadSprite>();
     }
 
-    public void SetData(CardData data, string spritePath) {
+    public void SetData(CardData data) {
         cardCostText.SetText(data.cost.ToString());
         cardName.SetText(data.name);
         cardDescription.SetText(data.description);
         //cardPortrait = data.portrait;
-        if (_loadSprite == null) {
-            _loadSprite = cardPortrait.GetComponent<LoadSprite>();
-        }
-        _loadSprite.LoadNewSprite(spritePath);
+        _loadSprite.LoadNewSprite(data.spritePath);
     }
 
     private void CheckZoom() {
