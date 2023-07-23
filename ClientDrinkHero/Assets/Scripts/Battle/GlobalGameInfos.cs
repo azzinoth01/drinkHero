@@ -67,9 +67,4 @@ public class GlobalGameInfos : MonoBehaviour {
         return;
     }
 
-    private void OnDisable() {
-        ReadServerDataThread.KeepRunning = false;
-
-    }
-
 }

@@ -94,8 +94,7 @@ public class BattleView : View {
 
     }
 
-    private void BattleView_DiedEvent()
-    {
+    private void BattleView_DiedEvent() {
         if (PlayerPrefs.GetString("GameMode") != "Level")
             return;
 
@@ -109,7 +108,9 @@ public class BattleView : View {
         ShowGameOverScreen();
     }
 
-    private void OnDestroy() {
+
+
+    private void OnDisable() {
         UIDataContainer.Instance.Player.HealthChange -= UpdatePlayerHealthBar;
         UIDataContainer.Instance.Player.ShieldChange -= UpdatePlayerShieldCounter;
         UIDataContainer.Instance.Player.RessourceChange -= UpdatePlayerEnergyBar;
