@@ -42,6 +42,9 @@ public class CharacterCardPreview : MonoBehaviour {
         cardName.SetText(data.name);
         cardDescription.SetText(data.description);
         //cardPortrait = data.portrait;
+        if (_loadSprite == null) {
+            _loadSprite = cardPortrait.GetComponent<LoadSprite>();
+        }
         _loadSprite.LoadNewSprite(data.spritePath);
     }
 

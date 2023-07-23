@@ -28,6 +28,7 @@ public class UserDatabase : DatabaseItem {
     private int _money;
     private int _crystalBottles;
     private List<HeroToUserDatabase> _heroToUserDatabasesList;
+    private List<UserToUpradeItemDatabase> _userToUpgradeItemDatabaseList;
 
 #endif
 

@@ -50,8 +50,9 @@ public class CharacterUpgradeTab : MonoBehaviour {
         data.cost = hero.CardList[_cardIndex].Cost;
         data.description = hero.CardList[_cardIndex].Text;
         data.name = hero.CardList[_cardIndex].Name;
+        data.spritePath = hero.CardList[_cardIndex].GetSpritePath();
 
-        _currentCard.SetData(data, hero.SpritePath);
+        _currentCard.SetData(data);
 
         _upgradeButton.interactable = false;
         _costValue.SetText("0");
@@ -63,6 +64,7 @@ public class CharacterUpgradeTab : MonoBehaviour {
             data.cost = hero.CardList[_cardIndex].UpgradeTo.Cost;
             data.description = hero.CardList[_cardIndex].UpgradeTo.Text;
             data.name = hero.CardList[_cardIndex].UpgradeTo.Name;
+            data.spritePath = hero.CardList[_cardIndex].GetSpritePath();
 
             _upgradeButton.interactable = true;
 
@@ -70,6 +72,7 @@ public class CharacterUpgradeTab : MonoBehaviour {
         }
 
         foreach (LoadSprite loadSprite in _upgradeItemList) {
+
             loadSprite.LoadNewSprite(hero.CardList[_cardIndex].UpgradeItem.SpritePath);
         }
         foreach (UserToUpradeItemDatabase item in UserSingelton.Instance.UserObject.User.UserToUpgradeItemDatabaseList) {
@@ -79,7 +82,7 @@ public class CharacterUpgradeTab : MonoBehaviour {
         }
 
 
-        _uppgradeCard.SetData(data, hero.SpritePath);
+        _uppgradeCard.SetData(data);
     }
 
     private void NextCardData() {

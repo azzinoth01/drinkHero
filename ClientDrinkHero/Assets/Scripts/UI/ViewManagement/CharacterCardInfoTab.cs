@@ -18,8 +18,8 @@ public class CharacterCardInfoTab : MonoBehaviour {
             data.cost = hero.CardList[i].Cost;
             data.description = hero.CardList[i].Text;
             data.name = hero.CardList[i].Name;
-
-            cardPreview.SetData(data, hero.SpritePath);
+            data.spritePath = hero.CardList[i].GetSpritePath();
+            cardPreview.SetData(data);
 
             i = i + 1;
         }
