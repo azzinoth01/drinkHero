@@ -5,7 +5,7 @@ public interface ICardDisplay {
     public string ShieldText();
     public string HealthText();
     public string GetSpritePath();
-    public string GetIconPath();
+
     public string CardText();
 
     public string CardName();

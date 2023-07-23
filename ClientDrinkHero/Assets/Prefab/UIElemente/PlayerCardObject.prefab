@@ -479,7 +479,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteRender: {fileID: 8929981219153055091}
   _spritePath: 
-  _spritePathSufix: _card.png
+  _spritePathSufix: _Card.png
   _slot: 0
   _isEnemy: 0
   _noSlot: 1
