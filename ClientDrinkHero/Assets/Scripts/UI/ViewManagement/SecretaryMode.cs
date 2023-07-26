@@ -16,6 +16,7 @@ public class SecretaryMode : MonoBehaviour
     private int currentSelectionIndex = 0;
     private GameObject currentSecretary;
     private float textBoxTimer;
+    private int lastQuoteIndex = -1;
 
     private UnlockedHeroesPreviewHandler _unlockedHeroesPreviewHandler;
 
@@ -55,6 +56,12 @@ public class SecretaryMode : MonoBehaviour
     public void Touch()
     {
         int randomQuoteIndex = Random.Range(0, unlockedHeroes[currentSelectionIndex].SecretaryQuotes.Count);
+        if (lastQuoteIndex == randomQuoteIndex)
+        {
+            randomQuoteIndex = randomQuoteIndex == 0 ? ++randomQuoteIndex : --randomQuoteIndex;
+        }
+        lastQuoteIndex = randomQuoteIndex;
+
         SetText(unlockedHeroes[currentSelectionIndex].SecretaryQuotes[randomQuoteIndex]);
         string heroName = unlockedHeroes[currentSelectionIndex].Name;
         currentSecretary.GetComponentInChildren<Image>().sprite = AssetLoader.Instance.BorrowSprite("Assets/Art/Character/" + heroName + "/"  + heroName + "_" + randomQuoteIndex + ".png");
@@ -64,6 +71,7 @@ public class SecretaryMode : MonoBehaviour
     {
         currentSecretary.GetComponentInChildren<Image>().sprite = unlockedHeroes[currentSelectionIndex].SecretarySpezialTouchImage;
         SetText(unlockedHeroes[currentSelectionIndex].SecretarySpezialTouchQuote);
+        lastQuoteIndex = -1;
     }
 
     private void SetText(string text)
