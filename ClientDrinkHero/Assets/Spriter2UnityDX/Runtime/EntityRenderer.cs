@@ -81,6 +81,7 @@ namespace Spriter2UnityDX {
 
 		private void OnEnable () {
 			DoForAll (x => x.enabled = true);
+			SortingOrder = -1;
 		}
 
 		private void OnDisable () {
