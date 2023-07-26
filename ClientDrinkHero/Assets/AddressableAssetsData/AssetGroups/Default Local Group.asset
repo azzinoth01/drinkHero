@@ -1049,6 +1049,34 @@ MonoBehaviour:
     m_Address: Assets/Art/UI/Cards/Icons
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 1e73ffe391a1a3944a60a95ecb948ed8
+    m_Address: Assets/Art/Character/Georg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e1260f99d0a8e0b47921099c8389f5f3
+    m_Address: Assets/Art/Character/Georg/Georg_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a140006962c3b0840beeca9fc0305970
+    m_Address: Assets/Art/Character/Georg/Georg_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1e1fb6f875b38d042bdd261512c1e6bc
+    m_Address: Assets/Art/Character/Georg/Georg_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1355a38715c30a040b4dfff77add5f7f
+    m_Address: Assets/Art/Character/Georg/Georg_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e82e12111e54d984d9f5e7c81923339c
+    m_Address: Assets/Art/Character/Georg/Georg_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 07113a91945558942b224f36261dcb62
+    m_Address: Assets/Art/Character/Georg/Georg_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: eec1fc06f579f5f42a362364ce39639f, type: 2}
   m_SchemaSet:

@@ -282,6 +282,7 @@ MonoBehaviour:
   - {fileID: 169826872}
   - {fileID: 269153340}
   - {fileID: 759164678}
+  - {fileID: 759164678}
   characterButtons: []
   loadingPanel: {fileID: 1732143973}
   loadingText: {fileID: 1310544174}
