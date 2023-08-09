@@ -18,7 +18,7 @@ MonoBehaviour:
   SecretaryPrefab: {fileID: 2749582525335488037, guid: b4bc7fae254d71b4db940295a47fa864, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: 1f89f65534f0933479d85f59d8b02619, type: 3}
   SecretaryQuotes:
-  - Hiya, how are you doing? Wanna join me on a stroll?
-  - I always envy the others when they go shopping for shoes...
-  - Don't you worry, this berry carries a punch!
-  SecretarySpezialTouchQuote: Hnng~ This is not what I signed up for.
+  - Well, hello dear. Would you like to try some of my straberry milk?
+  - I'm sorry that I stole some of Sophies strawberries. They just taste so good...
+  - I'll show these monsters the full might of the Vanilla Village!
+  SecretarySpezialTouchQuote: Huh, but there's no milk in them...

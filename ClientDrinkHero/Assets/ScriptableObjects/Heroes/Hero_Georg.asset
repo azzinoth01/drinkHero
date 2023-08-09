@@ -18,7 +18,7 @@ MonoBehaviour:
   SecretaryPrefab: {fileID: 2749582525335488037, guid: 88f7207929321774ea91e6097f721a94, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: 1355a38715c30a040b4dfff77add5f7f, type: 3}
   SecretaryQuotes:
-  - Hiya, how are you doing? Wanna join me on a stroll?
-  - I always envy the others when they go shopping for shoes...
-  - Don't you worry, this berry carries a punch!
-  SecretarySpezialTouchQuote: Hnng~ This is not what I signed up for.
+  - Hey there fella. Wanna grab a drink?
+  - What do you mean not popular? I've got my fans and they love me.
+  - Nah it's fine. The barrel is not that heavy.
+  SecretarySpezialTouchQuote: Oh my... Sorry for the mess, I wasn't expecting this.

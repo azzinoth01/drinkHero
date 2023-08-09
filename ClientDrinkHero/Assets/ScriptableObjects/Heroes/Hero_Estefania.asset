@@ -18,8 +18,7 @@ MonoBehaviour:
   SecretaryPrefab: {fileID: 2749582525335488037, guid: 3d14f5d21a7c2724bb29ebd00e5a57a7, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: c535b3919f7a4694a850b4b3ce49bcef, type: 3}
   SecretaryQuotes:
-  - Sigma B. at your service. What do you need?
-  - What about my cosin FR4N. I don't prefer talking about her.
-  - No I don't have 7 lives, why do ask?!
-  SecretarySpezialTouchQuote: While I don't mind the attention, I must remind you
-    that there are others nearby.
+  - Do you want to hear some of my music?
+  - What do you mean, Hard Rock is better?
+  - No, I'm full of energy. I just like my vita rilassata.
+  SecretarySpezialTouchQuote: Huh? What do you want?

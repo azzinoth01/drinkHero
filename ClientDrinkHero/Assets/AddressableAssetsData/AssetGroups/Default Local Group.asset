@@ -1089,14 +1089,6 @@ MonoBehaviour:
     m_Address: Assets/Art/Character/Matzatli
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: bb5ee41933112f548bb2f9b4f80a1fbc
-    m_Address: Assets/Art/Character/Sojiro
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 9a90a5aec2ce2484f826bb607ae28ecb
-    m_Address: Assets/Art/Character/Vlad
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 59619f4394e1bb542ba58ac872d7cd96
     m_Address: Assets/Art/Character/Angel/Angel_0.png
     m_ReadOnly: 0

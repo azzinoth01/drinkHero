@@ -18,7 +18,7 @@ MonoBehaviour:
   SecretaryPrefab: {fileID: 2749582525335488037, guid: b4bc7fae254d71b4db940295a47fa864, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: a82c277a4d8a419488782250f0753046, type: 3}
   SecretaryQuotes:
-  - Hiya, how are you doing? Wanna join me on a stroll?
-  - I always envy the others when they go shopping for shoes...
-  - Don't you worry, this berry carries a punch!
-  SecretarySpezialTouchQuote: Hnng~ This is not what I signed up for.
+  - Greetings. Want me to freshen up your day?
+  - Fear the might of the pineapple warrior! ... Does this sound cringe?
+  - No, there is no sponge living in my pineapple. Why do you ask?
+  SecretarySpezialTouchQuote: Oh, would you fancy some extra training tonight?
