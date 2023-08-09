@@ -2400,7 +2400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4429cba078e8e4e8a8f1c958ae1765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlockedHeroes: []
   dialogTextBox: {fileID: 2054458496}
   buttons: {fileID: 2032930788}
   dialogText: {fileID: 221565280}
@@ -2441,9 +2440,29 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 7fcbf414b8cda5b48a0c1a769210e3b9, type: 3}
+    - target: {fileID: 8658967176324242593, guid: 0d33c064ca01f9d4fb762f4cf214f1b0, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658967176324242593, guid: 0d33c064ca01f9d4fb762f4cf214f1b0, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658967176324242593, guid: 0d33c064ca01f9d4fb762f4cf214f1b0, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658967176324242593, guid: 0d33c064ca01f9d4fb762f4cf214f1b0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8658967176324242594, guid: 0d33c064ca01f9d4fb762f4cf214f1b0, type: 3}
       propertyPath: m_Name
       value: BattlePreparationMenuButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658967176324242594, guid: 0d33c064ca01f9d4fb762f4cf214f1b0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8658967176324242595, guid: 0d33c064ca01f9d4fb762f4cf214f1b0, type: 3}
       propertyPath: m_Pivot.x
@@ -3754,6 +3773,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 918728288}
     m_Modifications:
+    - target: {fileID: 756923468, guid: 394317114bcba8c49ab1d2795cb96007, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2128767445863048452, guid: 394317114bcba8c49ab1d2795cb96007, type: 3}
       propertyPath: m_Name
       value: MenuBackground
@@ -3761,14 +3784,14 @@ PrefabInstance:
     - target: {fileID: 2128767445863048474, guid: 394317114bcba8c49ab1d2795cb96007, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2114df6b9ac37364f94b4d34bf83d8a5, type: 3}
+      objectReference: {fileID: 21300000, guid: 81ed8bb9714bf7247b4a232b037b3f01, type: 3}
     - target: {fileID: 2128767445863048474, guid: 394317114bcba8c49ab1d2795cb96007, type: 3}
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2128767445863048475, guid: 394317114bcba8c49ab1d2795cb96007, type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2128767445863048475, guid: 394317114bcba8c49ab1d2795cb96007, type: 3}
       propertyPath: m_Pivot.y
@@ -3780,27 +3803,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2128767445863048475, guid: 394317114bcba8c49ab1d2795cb96007, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2128767445863048475, guid: 394317114bcba8c49ab1d2795cb96007, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2128767445863048475, guid: 394317114bcba8c49ab1d2795cb96007, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2128767445863048475, guid: 394317114bcba8c49ab1d2795cb96007, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2128767445863048475, guid: 394317114bcba8c49ab1d2795cb96007, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 2397.813
       objectReference: {fileID: 0}
     - target: {fileID: 2128767445863048475, guid: 394317114bcba8c49ab1d2795cb96007, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 2128767445863048475, guid: 394317114bcba8c49ab1d2795cb96007, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3832,7 +3855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2128767445863048475, guid: 394317114bcba8c49ab1d2795cb96007, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 121.00012
       objectReference: {fileID: 0}
     - target: {fileID: 2128767445863048475, guid: 394317114bcba8c49ab1d2795cb96007, type: 3}
       propertyPath: m_AnchoredPosition.y
