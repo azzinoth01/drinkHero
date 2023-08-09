@@ -1077,6 +1077,186 @@ MonoBehaviour:
     m_Address: Assets/Art/Character/Georg/Georg_Slot.png
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: fecf3cccb30c44a46a4163e22e6e95b1
+    m_Address: Assets/Art/Character/Angel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 777021af70be937468a248fc3fdad39f
+    m_Address: Assets/Art/Character/Estefania
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c5acbdee9ea14e64db675dd89a809322
+    m_Address: Assets/Art/Character/Matzatli
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bb5ee41933112f548bb2f9b4f80a1fbc
+    m_Address: Assets/Art/Character/Sojiro
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9a90a5aec2ce2484f826bb607ae28ecb
+    m_Address: Assets/Art/Character/Vlad
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 59619f4394e1bb542ba58ac872d7cd96
+    m_Address: Assets/Art/Character/Angel/Angel_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 00605f120b2d19c4c9f095b8a8adc535
+    m_Address: Assets/Art/Character/Angel/Angel_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a472ca0c1bc766445b1f733637510304
+    m_Address: Assets/Art/Character/Angel/Angel_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 74408f6d0549f3a4796818912200a98f
+    m_Address: Assets/Art/Character/Angel/Angel_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f498bc6d55dcd15429b22fa0e9b05346
+    m_Address: Assets/Art/Character/Angel/Angel_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 58ff0c1dc264035438ff7164f2894d59
+    m_Address: Assets/Art/Character/Angel/Angel_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d6d25f3a02cc2fb4eaea1f8661957600
+    m_Address: Assets/Art/Character/Angel/Angel_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 52a41c72894d3e2499f80d8291a4b79d
+    m_Address: Assets/Art/Character/Matzatli/Matzali_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e857c5766e098fe4e88e39e7e6febc1a
+    m_Address: Assets/Art/Character/Matzatli/Matzali_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5b097d713d7012543a49738857d33c41
+    m_Address: Assets/Art/Character/Matzatli/Matzatli.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 388950999d4d9604cb904346be009248
+    m_Address: Assets/Art/Character/Matzatli/Matzatli_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a18e4b70a7431b24ba0750bfd5263fe5
+    m_Address: Assets/Art/Character/Matzatli/Matzatli_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 44630955477a9d640a3312dd515c3b94
+    m_Address: Assets/Art/Character/Matzatli/Matzatli_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a82c277a4d8a419488782250f0753046
+    m_Address: Assets/Art/Character/Matzatli/Matzatli_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e4875742e9c0cc449b0b104293e2ca8d
+    m_Address: Assets/Art/Character/Sojiro/Sojiro_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 415605400c83d9643a863deaf856f733
+    m_Address: Assets/Art/Character/Sojiro/Sojiro_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 48991e537aea8db469b716c425e8fa55
+    m_Address: Assets/Art/Character/Sojiro/Sojiro_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cb7044fe4fd81994dba29c540183a5d1
+    m_Address: Assets/Art/Character/Sojiro/Sojiro_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2004d76f4e1353949b28375c5ae2242b
+    m_Address: Assets/Art/Character/Sojiro/Sojiro_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a5d5dc88ba92a144da7be81de01fc496
+    m_Address: Assets/Art/Character/Sojiro/Sojiro_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 28f65eb20e941174c9b2636220d89d56
+    m_Address: Assets/Art/Character/Vlad/Vlad_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0d62d2b03dc931745b7a0f25d4e5e6cd
+    m_Address: Assets/Art/Character/Vlad/Vlad_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 26cc34e3a33167141b6207a8d4c65a0c
+    m_Address: Assets/Art/Character/Vlad/Vlad_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c1506a75befacca40bad21ee7357778b
+    m_Address: Assets/Art/Character/Vlad/Vlad_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1500d73fb828aac4f9e622d6a3afbe6b
+    m_Address: Assets/Art/Character/Vlad/Vlad_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d6cfe9b3f1ff4fa4dbe89dcaab65a9d3
+    m_Address: Assets/Art/Character/Vlad/Vlad_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e327005c27326e4419a1b0f84dcfa0b7
+    m_Address: Assets/Art/Character/Estefania/Estefania_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b42cb6e03b894de4fab6b8c9a9d00878
+    m_Address: Assets/Art/Character/Estefania/Estefania_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 16c56d3970b9a774cb30d8eef5cd6b90
+    m_Address: Assets/Art/Character/Estefania/Estefania_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c535b3919f7a4694a850b4b3ce49bcef
+    m_Address: Assets/Art/Character/Estefania/Estefania_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8b6fea3fdf929794eb1f8940f9980cb0
+    m_Address: Assets/Art/Character/Estefania/Estefania_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ccdbed6de8c1e8245a487ef6ea6503c1
+    m_Address: Assets/Art/Character/Estefania/Estefania_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 777ac463f6bcc374cb3171277b2917d8
+    m_Address: Assets/Art/Character/Stella/Stella_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6b15bcab92af280448e750dc34f46d4a
+    m_Address: Assets/Art/Character/Stella/Stella_1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ad4cda7905917264c91e5d66a070306c
+    m_Address: Assets/Art/Character/Stella/Stella_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1f89f65534f0933479d85f59d8b02619
+    m_Address: Assets/Art/Character/Stella/Stella_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f34f80590ee383d4ca23cc7450b299b5
+    m_Address: Assets/Art/Character/Stella/Stella_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 45b6ddad4fdfcf64c904295bc24427a8
+    m_Address: Assets/Art/Character/Stella/Stella_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 660f0bce7de815d41b9a24c3813b531c
+    m_Address: Assets/Art/Character/Stella/Stella_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: eec10bc9e7fe9954a8ecfe9e12cf1009
+    m_Address: Assets/Art/Character/Stella
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: eec1fc06f579f5f42a362364ce39639f, type: 2}
   m_SchemaSet:
