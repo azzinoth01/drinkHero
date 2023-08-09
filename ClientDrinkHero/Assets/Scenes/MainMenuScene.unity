@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 333.37897, y: 0}
-  m_SizeDelta: {x: 340.3463, y: 282.114}
+  m_AnchoredPosition: {x: 477.6, y: 0}
+  m_SizeDelta: {x: 473.1, y: 550}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &24489418
 MonoBehaviour:
@@ -182,8 +182,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Duc Hoang<line-height=70%>\n<size=60%>\rUI Art, Character Art</size><line-height=130%>\nPascal
-    Kruse<line-height=70%>\n<size=60%>\rCharacter & Background Art</size>\r<line-height=130%>\nDomi
-    Tichonow<line-height=70%>\n<size=60%>\rCharacter Art</size>\r<line-height=130%>"
+    Kruse<line-height=70%>\n<size=60%>\rCharacter & Background Art</size>\r<line-height=130%>\nLee
+    Komopka<line-height=70%>\n<size=60%>\rCharacter Art</size>\r<line-height=130%>\nVivien
+    Gruber<line-height=70%>\n<size=60%>\rCharacter Art</size>\r<line-height=130%>\nMichelle
+    Bronnbauer<line-height=70%>\n<size=60%>\rCharacter Art</size>\r<line-height=130%>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab249059f728a8e449abbd38ece0ac0a, type: 2}
   m_sharedMaterial: {fileID: -4825267499342889244, guid: ab249059f728a8e449abbd38ece0ac0a, type: 2}
@@ -210,7 +212,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.2
+  m_fontSize: 50.4
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3032,8 +3034,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -100, y: 0}
-  m_SizeDelta: {x: 377.8004, y: 396.3491}
+  m_AnchoredPosition: {x: -118.5, y: 116}
+  m_SizeDelta: {x: 377.8004, y: 550}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1658675892
 MonoBehaviour:
@@ -3057,8 +3059,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Nicolas Gail<line-height=70%>\n<size=60%>Executive Producer</size><line-height=130%>
     \nMarkus Dullnig<line-height=70%>\n<size=60%>Lead Programming, Network</size><line-height=130%>\nSteve
-    Voigt<line-height=70%>\n<size=60%>\rGamedesign & UI Programming</size><line-height=130%>\nCalixtus
-    Ulbricht<line-height=70%>\n<size=60%>Art Director, Character & Background Art</size><line-height=130%>"
+    Voigt<line-height=70%>\n<size=60%>\rGamedesign & UI> Programming</size><line-height=130%>\nCalixtus
+    Ulbricht<line-height=70%>\n<size=60%>Art Director, Character & Background Art</size><line-height=130%>\nErik
+    W\xF6rle<line-height=70%>\n<size=60%>Technical Producer</size><line-height=130%> "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ab249059f728a8e449abbd38ece0ac0a, type: 2}
   m_sharedMaterial: {fileID: -4825267499342889244, guid: ab249059f728a8e449abbd38ece0ac0a, type: 2}
@@ -3085,7 +3088,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.95
+  m_fontSize: 44
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4227,7 +4230,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 145.37286}
+  m_AnchoredPosition: {x: -522, y: 145.37286}
   m_SizeDelta: {x: 668.76, y: 154.33508}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &4547472345629476798
