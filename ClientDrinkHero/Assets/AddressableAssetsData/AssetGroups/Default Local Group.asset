@@ -1089,14 +1089,6 @@ MonoBehaviour:
     m_Address: Assets/Art/Character/Matzatli
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: bb5ee41933112f548bb2f9b4f80a1fbc
-    m_Address: Assets/Art/Character/Sojiro
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 9a90a5aec2ce2484f826bb607ae28ecb
-    m_Address: Assets/Art/Character/Vlad
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 59619f4394e1bb542ba58ac872d7cd96
     m_Address: Assets/Art/Character/Angel/Angel_0.png
     m_ReadOnly: 0
@@ -1255,6 +1247,1566 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: eec10bc9e7fe9954a8ecfe9e12cf1009
     m_Address: Assets/Art/Character/Stella
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 67c3e5ae65f98f84e9d6b46e5249ff77
+    m_Address: Assets/Scenes/InitScene.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e7eb11b9e9af5ea47be7a3bc1fdb40e7
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/Estefania.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 89bd3fbb02ac2984fae21b72b71ea686
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/Estefania.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0c1c89f86ee3b4e4fa059c945e22db99
+    m_Address: Assets/Art/Character/Angel/AngelAnimation/Angel.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 05da218986c867c48941460f4862ed17
+    m_Address: Assets/Art/Character/Angel/AngelAnimation/Angel.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2d27758956925f94b9fa34e36dcb5f7d
+    m_Address: Assets/Art/Character/Beatrice/BeatriceAnimation/Beatrice.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b099c0e636e81c4469d054c5a9f9a1f0
+    m_Address: Assets/Art/Character/Beatrice/BeatriceAnimation/Beatrice.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e1d1869918b5ec9449274930392cf146
+    m_Address: Assets/Art/Character/Beatrice/BeatriceAnimation/BeatriceSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a97a62c133b9bcc4eb92f0cebb14ca72
+    m_Address: Assets/Art/Character/Beatrice/Beatrice_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 08050ca09cc79c24fa4d48f5c396ce7e
+    m_Address: Assets/Art/Character/Angel/AngelAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 749875c6465563540bdf88ce359f6a64
+    m_Address: Assets/Art/Character/Blanc/Blanc_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d17c6c40780ef6e4b8062f157108c370
+    m_Address: Assets/Art/Character/Blanc/BlancAnimation/BlancSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: adae042b4d6fcaa4b82f0538bfbbfcef
+    m_Address: Assets/Art/Character/Blanc/BlancAnimation/Blanc.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d47a44b4f586edd40b3b81f096a80f1c
+    m_Address: Assets/Art/Character/Blanc/BlancAnimation/Blanc.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: eb30928d91979124dac168760a1c5db3
+    m_Address: Assets/Art/Character/Ceri/Ceri_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3923fcaa277eb654486096460fbc682b
+    m_Address: Assets/Art/Character/Ceri/CeriAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bbaca325db12045468b7317ece87c9ce
+    m_Address: Assets/Art/Character/Ceri/CeriAnimation/Ceri.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: af03b4f7d1381f94898bffc28b15752d
+    m_Address: Assets/Art/Character/Ceri/CeriAnimation/Ceri.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cf1cd5d7e22800041b11cd10df0f238c
+    m_Address: Assets/Art/Character/Coze/CozeAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b2f6b341cb23e0844b67635a9bf545e3
+    m_Address: Assets/Art/Character/Coze/Coze_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 667826c2c0d038642a4b67c0a25b501b
+    m_Address: Assets/Art/Character/Coze/Coze_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d132e09f7aae75e43adcc4a74e237621
+    m_Address: Assets/Art/Character/Coze/CozeAnimation/Coze.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f890e0fd9474b68439de1a637ac2f1d7
+    m_Address: Assets/Art/Character/Coze/CozeAnimation/Coze.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 76f58d5a3ac3ebf4d9066f7df2048df7
+    m_Address: Assets/Art/Character/Coze/CozeAnimation/CozeSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b667f9b7b044908499cc135f0e854ff0
+    m_Address: Assets/Art/Character/Daniela/DanielaAnimation/DanielaSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d41ef46626d273a4785c1933e19f4b77
+    m_Address: Assets/Art/Character/Daniela/DanielaAnimation/Daniela.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3819b8668b8e2b949903929cf264872a
+    m_Address: Assets/Art/Character/Daniela/DanielaAnimation/Daniela.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d6cc733523e24c84eafb53114bb90d0b
+    m_Address: Assets/Art/Character/Daniela/Daniela_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e617b5958af7f6044b62cb9a2c347153
+    m_Address: Assets/Art/Character/Devin/DevinAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 19d535ef1ca8d1443ae57ab6555a6e70
+    m_Address: Assets/Art/Character/Devin/DevinAnimation/Devin.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c0b95bc5baf14454caf28e517820767b
+    m_Address: Assets/Art/Character/Devin/DevinAnimation/Devin.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5ab035a06cd60f0418e68e927443d76c
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/EstefaniaSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 10e16ec9aa4d96d4895cda8ef998b466
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/EstefaniaSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 528df6ae4684cec42a5bfc6ca1fd4f1f
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/EstefaniaSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9360baa57851b7e4887c711cbe42a7ff
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/EstefaniaSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d85c69f9fcabff141943dd7132dae830
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/EstefaniaSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3a6d8a4287d022a40bb3145dbb0c75ab
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/EstefaniaSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3b4be07a6056e7145b0bd1e876063f89
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/EstefaniaSprites/LowerBodyBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5be316e26e958a44d89141d97b8368ea
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/EstefaniaSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7b03c0f88465ecd4784f11fdd1668197
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/EstefaniaSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5c24fde4401b1f342b26819892ba2781
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/EstefaniaSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1d9552e236a61274a980b99ff7681e77
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/EstefaniaSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7dbde17dd212cc54193e8e0e3d673033
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/EstefaniaSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3e881a3075fe00445ab71e7ecd781a6c
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/EstefaniaSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9eec96bcd43d7e84fb370db40cfdcfc7
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/EstefaniaSprites/HeadBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: aef2b45695ad46b4b82f21fb37b19d9a
+    m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/EstefaniaSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8080cde6823f99e49a215fe5cfc1ed74
+    m_Address: Assets/Art/Character/FR4N/FR4N_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6e3f48cd5b54ace4b89975097bad4a20
+    m_Address: Assets/Art/Character/FR4N/FR4NAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e329b3df2f383294385317fc3e9b7cb0
+    m_Address: Assets/Art/Character/FR4N/FR4NAnimation/FR4N.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c652d76b4e3747d4d8bf161d31eead2f
+    m_Address: Assets/Art/Character/FR4N/FR4NAnimation/FR4N.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1671f2c8d907c474fb3395be206346f0
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 75044b1ee364a2c4b91ccbacdc904c8d
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation/GeorgSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 353944d004e90924fa5582f1b12966af
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation/Georg.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e7f51e5b03e79774ca00a5864a099547
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation/Georg.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9270ca6da2d78294cb054138d0b06023
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation/GeorgSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 34cdec4dd5a3d5d41af7156cb242eade
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation/GeorgSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 94c96c0123d94e640a8acd163629d23f
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation/GeorgSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f4d350d4c73dba341924bacd9349cbf7
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation/GeorgSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3573d2117edd8d14c8db7e7800671c80
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation/GeorgSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e5afe55b61b1ec44c8688324fecb3a15
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation/GeorgSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 36b05a8edde23b04dbbe945875402831
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation/GeorgSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e79892a5f31ca7942ac806249e8b3587
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation/GeorgSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f96702446ae5736418ea72b053bf43d3
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation/GeorgSprites/UpperBodyback.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8b266298ded31ca42b70ee58c009e8ba
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation/GeorgSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ab55efc1e17a45249b95cfafff7fad08
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation/GeorgSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1d850bd3e3564c84b86bb05ea38653d8
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation/GeorgSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cde6428c04699814e90e11d8f734b1f4
+    m_Address: Assets/Art/Character/Georg/GeorgAnimation/GeorgSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ea28b5e8ae3326448adf3d1dc26b67fc
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d09abc9de7c37c64194ece2dcadec093
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1c8d962826731814db3c43fb61018bdf
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkers.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bf45c7ea2156e814da1ae8fcc45a096e
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkers.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 44875eb841e499b4890969d860c3db77
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 84fdeddaab169ee49811c25eb7b34589
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/LowerBodyBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d4d25891ba09e80419f8f7a4fba5ee18
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f41d7af27d1e9d340a39a709cea9fb47
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/HeadBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 25151d6068c41304180359410426eee8
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b68c866a63ea143428453058db318385
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e9b3c4604074cc14d8e1f62ca062cc97
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/UpperBodyFront.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e96cba3b44c63d64799f1dd029656b61
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1aeeb57e35ea2f34c9d95920f18401ad
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cbae97d0ba4fab0498d31a359df52d6e
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7c876f6dbcee3e444a70d580bd141104
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7d0f744790a39c14b8f7a0d402774f2a
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bd5eb37efda43e647964381afff6ab33
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ee2c5d3beee38bf4295de8a0c8a19134
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fff5f1e824e0c6e41ae8c5822f5ba58c
+    m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ce13e68aae6adf040ac46450c1a9c7b0
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarlet_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f3f55fbe74a6df848ae85058fe2585fb
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b6be440dfaffb7840a0aff19eaef63d7
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation/LadyScarlet.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 463942512217adc48a8e1a6577076446
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation/LadyScarlet.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 48c977c221fbcee4aa08805e0c71f336
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation/LadyScarletSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 32b7d51e2d8358c49b48c0d0ea3dd55e
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation/LadyScarletSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4225831a32b957c43b356629845902e0
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation/LadyScarletSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5255e91844e80e542b1c8b5f1e7c46e1
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation/LadyScarletSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 520687bacc6ad0541831e7a8928bad95
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation/LadyScarletSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a5624e2159bbe0749b0c7a49d55e048d
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation/LadyScarletSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 767b280403ffa2b41a33fd617e31c1bf
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation/LadyScarletSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 377844f84a169db4c86d18620314814e
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation/LadyScarletSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 48459bb46dd15ef40b60dd1d2bc5c32d
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation/LadyScarletSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ca3b4ae23238e684ab47093117efad55
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation/LadyScarletSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: db7e6b2c50ced8241839504faff14c4b
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation/LadyScarletSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5d6c25c3211ca964ca343ff7421e35f7
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation/LadyScarletSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: adb246f91db542a4b9eb5baf4c4d9bac
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation/LadyScarletSprites/HeadBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7f398c7172188f34e9fe5033c7087701
+    m_Address: Assets/Art/Character/LadyScarlet/LadyScarletAnimation/LadyScarletSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8e86ad18115cf324dbf603241f884ba9
+    m_Address: Assets/Art/Character/Laeticia/Laeticia_Portrait.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d29d39e98a2a94c45861c965a92efbee
+    m_Address: Assets/Art/Character/Laeticia/Laeticia_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 976c5cd7f77401642af308ec11a9f9b9
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7bbeb4a4b780c1643b87fbf76cff7b26
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/Laeticia.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6b2bc24d7a7d2e74a8690b58d96c68af
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/Laeticia.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 50cbeddc8c500464db79426c23e5d432
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/LaeticiaSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b9b28f713c1860f4ca76e2ccb075377d
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/LaeticiaSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5be056889a36b024c8a0c813afa3f83a
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/LaeticiaSprites/UpperBodyback.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4dedb61f10b800c4fb18b2fb8e1de207
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/LaeticiaSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: adb72ad7bb31527488f3df209be97d22
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/LaeticiaSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a3d0dd63038717846ad02e1f43698d61
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/LaeticiaSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 641dc94c3732d1c4282563a81ae53db6
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/LaeticiaSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 86e2241ed3debae43a14dc41629d6d95
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/LaeticiaSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e66dede533c5b9944a4a0876e34ac627
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/LaeticiaSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 18315de91b16a3a4c95814b37854031a
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/LaeticiaSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fd15268853558fa40b5f5158e0893240
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/LaeticiaSprites/HeadBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 627f9c2a4bc033545b6dea893e43f7d2
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/LaeticiaSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7533d5905bbb8b64980881b6bb905e6d
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/LaeticiaSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ba7c7244edb9e2c4c98df1bf0f68b013
+    m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/LaeticiaSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6ac9f4f2f74f7094dac17cd19d6c421e
+    m_Address: Assets/Art/Character/Lola/LolaAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f4ac72217b5591f4aba0fdb881fcbb38
+    m_Address: Assets/Art/Character/Lola/Lola_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: adf822e4007e784419c17e60066ae94d
+    m_Address: Assets/Art/Character/Lola/LolaAnimation/Lola.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e2914da54173fa5418f242005d6471ef
+    m_Address: Assets/Art/Character/Lola/LolaAnimation/Lola.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 214961de4be7ca14d879ac460833b241
+    m_Address: Assets/Art/Character/Lola/LolaAnimation/LolaSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0234b52e3e9b73745808659ccff7c772
+    m_Address: Assets/Art/Character/Lola/LolaAnimation/LolaSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 22d815f518c331a40976a105702b53c2
+    m_Address: Assets/Art/Character/Lola/LolaAnimation/LolaSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 52e147d97059b3f468ecee316b8dfbac
+    m_Address: Assets/Art/Character/Lola/LolaAnimation/LolaSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f285f0758b0f83140a8640a60ee5a094
+    m_Address: Assets/Art/Character/Lola/LolaAnimation/LolaSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 46b38e91c49794f4394a8da1e4a5adc9
+    m_Address: Assets/Art/Character/Lola/LolaAnimation/LolaSprites/HeadBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 47c7e4f6598c6314480270f23e79d8ae
+    m_Address: Assets/Art/Character/Lola/LolaAnimation/LolaSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d7d02d063a902964fac4c0eaae32e4d9
+    m_Address: Assets/Art/Character/Lola/LolaAnimation/LolaSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 886813dd3d205ce4cba7afecccf7dc14
+    m_Address: Assets/Art/Character/Lola/LolaAnimation/LolaSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f9d2c215d27b31241a4a48b5ab8a3e4d
+    m_Address: Assets/Art/Character/Lola/LolaAnimation/LolaSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2d937abc7bdd4f049b71757c401a9ce3
+    m_Address: Assets/Art/Character/Lola/LolaAnimation/LolaSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8d71673120b473a4e90c036761b7e7f2
+    m_Address: Assets/Art/Character/Lola/LolaAnimation/LolaSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fe9a1d9fb74ecaf44b77914ea3135ea3
+    m_Address: Assets/Art/Character/Lola/LolaAnimation/LolaSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7aa7836afd5ffd14a98bbb3f591c15f1
+    m_Address: Assets/Art/Character/Lola/LolaAnimation/LolaSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 26acc9f00e269284fa4619cffb3a809d
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fbcb50e6eb472e94798fd8af4938111b
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/Matzatli.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 01fb0e25a7a71214ead2e0bb1ef4ba99
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/Matzatli.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4d2bf365e2b117b40b49bc0cbb80dcab
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/MatzatliSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 00b4c9864bcf4054eb5578366cf56f02
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/MatzatliSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 50324a9ef16735e4483613792c474c2e
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/MatzatliSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a178c91a2332a1a48a17ec37bbe62ee0
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/MatzatliSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f1c64f672454dac49998313731da6301
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/MatzatliSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3278bc0e3dda56440b7418f42bb002ba
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/MatzatliSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2589fc42b89f11143ad740cec3a27943
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/MatzatliSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 28f85613902ef1446950daa32ba49e7f
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/MatzatliSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 399140b3c1b52354c9650b72ed0b8b04
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/MatzatliSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 49ec89cf9c3b4aa4caae1deabc46868d
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/MatzatliSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5adc257127aefe34198bebbf126eee97
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/MatzatliSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3bcc6c50570a457429c4584b9c8b0675
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/MatzatliSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0c417ce499e8a1f4cb339166b81d6483
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/MatzatliSprites/UpperBodyback.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2cf3cc040e2a3784a96f32ee5f4688da
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/MatzatliSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6c9b3a27dcfeb5c47b050ce20c5deaf7
+    m_Address: Assets/Art/Character/Matzatli/MatzatliAnimation/MatzatliSprites/HeadBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6b4d9406fa2fa314aa7156e75346b61d
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/Melia.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 975737317842eb640a8239c55edca16d
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/Melia.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b011eeafcf88f834bb68b72544e47f0c
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/MeliaSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b2449a986bf1d544eae6fa6e4e4ecc57
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/MeliaSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 03191f405df323c4d929bf063584b7ac
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/MeliaSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 14a7d3d4eec3ce1429f10744b42a68b7
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/MeliaSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 64841ac8f0e036b46bab3a873b6ba720
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/MeliaSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f48c58d7aeca03b409dfec2c2089c084
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/MeliaSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 885d7cf2a51260944b9d03eef5f63b64
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/MeliaSprites/UpperBodyBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9ba5d26129be01546b1c9d6397286dc9
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/MeliaSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bb4e4f2511430b8489a7f1ed5b9a3cb8
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/MeliaSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2cb1dc48d46116c46b11bf169cc05783
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/MeliaSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1de526ca2eebf414da8288f98cebd1e6
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/MeliaSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1dce74b9ff3bf88498f58377ff53e6f5
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/MeliaSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6de4573e40da4604287731b59d472f64
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/MeliaSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7f4348daba91f284184b880633712f74
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/MeliaSprites/HairBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 41137eb34f4159442bf0c6cc6fb8be4d
+    m_Address: Assets/Art/Character/Melia/Melia_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b35d5aca3485f8540a044ad344cab1aa
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4fcaf0a5df61b6a44bf6228b9cbb38fd
+    m_Address: Assets/Art/Character/Melia/MeliaAnimation/MeliaSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a15a7509de5894f499ed2f8db18cbe74
+    m_Address: Assets/Art/Character/Molly/Molly_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 100411782a5395248845539fb7fe4ef7
+    m_Address: Assets/Art/Character/Molly/MollyAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 13bd9d616c5587b47b5ec22c1768f336
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/MollySprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f4fbab77124113246afb203ffb7048fb
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/Molly.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fff129e9381e7994dba927ebeb31fe7c
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/Molly.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b0d7e78ed89f77e4191899151ec7a4dd
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/MollySprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 513ba64e023f48241af69e557a76df31
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/MollySprites/Tail.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c13e1c690a9d8c44d89e6093e9a08ce0
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/MollySprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 728319c7059766e4bb90801a902ba9a7
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/MollySprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3303d06d1a1dca846ae35edb80122c79
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/MollySprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b4bc6be8c2ce2994b8e5644fc6604725
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/MollySprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c4919a7ed05263a408ce2b3e47fd9aff
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/MollySprites/HeadBackHair.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 25fa84a9a560e8e419e64a669da986da
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/MollySprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 47f497f2606999943ae3f99a4eb818fd
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/MollySprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2adc512e6af64a1439e248749879b91e
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/MollySprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: eac9ced748d77c1439cd24180ef03a19
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/MollySprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1b5af4499b7c7c34788bb7e7530a60c3
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/MollySprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ebeeda0c5a7419346afc9d2f72184939
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/MollySprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ce8357873ef90e84aa814ac5dc548923
+    m_Address: Assets/Art/Character/Molly/MollyAnimation/MollySprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8bd8c584ba359c043a872ddc4dd24af1
+    m_Address: Assets/Art/Character/OJ/OJAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e823385796883044f864a9c2c288b072
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5cd6bc1a03cac2e4faa283a9691d8ffc
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJ.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 611b47ca80df0bd44a0c743293e0ecc3
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJ.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 305bd725d88b23e4c84762097b21fa68
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e11de77db7fc4ee4295f805a8a444497
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 435da907a5eaee24e8e171e68f69416c
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b5401b10f384a004ebd785d96d97cbff
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 16a0c63d2491b4d44b07b921d9aa5e34
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c642086ffec035d438070ee9d8372f06
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 47acc81e07eaf4f44b619554c49f968a
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ea6aba17fed42d34cb36733dd094be3e
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3b460860c8ca0c443b4114234e6d00e6
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1cf22974c035b39479a9b69313fb70c5
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJSprites/HeadBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3e23867ab91724747a38ca68e48daac9
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4ec61a7ad2428e24bb777224845da6aa
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4f14512e8db3aab459ad6d9715968ed4
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ffc9647a998671940957056b18b688e7
+    m_Address: Assets/Art/Character/OJ/OJAnimation/OJSprites/UpperBodyFront.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c8a7bfb3f1bd58f4f91ba23c0fe4fb75
+    m_Address: Assets/Art/Character/Ramon/RamonAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 320c453c12f5b024d9111432dac97420
+    m_Address: Assets/Art/Character/Ramon/RamonAnimation/Ramon.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 79ebdb58d8b8dd74389a2efd2168c601
+    m_Address: Assets/Art/Character/Ramon/RamonAnimation/Ramon.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 50cc2178c90f41f42a2f6aff1ed1ee7e
+    m_Address: Assets/Art/Character/Ramon/RamonAnimation/RamonSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 40a5d45fa4f199c44b95e8441914bb88
+    m_Address: Assets/Art/Character/Ramon/RamonAnimation/RamonSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a2b18b48a73793e4283cc86b762c875c
+    m_Address: Assets/Art/Character/Ramon/RamonAnimation/RamonSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a27af0b2d11de344cbe71ca927e283e6
+    m_Address: Assets/Art/Character/Ramon/RamonAnimation/RamonSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c2bd24c57003925458821a30bd292143
+    m_Address: Assets/Art/Character/Ramon/RamonAnimation/RamonSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 743f0e0e67e4a3e46aa56342e2f437a2
+    m_Address: Assets/Art/Character/Ramon/RamonAnimation/RamonSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 35cb67b3fe3140b4fa2b13f90003a7e2
+    m_Address: Assets/Art/Character/Ramon/RamonAnimation/RamonSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 466dea4bd3ce224498c93d72b4b5e9e4
+    m_Address: Assets/Art/Character/Ramon/RamonAnimation/RamonSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 08fd64b08877ffc419e3c8acf96ac7a8
+    m_Address: Assets/Art/Character/Ramon/RamonAnimation/RamonSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: daeb48b84bac7294abdf89be95489c19
+    m_Address: Assets/Art/Character/Ramon/RamonAnimation/RamonSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ea00b77d3e9f20b47b06bc232ccdde8e
+    m_Address: Assets/Art/Character/Ramon/RamonAnimation/RamonSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: eb98523111cf93c479521863a307c872
+    m_Address: Assets/Art/Character/Ramon/RamonAnimation/RamonSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ef3a1d1171972614a82442d6e49b1001
+    m_Address: Assets/Art/Character/Ramon/RamonAnimation/RamonSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ff12d5b3329a817408d87ea3e4b9f991
+    m_Address: Assets/Art/Character/Rubia/Rubia_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 970ffad139624834192623878e5003a3
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f068dbc3afa0fa74f896b558764c8d07
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation/Rubia.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dde77319c4adec64bb0559662ee4ba5c
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation/Rubia.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7ea1b1e0275a72249bfd6237de72990d
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation/RubiaSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 94a05fe3874809f4593cc0403e082723
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation/RubiaSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d44a45ef314eeb34e9b7b61bd5e2f60f
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation/RubiaSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 766605f448422ce4fa6fea00878329cc
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation/RubiaSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 571a92a708b4cd148bb23cc4c74a025f
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation/RubiaSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a745369cd6705e54fb8b912aaa519ec3
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation/RubiaSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b8c7bb7cf180ce64d9f2d1b0488ee2be
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation/RubiaSprites/LowerBodyLay2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 092f053772bb75d44bbc182bb5dde64d
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation/RubiaSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2ab3bd4b28c88e744873604271321ddf
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation/RubiaSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4a93e7ead68fb074195808ab4686f6fe
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation/RubiaSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ea50298d80a10044980e040568d96724
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation/RubiaSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2ba4a46ecb552f6488b332f1ff03c0bf
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation/RubiaSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3e3bca32173367f4ba00717f3922d55e
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation/RubiaSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7ff1862e9e2dfca45b6e7cba5fdbae02
+    m_Address: Assets/Art/Character/Rubia/RubiaAnimation/RubiaSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 91c908390301d6d46b0d05712a0018d9
+    m_Address: Assets/Art/Character/Saki/SakiAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 21d2c75c9d4788a48a570623d6db2bba
+    m_Address: Assets/Art/Character/Saki/SakiAnimation/Saki.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fb10c4dcdb72c9a4fba5142d933c1d20
+    m_Address: Assets/Art/Character/Saki/SakiAnimation/Saki.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f1baa2a915e25b84ea0d7ce9a961f095
+    m_Address: Assets/Art/Character/Saki/SakiAnimation/SakiSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8177a3bf936a6d54db1a5a24643fac2d
+    m_Address: Assets/Art/Character/Saki/SakiAnimation/SakiSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 421ba9fb4696c874aa5f95f8b7744d79
+    m_Address: Assets/Art/Character/Saki/SakiAnimation/SakiSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 16723bc361f71984eb378be907deba75
+    m_Address: Assets/Art/Character/Saki/SakiAnimation/SakiSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e67091e1ad1aac043b8d86d041f60a7c
+    m_Address: Assets/Art/Character/Saki/SakiAnimation/SakiSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f61ab5f3d81d15a498b8b71278c6abe6
+    m_Address: Assets/Art/Character/Saki/SakiAnimation/SakiSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 577e03e62dcad7d4893df73da3018a98
+    m_Address: Assets/Art/Character/Saki/SakiAnimation/SakiSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e7741edc65c7d3a468d103f5d65dcf91
+    m_Address: Assets/Art/Character/Saki/SakiAnimation/SakiSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 885a03cf0430f44479d4efc135003e27
+    m_Address: Assets/Art/Character/Saki/SakiAnimation/SakiSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7b00984bd68fb9b439ddced07db8a425
+    m_Address: Assets/Art/Character/Saki/SakiAnimation/SakiSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7bd3b108cfa47424a9e4b11917bc557e
+    m_Address: Assets/Art/Character/Saki/SakiAnimation/SakiSprites/HairBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3c5d3051cf9aa844eb549d6a12ae3b32
+    m_Address: Assets/Art/Character/Saki/SakiAnimation/SakiSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3dadbc01f78683a4a9541d8c7d6ceac8
+    m_Address: Assets/Art/Character/Saki/SakiAnimation/SakiSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8e949bb4bd7dada4fb7b59ab7ab448aa
+    m_Address: Assets/Art/Character/Saki/SakiAnimation/SakiSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 20d2dcd80f7cf8f4497bfc59b22486e8
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5a785237bd80e8e4eaafceb7487099c8
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation/Seraphine.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8d9eca721639ede43a3a81f92bc28db8
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation/Seraphine.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c4031d1797c282b4093f4d5d1d6cbbcb
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation/SeraphineSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 804e7c3e1b34265489590804964eb71b
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation/SeraphineSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 023636775bf4b7e4fae154a17ec03e21
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation/SeraphineSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7251f0f0622b2e0409ff31491882326b
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation/SeraphineSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c52886b413963a24eb0dc119180f3640
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation/SeraphineSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d5c7c2808867dc94d936b7c9a1b6cf04
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation/SeraphineSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 26874ee9ebd80c24e984e4e7ad140bca
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation/SeraphineSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 27854f6e931f82c448f019d84cb30fba
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation/SeraphineSprites/HairBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 37c024fc09d69834eb9d526d92cce6f4
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation/SeraphineSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e84afb14d53b6f440a753fc6913be3fd
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation/SeraphineSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0dc97717b602c114ea4f29e6b9a129bf
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation/SeraphineSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9e1432b9547dfde49b44a390e2a379c6
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation/SeraphineSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ded9cb255faaa944d9facdb46b3f11af
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation/SeraphineSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cf7c1dde252842a4182960b4f725fe38
+    m_Address: Assets/Art/Character/Seraphine/SeraphineAnimation/SeraphineSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1df3ffa5241c9c8429599914ae601d80
+    m_Address: Assets/Art/Character/Shiro/Shiro_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5731d72caea8e1b44b08ab3caf609ed1
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5472d872be5da0a45b6b0b0e45f736f1
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/Shiro.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 51b522de6e6376848b1f753635ace020
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/Shiro.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d87de496a52673e49b22bd6b2b6fe845
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/ShiroSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 12cb8593c8d512e48be566dbce75af02
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/ShiroSprites/Strawberry_Chibi_HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 928ddfdc3d1b2a34187fca74ede0afad
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/ShiroSprites/Strawberry_Chibi_HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 032926125de517a42be66e391cfcc098
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/ShiroSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 835d8df487c6c3c46895b9d9d03421b3
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/ShiroSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b3b585374f04a03429f007c7f6570b45
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/ShiroSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a55a770dd1ad5a34386c09c494897e68
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/ShiroSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f5a5993f1df9ca141bfa5776ebb016bc
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/ShiroSprites/Strawberry_Chibi_HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3613c6602625a4543ae3f7a3dd00e949
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/ShiroSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8775b14f7c172d2478e4c5d3db8fad3d
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/ShiroSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 182a87cc00887214cb4baac39e5742fd
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/ShiroSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 48415cd96f11dbd40b25c0da4c05447e
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/ShiroSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dbb195d9b5af2424da1ac4fd273f4575
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/ShiroSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ccc2260532f95b74a969fe26919f9506
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/ShiroSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3f546c4438fbea54b958b5dfb41f7e77
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/ShiroSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9f5fb750b5c889c46b294b8c12744147
+    m_Address: Assets/Art/Character/Shiro/ShiroAnimation/ShiroSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e8efbcde4ac1f6b4bab72646e9e3ea42
+    m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c6aa978d5622c0b48a98bd17139c479e
+    m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/Sigma.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 123117276b9683348b2353ce88d61e79
+    m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/Sigma.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b8d34ce9d3e40804dbc3ad16ca15cbdb
+    m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/SigmaSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f1bf0989b5b7e6a4c9eaee18c35a2147
+    m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/SigmaSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0207b5ca5a42a0349905e67f9227f4d8
+    m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/SigmaSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 65b1ed00899e3bf43bdf25ede9fc950b
+    m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/SigmaSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a5d481a2e17dcc34790b90bd2f070932
+    m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/SigmaSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f6b69ec3d0f5daa4c992a94cbd7f091c
+    m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/SigmaSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 389ed4dd3968e434588a7a2e5341547a
+    m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/SigmaSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 98f8ae1d4ec790845a322b85f86a9ab4
+    m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/SigmaSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 29b780d5d86e7904d9d94d67ce62eb4d
+    m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/SigmaSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3b39b02ebafe0474fbad7601dc8ada52
+    m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/SigmaSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cbe6af1fd41596f41b24484df77c5c81
+    m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/SigmaSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3ed9f386170cef541924c62654b4bd34
+    m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/SigmaSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8ebca5beff1d45b4f83492175e3529b0
+    m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/SigmaSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 989e1cdf27c8dcc4aaaf1ca7c7454c37
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8a75c0a26940e5e46b4a8c42d1c0deae
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/Sojiro.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9ccfd1b1cdaa26446a33eb8be4291a85
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/Sojiro.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 55dfcfac13e22f64dba479d40e36917f
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/SojiroSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 203b232ede1ccd24eaeaf10326060190
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/SojiroSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8009193c07fb413408670e4f163babdf
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/SojiroSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c02ac5a03ceeadb42a2d3c0136e9ea15
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/SojiroSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 32a43af8bd60aef41a6ae1fbf1f646c9
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/SojiroSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a2c194cd923ad9648b11175237f8c01e
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/SojiroSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e246a8229323d9c49ac69a40a0ee9b2d
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/SojiroSprites/LowerBodyBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c335c79639b3c2348b478f0421010ebe
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/SojiroSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f3e45d81019987142a78fcd7d98258a5
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/SojiroSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4541ece5549d3c04cbbcc76317d42a8b
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/SojiroSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 55ef1b0ab7c0f5c4f86f8abf78ff1a4d
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/SojiroSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d6b479a0c110a764da5c1be6c4dc6bbb
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/SojiroSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e823f5a30968d2341939d5b97eaaf901
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/SojiroSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0b360934fa3a36d40b4de6e6daa88069
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/SojiroSprites/HeadBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: de95710a2503b974c95e6255980205a2
+    m_Address: Assets/Art/Character/Sojiro/SojiroAnimation/SojiroSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: be7666d807fae394bb0bdb0ec1cc1985
+    m_Address: Assets/Art/Character/Sophie/Sophie_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c4fcba5aa17470940a80c1d6e9737ae4
+    m_Address: Assets/Art/Character/Sophie/SophieAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8bfc53b89f0f17a4c83fbc88f3f8286a
+    m_Address: Assets/Art/Character/Sophie/SophieAnimation/Sophie.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a598f13039019e14f8cef1fc9b741f5c
+    m_Address: Assets/Art/Character/Sophie/SophieAnimation/Sophie.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7a901815a9000444aa86c3563bb0c89a
+    m_Address: Assets/Art/Character/Sophie/SophieAnimation/SophieSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4142076ab65151c48b3720e6f9f8797c
+    m_Address: Assets/Art/Character/Sophie/SophieAnimation/SophieSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b130f19ec27f41e42bcdc35c8fcd3d8d
+    m_Address: Assets/Art/Character/Sophie/SophieAnimation/SophieSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4255eecc485b0c24fb07cbfa5418df2a
+    m_Address: Assets/Art/Character/Sophie/SophieAnimation/SophieSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 926b6201bb7795a45865f2c7770066da
+    m_Address: Assets/Art/Character/Sophie/SophieAnimation/SophieSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 44dd636385aa0d5499080f81f83cff80
+    m_Address: Assets/Art/Character/Sophie/SophieAnimation/SophieSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a40f34148016f474ca7df2636aa1c78d
+    m_Address: Assets/Art/Character/Sophie/SophieAnimation/SophieSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 96863f12f16f7a140b7baaeb0aafc386
+    m_Address: Assets/Art/Character/Sophie/SophieAnimation/SophieSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 47a56ed2d19c9d542a9838ced69859b6
+    m_Address: Assets/Art/Character/Sophie/SophieAnimation/SophieSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 988f64a3a06179c45b308e7538b1d157
+    m_Address: Assets/Art/Character/Sophie/SophieAnimation/SophieSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0987060d70250e640ad5b62879080d4d
+    m_Address: Assets/Art/Character/Sophie/SophieAnimation/SophieSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fa05878df171bb04a857c2aaf5c74f0f
+    m_Address: Assets/Art/Character/Sophie/SophieAnimation/SophieSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ad0ada2402d57444384594cb9f96b185
+    m_Address: Assets/Art/Character/Sophie/SophieAnimation/SophieSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 05d4e978b431b914bb194dc11622cc53
+    m_Address: Assets/Art/Character/Stella/StellaAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4db43be57acd447479bc905ac970e186
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/Stella.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 58f576ceac9c1d04990cefc8408c4957
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/Stella.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d7e26e1a5b07a804abbd45d1f22a4e42
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/StellaSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 11da8c1a124a3c24f94f7a915a30b7d0
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/StellaSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d1aad408accd2d141ae90d757c9f8956
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/StellaSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 52f60cb60b6ec044e8718dde5c21de5e
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/StellaSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e262653e9af40af4fa45f5d916e08b9c
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/StellaSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a3145ca37ceb2c043abd25575274f05b
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/StellaSprites/HeadBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 85ffea0f1b5096c49b9e03572cb9c144
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/StellaSprites/LowerBodyBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d59d07d3e341d3643a540c969b19f3d7
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/StellaSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 96aa7be940ad2bf419502b0cf06e201f
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/StellaSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 077795775c4eb554baa7fb3e207a0f97
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/StellaSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f8c85b01e005cc84b814e6866f37bcc3
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/StellaSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ac6a9f98aff425d4f876af2397b4d31f
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/StellaSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fc96f987cd57c4f448bc2fed043b8fc9
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/StellaSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0e45c61b799ecd9449e8211147ee7a62
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/StellaSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5e75044686a7130489d916e134aa21e6
+    m_Address: Assets/Art/Character/Stella/StellaAnimation/StellaSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f827d77d59566bb4cbac76f871f339c0
+    m_Address: Assets/Art/Character/Vlad/VladAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c52c3796f4c00f742baf95d35f4fa870
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/Vlad.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5a37cdf5526999b4396d9a3ca75b64dd
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/Vlad.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 293c8cd7ad5167a4e9eee9cb14d60927
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/VladSprites
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 71745fbd403a7084daeebff1d1512238
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/VladSprites/UpperBodyback.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 122c096d01bec234fbbb44dd95b5a13a
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/VladSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b2b65ed2b17dcd54f810b91da6dcb6cd
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/VladSprites/HeadBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b6cbbbeda8ecc444eaafddba6d926b38
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/VladSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 374071113522b7c418c6927a7a2d463f
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/VladSprites/ArmL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6732ac9e7907c5e438ce56805b0df124
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/VladSprites/ArmR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 28db87de52561c4498625646f3aee0fb
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/VladSprites/HeadChuu.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 68772b389eb1ad549b36a459c956fe04
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/VladSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b8f6c010cc78cd644a509ad03f551a80
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/VladSprites/HeadDizzy.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d9fa102eec19bd24db073feda19e4ac9
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/VladSprites/LowerBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ab877bbf00979b245962d5d8421d3604
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/VladSprites/LegL.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6c4e56c6f85485d4695d2698465acd8c
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/VladSprites/Head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8c44fd64fe5c90e458b8c53229903599
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/VladSprites/HeadHurt.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: efd643a325a9a4647a87f596424c3821
+    m_Address: Assets/Art/Character/Vlad/VladAnimation/VladSprites/HeadBlink.png
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

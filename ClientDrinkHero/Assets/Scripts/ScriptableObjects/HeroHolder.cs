@@ -16,11 +16,6 @@ public class HeroHolder : MonoBehaviour
     {
         _instance = this;
         DontDestroyOnLoad(this.gameObject);
-
-        GetHeroById(1).Unlocked = true;
-        GetHeroById(2).Unlocked = true;
-        GetHeroById(3).Unlocked = true;
-        GetHeroById(4).Unlocked = true;
     }
 
     void Start()

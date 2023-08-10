@@ -11,6 +11,9 @@ public class GachaMenuView : View {
 
     [SerializeField] private Button multiPullButton;
     [SerializeField] private Button singlePullButton;
+
+
+
     [SerializeField] private Button optionsMenuButton;
 
     [SerializeField] private Sprite backButtonClicked;
@@ -18,8 +21,6 @@ public class GachaMenuView : View {
     private int _requestId;
     private int _multiPullRequestId;
     //private int _singlePullRequestId;
-
-    private int _gachaInfoRequestId;
 
     private bool _dataIsLoading;
     private ResponsMessageObject _response;
@@ -31,12 +32,11 @@ public class GachaMenuView : View {
     [SerializeField] TextMeshProUGUI _multiPullCost;
 
 
-    private GachaDatabase _gachaInfo;
+
 
     public override void Initialize() {
 
-        string request = ClientFunctions.GetGachaInfo();
-        _gachaInfoRequestId = HandleRequests.Instance.HandleRequest(request, typeof(GachaDatabase));
+
         NetworkDataContainer.Instance.WaitForServer.AddWaitOnServer();
 
 
@@ -53,6 +53,7 @@ public class GachaMenuView : View {
 
         singlePullButton.onClick.AddListener(ViewTweener.ButtonClickTween(singlePullButton,
             singlePullButton.image.sprite, () => SinglePull()));
+
 
         AudioController.Instance.PlayAudio(AudioType.MainMenuTheme, true, 0f);
     }
@@ -78,8 +79,13 @@ public class GachaMenuView : View {
     }
 
     private IEnumerator WaitForGachaInfo() {
+        string request = ClientFunctions.GetGachaInfo();
+        int _gachaInfoRequestId = HandleRequests.Instance.HandleRequest(request, typeof(GachaDatabase));
+        GachaDatabase _gachaInfo;
         while (HandleRequests.Instance.RequestDataStatus[_gachaInfoRequestId] != DataRequestStatusEnum.RecievedAccepted) {
             if (HandleRequests.Instance.RequestDataStatus[_gachaInfoRequestId] == DataRequestStatusEnum.Recieved) {
+
+
                 _gachaInfo = GachaDatabase.CreateObjectDataFromString(HandleRequests.Instance.RequestData[_gachaInfoRequestId])[0];
 
 

@@ -113,6 +113,4 @@ public class GachaResultDisplayItem : MonoBehaviour {
         _loaded = true;
         _itemAppearEffect.ResetState();
     }
-
-
 }

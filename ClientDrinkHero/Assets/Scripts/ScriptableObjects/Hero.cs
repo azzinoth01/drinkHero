@@ -7,7 +7,6 @@ public class Hero : ScriptableObject
 {
     public int ID;
     public string Name;
-    public bool Unlocked = false;
 
     [Header("Secretary")]
     public GameObject SecretaryPrefab;

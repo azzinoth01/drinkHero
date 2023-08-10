@@ -3,7 +3,7 @@ public static class ClientFunctions {
 
 
     //returns User
-    public static string UnlockHeroByID(string Id) {
+    public static string UnlockHeroByID(string id) {
         string callName = "UnlockHeroByID";
         return GetWriteString(callName, id);
     }

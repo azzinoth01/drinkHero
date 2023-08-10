@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   port: 6969
-  host: 127.0.0.1
+  host: markusdullnig.de
 --- !u!114 &495193511
 MonoBehaviour:
   m_ObjectHideFlags: 0

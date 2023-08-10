@@ -106,6 +106,15 @@ public class BattleView : View {
 
         PlayerPrefs.SetInt("MaxLevel", Mathf.Max(PlayerPrefs.GetInt("MaxLevel"), currentLevel + 1));
         ShowGameOverScreen();
+
+        string request;
+
+        //if (currentLevel == 1)
+        //{
+        //    request = ClientFunctions.UnlockHeroByID("20");
+        //    UserSingelton.Instance.UserObject.UpdateUserDataRequest(request);
+        //}
+
     }
 
 

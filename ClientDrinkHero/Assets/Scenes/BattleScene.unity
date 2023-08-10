@@ -8971,6 +8971,13 @@ MonoBehaviour:
   - {fileID: 4038282329253489954, guid: 19d535ef1ca8d1443ae57ab6555a6e70, type: 3}
   - {fileID: 7027705097714153855, guid: 1c8d962826731814db3c43fb61018bdf, type: 3}
   - {fileID: 4983846118016103215, guid: 123117276b9683348b2353ce88d61e79, type: 3}
+  - {fileID: 1031551966672419438, guid: e7f51e5b03e79774ca00a5864a099547, type: 3}
+  - {fileID: 3963395527294718306, guid: 0c1c89f86ee3b4e4fa059c945e22db99, type: 3}
+  - {fileID: 6337663779731160190, guid: e7eb11b9e9af5ea47be7a3bc1fdb40e7, type: 3}
+  - {fileID: 4818730836457961238, guid: fbcb50e6eb472e94798fd8af4938111b, type: 3}
+  - {fileID: 1686073976688280775, guid: 8a75c0a26940e5e46b4a8c42d1c0deae, type: 3}
+  - {fileID: 1075368559281508993, guid: 4db43be57acd447479bc905ac970e186, type: 3}
+  - {fileID: 6397604563968200643, guid: c52c3796f4c00f742baf95d35f4fa870, type: 3}
   playerCharacters: []
 --- !u!1 &2128304700 stripped
 GameObject:
