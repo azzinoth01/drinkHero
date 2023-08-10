@@ -1,11 +1,21 @@
 public static class ClientFunctions {
 
 
+
+    //returns User
+    public static string UnlockHeroByID(string Id) {
+        string callName = "UnlockHeroByID";
+        return GetWriteString(callName, id);
+    }
+
+
     // returns UserToUpradeItemDatabase 
     public static string GetUserToUpgradeItemList() {
         string callName = "GetUserToUpgradeItemByLoggedinUser";
         return GetWriteString(callName);
     }
+
+
 
     //returns ResponsMessageObject FAILURE / SUCCESS
     public static string GetGachaInfo() {

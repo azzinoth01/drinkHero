@@ -298,6 +298,22 @@ public static class ServerFunctions {
         heroToUser.RefHero = heroId;
         heroToUser.RefUser = user.Id;
 
+        List<string> foreigenKey = new List<string>();
+        List<int> keyvalue = new List<int>();
+
+        foreigenKey.Add("RefHero");
+        foreigenKey.Add("RefUser");
+
+
+        keyvalue.Add(heroId);
+        keyvalue.Add(user.Id);
+
+        HeroToUserDatabase check = DatabaseManager.GetDatabaseItem<HeroToUserDatabase>(foreigenKey, keyvalue);
+
+        if (check == null || check.Id == 0) {
+            return;
+        }
+
         heroToUser = AddDataToDatabase<HeroToUserDatabase>(heroToUser);
 
         List<CardToHero> heroCardList = DatabaseManager.GetDatabaseList<CardToHero>("RefHero", (int)heroToUser.RefHero);
@@ -511,11 +527,16 @@ public static class ServerFunctions {
 
         DatabaseManager.UpdateDatabaseItem<UserDatabase>(user);
 
-        for (int i = 1; i < 5;) {
-            AddHeroToUser(user, i);
+        //for (int i = 1; i < 5;) {
+        //    AddHeroToUser(user, i);
 
-            i = i + 1;
-        }
+        //    i = i + 1;
+        //}
+
+        AddHeroToUser(user, 2);
+        AddHeroToUser(user, 3);
+        AddHeroToUser(user, 15);
+        AddHeroToUser(user, 16);
 
 
         client.User = user;
@@ -523,6 +544,18 @@ public static class ServerFunctions {
 
 
     }
+
+    [ServerFunction("UnlockHeroByID")]
+    public static string UnlockHeroByID(ConnectedClient client, string StringId) {
+        int id = int.Parse(StringId);
+        AddHeroToUser(client.User, id);
+
+
+
+        return SendData<UserDatabase>(client.StreamWriter, "ID\"" + client.User.Id + "\"");
+    }
+
+
 
     [ServerFunction("LoginWithUser")]
     public static string LoginWithUser(ConnectedClient client, string userId) {
