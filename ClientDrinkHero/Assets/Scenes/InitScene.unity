@@ -154,26 +154,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroes:
   - {fileID: 11400000, guid: b64a3b2b5dc244e4da569f4132378511, type: 2}
+  - {fileID: 11400000, guid: 5969c9bd6a8828a4683a73f6c3a69385, type: 2}
+  - {fileID: 11400000, guid: 5440ebf1b8682f946b0873889581d7c1, type: 2}
   - {fileID: 11400000, guid: 88b61c91f1c88ac4b9284ffb7ed2e758, type: 2}
   - {fileID: 11400000, guid: 4df1d5a0c3ccaaa45919dd224b335465, type: 2}
   - {fileID: 11400000, guid: 892e2fe5efda0194b94192a76928914e, type: 2}
   - {fileID: 11400000, guid: 68715eb2e1bbdaa46a8b29600db08e82, type: 2}
+  - {fileID: 11400000, guid: 049af9242f34bef4e87c8ebc6e69dd7a, type: 2}
+  - {fileID: 11400000, guid: 28814e245784eff46a7af993fe34a6ae, type: 2}
   - {fileID: 11400000, guid: 530e7452ab07ce745aa639054312ff7f, type: 2}
+  - {fileID: 11400000, guid: ebf50753cc1b8b64290e9edacd51053b, type: 2}
+  - {fileID: 11400000, guid: ea845138d1f4763499da0654524d170a, type: 2}
   - {fileID: 11400000, guid: 72cc72e948f655f4badcc7b656065dab, type: 2}
   - {fileID: 11400000, guid: 2978606c459c5394285395deddcd38de, type: 2}
   - {fileID: 11400000, guid: b94a77220ca92fa4bb0af8662c9ebbe7, type: 2}
   - {fileID: 11400000, guid: 0a111e00e57df8d4dbf4966758d24a69, type: 2}
   - {fileID: 11400000, guid: 108c8e0c897f2c645a732368f6e40e72, type: 2}
-  - {fileID: 11400000, guid: 1c4f87ff8554a814b92b9f9065454670, type: 2}
-  - {fileID: 11400000, guid: 038f90faaba882f438cc67518b336151, type: 2}
-  - {fileID: 11400000, guid: 95f1c8e8b6648204d9276088ba6dc7e7, type: 2}
   - {fileID: 11400000, guid: 2754d56945ea4a741a69fa83d0f028cf, type: 2}
   - {fileID: 11400000, guid: 9843fa00ec8ca1047813467010fcec1e, type: 2}
+  - {fileID: 11400000, guid: 1c4f87ff8554a814b92b9f9065454670, type: 2}
   - {fileID: 11400000, guid: a4879ef4c8154f4499f5b837eb1db5ba, type: 2}
   - {fileID: 11400000, guid: 15692409112f5e24f8567330acf00a6e, type: 2}
-  - {fileID: 11400000, guid: 049af9242f34bef4e87c8ebc6e69dd7a, type: 2}
-  - {fileID: 11400000, guid: ea845138d1f4763499da0654524d170a, type: 2}
-  - {fileID: 11400000, guid: 28814e245784eff46a7af993fe34a6ae, type: 2}
+  - {fileID: 11400000, guid: 038f90faaba882f438cc67518b336151, type: 2}
+  - {fileID: 11400000, guid: e95a71e5a9f80204abf41bb452cd0b17, type: 2}
+  - {fileID: 11400000, guid: 4404c2797dfac444db1af4134d7912f5, type: 2}
+  - {fileID: 11400000, guid: 95f1c8e8b6648204d9276088ba6dc7e7, type: 2}
+  - {fileID: 11400000, guid: 590e177ff334904489af73fc602a36bd, type: 2}
+  - {fileID: 11400000, guid: 8cf458a59f554a34c8ffeccb57069d33, type: 2}
 --- !u!4 &108782792
 Transform:
   m_ObjectHideFlags: 0
@@ -411,6 +418,7 @@ MonoBehaviour:
         _spritePath: 
         _name: 
         _cardDatabases: []
+    _userToUpgradeItemDatabaseList: []
 --- !u!4 &495193512
 Transform:
   m_ObjectHideFlags: 0

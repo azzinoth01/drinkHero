@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 27
   Name: Stella
   Unlocked: 0
-  SecretaryPrefab: {fileID: 2749582525335488037, guid: b4bc7fae254d71b4db940295a47fa864, type: 3}
+  SecretaryPrefab: {fileID: 2749582525335488037, guid: 953aefdada680364ea5aea72abc7c59d, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: 1f89f65534f0933479d85f59d8b02619, type: 3}
   SecretaryQuotes:
   - Well, hello dear. Would you like to try some of my straberry milk?

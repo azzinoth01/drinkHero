@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 25
   Name: Matzatli
   Unlocked: 0
-  SecretaryPrefab: {fileID: 2749582525335488037, guid: b4bc7fae254d71b4db940295a47fa864, type: 3}
+  SecretaryPrefab: {fileID: 2749582525335488037, guid: 6621b4de7a83b724cabaff17c53629b9, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: a82c277a4d8a419488782250f0753046, type: 3}
   SecretaryQuotes:
   - Greetings. Want me to freshen up your day?
