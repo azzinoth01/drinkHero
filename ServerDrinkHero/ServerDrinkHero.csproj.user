@@ -3,4 +3,16 @@
   <PropertyGroup>
     <_LastSelectedProfileId>C:\Users\Markus\git\drinkHero\ServerDrinkHero\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NintendoTargetSerialNumber />
+    <NintendoTargetName>Default</NintendoTargetName>
+    <NXTargetSerialNumber>%24%28NintendoTargetSerialNumber%29</NXTargetSerialNumber>
+    <NXTargetName>%24%28NintendoTargetName%29</NXTargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NintendoTargetSerialNumber />
+    <NintendoTargetName>Default</NintendoTargetName>
+    <NXTargetSerialNumber>%24%28NintendoTargetSerialNumber%29</NXTargetSerialNumber>
+    <NXTargetName>%24%28NintendoTargetName%29</NXTargetName>
+  </PropertyGroup>
 </Project>

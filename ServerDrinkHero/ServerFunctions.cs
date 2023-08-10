@@ -310,7 +310,7 @@ public static class ServerFunctions {
 
         HeroToUserDatabase check = DatabaseManager.GetDatabaseItem<HeroToUserDatabase>(foreigenKey, keyvalue);
 
-        if (check == null || check.Id == 0) {
+        if (check.Id != 0) {
             return;
         }
 
