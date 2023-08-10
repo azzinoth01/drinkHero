@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 23
   Name: Angel
   Unlocked: 0
-  SecretaryPrefab: {fileID: 2749582525335488037, guid: b4bc7fae254d71b4db940295a47fa864, type: 3}
+  SecretaryPrefab: {fileID: 2749582525335488037, guid: df696bea8a0c961408a8cad06d5cea6b, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: 74408f6d0549f3a4796818912200a98f, type: 3}
   SecretaryQuotes:
   - Hiya, how are you doing? Wanna join me on a stroll?

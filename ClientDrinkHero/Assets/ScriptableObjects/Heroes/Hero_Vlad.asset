@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 28
   Name: Vlad
   Unlocked: 0
-  SecretaryPrefab: {fileID: 2749582525335488037, guid: b4bc7fae254d71b4db940295a47fa864, type: 3}
+  SecretaryPrefab: {fileID: 2749582525335488037, guid: e6b160295c4ba1f4f99872e669dcf2fc, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: c1506a75befacca40bad21ee7357778b, type: 3}
   SecretaryQuotes:
   - Hiya, how are you doing? Wanna join me on a stroll?

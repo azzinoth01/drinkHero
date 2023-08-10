@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 26
   Name: Sojiro
   Unlocked: 0
-  SecretaryPrefab: {fileID: 2749582525335488037, guid: b4bc7fae254d71b4db940295a47fa864, type: 3}
+  SecretaryPrefab: {fileID: 2749582525335488037, guid: 6d1de1b84d194ca46a8e116bd53a12a0, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: cb7044fe4fd81994dba29c540183a5d1, type: 3}
   SecretaryQuotes:
   - Hiya, how are you doing? Wanna join me on a stroll?
