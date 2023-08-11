@@ -18,7 +18,8 @@ MonoBehaviour:
   SecretaryPrefab: {fileID: 2749582525335488037, guid: e6b160295c4ba1f4f99872e669dcf2fc, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: c1506a75befacca40bad21ee7357778b, type: 3}
   SecretaryQuotes:
-  - Hiya, how are you doing? Wanna join me on a stroll?
-  - I always envy the others when they go shopping for shoes...
-  - Don't you worry, this berry carries a punch!
-  SecretarySpezialTouchQuote: Hnng~ This is not what I signed up for.
+  - Hm, you need something?
+  - Of course we can have a drink. And when the bottle is empty, I'll bring a new
+    one!
+  - How about a drinking contest? What do you say?
+  SecretarySpezialTouchQuote: If that's what you want to do, we can meet up later.

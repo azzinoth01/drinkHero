@@ -18,7 +18,7 @@ MonoBehaviour:
   SecretaryPrefab: {fileID: 2749582525335488037, guid: 6d1de1b84d194ca46a8e116bd53a12a0, type: 3}
   SecretarySpezialTouchImage: {fileID: 21300000, guid: cb7044fe4fd81994dba29c540183a5d1, type: 3}
   SecretaryQuotes:
-  - Hiya, how are you doing? Wanna join me on a stroll?
-  - I always envy the others when they go shopping for shoes...
-  - Don't you worry, this berry carries a punch!
-  SecretarySpezialTouchQuote: Hnng~ This is not what I signed up for.
+  - Well hello. What can I do for you?
+  - I'm always thinking about some new coffee recepies. Do you have some?
+  - Do you want to try some Kopi Luwak? It's a special bean.
+  SecretarySpezialTouchQuote: Dont worry, I can stay up all night~
