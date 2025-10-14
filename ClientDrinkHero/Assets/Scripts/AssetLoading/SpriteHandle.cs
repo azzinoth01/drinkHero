@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class SpriteHandle {
+public class SpriteHandle
+{
     private Sprite _sprite;
     private AsyncOperationHandle<Sprite> _handle;
     private int _uses;
@@ -20,8 +21,8 @@ public class SpriteHandle {
     }
 
     public Sprite BorrowSprite(string path) {
-        if (_loaded == false) {
-            if (LoadSprite(path) == false) {
+        if(_loaded == false) {
+            if(LoadSprite(path) == false) {
                 return null;
             }
         }
@@ -31,7 +32,7 @@ public class SpriteHandle {
 
     public void ReturnSprite() {
         _uses = _uses - 1;
-        if (_uses == 0) {
+        if(_uses == 0) {
             Addressables.Release(_handle);
             _loaded = false;
         }
@@ -40,7 +41,7 @@ public class SpriteHandle {
 
     private bool LoadSprite(string path) {
 
-        if (path == "" || path == null) {
+        if(path == "" || path == null) {
             return false;
         }
 
@@ -48,7 +49,7 @@ public class SpriteHandle {
 
         _handle.WaitForCompletion();
 
-        if (_handle.Status == AsyncOperationStatus.Succeeded) {
+        if(_handle.Status == AsyncOperationStatus.Succeeded) {
             _sprite = _handle.Result;
             _loaded = true;
             return true;

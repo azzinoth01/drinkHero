@@ -1,6 +1,7 @@
 ﻿
 
-public class MainClass {
+public class MainClass
+{
 
 
 
@@ -8,7 +9,7 @@ public class MainClass {
     public static int Main() {
 
         LogManager logger = new LogManager(300);
-
+        Console.Write("Server Started");
 
         DrinkHeroServer server = new DrinkHeroServer();
         server.StartServer();
@@ -16,11 +17,11 @@ public class MainClass {
 
         AppDomain.CurrentDomain.ProcessExit += delegate {
             logger.KeepRunning = false;
-            if (server != null) {
+            if(server != null) {
                 server.CloseServer();
 
             }
-            if (logger != null) {
+            if(logger != null) {
                 logger.WriteLog();
             }
 
@@ -28,7 +29,7 @@ public class MainClass {
         };
         logger.ManageWrite();
 
-
+        Console.Write("Server Shutdown");
 
         return 0;
     }
