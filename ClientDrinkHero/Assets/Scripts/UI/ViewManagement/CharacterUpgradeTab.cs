@@ -45,7 +45,7 @@ public class CharacterUpgradeTab : MonoBehaviour {
         HeroDatabase hero = _tabView.Character;
 
 
-        CardData data = new CardData();
+        CardDataView data = new CardDataView();
 
         data.cost = hero.CardList[_cardIndex].Cost;
         data.description = hero.CardList[_cardIndex].Text;
@@ -59,7 +59,7 @@ public class CharacterUpgradeTab : MonoBehaviour {
         _hasValue.SetText("0");
 
         if (hero.CardList[_cardIndex].RefUpgradeTo != null) {
-            data = new CardData();
+            data = new CardDataView();
 
             data.cost = hero.CardList[_cardIndex].UpgradeTo.Cost;
             data.description = hero.CardList[_cardIndex].UpgradeTo.Text;

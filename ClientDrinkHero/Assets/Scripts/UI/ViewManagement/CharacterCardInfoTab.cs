@@ -13,7 +13,7 @@ public class CharacterCardInfoTab : MonoBehaviour {
 
         int i = 0;
         foreach (CharacterCardPreview cardPreview in _cardInfoDisplay) {
-            CardData data = new CardData();
+            CardDataView data = new CardDataView();
 
             data.cost = hero.CardList[i].Cost;
             data.description = hero.CardList[i].Text;

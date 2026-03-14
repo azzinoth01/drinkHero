@@ -37,7 +37,7 @@ public class CharacterCardPreview : MonoBehaviour {
         _loadSprite = cardPortrait.GetComponent<LoadSprite>();
     }
 
-    public void SetData(CardData data) {
+    public void SetData(CardDataView data) {
         cardCostText.SetText(data.cost.ToString());
         cardName.SetText(data.name);
         cardDescription.SetText(data.description);

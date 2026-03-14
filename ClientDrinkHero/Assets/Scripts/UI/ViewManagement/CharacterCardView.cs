@@ -39,10 +39,10 @@ public class CharacterCardView : View {
 
         var cardList = character.CardList;
 
-        var cards = new List<CardData>();
+        var cards = new List<CardDataView>();
 
         foreach (var card in cardList) {
-            var data = new CardData();
+            var data = new CardDataView();
             data.cost = card.Cost;
             data.description = card.Text;
             data.name = card.Name;
