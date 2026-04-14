@@ -12,7 +12,7 @@ public class CardToEffect : DatabaseItem {
     private int? _refCard;
     private int? _refEffect;
     private CardDatabase _card;
-    [SerializeField] private Effect _effect;
+    [SerializeField] private EffectServer _effect;
 
     private static Dictionary<string, CardToEffect> _cachedData = new Dictionary<string, CardToEffect>();
 
@@ -133,7 +133,7 @@ public class CardToEffect : DatabaseItem {
         }
     }
 
-    public Effect Effect {
+    public EffectServer Effect {
         get {
 
             if (_refEffect == null) {
@@ -168,7 +168,7 @@ public class CardToEffect : DatabaseItem {
             Debug.Log("ref effect is null");
         }
         string functionCall = ClientFunctions.GetEffectByKeyPair("ID\"" + _refEffect + "\"");
-        int index = SendRequest(functionCall, typeof(Effect));
+        int index = SendRequest(functionCall, typeof(EffectServer));
         _propertyToRequestedId[index] = name;
     }
 

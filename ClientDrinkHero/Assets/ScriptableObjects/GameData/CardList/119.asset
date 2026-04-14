@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 119
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 21d7561deef640398342ccf8b61a2d4e
+  _externalID: 119
+  _name: Debuff
+  _text: Reduce next Enemy Attack by 4.
+  _cost: 1
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/JC/Debuff
+  _upgradeTo: {fileID: 11400000, guid: a3a4a9c0b11852847ab058e1fce9129d, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 0e94e2cb6aebb6043bb9382b825e771c, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: 766319978cc932f49a57552c1a4f36ff, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 30

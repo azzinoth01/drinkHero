@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 159
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 25b2a15e263047b39bc07db9ab4a7807
+  _externalID: 159
+  _name: Shield
+  _text: Gain 4 Shield. Draw a Card.
+  _cost: 2
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/SDI/Shield
+  _upgradeTo: {fileID: 11400000, guid: 730396403688b744b897758af04afffb, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 0dd19f5d24b6c1646b23f8bc65416960, type: 2}
+  - {fileID: 11400000, guid: bd8007862c5638d438a0a446e11286ca, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: 941ad9f1911ce5d4780dd8515d7c18ed, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 40

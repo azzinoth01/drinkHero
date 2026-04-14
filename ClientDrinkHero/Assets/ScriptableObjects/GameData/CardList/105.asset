@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 105
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 131cc324f9f947b2bab24397aebc662a
+  _externalID: 105
+  _name: Juice Extractor
+  _text: Squeeze Enemy for 3 Damage
+  _cost: 5
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/JC/JuiceExtractor
+  _upgradeTo: {fileID: 11400000, guid: a62aa6955d92a3a40b927a28c3e156c8, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: efa1b01b41b16b944aa93d4f2159305c, type: 2}
+  - {fileID: 11400000, guid: cf666166302500748b23f6b486e3c8e9, type: 2}
+  _upgradeItem: {fileID: 0}
+  _upgradeItemAmount: 4
+  _animationKey: 2

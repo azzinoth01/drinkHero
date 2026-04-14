@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 61
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: f4b70c280848451480d71235b2591b3e
+  _externalID: 61
+  _name: Heavy Fermentation
+  _text: Yeast Molecules drain 5 Enemy HP.
+  _cost: 2
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/TF/HeavyFermentation
+  _upgradeTo: {fileID: 11400000, guid: 82f624ce8bcdcf94e851b5b36860e508, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 1a3fb3e903a312240bf031f6f4580906, type: 2}
+  - {fileID: 11400000, guid: bc291cc58b0bc78459ca7d8a3f9ebf10, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: f620e2a15a3885445b26010a6472a82b, type: 2}
+  _upgradeItemAmount: 2
+  _animationKey: 16

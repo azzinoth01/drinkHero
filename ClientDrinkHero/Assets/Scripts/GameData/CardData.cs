@@ -1,13 +1,16 @@
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
-using Unity.Collections;
 using UnityEngine;
 
-[Serializable]
-public class CardData
+
+[CsvImportable]
+[CreateAssetMenu(fileName = "CardData",menuName = "Scriptable Objects/CardData")]
+public class CardData : ScriptableObject
 {
     [ReadOnly]
     [SerializeField] private string _id;
+    [SerializeField] private string _externalID;
 
     [SerializeField] private string _name;
     [SerializeField] private string _text;
@@ -15,15 +18,17 @@ public class CardData
     [SerializeField] private string _spritePath;
     [SerializeField] private string _iconPath;
     [SerializeField] private CardData _upgradeTo;
-    [SerializeField] private List<string> _cardEffectList;
-    //[SerializeField] private UpgradeItemDatabase _upgradeItem;
+    [SerializeField] private List<CardEffectData> _cardEffectList;
+    [SerializeField] private UpgradeItemData _upgradeItem;
     [SerializeField] private int _upgradeItemAmount;
     [SerializeField] private string _animationKey;
 
 
+
+
     public CardData() {
         _id = Guid.NewGuid().ToString("N");
-        _cardEffectList = new List<string>();
+        _cardEffectList = new List<CardEffectData>();
     }
 
     public string Id {
@@ -80,9 +85,28 @@ public class CardData
         }
     }
 
-    public List<string> CardEffectList {
+    public List<CardEffectData> CardEffectList {
         get {
             return _cardEffectList;
         }
     }
+
+    public string ExternalID {
+        get {
+            return _externalID;
+        }
+    }
+    public UpgradeItemData UpgradeItem {
+        get {
+            return _upgradeItem;
+        }
+    }
+#if UNITY_EDITOR
+    [Button("Save Asset")]
+    private void SaveAsset() {
+        UnityEditor.EditorUtility.SetDirty(this);
+        UnityEditor.AssetDatabase.SaveAssets();
+        UnityEditor.AssetDatabase.Refresh();
+    }
+#endif
 }

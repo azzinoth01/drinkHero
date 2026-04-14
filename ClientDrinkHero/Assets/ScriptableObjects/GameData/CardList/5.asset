@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 5
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: ff6ad79889e54737ab46a37b87fdfa52
+  _externalID: 5
+  _name: Grape Stomper
+  _text: Magical Feet stomp the Enemy for 2 Damage 2 times.
+  _cost: 1
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/NO/GrapeStomper
+  _upgradeTo: {fileID: 11400000, guid: 7560526a850300c469f9b63d01069bd3, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: dd3b6827aa400e947a984e92e66f5d05, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: eb3d1676c24a46c4481dd3bee3ebc125, type: 2}
+  _upgradeItemAmount: 2
+  _animationKey: 2

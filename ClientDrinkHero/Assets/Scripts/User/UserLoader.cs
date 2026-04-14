@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-public class UserLoader {
+public class UserLoader
+{
     public int requestId;
     public UserDatabase user;
     public bool loadData;
@@ -18,9 +19,9 @@ public class UserLoader {
 
     }
     public void RequestData() {
-        UserSave save = UserSave.LoadSave();
+        UserSave save = UserSave.LoadSave(null);
         string request;
-        if (save.Id == -1) {
+        if(save.Id == -1) {
             request = ClientFunctions.CreateNewUser();
         }
         else {
@@ -29,7 +30,7 @@ public class UserLoader {
         }
 
 
-        requestId = HandleRequests.Instance.HandleRequest(request, typeof(UserDatabase));
+        requestId = HandleRequests.Instance.HandleRequest(request,typeof(UserDatabase));
         user = null;
         loadData = true;
         _userDataOld = true;
@@ -37,7 +38,7 @@ public class UserLoader {
     }
 
     public void RequestData(string request) {
-        requestId = HandleRequests.Instance.HandleRequest(request, typeof(UserDatabase));
+        requestId = HandleRequests.Instance.HandleRequest(request,typeof(UserDatabase));
         loadData = true;
         NetworkDataContainer.Instance.WaitForServer.AddWaitOnServer();
         _userDataOld = true;
@@ -48,13 +49,13 @@ public class UserLoader {
         bool check = true;
         user.RequestLoadReferenzData();
         check = check & user.WaitingOnDataCount == 0;
-        if (user.WaitingOnDataCount == 0) {
-            foreach (HeroToUserDatabase heroToUser in user.HeroDatabasesList) {
+        if(user.WaitingOnDataCount == 0) {
+            foreach(HeroToUserDatabase heroToUser in user.HeroDatabasesList) {
                 heroToUser.RequestLoadReferenzData();
                 check = check & heroToUser.WaitingOnDataCount == 0;
 
             }
-            foreach (UserToUpradeItemDatabase upgradeItem in user.UserToUpgradeItemDatabaseList) {
+            foreach(UserToUpradeItemDatabase upgradeItem in user.UserToUpgradeItemDatabaseList) {
                 upgradeItem.RequestLoadReferenzData();
                 check = check & upgradeItem.WaitingOnDataCount == 0;
 
@@ -68,12 +69,12 @@ public class UserLoader {
     }
 
     public void Update() {
-        if (loadData == false) {
+        if(loadData == false) {
             return;
         }
 
 
-        if (HandleRequests.Instance.RequestDataStatus[requestId] == DataRequestStatusEnum.Recieved) {
+        if(HandleRequests.Instance.RequestDataStatus[requestId] == DataRequestStatusEnum.Recieved) {
 
             List<UserDatabase> list = UserDatabase.CreateObjectDataFromString(HandleRequests.Instance.RequestData[requestId]);
 
@@ -82,11 +83,11 @@ public class UserLoader {
 
             UserSave save = new UserSave();
             save.Id = user.Id;
-            save.SaveUserID();
+            save.Save();
             _userDataOld = false;
         }
-        if (user != null && _userDataOld == false) {
-            if (LoadUserData()) {
+        if(user != null && _userDataOld == false) {
+            if(LoadUserData()) {
                 loadData = false;
                 LoadingFinished?.Invoke();
                 NetworkDataContainer.Instance.WaitForServer.FinishedWaitOnServer();

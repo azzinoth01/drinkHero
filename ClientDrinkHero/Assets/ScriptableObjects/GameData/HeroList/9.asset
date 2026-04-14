@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf55123fb5cef4428208e260d209b52, type: 3}
+  m_Name: 9
+  m_EditorClassIdentifier: Assembly-CSharp::HeroData
+  _id: 199e67933015438eb11c77578926f40d
+  _externalID: 9
+  _shield: 0
+  _health: 10
+  _spritePath: Assets/Art/Character/FR4N/FR4N
+  _name: FR4N
+  _cardList:
+  - {fileID: 11400000, guid: 50478abe21b3e3544ac5712bb17fd79c, type: 2}
+  - {fileID: 11400000, guid: 0081687e5535f024fb6c86e9821bd5c9, type: 2}
+  - {fileID: 11400000, guid: 78a69c92ba0329f4585c1167cf30460b, type: 2}
+  - {fileID: 11400000, guid: 8f3fa3d164f9cae459a9fb69119f382f, type: 2}
+  - {fileID: 11400000, guid: b9383c664448a5a4781eaf4b13f6b3f1, type: 2}
+  _prefab: {fileID: 8758025253038595760, guid: c652d76b4e3747d4d8bf161d31eead2f, type: 3}

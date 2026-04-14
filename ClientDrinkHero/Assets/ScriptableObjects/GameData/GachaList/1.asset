@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f3e593273a8ad48a2235cfadee2b2f, type: 3}
+  m_Name: 1
+  m_EditorClassIdentifier: Assembly-CSharp::GachaData
+  _id: e7ccacab16444b0495d5f54b54877634
+  _externalID: 1
+  _name: Basic Gacha
+  _costType: Gold
+  _costSingelPull: 12
+  _costMultiPull: 100
+  _multiPullAmount: 10
+  _categories:
+  - _weight: 2
+    _category: {fileID: 11400000, guid: a00bbff09b41acb47b32a24b7f5c79bf, type: 2}
+  - _weight: 98
+    _category: {fileID: 11400000, guid: 6f7127841935f384c98cfedcc76a743a, type: 2}

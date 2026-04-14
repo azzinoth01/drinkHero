@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 91
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 9ef1fe8554d243258997200a44a31d94
+  _externalID: 91
+  _name: Get Peeled
+  _text: Removes Enemy Shield.
+  _cost: 7
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/JC/GetPeeled
+  _upgradeTo: {fileID: 11400000, guid: 5e8a7234df86cc24a993dbd5fc43884b, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 9ab0f2669c7ccba48af6e160fc665f9b, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: 766319978cc932f49a57552c1a4f36ff, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 23

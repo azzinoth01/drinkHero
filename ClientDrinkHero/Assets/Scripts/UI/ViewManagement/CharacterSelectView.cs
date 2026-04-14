@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,120 +7,64 @@ public class CharacterSelectView : View
     [SerializeField] private Button backButton;
     [SerializeField] private Sprite backButtonClicked;
     private Sprite _backButtonInitial;
-    
+
     [SerializeField] private GameObject[] characterButtonObjects;
     [SerializeField] private SelectableCharacterButton[] characterButtons;
-    [SerializeField] private GameObject loadingPanel;
-    [SerializeField] private TextMeshProUGUI loadingText;
-    
-    private AllHeroesPreviewHandler _allHeroesPreviewHandler;
-    private UnlockedHeroesPreviewHandler _unlockedHeroesPreviewHandler;
 
-    private List<HeroDatabase> _allHeroes;
-    public static List<HeroToUserDatabase> UnlockedHeroes;
 
     private int _listCounter;
 
-    public override void Initialize()
-    {
-        ViewTweener.PulseTextTween(loadingText);
-        
+    public override void Initialize() {
+
         CharacterSlot.OnCharacterDeselect += EnableCharacter;
 
-        backButton.onClick.AddListener(ViewTweener.ButtonClickTween(backButton, 
-            backButtonClicked, () => ViewManager.ShowLast()));
+        backButton.onClick.AddListener(ViewTweener.ButtonClickTween(backButton,backButtonClicked,() => ViewManager.ShowLast()));
 
         _backButtonInitial = backButton.image.sprite;
 
-        UnlockedHeroes = new List<HeroToUserDatabase>();
-        _allHeroes = new List<HeroDatabase>();
-
-        _allHeroesPreviewHandler = new AllHeroesPreviewHandler();
-        _unlockedHeroesPreviewHandler = new UnlockedHeroesPreviewHandler();
-
-        _allHeroesPreviewHandler.LoadingFinished += CheckLists;
-        _unlockedHeroesPreviewHandler.LoadingFinished += CheckLists;
-
-        _allHeroesPreviewHandler.RequestData();
-        _unlockedHeroesPreviewHandler.RequestData();
-
-        ShowLoadingPanel();
+        PopulateCharacterList();
     }
 
-    private void OnDestroy()
-    {
+    private void OnDestroy() {
         CharacterSlot.OnCharacterDeselect -= EnableCharacter;
-        _allHeroesPreviewHandler.LoadingFinished -= CheckLists;
-        _unlockedHeroesPreviewHandler.LoadingFinished -= CheckLists;
     }
 
-    private void PopulateCharacterList()
-    {
-        if (_allHeroes.Count == 0) _allHeroes = _allHeroesPreviewHandler.Heros;
-
-        UnlockedHeroes = _unlockedHeroesPreviewHandler.UnlockedHeros;
+    private void PopulateCharacterList() {
 
         var selectableCharacterButtons = new List<SelectableCharacterButton>();
-
-        for (var i = 0; i < characterButtonObjects.Length; i++)
-        {
+        for(int i = 0; i < characterButtonObjects.Length; i++) {
             characterButtonObjects[i].SetActive(true);
-            var btn = characterButtonObjects[i].GetComponent<SelectableCharacterButton>();
-            btn.Lock();
-            selectableCharacterButtons.Add(btn);
+            SelectableCharacterButton characterButton = characterButtonObjects[i].GetComponent<SelectableCharacterButton>();
+            characterButton.Lock();
+            selectableCharacterButtons.Add(characterButton);
         }
 
-        for (var i = 0; i < _allHeroes.Count; i++)
-        {
-            var data = new CharacterSlotData();
-            data.id = _allHeroes[i].Id;
-            data.characterName = _allHeroes[i].Name;
-            data.characterSpritePath = _allHeroes[i].SpritePath;
+        List<HeroData> allHeroes = GameDataInstance.Instance.GameDataDatabase.HeroData;
+        for(int i = 0; i < allHeroes.Count; i++) {
+            CharacterSlotData data = new CharacterSlotData();
+            data.id = allHeroes[i].Id;
+            data.characterName = allHeroes[i].Name;
+            data.characterSpritePath = allHeroes[i].SpritePath;
             selectableCharacterButtons[i].SetData(data);
         }
 
-        foreach (var unlockedHero in UnlockedHeroes)
-            for (var i = 0; i < selectableCharacterButtons.Count; i++)
-                if (selectableCharacterButtons[i].ID == unlockedHero.RefHero)
+        List<HeroObject> unlockedHeroes = GameDataInstance.Instance.OwnedHeroes;
+        foreach(HeroObject unlockedHero in unlockedHeroes) {
+            for(int i = 0; i < selectableCharacterButtons.Count; i++) {
+                if(selectableCharacterButtons[i].ID == unlockedHero.Id) {
                     selectableCharacterButtons[i].Unlock();
-
+                }
+            }
+        }
         characterButtons = selectableCharacterButtons.ToArray();
     }
 
-    private void Update()
-    {
-        _allHeroesPreviewHandler.Update();
-        _unlockedHeroesPreviewHandler.Update();
+    private void EnableCharacter(string id) {
+        //Debug.Log($"<color=red>Attempting to (re-)enable {id - 1}</color>");
+        //characterButtons[id - 1].CheckIfSelected();
     }
 
-    private void CheckLists()
-    {
-        _listCounter += 1;
-        if (_listCounter == 2)
-        {
-            PopulateCharacterList();
-            HideLoadingPanel();
-        }
-    }
-    
-    private void EnableCharacter(int id)
-    {
-        Debug.Log($"<color=red>Attempting to (re-)enable {id - 1}</color>");
-        characterButtons[id - 1].CheckIfSelected();
-    }
-
-    private void ShowLoadingPanel()
-    {
-        loadingPanel.SetActive(true);
-    }
-
-    private void HideLoadingPanel()
-    {
-        loadingPanel.SetActive(false);
-    }
-
-    public override void Show()
-    {
+    public override void Show() {
         base.Show();
         backButton.image.sprite = _backButtonInitial;
     }

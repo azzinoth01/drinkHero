@@ -4,7 +4,8 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [Serializable]
-public class Player : Character, IHandCards, IPlayer, IPlayerAction {
+public class Player : Character, IHandCards, IPlayer, IPlayerAction
+{
     const int MaxHandCards = 5;
 
     [SerializeField] private string _name;
@@ -16,7 +17,7 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
     [SerializeField] private List<DeckCardContainer> _handCards;
     public List<DeckCardContainer> HandCards => _handCards;
 
-    private Dictionary<int, DeckCardContainer> _hand;
+    private Dictionary<int,DeckCardContainer> _hand;
 
 
     [SerializeField] private GameDeck _gameDeck;
@@ -71,19 +72,19 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
 
 
     private void ResetPlayer() {
-        if (_gameDeck != null) {
+        if(_gameDeck != null) {
             _handCards = new List<DeckCardContainer>();
             _gameDeck.RecreateDeck();
 
             //define max handcards globaly
-            for (int i = 0; i < 4;) {
+            for(int i = 0; i < 4;) {
 
                 _handCards.Add(_gameDeck.DrawCard());
 
                 i = i + 1;
             }
 
-            foreach (HeroSlot heroSlot in _gameDeck.Deck.HeroSlotList) {
+            foreach(HeroSlot heroSlot in _gameDeck.Deck.HeroSlotList) {
                 _maxHealth = _maxHealth + heroSlot.Hero.Health;
             }
             _health = _maxHealth;
@@ -118,17 +119,17 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
     public bool PlayHandCard(int index) {
 
         DeckCardContainer container = _handCards[index];
-        CardDatabase card = container.Card;
+        CardData card = container.Card;
 
 
-        if (card.Cost > _ressource) {
+        if(card.Cost > _ressource) {
             return false;
         }
 
 
         //start Animation
 
-        if (card.AnimationKey != null && card.AnimationKey != "") {
+        if(card.AnimationKey != null && card.AnimationKey != "") {
             VFXObjectContainer.Instance.PlayAnimation(card.AnimationKey);
 
         }
@@ -152,14 +153,14 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
 
         PlayerTeam.Instance.PlayAnimation("Attack");
         // Action
-        for (int i = 0; i < _buffMultihit;) {
+        for(int i = 0; i < _buffMultihit;) {
             Action(card);
 
             i = i + 1;
         }
 
         // Action End
-        CheckDebuffsAndBuffs(ActivationTimeEnum.actionFinished, _dmgCausedThisAction);
+        CheckDebuffsAndBuffs(ActivationTimeEnum.actionFinished,_dmgCausedThisAction);
 
 
         _dmgCausedThisAction = 0;
@@ -172,25 +173,25 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
     }
 
 
-    public void Action(CardDatabase card) {
-        if (card.CardEffectList != null && card.CardEffectList.Count > 0) {
-            foreach (CardToEffect cardToEffect in card.CardEffectList) {
-                Effect effect = EffectConverter.ConvertEffectIntoEffectType(cardToEffect.Effect);
-                if (effect is IBuff) {
-                    IBuff b = (IBuff)effect;
-                    if (b.ActivateEffect(this, ActivationTimeEnum.onCast) == true) {
+    public void Action(CardData card) {
+        if(card.CardEffectList != null && card.CardEffectList.Count > 0) {
+            foreach(CardEffectData cardEffectData in card.CardEffectList) {
+                Effect effect = EffectConverter.ConvertEffectIntoEffectType(cardEffectData);
+                if(effect is IBuff) {
+                    IBuff b = (IBuff) effect;
+                    if(b.ActivateEffect(this,ActivationTimeEnum.onCast) == true) {
                         _buffList.Add(b);
                     }
                 }
-                else if (effect is IDebuff) {
-                    IDebuff b = (IDebuff)effect;
-                    if (b.ActivateEffectBase(GlobalGameInfos.Instance.EnemyObject.Enemy, ActivationTimeEnum.onCast) == true) {
+                else if(effect is IDebuff) {
+                    IDebuff b = (IDebuff) effect;
+                    if(b.ActivateEffectBase(GlobalGameInfos.Instance.EnemyObject.Enemy,ActivationTimeEnum.onCast) == true) {
                         GlobalGameInfos.Instance.EnemyObject.Enemy.DebuffList.Add(b);
                     }
                 }
-                else if (effect is ISkill) {
-                    ISkill b = (ISkill)effect;
-                    b.ActivateEffect(this, ActivationTimeEnum.onCast);
+                else if(effect is ISkill) {
+                    ISkill b = (ISkill) effect;
+                    b.ActivateEffect(this,ActivationTimeEnum.onCast);
                 }
             }
 
@@ -206,8 +207,8 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
     }
 
 
-    public void UpdateUI(int deltaHealth = 0, int deltaShield = 0, int deltaEnergy = 0) {
-        base.UpdateUI(deltaHealth, deltaShield);
+    public void UpdateUI(int deltaHealth = 0,int deltaShield = 0,int deltaEnergy = 0) {
+        base.UpdateUI(deltaHealth,deltaShield);
         RessourceChange?.Invoke(deltaEnergy);
     }
 
@@ -219,7 +220,7 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
     }
 
     public ICardDisplay GetHandCard(int index) {
-        if (index < 0 || index >= HandCards.Count) {
+        if(index < 0 || index >= HandCards.Count) {
             return null;
         }
         return HandCards[index];
@@ -260,7 +261,7 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
 
         UpdateUI();
 
-        if (_skipTurn > 0) {
+        if(_skipTurn > 0) {
             _skipTurn = _skipTurn - 1;
             InvokeEndTurn();
         }
@@ -268,8 +269,8 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
 
     private void DrawCardsFromDeck(int value) {
         AudioController.Instance.PlayAudio(AudioType.SFXDrawCards);
-        for (int i = 0; i < value;) {
-            if (_handCards.Count >= MaxHandCards) {
+        for(int i = 0; i < value;) {
+            if(_handCards.Count >= MaxHandCards) {
                 break;
             }
             _handCards.Add(_gameDeck.DrawCard());
@@ -283,8 +284,8 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
 
     public override void SwapShieldWithEnemy() {
 
-        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "SHIELD SWAP");
-        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "SHIELD SWAP");
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect,"SHIELD SWAP");
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect,"SHIELD SWAP");
 
         int tempShield = GlobalGameInfos.Instance.EnemyObject.Enemy.shield;
         GlobalGameInfos.Instance.EnemyObject.Enemy.shield = Shield;
@@ -303,9 +304,9 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
 
     public override void DiscardHandCards(int value) {
 
-        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "DISCARD CARDS -" + value);
-        for (int i = 0; i < value;) {
-            if (_handCards.Count == 0) {
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect,"DISCARD CARDS -" + value);
+        for(int i = 0; i < value;) {
+            if(_handCards.Count == 0) {
                 break;
             }
             DiscardCard();
@@ -317,7 +318,7 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
     }
 
     private void DiscardCard() {
-        int index = Random.Range(0, _handCards.Count);
+        int index = Random.Range(0,_handCards.Count);
         DeckCardContainer card = _handCards[index];
 
         DiscardCardAction?.Invoke(index);
@@ -327,13 +328,13 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction {
     }
 
     public override void Mana(int value) {
-        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "MANA +" + value);
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect,"MANA +" + value);
         _ressource = _ressource + value;
         RessourceChange?.Invoke(value);
     }
 
     public override void DrawCard(int value) {
-        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "DRAW CARD +" + value);
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect,"DRAW CARD +" + value);
         DrawCardsFromDeck(value);
     }
 }

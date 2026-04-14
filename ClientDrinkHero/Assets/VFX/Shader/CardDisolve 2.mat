@@ -45,7 +45,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: eb5b3fa9c61937a4795b26eb3bc95b96, type: 3}
+        m_Texture: {fileID: 2800000, guid: 94fc6135ef1e0b842a7225e116c67782, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -90,7 +90,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DisolveState: 1
+    - _DisolveState: -0.0015929937
     - _EnableExternalAlpha: 0
     - _QueueControl: 0
     - _QueueOffset: 0

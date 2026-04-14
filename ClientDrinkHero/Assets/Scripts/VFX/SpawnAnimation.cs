@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class SpawnAnimation : MonoBehaviour, IAnimation {
+public class SpawnAnimation : MonoBehaviour, IAnimation
+{
 
     [SerializeField] private int _moveInDirection;
     [SerializeField] private float _moveInTime;
@@ -10,28 +11,27 @@ public class SpawnAnimation : MonoBehaviour, IAnimation {
     [SerializeField] private Vector3 _moveInSpeed;
     [SerializeField] private float _time;
 
-
     [SerializeField] private HitAnimation _hitAnimation;
+    [SerializeField] private IdleAnimation _idleAnimation;
 
     private void Awake() {
         _startPosition = transform.localPosition;
 
-        VFXObjectContainer.Instance.AddAnimation(_animationKey, this);
-
-        //Debug.Log(transform.position);
-        //Debug.Log(transform.localPosition);
+        VFXObjectContainer.Instance.AddAnimation(_animationKey,this);
     }
 
 
     private void Update() {
 
-
         transform.localPosition = transform.localPosition - (_moveInSpeed * Time.deltaTime);
         _time = _time + Time.deltaTime;
 
-        if (_time >= _moveInTime) {
+        if(_time >= _moveInTime) {
             transform.localPosition = _startPosition;
             enabled = false;
+            if(_idleAnimation != null) {
+                _idleAnimation.StartIdleAnimation();
+            }
         }
 
     }
@@ -39,24 +39,18 @@ public class SpawnAnimation : MonoBehaviour, IAnimation {
     [ContextMenu("PlaySpawn")]
     public void Play() {
 
-        if (_hitAnimation != null) {
+        if(_hitAnimation != null) {
             _hitAnimation.StopAnimation();
         }
 
-
-        //Debug.Log(transform.position);
         float moveoutside = Screen.width * 2 * (_moveInDirection * -1);
 
+        transform.localPosition = new Vector3(transform.localPosition.x + moveoutside,transform.localPosition.y,transform.localPosition.z);
 
-
-        transform.localPosition = new Vector3(transform.localPosition.x + moveoutside, transform.localPosition.y, transform.localPosition.z);
-
-        _moveInSpeed = new Vector3(moveoutside / _moveInTime, 0, 0);
+        _moveInSpeed = new Vector3(moveoutside / _moveInTime,0,0);
         _time = 0;
 
         _animator.SetTrigger("Play");
-
-
 
         enabled = true;
     }

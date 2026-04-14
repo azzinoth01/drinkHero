@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class UserObject : MonoBehaviour {
+public class UserObject : MonoBehaviour
+{
 
     private UserLoader _userHandle;
     [SerializeField] private UserDatabase _user;
@@ -25,7 +26,7 @@ public class UserObject : MonoBehaviour {
 
         _userHandle.RequestData();
 
-        UserSingelton.Instance.UserObject = this;
+        GameDataInstance.Instance.UserObject = this;
     }
 
 

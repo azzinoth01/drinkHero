@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class EnemyBattle : ICharacter, ICharacterAction {
-    [SerializeField] public EnemyDatabase _enemyBaseData;
+public class EnemyBattle : ICharacter, ICharacterAction
+{
+    [SerializeField] public EnemyData _enemyBaseData;
 
     [SerializeField] public int maxHealth;
     [SerializeField] public int health;
@@ -49,7 +50,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
         UIDataContainer.Instance.Enemy = this;
     }
-    public void ResetEnemy(EnemyDatabase enemyData) {
+    public void ResetEnemy(EnemyData enemyData) {
 
         _alreadyDead = false;
         _enemyBaseData = enemyData;
@@ -65,10 +66,10 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
         _skipTurn = 0;
 
-        _dmgModifier = new ModifierStruct(0, 0);
-        _healModifier = new ModifierStruct(0, 0);
-        _defenceModifier = new ModifierStruct(0, 0);
-        _shieldModifier = new ModifierStruct(0, 0);
+        _dmgModifier = new ModifierStruct(0,0);
+        _healModifier = new ModifierStruct(0,0);
+        _defenceModifier = new ModifierStruct(0,0);
+        _shieldModifier = new ModifierStruct(0,0);
 
 
         VFXObjectContainer.Instance.PlayAnimation("enemySpawn");
@@ -78,7 +79,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
     }
 
-    public void SetBaseModificator(ModifierStruct healthModificator, ModifierStruct dmgModificator) {
+    public void SetBaseModificator(ModifierStruct healthModificator,ModifierStruct dmgModificator) {
         _dmgModifier = new ModifierStruct(dmgModificator);
 
         maxHealth = healthModificator.CalcValue(maxHealth);
@@ -96,7 +97,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     public static event Action enemyDamageReceived, enemyDamageBlocked, enemyHealed, enemyShieldUp;
 
 
-    public void UpdateUI(int deltaHealth = 0, int deltaShield = 0) {
+    public void UpdateUI(int deltaHealth = 0,int deltaShield = 0) {
         HealthChange?.Invoke(deltaHealth);
         ShieldChange?.Invoke(deltaShield);
     }
@@ -121,16 +122,13 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
 
     public void StartTurn() {
-        ClientFunctions.SendMessageToDatabase("Enemy Turn Started");
 
         CheckDebuffsAndBuffs(ActivationTimeEnum.turnStart);
 
-
         bool usedSkill = false;
 
-        if (_skipTurn > 0) {
+        if(_skipTurn > 0) {
             _skipTurn = _skipTurn - 1;
-            ClientFunctions.SendMessageToDatabase("Enemy Turn End");
             EndTurn();
             TurnEnded?.Invoke();
             return;
@@ -169,38 +167,33 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         AttackEnemy(5);
 
         //VFXObjectContainer.Instance.PlayAnimation("41"); //old animation
-        if(UnityEngine.Random.value > 0.5f)
+        if(UnityEngine.Random.value > 0.5f) {
             PlayerTeam.Instance.PlayAnimation("Hurt");
-        else 
+        }
+        else {
             PlayerTeam.Instance.PlayAnimation("HurtDizzy");
-
+        }
 
         CheckDebuffsAndBuffs(ActivationTimeEnum.actionFinished);
 
-        ClientFunctions.SendMessageToDatabase("Enemy Turn End");
         EndTurn();
         TurnEnded?.Invoke();
     }
-
-
     public void Heal(int value) {
         health = health + value;
-        if (health > maxHealth) {
+        if(health > maxHealth) {
             health = maxHealth;
         }
 
-        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.heal, "+" + value.ToString());
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.heal,"+" + value.ToString());
 
         HealthChange?.Invoke(value);
         enemyHealed?.Invoke();
     }
-
-
-
     private int DmgShield(int value) {
         int shieldDmg = 0;
-        if (shield > 0) {
-            if (shield > value) {
+        if(shield > 0) {
+            if(shield > value) {
                 shield = shield - value;
                 shieldDmg = -value;
                 value = 0;
@@ -209,10 +202,9 @@ public class EnemyBattle : ICharacter, ICharacterAction {
                 value = value - shield;
                 shieldDmg = -shield;
                 shield = 0;
-
             }
 
-            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.shield, shieldDmg.ToString());
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.shield,shieldDmg.ToString());
 
             ShieldChange?.Invoke(shieldDmg);
             enemyDamageBlocked?.Invoke();
@@ -222,7 +214,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
     private int DmgHealth(int value) {
         int healthDmg = 0;
-        if (health - value < 0) {
+        if(health - value < 0) {
             value = value - health;
             healthDmg = -health;
             health = 0;
@@ -233,7 +225,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
             value = 0;
         }
 
-        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.dmg, healthDmg.ToString());
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.dmg,healthDmg.ToString());
 
         HealthChange?.Invoke(healthDmg);
         enemyDamageReceived?.Invoke();
@@ -249,14 +241,9 @@ public class EnemyBattle : ICharacter, ICharacterAction {
         value = DmgHealth(value);
 
 
-        if (health <= 0 && _alreadyDead == false) {
-
-            string request = ClientFunctions.AddMoneyToUser(_enemyBaseData.MoneyDrop);
-
-            UserSingelton.Instance.UserObject.UpdateUserDataRequest(request);
-
-
-
+        if(health <= 0 && _alreadyDead == false) {
+            GameDataInstance.Instance.UserSave.Gold = GameDataInstance.Instance.UserSave.Gold + _enemyBaseData.MoneyDrop;
+            GameDataInstance.Instance.UserSave.Save();
 
             EnemyObject.GoldGotThisSession = EnemyObject.GoldGotThisSession + _enemyBaseData.MoneyDrop;
             _alreadyDead = true;
@@ -275,7 +262,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     void ICharacterAction.Shield(int value) {
         shield = shield + value;
 
-        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.shield, "+" + value.ToString());
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.shield,"+" + value.ToString());
 
         ShieldChange?.Invoke(value);
         enemyShieldUp?.Invoke();
@@ -283,24 +270,22 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
     public void AddAttackModifier(int value) {
 
-        if (value > 0) {
-            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "ATT UP");
+        if(value > 0) {
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect,"ATT UP");
         }
         else {
-            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "ATT DOWN");
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect,"ATT DOWN");
         }
-
-
         _dmgModifier.AddModifier(value);
 
     }
 
     public void AddDefenceModifier(int value) {
-        if (value > 0) {
-            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "DEF UP");
+        if(value > 0) {
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect,"DEF UP");
         }
         else {
-            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "DEF DOWN");
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect,"DEF DOWN");
         }
 
         _defenceModifier.AddModifier(value);
@@ -308,12 +293,8 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
     public void SwapShieldWithEnemy() {
 
-        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "SHIELD SWAP");
-        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect, "SHIELD SWAP");
-
-
-
-
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect,"SHIELD SWAP");
+        UIDataContainer.Instance.PlayerText.SpawnFlyingText(FlyingTextEnum.effect,"SHIELD SWAP");
 
         int tempShield = GlobalGameInfos.Instance.PlayerObject.Player.Shield;
         GlobalGameInfos.Instance.PlayerObject.Player.Shield = shield;
@@ -324,7 +305,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     }
 
     public void AttackEnemy(int value) {
-        ICharacterAction playerActions = (ICharacterAction)UIDataContainer.Instance.Player;
+        ICharacterAction playerActions = (ICharacterAction) UIDataContainer.Instance.Player;
 
         value = _dmgModifier.CalcValue(value);
 
@@ -332,32 +313,32 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     }
 
     public void RemoveShield() {
-        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "REMOVE SHIELD");
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect,"REMOVE SHIELD");
         shield = 0;
         ShieldChange?.Invoke(0);
     }
 
     public void SkipTurn(int value) {
-        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "STUNNED");
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect,"STUNNED");
         _skipTurn = value;
     }
 
     public void SetBuffMultihit(int value) {
-        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "MULTIHIT +" + value);
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect,"MULTIHIT +" + value);
         _buffMultihit = value;
     }
 
-    private void CheckDebuffsAndBuffs(ActivationTimeEnum activation, int? value = null) {
-        for (int i = BuffList.Count; i > 0;) {
+    private void CheckDebuffsAndBuffs(ActivationTimeEnum activation,int? value = null) {
+        for(int i = BuffList.Count; i > 0;) {
             i = i - 1;
-            if (BuffList[i].ActivateEffectBase(this, activation, value) == false) {
+            if(BuffList[i].ActivateEffectBase(this,activation,value) == false) {
                 BuffList.RemoveAt(i);
             }
 
         }
-        for (int i = DebuffList.Count; i > 0;) {
+        for(int i = DebuffList.Count; i > 0;) {
             i = i - 1;
-            if (DebuffList[i].ActivateEffectBase(this, activation, value) == false) {
+            if(DebuffList[i].ActivateEffectBase(this,activation,value) == false) {
                 DebuffList.RemoveAt(i);
             }
 
@@ -374,21 +355,21 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     //}
 
     public void AddFixedAttackModifier(int value) {
-        if (value > 0) {
-            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "ATT UP");
+        if(value > 0) {
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect,"ATT UP");
         }
         else {
-            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "ATT DOWN");
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect,"ATT DOWN");
         }
         _dmgModifier.addFixedModifier(value);
     }
 
     public void AddFixedDefenceModifier(int value) {
-        if (value > 0) {
-            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "DEF UP");
+        if(value > 0) {
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect,"DEF UP");
         }
         else {
-            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "DEF DOWN");
+            UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect,"DEF DOWN");
         }
         _defenceModifier.addFixedModifier(value);
     }
@@ -403,9 +384,9 @@ public class EnemyBattle : ICharacter, ICharacterAction {
     //}
 
     public void RemoveDebuff(int value) {
-        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, "REMOVE DEBUFF +" + value);
-        for (int i = 0; i < value;) {
-            if (_debuffList.Count == 0) {
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect,"REMOVE DEBUFF +" + value);
+        for(int i = 0; i < value;) {
+            if(_debuffList.Count == 0) {
                 break;
             }
             _debuffList.RemoveAt(_debuffList.Count - 1);
@@ -415,7 +396,7 @@ public class EnemyBattle : ICharacter, ICharacterAction {
 
     public void CallEffectText(string Text) {
 
-        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect, Text);
+        UIDataContainer.Instance.EnemyText.SpawnFlyingText(FlyingTextEnum.effect,Text);
 
     }
 

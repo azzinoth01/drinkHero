@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 141
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: f299f4b2adff4fdb89e635ad62eaf2f1
+  _externalID: 141
+  _name: Acid Reflux
+  _text: Damage Enemy for 6 over 2 turns.
+  _cost: 4
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/SDI/AcidReflux
+  _upgradeTo: {fileID: 11400000, guid: 971865ef1b56388479a843b463d02ae2, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 6d1ac69f48d9e4e43a33f11d1653df7f, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: 941ad9f1911ce5d4780dd8515d7c18ed, type: 2}
+  _upgradeItemAmount: 2
+  _animationKey: 36

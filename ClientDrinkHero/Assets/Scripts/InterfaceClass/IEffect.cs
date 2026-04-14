@@ -1,5 +1,6 @@
-public interface IEffect {
-    public int Id {
+public interface IEffect
+{
+    public string Id {
         get;
         set;
     }
@@ -37,9 +38,9 @@ public interface IEffect {
     }
 
 
-    public bool ActivateEffectBase(ICharacterAction target, ActivationTimeEnum activation, int? value = null);
+    public bool ActivateEffectBase(ICharacterAction target,ActivationTimeEnum activation,int? value = null);
 
-    public bool ActivateEffect(IPlayerAction target, ActivationTimeEnum activation, int? value = null);
+    public bool ActivateEffect(IPlayerAction target,ActivationTimeEnum activation,int? value = null);
 
 
     public bool StatusEffectApplyCheck(IEffect statusEffect);

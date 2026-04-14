@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 65
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: cb5bbc3160314d3bb564cb07d3edac3d
+  _externalID: 65
+  _name: Shield Bash
+  _text: Deal Damage equal to your current Shield.
+  _cost: 5
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/TF/ShieldBash
+  _upgradeTo: {fileID: 11400000, guid: 8408143aa93b91f46809284bb827e849, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 53cf24396fa619944bd9332b392bb8f7, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: f620e2a15a3885445b26010a6472a82b, type: 2}
+  _upgradeItemAmount: 2
+  _animationKey: 17

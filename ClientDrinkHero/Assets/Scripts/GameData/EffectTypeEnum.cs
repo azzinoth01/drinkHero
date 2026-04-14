@@ -17,6 +17,7 @@ public enum EffectTypeEnum
     Poison = 10,
     RemoveShield = 11,
     Stun = 12,
+    DebuffHeal = 24,
 
     //skills
     Attack = 13,

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 86
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: e138f4158e6a499b8fc13af86d981bba
+  _externalID: 86
+  _name: Juice Fast
+  _text: Gain 3 HP and Shield.
+  _cost: 2
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/JC/JuiceFast
+  _upgradeTo: {fileID: 11400000, guid: 5d8c450cea8ee6048a064e5651c831a8, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 1cc858ca74831bd42bb567f85854a843, type: 2}
+  - {fileID: 11400000, guid: b555d0a40036fe440917d4411cf8d3af, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: 766319978cc932f49a57552c1a4f36ff, type: 2}
+  _upgradeItemAmount: 4
+  _animationKey: 22

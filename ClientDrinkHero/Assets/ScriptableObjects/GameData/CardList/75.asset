@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 75
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: c2ec1930425e41ada0f09d852c1bf02a
+  _externalID: 75
+  _name: Barrel aged
+  _text: Heal 5 HP for the next 2 turns.
+  _cost: 2
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/TF/BarrelAged
+  _upgradeTo: {fileID: 11400000, guid: 1328ed43ed2abdf439e51dbcb25d3986, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 3f2791f94031e534daab8e2ab486c2ab, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: f620e2a15a3885445b26010a6472a82b, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 19

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf55123fb5cef4428208e260d209b52, type: 3}
+  m_Name: 2
+  m_EditorClassIdentifier: Assembly-CSharp::HeroData
+  _id: 9b15598b81c742eab782919dfc826c86
+  _externalID: 2
+  _shield: 0
+  _health: 10
+  _spritePath: Assets/Art/Character/Rubia/Rubia
+  _name: Rubia
+  _cardList:
+  - {fileID: 11400000, guid: 5d49eb10bfd19784d8c4646a8ffc38a0, type: 2}
+  - {fileID: 11400000, guid: 6f79f643bec1b9646b591b15fa1e56b5, type: 2}
+  - {fileID: 11400000, guid: 9067fe37ef73e2140910cf3bbd56233b, type: 2}
+  - {fileID: 11400000, guid: 8f2746eafa4b4d84da340b0648045c3b, type: 2}
+  - {fileID: 11400000, guid: 505dd2160c3778948aa1fc0fcf74d33f, type: 2}
+  _prefab: {fileID: 6206749736483379237, guid: f068dbc3afa0fa74f896b558764c8d07, type: 3}

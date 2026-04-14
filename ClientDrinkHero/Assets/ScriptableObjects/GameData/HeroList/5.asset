@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf55123fb5cef4428208e260d209b52, type: 3}
+  m_Name: 5
+  m_EditorClassIdentifier: Assembly-CSharp::HeroData
+  _id: e4e6a5c69d134ac0a260fa169db47e39
+  _externalID: 5
+  _shield: 0
+  _health: 10
+  _spritePath: Assets/Art/Character/LadyScarlet/LadyScarlet
+  _name: Lady Scarlet
+  _cardList:
+  - {fileID: 11400000, guid: 49acdd0025850b04283f43609eab57fe, type: 2}
+  - {fileID: 11400000, guid: f48a83e3548d193468d564ff075b413f, type: 2}
+  - {fileID: 11400000, guid: 6f79f643bec1b9646b591b15fa1e56b5, type: 2}
+  - {fileID: 11400000, guid: 4eef901e6a0ee68448146a2b6c498c7f, type: 2}
+  - {fileID: 11400000, guid: b4063bdd0679a8d42accdae9baa0b71f, type: 2}
+  _prefab: {fileID: 8115661590948429477, guid: b6be440dfaffb7840a0aff19eaef63d7, type: 3}

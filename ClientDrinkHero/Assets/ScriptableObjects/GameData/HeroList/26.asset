@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf55123fb5cef4428208e260d209b52, type: 3}
+  m_Name: 26
+  m_EditorClassIdentifier: Assembly-CSharp::HeroData
+  _id: a4bb7968016148369df4de55fe382cb9
+  _externalID: 26
+  _shield: 0
+  _health: 10
+  _spritePath: Assets/Art/Character/Sojiro/Sojiro
+  _name: Sojiro
+  _cardList:
+  - {fileID: 11400000, guid: a44ad136bd069c74386f09b6565f4e1d, type: 2}
+  - {fileID: 11400000, guid: 39246b8a25c18ac488c672c951eed615, type: 2}
+  - {fileID: 11400000, guid: 6fbd2037c0dcad449956145d166a0451, type: 2}
+  - {fileID: 11400000, guid: d2a3d69e6bf039440831dbb0ff7c9b1a, type: 2}
+  - {fileID: 11400000, guid: 78a69c92ba0329f4585c1167cf30460b, type: 2}
+  _prefab: {fileID: 1686073976688280775, guid: 8a75c0a26940e5e46b4a8c42d1c0deae, type: 3}

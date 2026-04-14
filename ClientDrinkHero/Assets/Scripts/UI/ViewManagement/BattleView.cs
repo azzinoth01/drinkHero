@@ -4,7 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BattleView : View {
+public class BattleView : View
+{
     [SerializeField] public List<CardView> currentPlayerHand;
     private CardView _handCardDisolveObject;
 
@@ -34,7 +35,8 @@ public class BattleView : View {
     [SerializeField] private TextMeshProUGUI enemyHealthLabelText;
     [SerializeField] private TextMeshProUGUI enemyShieldCountText;
 
-    [Header("Buttons")][SerializeField] private Button endTurnButton;
+    [Header("Buttons")]
+    [SerializeField] private Button endTurnButton;
     [SerializeField] private Button optionsMenuButton;
     [SerializeField] private Button pauseMenuButton;
 
@@ -58,14 +60,14 @@ public class BattleView : View {
 
     public override void Initialize() {
         optionsMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(optionsMenuButton,
-            optionsMenuButton.image.sprite, () => ViewManager.Show<OptionsMenuView>()));
+            optionsMenuButton.image.sprite,() => ViewManager.Show<OptionsMenuView>()));
 
         pauseMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(pauseMenuButton,
-            pauseMenuButton.image.sprite, () => ViewManager.Show<PauseMenuView>()));
+            pauseMenuButton.image.sprite,() => ViewManager.Show<PauseMenuView>()));
 
         //pauseMenuButton.onClick.AddListener(() => ViewManager.Show<PauseMenuView>());
 
-        AudioController.Instance.PlayAudio(AudioType.BattleTheme, true, 0f);
+        AudioController.Instance.PlayAudio(AudioType.BattleTheme,true,0f);
     }
 
     private void OnEnable() {
@@ -80,7 +82,7 @@ public class BattleView : View {
 
         UIDataContainer.Instance.Enemy.HealthChange += UpdateEnemyHealthBar;
         UIDataContainer.Instance.Enemy.ShieldChange += UpdateEnemyShieldCounter;
-        ((EnemyBattle)UIDataContainer.Instance.Enemy).DiedEvent += BattleView_DiedEvent;
+        ((EnemyBattle) UIDataContainer.Instance.Enemy).DiedEvent += BattleView_DiedEvent;
 
         //UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel += ToggleWaitingPanel;
 
@@ -95,16 +97,16 @@ public class BattleView : View {
     }
 
     private void BattleView_DiedEvent() {
-        if (PlayerPrefs.GetString("GameMode") != "Level")
+        if(PlayerPrefs.GetString("GameMode") != "Level")
             return;
 
         currentEnemyIndex++;
-        int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
+        int currentLevel = PlayerPrefs.GetInt("CurrentLevel",1);
 
-        if (currentLevel > currentEnemyIndex)
+        if(currentLevel > currentEnemyIndex)
             return;
 
-        PlayerPrefs.SetInt("MaxLevel", Mathf.Max(PlayerPrefs.GetInt("MaxLevel"), currentLevel + 1));
+        PlayerPrefs.SetInt("MaxLevel",Mathf.Max(PlayerPrefs.GetInt("MaxLevel"),currentLevel + 1));
         ShowGameOverScreen();
 
         string request;
@@ -131,7 +133,7 @@ public class BattleView : View {
 
         UIDataContainer.Instance.Enemy.HealthChange -= UpdateEnemyHealthBar;
         UIDataContainer.Instance.Enemy.ShieldChange -= UpdateEnemyShieldCounter;
-        ((EnemyBattle)UIDataContainer.Instance.Enemy).DiedEvent -= BattleView_DiedEvent;
+        ((EnemyBattle) UIDataContainer.Instance.Enemy).DiedEvent -= BattleView_DiedEvent;
 
         //UIDataContainer.Instance.WaitingPanel.DisplayWaitingPanel -= ToggleWaitingPanel;
 
@@ -151,7 +153,7 @@ public class BattleView : View {
         InitDisolveHandCard();
     }
     private void InitDisolveHandCard() {
-        GameObject obj = Instantiate(playerCardObjectPrefab, playerHandContainer.transform.position, Quaternion.identity, playerHandContainer.transform);
+        GameObject obj = Instantiate(playerCardObjectPrefab,playerHandContainer.transform.position,Quaternion.identity,playerHandContainer.transform);
         Image image = obj.GetComponent<Image>();
         Material materialPrefab = image.material;
 
@@ -165,9 +167,9 @@ public class BattleView : View {
     }
 
 
-    private void AddHandCard(ICardDisplay card, int index) {
-        GameObject newCard = Instantiate(playerCardObjectPrefab, playerHandContainer.transform.position,
-            Quaternion.identity, playerHandContainer.transform);
+    private void AddHandCard(ICardDisplay card,int index) {
+        GameObject newCard = Instantiate(playerCardObjectPrefab,playerHandContainer.transform.position,
+            Quaternion.identity,playerHandContainer.transform);
 
         Image image = newCard.GetComponent<Image>();
         Material materialPrefab = image.material;
@@ -178,7 +180,7 @@ public class BattleView : View {
 
         currentPlayerHand.Add(cardView);
 
-        cardView.SetDisplayValues(card, index);
+        cardView.SetDisplayValues(card,index);
 
         DisolveCard disolveCard = cardView.GetComponent<DisolveCard>();
         disolveCard.ResetEffect();
@@ -188,23 +190,23 @@ public class BattleView : View {
     public void UpdateHandCards() {
         IHandCards playerHand = UIDataContainer.Instance.Player.GetHandCards();
 
-        if (playerHand == null)
+        if(playerHand == null)
             return;
 
         int i;
-        for (i = 0; i < playerHand.HandCardCount();) {
+        for(i = 0; i < playerHand.HandCardCount();) {
             ICardDisplay card = playerHand.GetHandCard(i);
 
-            if (currentPlayerHand.Count == i) {
-                AddHandCard(card, i);
+            if(currentPlayerHand.Count == i) {
+                AddHandCard(card,i);
             }
             else {
                 currentPlayerHand[i].gameObject.SetActive(true);
                 currentPlayerHand[i].gameObject.GetComponent<Image>().enabled = true;
-                foreach (Transform t in currentPlayerHand[i].gameObject.transform) {
+                foreach(Transform t in currentPlayerHand[i].gameObject.transform) {
                     t.gameObject.SetActive(true);
                 }
-                currentPlayerHand[i].GetComponent<CardView>().SetDisplayValues(card, i);
+                currentPlayerHand[i].GetComponent<CardView>().SetDisplayValues(card,i);
 
                 DisolveCard disolveCard = currentPlayerHand[i].GetComponent<DisolveCard>();
                 disolveCard.enabled = false;
@@ -222,7 +224,7 @@ public class BattleView : View {
             i = i + 1;
         }
 
-        for (; i < currentPlayerHand.Count;) {
+        for(; i < currentPlayerHand.Count;) {
             //Button button = currentPlayerHand[i].GetComponent<Button>();
             //button.onClick.RemoveAllListeners();
 
@@ -235,11 +237,11 @@ public class BattleView : View {
 
     public void DiscardCard(int index) {
         UpdateHandCards();
-        foreach (CardView card in currentPlayerHand) {
-            if (card.HandIndex == index) {
+        foreach(CardView card in currentPlayerHand) {
+            if(card.HandIndex == index) {
                 int pos = card.gameObject.transform.GetSiblingIndex();
                 _handCardDisolveObject.gameObject.transform.SetSiblingIndex(pos);
-                _handCardDisolveObject.SetDisplayValues(card.CardDisplay, -1);
+                _handCardDisolveObject.SetDisplayValues(card.CardDisplay,-1);
                 _handCardDisolveObject.gameObject.SetActive(true);
 
                 DisolveCard disolveCard = _handCardDisolveObject.GetComponent<DisolveCard>();
@@ -250,7 +252,7 @@ public class BattleView : View {
     }
 
 
-    private void CardClickEvent(int index, IHandCards playerHand) {
+    private void CardClickEvent(int index,IHandCards playerHand) {
         playerHand.PlayHandCard(index);
         UpdateHandCards();
     }
@@ -262,7 +264,7 @@ public class BattleView : View {
 
         ICardDisplay card = playerHand.GetHandCard(index);
 
-        if (card == null) {
+        if(card == null) {
             return false;
         }
 
@@ -270,12 +272,12 @@ public class BattleView : View {
         bool cardWasPlayed = playerHand.PlayHandCard(index);
 
 
-        if (cardWasPlayed) {
+        if(cardWasPlayed) {
             // playerCardDummy.SetDummyData(card.CostText(), card.CardName(), card.CardText(), card.GetSpritePath());
             // playerCardDummy.Show();
 
             playerDisolveCard.gameObject.SetActive(true);
-            playerDisolveCard.SetDisplayValues(card, -1);
+            playerDisolveCard.SetDisplayValues(card,-1);
             playerDisolveCard.ZoomIn();
 
             DisolveCard disolveCard = playerDisolveCard.GetComponent<DisolveCard>();
@@ -302,36 +304,36 @@ public class BattleView : View {
 
     private void UpdatePlayerHealthBar(int deltaValue) {
         ICharacter character = UIDataContainer.Instance.Player;
-        UpdateBarDisplay(character.CurrentHealth(), character.MaxHealth(), playerHealthLabelText, playerHealthBar);
+        UpdateBarDisplay(character.CurrentHealth(),character.MaxHealth(),playerHealthLabelText,playerHealthBar);
     }
 
     private void UpdatePlayerEnergyBar(int deltaValue) {
         var player = UIDataContainer.Instance.Player;
-        UpdateBarDisplay(player.CurrentRessource(), player.MaxRessource(), playerManaLabelText, playerManaBar);
+        UpdateBarDisplay(player.CurrentRessource(),player.MaxRessource(),playerManaLabelText,playerManaBar);
     }
 
     private void UpdateEnemyHealthBar(int deltaValue) {
         var character = UIDataContainer.Instance.Enemy;
-        UpdateBarDisplay(character.CurrentHealth(), character.MaxHealth(), enemyHealthLabelText, enemyHealthBar);
+        UpdateBarDisplay(character.CurrentHealth(),character.MaxHealth(),enemyHealthLabelText,enemyHealthBar);
     }
 
-    private static void UpdateBarDisplay(float currentValue, float maxValue, TextMeshProUGUI label, Image bar) {
+    private static void UpdateBarDisplay(float currentValue,float maxValue,TextMeshProUGUI label,Image bar) {
         label.SetText(currentValue.ToString());
         bar.fillAmount = currentValue / maxValue;
     }
 
     private void UpdateEnemyShieldCounter(int deltaValue) {
         var character = UIDataContainer.Instance.Enemy;
-        UpdateShieldCounterDisplay(enemyShieldCountText, character.CurrentShield());
+        UpdateShieldCounterDisplay(enemyShieldCountText,character.CurrentShield());
     }
 
     private void UpdatePlayerShieldCounter(int deltaValue) {
         ICharacter character = UIDataContainer.Instance.Player;
-        UpdateShieldCounterDisplay(playerShieldCountText, character.CurrentShield());
+        UpdateShieldCounterDisplay(playerShieldCountText,character.CurrentShield());
     }
 
-    private void UpdateShieldCounterDisplay(TextMeshProUGUI counterText, int value) {
-        if (counterText != null)
+    private void UpdateShieldCounterDisplay(TextMeshProUGUI counterText,int value) {
+        if(counterText != null)
             counterText.SetText(value.ToString());
     }
 
@@ -341,15 +343,15 @@ public class BattleView : View {
         Sequence sequence = DOTween.Sequence();
         RectTransform rectTransform = turnAnnouncerText.GetComponent<RectTransform>();
 
-        sequence.Append(rectTransform.DOScale(0.85f, 0.5f))
+        sequence.Append(rectTransform.DOScale(0.85f,0.5f))
             .SetEase(Ease.InBounce)
-            .Append(rectTransform.DOScale(1, 0.5f))
+            .Append(rectTransform.DOScale(1,0.5f))
             .SetEase(Ease.OutSine).OnComplete(() => turnAnnouncerText.SetText(""));
     }
 
     private void TogglePlayerUIControls(bool state) {
         // get all cards currently held and toggle their state 
-        foreach (var cardButton in currentPlayerHand)
+        foreach(var cardButton in currentPlayerHand)
             cardButton.GetComponent<Button>().interactable = state;
 
         endTurnButton.interactable = state;

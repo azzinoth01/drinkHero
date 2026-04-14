@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 139
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 2ec4b0cc34ec4de4810cf6180f7e852e
+  _externalID: 139
+  _name: Health Hazard
+  _text: Sacrifice 5HP for 4 Mana.
+  _cost: 1
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/SDI/HealthHazard
+  _upgradeTo: {fileID: 11400000, guid: a995a079385e0024690b63927a9fc04d, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 968943125f99c5645b371d54f8d446b2, type: 2}
+  - {fileID: 11400000, guid: 564228f8c87874342be1e1822fadf0f5, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: 941ad9f1911ce5d4780dd8515d7c18ed, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 35

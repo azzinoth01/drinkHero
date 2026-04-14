@@ -1,10 +1,10 @@
-using DG.Tweening;
 using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SelectableCharacterButton : MonoBehaviour {
+public class SelectableCharacterButton : MonoBehaviour
+{
     [SerializeField] private GameObject characterSelectedBlock;
     [SerializeField] private CharacterSlotData characterSlotData;
     [SerializeField] private TextMeshProUGUI characterName;
@@ -14,7 +14,7 @@ public class SelectableCharacterButton : MonoBehaviour {
     [SerializeField] private Button selectButton;
     [SerializeField] private Button deSelectButton;
     [SerializeField] private Button infoButton;
-    [SerializeField] private int id;
+    [SerializeField] private string id;
 
     //[SerializeField] private CharacterCardView characterCardView;
 
@@ -24,9 +24,9 @@ public class SelectableCharacterButton : MonoBehaviour {
     private TeamController _teamController;
 
     private bool _alreadyInParty;
-    public int ID => id;
+    public string ID => id;
 
-    public static Action<int> OnClearSlot;
+    public static Action<string> OnClearSlot;
 
     private void Awake() {
         characterSlotData = new CharacterSlotData();
@@ -41,7 +41,7 @@ public class SelectableCharacterButton : MonoBehaviour {
     }
 
     private void Start() {
-        if (!_tabView) {
+        if(!_tabView) {
             _tabView = ViewManager.Instance.GetView<CharacterCardTabView>();
         }
     }
@@ -62,11 +62,11 @@ public class SelectableCharacterButton : MonoBehaviour {
         selectButton.onClick.AddListener(() => AudioController.Instance.PlayAudio(AudioType.SFXButtonYes));
 
 
-        deSelectButton.onClick.AddListener(() => DeSelectCharacter());
+        deSelectButton.onClick.AddListener(() => DeselectCharacter());
         deSelectButton.onClick.AddListener(() => ViewManager.ShowLast());
         deSelectButton.onClick.AddListener(() => AudioController.Instance.PlayAudio(AudioType.SFXButtonNo));
 
-        DeSelectCharacter();
+        DeselectCharacter();
     }
 
     public void Unlock() {
@@ -82,8 +82,8 @@ public class SelectableCharacterButton : MonoBehaviour {
     }
 
     public void CheckIfSelected() {
-        if (_alreadyInParty) {
-            DeSelectCharacter();
+        if(_alreadyInParty) {
+            DeselectCharacter();
             return;
         }
         SelectCharacter();
@@ -94,7 +94,7 @@ public class SelectableCharacterButton : MonoBehaviour {
         _alreadyInParty = true;
     }
 
-    private void DeSelectCharacter() {
+    private void DeselectCharacter() {
         Debug.Log($"<color=green>Re-Enabling Hero ID {characterSlotData.characterName}</color>");
         characterSelectedBlock.SetActive(false);
         _alreadyInParty = false;

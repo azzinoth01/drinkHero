@@ -2,12 +2,13 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class HeroSlot {
-    [SerializeField] private HeroDatabase _hero;
+public class HeroSlot
+{
+    [SerializeField] private HeroObject _hero;
     [SerializeField] private int _slotID;
 
 
-    public HeroDatabase Hero {
+    public HeroObject Hero {
         get {
             return _hero;
         }

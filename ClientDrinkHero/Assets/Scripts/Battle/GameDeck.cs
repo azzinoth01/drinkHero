@@ -4,7 +4,8 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [Serializable]
-public class GameDeck {
+public class GameDeck
+{
     [SerializeField] private List<DeckCardContainer> _scrappedCardList;
     [SerializeField] private List<DeckCardContainer> _remainingCardList;
     [SerializeField] private Deck _deck;
@@ -14,9 +15,9 @@ public class GameDeck {
         _scrappedCardList = new List<DeckCardContainer>();
         _remainingCardList = new List<DeckCardContainer>();
         _deck = deck;
-        foreach (HeroSlot heroSlot in _deck.HeroSlotList) {
-            foreach (CardDatabase card in heroSlot.Hero.CardList) {
-                DeckCardContainer container = new DeckCardContainer(card, heroSlot.Hero);
+        foreach(HeroSlot heroSlot in _deck.HeroSlotList) {
+            foreach(CardData card in heroSlot.Hero.CardList) {
+                DeckCardContainer container = new DeckCardContainer(card,heroSlot.Hero);
                 _remainingCardList.Add(container);
             }
         }
@@ -47,25 +48,25 @@ public class GameDeck {
     }
 
     public DeckCardContainer DrawCard() {
-        if (_remainingCardList.Count == 0 && _scrappedCardList.Count == 0) {
+        if(_remainingCardList.Count == 0 && _scrappedCardList.Count == 0) {
             return null;
         }
         int i = _remainingCardList.Count;
 
-        if (i == 0) {
-            foreach (DeckCardContainer card in _scrappedCardList) {
+        if(i == 0) {
+            foreach(DeckCardContainer card in _scrappedCardList) {
                 _remainingCardList.Add(card);
             }
             _scrappedCardList.Clear();
         }
 
-        if (_remainingCardList.Count == 0) {
+        if(_remainingCardList.Count == 0) {
             return null;
         }
         // Check for no cards left in stack, if true dont draw
         i = _remainingCardList.Count;
 
-        i = Random.Range(0, i);
+        i = Random.Range(0,i);
 
 
         DeckCardContainer returnCard = _remainingCardList[i];
@@ -77,13 +78,13 @@ public class GameDeck {
     public void RecreateDeck() {
         _scrappedCardList = new List<DeckCardContainer>();
         _remainingCardList = new List<DeckCardContainer>();
-        foreach (HeroSlot heroSlot in _deck.HeroSlotList) {
-            if (heroSlot.Hero.SpritePath != null) {
+        foreach(HeroSlot heroSlot in _deck.HeroSlotList) {
+            if(heroSlot.Hero.SpritePath != null) {
                 VFXObjectContainer.Instance.PlayAnimation("Slot" + heroSlot.SlotID);
-                PlayerTeam.Instance.InstantiatePlayerCharacter(heroSlot.Hero.Id, heroSlot.SlotID);
+                PlayerTeam.Instance.InstantiatePlayerCharacter(heroSlot.Hero.Prefab,heroSlot.SlotID);
             }
-            foreach (CardDatabase card in heroSlot.Hero.CardList) {
-                DeckCardContainer container = new DeckCardContainer(card, heroSlot.Hero);
+            foreach(CardData card in heroSlot.Hero.CardList) {
+                DeckCardContainer container = new DeckCardContainer(card,heroSlot.Hero);
                 _remainingCardList.Add(container);
             }
         }

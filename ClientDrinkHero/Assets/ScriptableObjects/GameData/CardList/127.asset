@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 127
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: daa4f24ed7bb4d12866b5daa5c117a16
+  _externalID: 127
+  _name: Caffeine Rush
+  _text: Your next attack is doubled.
+  _cost: 3
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/SDI/CaffeineRush
+  _upgradeTo: {fileID: 11400000, guid: dd09b1e989890e74da1d91db1062ef46, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 51cb444347bfd0545b1a61a0f10e1ea6, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: 941ad9f1911ce5d4780dd8515d7c18ed, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 32

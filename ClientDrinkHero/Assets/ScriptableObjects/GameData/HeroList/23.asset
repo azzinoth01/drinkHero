@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf55123fb5cef4428208e260d209b52, type: 3}
+  m_Name: 23
+  m_EditorClassIdentifier: Assembly-CSharp::HeroData
+  _id: f533656637e7431191bc6a86e1254aaf
+  _externalID: 23
+  _shield: 0
+  _health: 10
+  _spritePath: Assets/Art/Character/Angel/Angel
+  _name: Angel
+  _cardList:
+  - {fileID: 11400000, guid: 94be4726351ee5a47b64a94344227795, type: 2}
+  - {fileID: 11400000, guid: d2a3d69e6bf039440831dbb0ff7c9b1a, type: 2}
+  - {fileID: 11400000, guid: c78cf04984b3ba149b100e9bddef44ee, type: 2}
+  - {fileID: 11400000, guid: 8f3fa3d164f9cae459a9fb69119f382f, type: 2}
+  - {fileID: 11400000, guid: 65d69e0650c3e4c4b829546872743f15, type: 2}
+  _prefab: {fileID: 3963395527294718306, guid: 0c1c89f86ee3b4e4fa059c945e22db99, type: 3}

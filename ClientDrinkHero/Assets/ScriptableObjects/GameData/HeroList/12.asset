@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf55123fb5cef4428208e260d209b52, type: 3}
+  m_Name: 12
+  m_EditorClassIdentifier: Assembly-CSharp::HeroData
+  _id: 0e44ad4636964d0c91faeb9b729d2d47
+  _externalID: 12
+  _shield: 0
+  _health: 10
+  _spritePath: Assets/Art/Character/Daniela/Daniela
+  _name: Daniela
+  _cardList:
+  - {fileID: 11400000, guid: 61149e27edb2ae94385a678e615dee02, type: 2}
+  - {fileID: 11400000, guid: a316b2e3880759b4f9cb56f14ec38ed9, type: 2}
+  - {fileID: 11400000, guid: d921f5e57144a8241b2df8e52084e7b2, type: 2}
+  - {fileID: 11400000, guid: 6fbd2037c0dcad449956145d166a0451, type: 2}
+  - {fileID: 11400000, guid: 5f3db98e7a7def94bbfbb90e0e260c2f, type: 2}
+  _prefab: {fileID: 3197279577085230165, guid: 3819b8668b8e2b949903929cf264872a, type: 3}

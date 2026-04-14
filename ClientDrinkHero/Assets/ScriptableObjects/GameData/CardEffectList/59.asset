@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0ddb58e53d9cb41aceec253e8a6141, type: 3}
+  m_Name: 59
+  m_EditorClassIdentifier: Assembly-CSharp::CardEffectData
+  _id: 9d687d6349dc45b3b0cfc9c0171ed73f
+  _externalID: 59
+  _name: Mash their Grains in
+  _durationType: 0
+  _durationValue: 0
+  _stackable: 0
+  _refreshOnStack: 0
+  _ignoreStatusLimit: 0
+  _maxValue: 3
+  _minValue: 3
+  _classType: 13

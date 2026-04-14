@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 31
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 09dcef452d224c71b6b572507be67201
+  _externalID: 31
+  _name: Watered down
+  _text: Enemy Healing is reduced by 50% for 2 turns.
+  _cost: 6
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/NO/WateredDown
+  _upgradeTo: {fileID: 11400000, guid: 19513286e0b44c5448d3dc8ffcb63345, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 015100868ec8b614db0b699b92692778, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: eb3d1676c24a46c4481dd3bee3ebc125, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 8

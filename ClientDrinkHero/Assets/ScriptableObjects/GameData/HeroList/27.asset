@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf55123fb5cef4428208e260d209b52, type: 3}
+  m_Name: 27
+  m_EditorClassIdentifier: Assembly-CSharp::HeroData
+  _id: 8b753ad9198f4e18bf733b36c196ba69
+  _externalID: 27
+  _shield: 0
+  _health: 10
+  _spritePath: Assets/Art/Character/Stella/Stella
+  _name: Stella
+  _cardList:
+  - {fileID: 11400000, guid: 50478abe21b3e3544ac5712bb17fd79c, type: 2}
+  - {fileID: 11400000, guid: d2a3d69e6bf039440831dbb0ff7c9b1a, type: 2}
+  - {fileID: 11400000, guid: c8c92980eb968594db4e37b54bb71712, type: 2}
+  - {fileID: 11400000, guid: c78cf04984b3ba149b100e9bddef44ee, type: 2}
+  - {fileID: 11400000, guid: d921f5e57144a8241b2df8e52084e7b2, type: 2}
+  _prefab: {fileID: 1075368559281508993, guid: 4db43be57acd447479bc905ac970e186, type: 3}

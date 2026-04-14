@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 27
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 1381c85393464198ae2d75cc6dd72557
+  _externalID: 27
+  _name: But enough talk...
+  _text: Player Damage is increased by 30% for 2 turns.
+  _cost: 5
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/NO/ButEnoughTalk
+  _upgradeTo: {fileID: 11400000, guid: ec3761efba2606b4c83d2b0c9607e826, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 6511c8988c9607546b618c3b33bb382d, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: eb3d1676c24a46c4481dd3bee3ebc125, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 7

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 18
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 9beaeb398e8f4583a71b9bf6edf20f51
+  _externalID: 18
+  _name: Waggering Fists
+  _text: Enemy Damage is reduced by 25% for 2 turns.
+  _cost: 4
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/NO/WaveringFists
+  _upgradeTo: {fileID: 11400000, guid: 127ac579125e8bc4ea117678ba6c8677, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: e60990a52a5a5b84c80991ab750c94fa, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: eb3d1676c24a46c4481dd3bee3ebc125, type: 2}
+  _upgradeItemAmount: 4
+  _animationKey: 5

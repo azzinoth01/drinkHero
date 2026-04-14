@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 15
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 13faf1b365c642bbb2f0db3d8048a5ea
+  _externalID: 15
+  _name: Night Harvest
+  _text: Drains 6 Enemy HP.
+  _cost: 3
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/NO/NightHarvest
+  _upgradeTo: {fileID: 11400000, guid: 136f888f97e040641a076e55d178fe53, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: b52906ae11036ad449009e8221da349b, type: 2}
+  - {fileID: 11400000, guid: 369e4edb6f4e22a4dadb0a2e1fb04775, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: eb3d1676c24a46c4481dd3bee3ebc125, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 4

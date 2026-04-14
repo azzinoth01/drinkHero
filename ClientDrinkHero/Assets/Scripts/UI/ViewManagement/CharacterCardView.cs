@@ -4,7 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterCardView : View {
+public class CharacterCardView : View
+{
     [SerializeField] private TextMeshProUGUI characterNameLabel;
     [SerializeField] private Image characterFactionImage;
     [SerializeField] private Image characterPortraitImage;
@@ -19,41 +20,42 @@ public class CharacterCardView : View {
 
     public override void Initialize() {
         backButton.onClick.AddListener(ViewTweener.ButtonClickTween(backButton,
-            backButtonClicked, () => ViewManager.ShowLast()));
+            backButtonClicked,() => ViewManager.ShowLast()));
 
         _backButtonInitial = backButton.image.sprite;
 
         _loadSprite = characterPortraitImage.GetComponent<LoadSprite>();
     }
 
-    public void LoadCharacterData(int id) {
-        HeroDatabase character = new HeroDatabase();
-        foreach (HeroToUserDatabase userHero in CharacterSelectView.UnlockedHeroes) {
-            if (userHero.RefHero == id) {
-                character = userHero.Hero;
+    public void LoadCharacterData(string id) {
+        HeroObject character = null;
+        List<HeroObject> ownedHero = GameDataInstance.Instance.OwnedHeroes;
+
+        foreach(HeroObject hero in ownedHero) {
+            if(hero.Id == id) {
+                character = hero;
             }
         }
-        if (character.Id == 0) {
+        if(character == null) {
             return;
         }
 
-        var cardList = character.CardList;
+        List<CardData> cardList = character.CardList;
 
-        var cards = new List<CardDataView>();
+        List<CardDataView> cards = new List<CardDataView>();
 
-        foreach (var card in cardList) {
+        foreach(CardData card in cardList) {
             var data = new CardDataView();
             data.cost = card.Cost;
             data.description = card.Text;
             data.name = card.Name;
-            data.spritePath = card.GetSpritePath();
+            data.spritePath = card.SpritePath;
             cards.Add(data);
         }
 
-        for (var i = 0; i < cardPreviews.Length; i++) {
+        for(int i = 0; i < cardPreviews.Length; i++) {
             cardPreviews[i].SetData(cards[i]);
         }
-
 
         _loadSprite.LoadNewSprite(character.SpritePath);
         characterNameLabel.SetText(character.Name);

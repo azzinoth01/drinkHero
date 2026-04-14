@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 101
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 92bb3d80dc5e4c3686a9803aceb5d2e3
+  _externalID: 101
+  _name: BIG Heal
+  _text: Gain 10 HP.
+  _cost: 3
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/JC/BIGHeal
+  _upgradeTo: {fileID: 11400000, guid: 9c401fe48045c3f42b90da23e5acf832, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 9f9be0c0f439ed14daf0196d19812c2d, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: 766319978cc932f49a57552c1a4f36ff, type: 2}
+  _upgradeItemAmount: 2
+  _animationKey: 26

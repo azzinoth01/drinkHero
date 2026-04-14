@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TurnManager : MonoBehaviour {
+public class TurnManager : MonoBehaviour
+{
     private bool _playerTurn;
     private TurnStateEnum _turnState;
     [SerializeField] private Button endTurnButton;
@@ -21,8 +22,7 @@ public class TurnManager : MonoBehaviour {
         _turnState = TurnStateEnum.Start;
         StartCoroutine(InitCombat());
 
-        endTurnButton.onClick.AddListener(ViewTweener.ButtonClickTween(endTurnButton,
-            endTurnButton.image.sprite, () => EndPlayerTurn()));
+        endTurnButton.onClick.AddListener(ViewTweener.ButtonClickTween(endTurnButton,endTurnButton.image.sprite,() => EndPlayerTurn()));
     }
 
     private void OnDisable() {
@@ -69,6 +69,7 @@ public class TurnManager : MonoBehaviour {
         _playerTurn = true;
 
         _turnState = TurnStateEnum.PlayerTurn;
+        StartCoroutine(PlayerTurn());
     }
 
     public void EndPlayerTurn() {

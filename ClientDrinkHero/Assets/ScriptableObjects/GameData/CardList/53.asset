@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 53
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: b2f457429585462f93dc71a12675f868
+  _externalID: 53
+  _name: Mash their Grains in
+  _text: Deal 1 Damage 3 times.
+  _cost: 2
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/TF/MashTheirGrainsIn
+  _upgradeTo: {fileID: 11400000, guid: ef0927d4481b8454ea5d79a4698708d6, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: e8ed29dfd9b22624696246f5d3e43f26, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: f620e2a15a3885445b26010a6472a82b, type: 2}
+  _upgradeItemAmount: 2
+  _animationKey: 14

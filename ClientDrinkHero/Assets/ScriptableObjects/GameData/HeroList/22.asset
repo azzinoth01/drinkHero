@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf55123fb5cef4428208e260d209b52, type: 3}
+  m_Name: 22
+  m_EditorClassIdentifier: Assembly-CSharp::HeroData
+  _id: fee355614c6445748edc9a22895db41a
+  _externalID: 22
+  _shield: 0
+  _health: 10
+  _spritePath: Assets/Art/Character/Georg/Georg
+  _name: Georg
+  _cardList:
+  - {fileID: 11400000, guid: 03b4fa12cc1f94a44aa9fbaa12ade468, type: 2}
+  - {fileID: 11400000, guid: 9891e949957df0d478226d9480840b6f, type: 2}
+  - {fileID: 11400000, guid: 3056aada4c96c7a4eb06a223e5b59c56, type: 2}
+  - {fileID: 11400000, guid: 6fbd2037c0dcad449956145d166a0451, type: 2}
+  - {fileID: 11400000, guid: 65d69e0650c3e4c4b829546872743f15, type: 2}
+  _prefab: {fileID: 1031551966672419438, guid: e7f51e5b03e79774ca00a5864a099547, type: 3}

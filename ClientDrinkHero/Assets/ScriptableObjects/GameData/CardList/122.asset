@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 122
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: e78478c8e85f4de3a24df565a22ac466
+  _externalID: 122
+  _name: Bottle Barrage
+  _text: 1 Bottle Rockets hit the Enemy causing 4 Damage each.
+  _cost: 1
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/SDI/BottleBarrage
+  _upgradeTo: {fileID: 11400000, guid: 3301507359cf2394d91ece57c6f652ca, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 0d0b15f696638ae46bbbede72f85e4be, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: 941ad9f1911ce5d4780dd8515d7c18ed, type: 2}
+  _upgradeItemAmount: 4
+  _animationKey: 31

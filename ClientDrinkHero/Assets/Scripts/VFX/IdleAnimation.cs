@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleAnimation : MonoBehaviour {
+public class IdleAnimation : MonoBehaviour
+{
     [SerializeField] private List<GameObject> _sprites;
     [SerializeField] private float _maxRange;
     [SerializeField] private float _minRange;
@@ -13,27 +14,28 @@ public class IdleAnimation : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        StartIdleAnimation();
+    }
+    public void StartIdleAnimation() {
         _startPosition = new List<Vector3>();
         _positionReached = new List<bool>();
-        foreach (GameObject g in _sprites) {
+        foreach(GameObject g in _sprites) {
             _startPosition.Add(g.transform.localPosition);
             _positionReached.Add(false);
         }
         _isGoingUp = true;
-
-
-        _targetRange = Random.Range(0, _maxRange);
-
+        _targetRange = Random.Range(0,_maxRange);
     }
+
 
     // Update is called once per frame
     void Update() {
 
         float deltaTime = Time.deltaTime;
         bool checkPositionReached = true;
-        for (int i = 0; i < _sprites.Count;) {
+        for(int i = 0; i < _sprites.Count;) {
             checkPositionReached = checkPositionReached & _positionReached[i];
-            if (_positionReached[i] == true) {
+            if(_positionReached[i] == true) {
                 i = i + 1;
                 continue;
             }
@@ -45,14 +47,14 @@ public class IdleAnimation : MonoBehaviour {
 
             //Debug.Log(_speed * deltaTime);
 
-            if (_isGoingUp == true) {
-                if (g.transform.localPosition.x >= targetPosition.x && g.transform.localPosition.y >= targetPosition.y && g.transform.localPosition.z >= targetPosition.z) {
+            if(_isGoingUp == true) {
+                if(g.transform.localPosition.x >= targetPosition.x && g.transform.localPosition.y >= targetPosition.y && g.transform.localPosition.z >= targetPosition.z) {
                     //g.transform.localPosition = targetPosition;
                     _positionReached[i] = true;
                 }
             }
             else {
-                if (g.transform.localPosition.x <= targetPosition.x && g.transform.localPosition.y <= targetPosition.y && g.transform.localPosition.z <= targetPosition.z) {
+                if(g.transform.localPosition.x <= targetPosition.x && g.transform.localPosition.y <= targetPosition.y && g.transform.localPosition.z <= targetPosition.z) {
                     //g.transform.localPosition = targetPosition;
                     _positionReached[i] = true;
                 }
@@ -63,8 +65,8 @@ public class IdleAnimation : MonoBehaviour {
         }
 
 
-        if (checkPositionReached == true) {
-            if (_isGoingUp == true) {
+        if(checkPositionReached == true) {
+            if(_isGoingUp == true) {
                 _isGoingUp = false;
 
                 _targetRange = 0;
@@ -72,10 +74,10 @@ public class IdleAnimation : MonoBehaviour {
             }
             else {
                 _isGoingUp = true;
-                _targetRange = Random.Range(_minRange, _maxRange);
+                _targetRange = Random.Range(_minRange,_maxRange);
 
             }
-            for (int i = 0; i < _sprites.Count;) {
+            for(int i = 0; i < _sprites.Count;) {
                 _positionReached[i] = false;
                 i = i + 1;
             }

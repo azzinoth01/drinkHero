@@ -2,7 +2,8 @@ using UnityEngine;
 
 
 
-public class GlobalGameInfos : MonoBehaviour {
+public class GlobalGameInfos : MonoBehaviour
+{
     private static GlobalGameInfos _instance;
 
     [SerializeField] private PlayerObject _playerObject;
@@ -55,16 +56,13 @@ public class GlobalGameInfos : MonoBehaviour {
 
     }
 
-    private void Update() {
+    //private void Update() {
 
-        if (_turnManager.activeSelf == false) {
-            if (UIDataContainer.Instance.WaitingPanel.WaitingState == false) {
-                _turnManager.SetActive(true);
-            }
+    //    if(_turnManager.activeSelf == false) {
+    //        _turnManager.SetActive(true);
+    //    }
 
-        }
-
-        return;
-    }
+    //    return;
+    //}
 
 }

@@ -1,62 +1,51 @@
 using System;
 using UnityEngine;
 [Serializable]
-public class DeckCardContainer : ICardDisplay {
-    [SerializeField] private CardDatabase _card;
-    [SerializeField] private HeroDatabase _hero;
+public class DeckCardContainer : ICardDisplay
+{
+    [SerializeField] private CardData _card;
+    [SerializeField] private HeroObject _hero;
 
-    public CardDatabase Card {
+    public CardData Card {
         get {
             return _card;
         }
-
         set {
             _card = value;
         }
     }
 
-    public HeroDatabase Hero {
+    public HeroObject Hero {
         get {
             return _hero;
         }
-
         set {
             _hero = value;
         }
     }
-
-    public DeckCardContainer(CardDatabase card, HeroDatabase hero) {
+    public DeckCardContainer(CardData card,HeroObject hero) {
         _card = card;
         _hero = hero;
     }
-
-
-
     public string CostText() {
-        return _card.CostText();
+        return _card.Cost.ToString();
     }
-
     public string AttackText() {
-        return _card.AttackText();
+        return "";
     }
-
     public string ShieldText() {
-        return _card.ShieldText();
+        return "";
     }
-
     public string HealthText() {
-        return _card.HealthText();
+        return "";
     }
-
     public string GetSpritePath() {
-        return _card.GetSpritePath();
+        return _card.SpritePath;
     }
-
     public string CardText() {
-        return _card.CardText();
+        return _card.Text;
     }
-
     public string CardName() {
-        return _card.CardName();
+        return _card.name;
     }
 }

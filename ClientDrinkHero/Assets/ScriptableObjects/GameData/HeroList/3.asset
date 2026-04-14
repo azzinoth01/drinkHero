@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf55123fb5cef4428208e260d209b52, type: 3}
+  m_Name: 3
+  m_EditorClassIdentifier: Assembly-CSharp::HeroData
+  _id: a2ff9fbba7e64b3cb822d4b346653cd2
+  _externalID: 3
+  _shield: 0
+  _health: 10
+  _spritePath: Assets/Art/Character/Molly/Molly
+  _name: Molly
+  _cardList:
+  - {fileID: 11400000, guid: e266612db7ce6a744b828852667a201b, type: 2}
+  - {fileID: 11400000, guid: d4f6efc2f1825634abd56ff141b5019a, type: 2}
+  - {fileID: 11400000, guid: 39246b8a25c18ac488c672c951eed615, type: 2}
+  - {fileID: 11400000, guid: f05c1af5c842d1240b02e7568cbfcf89, type: 2}
+  - {fileID: 11400000, guid: 78a69c92ba0329f4585c1167cf30460b, type: 2}
+  _prefab: {fileID: 6737728011757709234, guid: f4fbab77124113246afb203ffb7048fb, type: 3}

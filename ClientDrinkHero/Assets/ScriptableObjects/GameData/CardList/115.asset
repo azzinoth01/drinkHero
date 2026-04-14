@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 115
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 578798256077403ca77c05369d8fe92d
+  _externalID: 115
+  _name: The juice must flow
+  _text: Discard your hand. Each card heals you for 6 HP.
+  _cost: 2
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/JC/JuiceMustFlow
+  _upgradeTo: {fileID: 11400000, guid: af4d9d3b89fe4dd4aa0d3511a299dd9e, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: fc4a5b90ca85cd74bbb86dc39d49a7a2, type: 2}
+  - {fileID: 11400000, guid: 47e2a1b6dc22d4f439e2112d30515d42, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: 766319978cc932f49a57552c1a4f36ff, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 29

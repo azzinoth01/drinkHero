@@ -1,13 +1,14 @@
 using Sirenix.OdinInspector;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class EnemyData
+[CsvImportable]
+[CreateAssetMenu(fileName = "EnemyData",menuName = "Scriptable Objects/EnemyData")]
+public class EnemyData : ScriptableObject
 {
     [ReadOnly]
     [SerializeField] private string _id;
+    [SerializeField] private string _externalID;
 
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _shield;
@@ -54,4 +55,18 @@ public class EnemyData
             return _moneyDrop;
         }
     }
+
+    public string ExternalID {
+        get {
+            return _externalID;
+        }
+    }
+#if UNITY_EDITOR
+    [Button("Save Asset")]
+    private void SaveAsset() {
+        UnityEditor.EditorUtility.SetDirty(this);
+        UnityEditor.AssetDatabase.SaveAssets();
+        UnityEditor.AssetDatabase.Refresh();
+    }
+#endif
 }

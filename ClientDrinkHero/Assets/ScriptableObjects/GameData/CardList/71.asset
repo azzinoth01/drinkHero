@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 71
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 80b03a67c29b40d1aab106afe0d9e28d
+  _externalID: 71
+  _name: Defensive Drinker
+  _text: Gain 8 Shield. Discard a random card from your hand.
+  _cost: 2
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/TF/DefensiveDrinker
+  _upgradeTo: {fileID: 11400000, guid: e70694a5c48a4ec418c8d4f845c88970, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: e96ac9238f80a214b86a7adf10d982e1, type: 2}
+  - {fileID: 11400000, guid: b7507c0cc6d12e944a56364d82204c9d, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: f620e2a15a3885445b26010a6472a82b, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 18

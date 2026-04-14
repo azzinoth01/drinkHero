@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf55123fb5cef4428208e260d209b52, type: 3}
+  m_Name: 13
+  m_EditorClassIdentifier: Assembly-CSharp::HeroData
+  _id: 0bafb06a1ffa4aeba7c338f1571fb020
+  _externalID: 13
+  _shield: 0
+  _health: 10
+  _spritePath: Assets/Art/Character/Melia/Melia
+  _name: Melia
+  _cardList:
+  - {fileID: 11400000, guid: c78cf04984b3ba149b100e9bddef44ee, type: 2}
+  - {fileID: 11400000, guid: 4571ab0305316554486363c7b43ade9c, type: 2}
+  - {fileID: 11400000, guid: bb9ba07cf69a9eb40bb26ee962a6b748, type: 2}
+  - {fileID: 11400000, guid: 164b1f9f7a3e0174dbca7f6b0b018df5, type: 2}
+  - {fileID: 11400000, guid: 27894c2ad6be45c498e258b7ea0d632b, type: 2}
+  _prefab: {fileID: 7014747158392843487, guid: 6b4d9406fa2fa314aa7156e75346b61d, type: 3}

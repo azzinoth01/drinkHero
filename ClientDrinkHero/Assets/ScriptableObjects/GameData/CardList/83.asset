@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 83
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: fbddd8f26d7644808c70653147eeaaa3
+  _externalID: 83
+  _name: Windfall
+  _text: Enemy is hit by 2 falling fruit causing 3 Damage each.
+  _cost: 3
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/JC/Windfall
+  _upgradeTo: {fileID: 11400000, guid: d3badfcd39f21af428a6037b40cd11a2, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: b20372ac6525c58459a5a1d061214164, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: 766319978cc932f49a57552c1a4f36ff, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 21

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 58
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: f92f01ef12f14acd829f8d6e2e67ce6b
+  _externalID: 58
+  _name: Beer Bong
+  _text: Enemy is stunned for 1 turns.
+  _cost: 9
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/TF/BeerBong
+  _upgradeTo: {fileID: 11400000, guid: c38f887b7a8b3994b80763051631bda8, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 39a2ff1d56c33694c865ef5c50874670, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: f620e2a15a3885445b26010a6472a82b, type: 2}
+  _upgradeItemAmount: 4
+  _animationKey: 15

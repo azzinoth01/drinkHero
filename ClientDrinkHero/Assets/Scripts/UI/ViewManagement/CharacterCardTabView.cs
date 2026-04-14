@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
-public class CharacterCardTabView : View {
+public class CharacterCardTabView : View
+{
 
     [SerializeField] private TextMeshProUGUI _characterNameLabel;
     [SerializeField] private Image _characterFactionImage;
@@ -17,31 +16,22 @@ public class CharacterCardTabView : View {
     [SerializeField] private List<GameObject> _tabList;
     private int _currentTab;
 
-    private HeroDatabase _character;
-
-
+    private HeroObject _hero;
     private Sprite _backButtonInitial;
 
     private LoadSprite _loadSprite;
     public static event Action OnZoomReset;
 
 
-
-    public HeroDatabase Character {
+    public HeroObject Hero {
         get {
-            return _character;
+            return _hero;
         }
 
 
     }
-
-
-
-
-
     public override void Initialize() {
-        _backButton.onClick.AddListener(ViewTweener.ButtonClickTween(_backButton,
-            _backButtonClicked, () => ViewManager.ShowLast()));
+        _backButton.onClick.AddListener(ViewTweener.ButtonClickTween(_backButton,_backButtonClicked,() => ViewManager.ShowLast()));
 
         _backButtonInitial = _backButton.image.sprite;
 
@@ -50,8 +40,7 @@ public class CharacterCardTabView : View {
 
     public override void Show() {
         base.Show();
-        _currentTab = 0;
-        _tabList[_currentTab].SetActive(true);
+        ShowTab(0);
         _backButton.image.sprite = _backButtonInitial;
     }
 
@@ -61,28 +50,28 @@ public class CharacterCardTabView : View {
     }
 
     public void ShowTab(int tabIndex) {
-        if (_tabList.Count > tabIndex) {
+        if(_tabList.Count > tabIndex) {
             _tabList[_currentTab].SetActive(false);
             _currentTab = tabIndex;
             _tabList[_currentTab].SetActive(true);
         }
     }
 
-    public void LoadCharacterData(int id) {
-        _character = new HeroDatabase();
-        foreach (HeroToUserDatabase userHero in CharacterSelectView.UnlockedHeroes) {
-            if (userHero.RefHero == id) {
-                _character = userHero.Hero;
+    public void LoadCharacterData(string id) {
+        List<HeroObject> ownedHeroes = GameDataInstance.Instance.OwnedHeroes;
+        foreach(HeroObject hero in ownedHeroes) {
+            if(hero.Id == id) {
+                _hero = hero;
             }
         }
-        if (_character.Id == 0) {
+        if(string.IsNullOrEmpty(_hero.Id) == true) {
             return;
         }
-        if (_loadSprite == null) {
+        if(_loadSprite == null) {
             _loadSprite = _characterPortraitImage.GetComponent<LoadSprite>();
         }
-        _loadSprite.LoadNewSprite(_character.SpritePath);
-        _characterNameLabel.SetText(_character.Name);
+        _loadSprite.LoadNewSprite(_hero.SpritePath);
+        _characterNameLabel.SetText(_hero.Name);
         ViewManager.Show<CharacterCardTabView>();
     }
 }

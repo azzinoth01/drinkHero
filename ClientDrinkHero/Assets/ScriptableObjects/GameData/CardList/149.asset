@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 149
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 4d0778d7f5354ee49e0dc9309a90beb9
+  _externalID: 149
+  _name: Can Stomp
+  _text: Damage Enemy for 10 and discard a random card.
+  _cost: 2
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/SDI/CanStomp
+  _upgradeTo: {fileID: 11400000, guid: a66a4a7d21959b84698d285862a06817, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 8c4dad96844677e499a7d48b9782d912, type: 2}
+  - {fileID: 11400000, guid: 119ae4af09e6ce644880c09b6078774a, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: 941ad9f1911ce5d4780dd8515d7c18ed, type: 2}
+  _upgradeItemAmount: 2
+  _animationKey: 38

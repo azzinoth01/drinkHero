@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 135
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: a7d92f1e70c447519e7d2b8e466db185
+  _externalID: 135
+  _name: Stream of Soda
+  _text: Damage Enemy for 12HP.
+  _cost: 3
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/SDI/StreamOfSoda
+  _upgradeTo: {fileID: 11400000, guid: dc80ff1987a197a4eac75ec5de441dd4, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: a63fd311c659a024c959b5000f5d0015, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: 941ad9f1911ce5d4780dd8515d7c18ed, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 34

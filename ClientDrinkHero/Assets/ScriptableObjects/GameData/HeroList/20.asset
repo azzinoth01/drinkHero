@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf55123fb5cef4428208e260d209b52, type: 3}
+  m_Name: 20
+  m_EditorClassIdentifier: Assembly-CSharp::HeroData
+  _id: 03e53be15b1246c892a7925da9bbb2c1
+  _externalID: 20
+  _shield: 0
+  _health: 10
+  _spritePath: Assets/Art/Character/Jackie/Jackie
+  _name: Jackie
+  _cardList:
+  - {fileID: 11400000, guid: a44ad136bd069c74386f09b6565f4e1d, type: 2}
+  - {fileID: 11400000, guid: 4eef901e6a0ee68448146a2b6c498c7f, type: 2}
+  - {fileID: 11400000, guid: 5d49eb10bfd19784d8c4646a8ffc38a0, type: 2}
+  - {fileID: 11400000, guid: b4063bdd0679a8d42accdae9baa0b71f, type: 2}
+  - {fileID: 11400000, guid: 505dd2160c3778948aa1fc0fcf74d33f, type: 2}
+  _prefab: {fileID: 7027705097714153855, guid: 1c8d962826731814db3c43fb61018bdf, type: 3}

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 79
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: e195e63a4e8945a382f278b0656598cb
+  _externalID: 79
+  _name: Shield Drain
+  _text: Drains 8 Enemy Shield.
+  _cost: 2
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/TF/ShieldDrain
+  _upgradeTo: {fileID: 11400000, guid: d01a4b9b1a0f6b543848e98611405eaf, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: b5761bae20784f64faa5a56ff49afacd, type: 2}
+  - {fileID: 11400000, guid: b07f2862bbf720f4aa80bd58b3b3083f, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: f620e2a15a3885445b26010a6472a82b, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 20

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 155
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 77c334749cde4c599606af8b2763d741
+  _externalID: 155
+  _name: Intimidating Burp
+  _text: Corrodode Enemy Shield. Deal 7 Damage.
+  _cost: 5
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/SDI/IntimidatingBurp
+  _upgradeTo: {fileID: 11400000, guid: 7d85cdb8c66885347b31ebc1593beac2, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 034225e1c53619a4cb1c0a4ae4b3e271, type: 2}
+  - {fileID: 11400000, guid: eb922e75413f0c941b34e1c6f80071ce, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: 941ad9f1911ce5d4780dd8515d7c18ed, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 39

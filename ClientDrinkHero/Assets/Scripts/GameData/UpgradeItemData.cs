@@ -1,10 +1,15 @@
+using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
 
-[Serializable]
-public class UpgradeItemData
+[CsvImportable]
+[CreateAssetMenu(fileName = "UpgradeItemData",menuName = "Scriptable Objects/UpgradeItemData")]
+public class UpgradeItemData : ScriptableObject
 {
+    [ReadOnly]
     [SerializeField] private string _id;
+    [SerializeField] private string _externalID;
+
     [SerializeField] private string _name;
     [SerializeField] private string _text;
     [SerializeField] private string _spritePath;
@@ -36,4 +41,19 @@ public class UpgradeItemData
             return _spritePath;
         }
     }
+
+    public string ExternalID {
+        get {
+            return _externalID;
+        }
+    }
+
+#if UNITY_EDITOR
+    [Button("Save Asset")]
+    private void SaveAsset() {
+        UnityEditor.EditorUtility.SetDirty(this);
+        UnityEditor.AssetDatabase.SaveAssets();
+        UnityEditor.AssetDatabase.Refresh();
+    }
+#endif
 }

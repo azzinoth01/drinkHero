@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,44 +13,37 @@ public class PlayerTeam : MonoBehaviour
     float timer;
     float idleBlinkDelay;
 
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
+    private void Awake() {
+        if(Instance != null && Instance != this) {
             Destroy(this);
         }
-        else
-        {
+        else {
             instance = this;
         }
     }
 
-    public bool InstantiatePlayerCharacter(int characterID, int slot)
-    {
-        characterID--;
-        if (characterID >= playerCharacterPrefabs.Count || slot >= playerCharacterPositions.Count || playerCharacterPrefabs[characterID] == null)
-            return false;
+    public bool InstantiatePlayerCharacter(GameObject prefab,int slot) {
 
-        playerCharacters.Add(Instantiate(playerCharacterPrefabs[characterID], playerCharacterPositions[slot].position + new Vector3(0f, -1f, 0f), Quaternion.identity,  playerCharacterPositions[slot]));
+        if(slot >= playerCharacterPositions.Count) {
+            return false;
+        }
+
+        playerCharacters.Add(Instantiate(prefab,playerCharacterPositions[slot].position + new Vector3(0f,-1f,0f),Quaternion.identity,playerCharacterPositions[slot]));
         return true;
     }
 
-    public void PlayAnimation(string animation)
-    {
-        foreach (GameObject playerCharacter in playerCharacters)
-        {
-            playerCharacter.GetComponent<Animator>().Play(animation, -1, 0f);
+    public void PlayAnimation(string animation) {
+        foreach(GameObject playerCharacter in playerCharacters) {
+            playerCharacter.GetComponent<Animator>().Play(animation,-1,0f);
         }
     }
 
-    private void Update()
-    {
+    private void Update() {
         timer += Time.deltaTime;
-        if (timer > idleBlinkDelay && playerCharacters.Count > 0)
-        {
+        if(timer > idleBlinkDelay && playerCharacters.Count > 0) {
             timer -= idleBlinkDelay;
-            idleBlinkDelay = Random.Range(1f, 3f);
-            playerCharacters[Random.Range(0, playerCharacters.Count)].GetComponent<Animator>().SetTrigger("Blink");
+            idleBlinkDelay = Random.Range(1f,3f);
+            playerCharacters[Random.Range(0,playerCharacters.Count)].GetComponent<Animator>().SetTrigger("Blink");
         }
     }
 }

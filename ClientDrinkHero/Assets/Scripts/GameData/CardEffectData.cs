@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class CardEffectData
+[CsvImportable]
+[CreateAssetMenu(fileName = "CardEffectData",menuName = "Scriptable Objects/CardEffectData")]
+public class CardEffectData : ScriptableObject
 {
     [ReadOnly]
     [SerializeField] private string _id;
+    [SerializeField] private string _externalID;
 
     [SerializeField] private string _name;
     [SerializeField] private int _durationType;
@@ -24,7 +26,11 @@ public class CardEffectData
         _id = Guid.NewGuid().ToString("N");
         _classType = EffectTypeEnum.None;
     }
-
+    public string Id {
+        get {
+            return _id;
+        }
+    }
     public string Name {
         get {
             return _name;
@@ -76,6 +82,12 @@ public class CardEffectData
     public EffectTypeEnum ClassType {
         get {
             return _classType;
+        }
+    }
+
+    public string ExternalID {
+        get {
+            return _externalID;
         }
     }
 }

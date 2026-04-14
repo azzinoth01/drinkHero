@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 41
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 1efbc3c2f0d74dd195febaec3e297ed3
+  _externalID: 41
+  _name: Keg Throw
+  _text: Throws a Keg at the Enemy for 2 Damage
+  _cost: 1
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/TF/KegThrow
+  _upgradeTo: {fileID: 11400000, guid: fe3fa36bb0c3d3549ae227b986c32644, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 81e7bb7eff583b44bb86001b5c51407b, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: f620e2a15a3885445b26010a6472a82b, type: 2}
+  _upgradeItemAmount: 2
+  _animationKey: 11

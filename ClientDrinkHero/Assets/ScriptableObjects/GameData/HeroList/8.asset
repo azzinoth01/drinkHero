@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf55123fb5cef4428208e260d209b52, type: 3}
+  m_Name: 8
+  m_EditorClassIdentifier: Assembly-CSharp::HeroData
+  _id: 89818c3cd7064a438990f5e57b9283bd
+  _externalID: 8
+  _shield: 0
+  _health: 10
+  _spritePath: Assets/Art/Character/Lola/Lola
+  _name: Lola
+  _cardList:
+  - {fileID: 11400000, guid: 50478abe21b3e3544ac5712bb17fd79c, type: 2}
+  - {fileID: 11400000, guid: 94be4726351ee5a47b64a94344227795, type: 2}
+  - {fileID: 11400000, guid: f05c1af5c842d1240b02e7568cbfcf89, type: 2}
+  - {fileID: 11400000, guid: 8f3fa3d164f9cae459a9fb69119f382f, type: 2}
+  - {fileID: 11400000, guid: d2a3d69e6bf039440831dbb0ff7c9b1a, type: 2}
+  _prefab: {fileID: 8207373821863490152, guid: adf822e4007e784419c17e60066ae94d, type: 3}

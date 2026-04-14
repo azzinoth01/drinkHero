@@ -160,8 +160,8 @@ public abstract class DatabaseItem {
                 info.SetValue(this, list);
             }
         }
-        else if (type == typeof(Effect)) {
-            List<Effect> list = Effect.CreateObjectDataFromString(data);
+        else if (type == typeof(EffectServer)) {
+            List<EffectServer> list = EffectServer.CreateObjectDataFromString(data);
             if (isList == false) {
                 info.SetValue(this, list[0]);
             }

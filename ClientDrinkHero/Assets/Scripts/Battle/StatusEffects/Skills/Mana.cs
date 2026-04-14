@@ -1,21 +1,15 @@
 using UnityEngine;
 
-public class Mana : Effect, ISkill {
-    public Mana(Effect statusEffect) : base(statusEffect) {
+public class Mana : Effect, ISkill
+{
+    public Mana(CardEffectData statusEffect) : base(statusEffect) {
     }
 
-
-    public override bool ActivateEffect(IPlayerAction target, ActivationTimeEnum activation, int? value = null) {
-        if (ActivationTimeEnum.onCast == activation) {
-            value = Random.Range(_minValue, _maxValue + 1);
+    public override bool ActivateEffect(IPlayerAction target,ActivationTimeEnum activation,int? value = null) {
+        if(ActivationTimeEnum.onCast == activation) {
+            value = Random.Range(_minValue,_maxValue + 1);
             target.Mana(value.Value);
-
-
         }
-
         return false;
-
     }
-
 }
-

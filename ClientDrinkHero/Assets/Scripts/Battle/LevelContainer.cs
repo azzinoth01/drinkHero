@@ -1,17 +1,14 @@
 using System.Collections.Generic;
+using UnityEngine;
 
-public class LevelContainer {
+public class LevelContainer
+{
 
-    private List<EnemyDatabase> _enemies;
-    private EnemyDatabase _boss;
+    private List<EnemyData> _enemies;
+    private EnemyData _boss;
 
     private EnemyBattle _currentEnemy;
 
-    private EnemyListHandler _enemyListHandler;
-    private EnemyBossHandler _enemyBossHandler;
-
-    private bool _boosLoadFinished;
-    private bool _enemyLoadFinished;
     private bool _bossSpawned;
 
 
@@ -22,12 +19,12 @@ public class LevelContainer {
 
 
     public void NextEnemy() {
-        if (_bossSpawned == true) {
+        if(_bossSpawned == true) {
             LoadNextLevel();
             return;
         }
 
-        if (_enemies.Count == 0) {
+        if(_enemies.Count == 0) {
             _currentEnemy.ResetEnemy(_boss);
             _bossSpawned = true;
         }
@@ -36,7 +33,7 @@ public class LevelContainer {
             _enemies.RemoveAt(_enemies.Count - 1);
 
         }
-        _currentEnemy.SetBaseModificator(_healthModificator, _dmgModificator);
+        _currentEnemy.SetBaseModificator(_healthModificator,_dmgModificator);
 
     }
     public LevelContainer(EnemyBattle _enemyObject) {
@@ -45,54 +42,39 @@ public class LevelContainer {
 
         _currentEnemy = _enemyObject;
 
-        _dmgModificator = new ModifierStruct(0, 0);
-        _healthModificator = new ModifierStruct(0, 0);
-
-        _enemyBossHandler = new EnemyBossHandler();
-        _enemyListHandler = new EnemyListHandler();
-
-        _enemyListHandler.LoadingFinished += SetEnemyLoadFinish;
-        _enemyBossHandler.LoadingFinished += SetBossLoadFinish;
+        _dmgModificator = new ModifierStruct(0,0);
+        _healthModificator = new ModifierStruct(0,0);
 
         LoadNextLevel();
     }
 
-    public void Update() {
-        _enemyBossHandler.Update();
-        _enemyListHandler.Update();
-    }
 
 
     public void LoadNextLevel() {
-        _enemyLoadFinished = false;
-        _boosLoadFinished = false;
         _bossSpawned = false;
-        _enemyListHandler.RequestData();
-        _enemyBossHandler.RequestData();
 
         levelCount = levelCount + 1;
-    }
-    private void SetEnemyLoadFinish() {
-        _enemyLoadFinished = true;
-        CheckFinishedLoading();
-    }
-    private void SetBossLoadFinish() {
-        _boosLoadFinished = true;
-        CheckFinishedLoading();
+        LoadEnemies();
+        AddModificators();
+        NextEnemy();
     }
 
-    private void CheckFinishedLoading() {
-        if (_enemyLoadFinished && _boosLoadFinished) {
-            if (levelCount != 1) {
-                _dmgModificator.AddModifier(20);
-                _healthModificator.AddModifier(20);
-            }
-
-
-            _enemies = _enemyListHandler._enemyList;
-            _boss = _enemyBossHandler._enemy;
-            NextEnemy();
+    private void AddModificators() {
+        if(levelCount != 1) {
+            _dmgModificator.AddModifier(20);
+            _healthModificator.AddModifier(20);
         }
     }
 
+    private void LoadEnemies() {
+        int normalEnemiesCount = GameDataInstance.Instance.NormalEnemies.Count;
+        _enemies = new List<EnemyData>();
+        for(int i = 0; i < 3; i++) {
+            int index = Random.Range(0,normalEnemiesCount);
+            _enemies.Add(GameDataInstance.Instance.NormalEnemies[index]);
+        }
+        int bossEnemiesCount = GameDataInstance.Instance.BossEnemies.Count;
+        int bossIndex = Random.Range(0,bossEnemiesCount);
+        _boss = GameDataInstance.Instance.BossEnemies[bossIndex];
+    }
 }

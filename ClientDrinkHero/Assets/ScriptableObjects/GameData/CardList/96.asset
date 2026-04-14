@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 96
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 1f42f663a0a94da7a51783ed16e37655
+  _externalID: 96
+  _name: Juice Cleanse
+  _text: Gain 4 HP and remove current Debuff.
+  _cost: 1
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/JC/JuiceCleanse
+  _upgradeTo: {fileID: 0}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 063807c9fda1d6249b65ecbf595065bd, type: 2}
+  - {fileID: 11400000, guid: 481c5be91b331594caa1ce56db0a8da3, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: 766319978cc932f49a57552c1a4f36ff, type: 2}
+  _upgradeItemAmount: 0
+  _animationKey: 24

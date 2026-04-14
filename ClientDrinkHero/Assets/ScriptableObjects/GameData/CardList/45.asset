@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 45
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 2b1f0fd21c194855a604e3832389f5cc
+  _externalID: 45
+  _name: Oak Barrel Fortress
+  _text: Gain 3 Shield.
+  _cost: 1
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/TF/OakBarrelFortress
+  _upgradeTo: {fileID: 11400000, guid: 085818652fe401a4fae1d8a095a9e538, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 09730f9c720617c47a8b3de9a1751fea, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: f620e2a15a3885445b26010a6472a82b, type: 2}
+  _upgradeItemAmount: 2
+  _animationKey: 12

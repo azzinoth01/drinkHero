@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 51
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: 837f7fdf6d6147a8a308ba19ba2b7b48
+  _externalID: 51
+  _name: Yeast me up
+  _text: Heals 15 HP.
+  _cost: 5
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/TF/YeastMeUp
+  _upgradeTo: {fileID: 11400000, guid: c60aaa9b283e55b4d8a205e53ebaea68, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: bfc76a90cda5a2f458fbcaea6f9d31f6, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: f620e2a15a3885445b26010a6472a82b, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 13

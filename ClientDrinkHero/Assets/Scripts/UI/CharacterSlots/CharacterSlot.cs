@@ -5,36 +5,35 @@ using UnityEngine.UI;
 
 public class CharacterSlot : MonoBehaviour
 {
-    [Header("Character Data")] 
+    [Header("Character Data")]
     [SerializeField] private int slotID;
     [SerializeField] public CharacterSlotData slotData;
     [SerializeField] private Image characterPortrait;
     [SerializeField] private TextMeshProUGUI characterName;
 
-    private int _lastHeroIdInSlot;
-    public bool IsEmpty { get; set; }
-    
+    private string _lastHeroIdInSlot;
+    public bool IsEmpty {
+        get; set;
+    }
+
     private LoadSprite _loadSprite;
     private Button _slotButton;
 
-    public static Action<int> OnCharacterDeselect;
+    public static Action<string> OnCharacterDeselect;
 
-    private void Awake()
-    {
+    private void Awake() {
         IsEmpty = true;
         _loadSprite = GetComponent<LoadSprite>();
         _slotButton = GetComponent<Button>();
-        _slotButton.onClick.AddListener(() => TeamController.Instance.SetActiveSlot(slotID, IsEmpty));
+        _slotButton.onClick.AddListener(() => TeamController.Instance.SetActiveSlot(slotID,IsEmpty));
     }
 
-    public void LoadCharacterData(CharacterSlotData data)
-    {
-        if (!IsEmpty)
-        {
+    public void LoadCharacterData(CharacterSlotData data) {
+        if(!IsEmpty) {
             Debug.Log($"<color=red>Re-Enabling Hero ID {_lastHeroIdInSlot}</color>");
             OnCharacterDeselect?.Invoke(_lastHeroIdInSlot);
         }
-            
+
         slotData = data;
 
         _loadSprite.LoadNewSprite(data.characterSpritePath);
@@ -44,23 +43,22 @@ public class CharacterSlot : MonoBehaviour
         characterName.enabled = true;
 
         _lastHeroIdInSlot = slotData.id;
-        
+
         IsEmpty = false;
     }
 
-    public void ClearCharacterData()
-    {
+    public void ClearCharacterData() {
         slotData = new CharacterSlotData();
-        
+
         characterPortrait.enabled = false;
 
         characterName.SetText("");
         characterName.enabled = false;
 
-        _lastHeroIdInSlot = -1;
-        
+        _lastHeroIdInSlot = "";
+
         IsEmpty = true;
-        
+
         TeamController.Instance.CheckSlots();
     }
 }

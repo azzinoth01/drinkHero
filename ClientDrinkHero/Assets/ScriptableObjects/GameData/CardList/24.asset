@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 24
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: ac4cc3a9460549f4b7cc7f64c53e40e3
+  _externalID: 24
+  _name: Bye Bye Brain Cells
+  _text: Enemy is stunned for 2 turns.
+  _cost: 7
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/NO/ByeByeBraincells
+  _upgradeTo: {fileID: 0}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 9c0acb80a7e090c4bbdf5ea90a500f6d, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: eb3d1676c24a46c4481dd3bee3ebc125, type: 2}
+  _upgradeItemAmount: 0
+  _animationKey: 6

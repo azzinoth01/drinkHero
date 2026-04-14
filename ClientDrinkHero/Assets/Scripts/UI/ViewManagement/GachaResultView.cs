@@ -160,7 +160,7 @@ public class GachaResultView : View {
                     NetworkDataContainer.Instance.WaitForServer.AddWaitOnServer();
 
                     string requestUserDataUpdate = ClientFunctions.GetUserData();
-                    UserSingelton.Instance.UserObject.UpdateUserDataRequest(requestUserDataUpdate);
+                    GameDataInstance.Instance.UserObject.UpdateUserDataRequest(requestUserDataUpdate);
 
                     StartCoroutine(WaitForPullHistory());
                     yield break;

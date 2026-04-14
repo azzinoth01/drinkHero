@@ -1,11 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-public class CharacterUpgradeTab : MonoBehaviour {
+public class CharacterUpgradeTab : MonoBehaviour
+{
     private int _cardIndex;
     [SerializeField] private CharacterCardTabView _tabView;
     [SerializeField] private CharacterCardPreview _currentCard;
@@ -42,15 +42,14 @@ public class CharacterUpgradeTab : MonoBehaviour {
     }
 
     private void LoadCardData() {
-        HeroDatabase hero = _tabView.Character;
-
+        HeroObject hero = _tabView.Hero;
 
         CardDataView data = new CardDataView();
 
         data.cost = hero.CardList[_cardIndex].Cost;
         data.description = hero.CardList[_cardIndex].Text;
         data.name = hero.CardList[_cardIndex].Name;
-        data.spritePath = hero.CardList[_cardIndex].GetSpritePath();
+        data.spritePath = hero.SpritePath;
 
         _currentCard.SetData(data);
 
@@ -58,37 +57,37 @@ public class CharacterUpgradeTab : MonoBehaviour {
         _costValue.SetText("0");
         _hasValue.SetText("0");
 
-        if (hero.CardList[_cardIndex].RefUpgradeTo != null) {
+        if(hero.CardList[_cardIndex].UpgradeTo != null) {
             data = new CardDataView();
 
             data.cost = hero.CardList[_cardIndex].UpgradeTo.Cost;
             data.description = hero.CardList[_cardIndex].UpgradeTo.Text;
             data.name = hero.CardList[_cardIndex].UpgradeTo.Name;
-            data.spritePath = hero.CardList[_cardIndex].GetSpritePath();
+            data.spritePath = hero.SpritePath;
 
             _upgradeButton.interactable = true;
 
             _costValue.SetText(hero.CardList[_cardIndex].UpgradeItemAmount.ToString());
         }
 
-        foreach (LoadSprite loadSprite in _upgradeItemList) {
+        foreach(LoadSprite loadSprite in _upgradeItemList) {
 
             loadSprite.LoadNewSprite(hero.CardList[_cardIndex].UpgradeItem.SpritePath);
         }
-        foreach (UserToUpradeItemDatabase item in UserSingelton.Instance.UserObject.User.UserToUpgradeItemDatabaseList) {
-            if (item.RefItem == hero.CardList[_cardIndex].RefUpgradeItem) {
+
+        List<SavedItem> ownedItems = GameDataInstance.Instance.UserSave.CollectedItems;
+        foreach(SavedItem item in ownedItems) {
+            if(item.Id == hero.CardList[_cardIndex].UpgradeItem.Id) {
                 _hasValue.SetText(item.Amount.ToString());
             }
         }
-
-
         _uppgradeCard.SetData(data);
     }
 
     private void NextCardData() {
         _cardIndex = _cardIndex + 1;
 
-        if (_cardIndex >= _tabView.Character.CardList.Count) {
+        if(_cardIndex >= _tabView.Hero.CardList.Count) {
             _cardIndex = 0;
         }
         LoadCardData();
@@ -96,72 +95,30 @@ public class CharacterUpgradeTab : MonoBehaviour {
     private void PreviousCardData() {
         _cardIndex = _cardIndex - 1;
 
-        if (_cardIndex < 0) {
-            _cardIndex = _tabView.Character.CardList.Count - 1;
+        if(_cardIndex < 0) {
+            _cardIndex = _tabView.Hero.CardList.Count - 1;
         }
         LoadCardData();
     }
     private void UpgradeCard() {
-        string request = ClientFunctions.UpgradeCard("RefHero\"" + _tabView.Character.Id + "\";RefCard\"" + _tabView.Character.CardList[_cardIndex].Id + "\"");
-        int _requestId = HandleRequests.Instance.HandleRequest(request, typeof(ResponsMessageObject));
-        NetworkDataContainer.Instance.WaitForServer.AddWaitOnServer();
-        _upgradeButton.interactable = false;
-
-        _nextButton.interactable = false;
-        _previousButton.interactable = false;
-
-
-        StartCoroutine(WaitForUpgradeResponse(_requestId));
-    }
-
-    private IEnumerator WaitForUpgradeResponse(int requestId) {
-
-        while (HandleRequests.Instance.RequestDataStatus[requestId] != DataRequestStatusEnum.RecievedAccepted) {
-            if (HandleRequests.Instance.RequestDataStatus[requestId] == DataRequestStatusEnum.Recieved) {
-
-                ResponsMessageObject message = ResponsMessageObject.CreateObjectDataFromString(HandleRequests.Instance.RequestData[requestId])[0];
-
-                Debug.Log(message.Message);
-
-                if (message.Message == "SUCCESS") {
-                    _tabView.Character.CardList[_cardIndex] = _tabView.Character.CardList[_cardIndex].UpgradeTo;
-                    _isCardUpgrading = true;
-                }
-
-
-                HandleRequests.Instance.RequestDataStatus[requestId] = DataRequestStatusEnum.RecievedAccepted;
-            }
-            yield return null;
-        }
-
-
-
-    }
-
-    private void Update() {
-
-        if (_isCardUpgrading == true) {
-            if (CheckUpgradeLoadCardData() == true) {
-
-                _isCardUpgrading = false;
-                _upgradeButton.interactable = true;
-                _nextButton.interactable = true;
-                _previousButton.interactable = true;
-                LoadCardData();
+        HeroObject hero = _tabView.Hero;
+        // add condition
+        int cost = hero.CardList[_cardIndex].Cost;
+        UpgradeItemData upgradeItem = hero.CardList[_cardIndex].UpgradeItem;
+        SavedItem ownedItem = null;
+        foreach(SavedItem savedItem in GameDataInstance.Instance.UserSave.CollectedItems) {
+            if(upgradeItem.Id == savedItem.Id) {
+                ownedItem = savedItem;
+                break;
             }
         }
-
-
+        if(ownedItem == null || ownedItem.Amount < cost) {
+            return;
+        }
+        ownedItem.Amount = ownedItem.Amount - cost;
+        hero.UpgradeCardLevel(_cardIndex);
+        GameDataInstance.Instance.UserSave.UpgradeHeroCardLevel(hero,_cardIndex);
+        GameDataInstance.Instance.UserSave.Save();
+        LoadCardData();
     }
-    private bool CheckUpgradeLoadCardData() {
-        bool check = true;
-        _tabView.Character.CardList[_cardIndex].RequestLoadReferenzData();
-
-        check = check & (_tabView.Character.CardList[_cardIndex].WaitingOnDataCount == 0);
-
-        return check;
-    }
-
-
-
 }

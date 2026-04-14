@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f5a9d19dff466946a973685a2597e24, type: 3}
+  m_Name: 97
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  _id: e56e3d3876d4430ea5b346c0b346353e
+  _externalID: 97
+  _name: Immunize
+  _text: Gain 3 Shield.
+  _cost: 1
+  _spritePath: Assets/Art/Character/Beatrice/Beatrice
+  _iconPath: Assets/Art/UI/Cards/Icons/JC/Immunize
+  _upgradeTo: {fileID: 11400000, guid: d4b2adc074dc6a94a8a10fb103af1733, type: 2}
+  _cardEffectList:
+  - {fileID: 11400000, guid: 24f4d565aad9d10428f99770a79c4510, type: 2}
+  _upgradeItem: {fileID: 11400000, guid: 766319978cc932f49a57552c1a4f36ff, type: 2}
+  _upgradeItemAmount: 2
+  _animationKey: 25

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
-public class UIDataContainer {
+public class UIDataContainer
+{
 
     private static UIDataContainer _instance;
     private IPlayer _player;
@@ -8,7 +9,7 @@ public class UIDataContainer {
 
     private IWaitingPanel _waitingPanel;
 
-    private Dictionary<int, IAssetLoader> _characterSlots;
+    private Dictionary<int,IAssetLoader> _characterSlots;
     private IAssetLoader _enemySlot;
 
     private IFlyingTextHandler _enemyText;
@@ -16,12 +17,12 @@ public class UIDataContainer {
 
     public static float MusicVolume = 0.5f;
     public static float SfxVolume = 0.5f;
-    
-    public static int[] TeamIds;
+
+    public static string[] TeamIds;
 
     public static UIDataContainer Instance {
         get {
-            if (_instance == null) {
+            if(_instance == null) {
                 _instance = new UIDataContainer();
             }
             return _instance;
@@ -58,7 +59,7 @@ public class UIDataContainer {
 
     }
 
-    public Dictionary<int, IAssetLoader> CharacterSlots {
+    public Dictionary<int,IAssetLoader> CharacterSlots {
         get {
             return _characterSlots;
         }
@@ -96,6 +97,6 @@ public class UIDataContainer {
     }
 
     private UIDataContainer() {
-        _characterSlots = new Dictionary<int, IAssetLoader>();
+        _characterSlots = new Dictionary<int,IAssetLoader>();
     }
 }
