@@ -49,7 +49,7 @@ public class CharacterCardView : View
             data.cost = card.Cost;
             data.description = card.Text;
             data.name = card.Name;
-            data.spritePath = card.SpritePath;
+            data.spritePath = card.IconPath;
             cards.Add(data);
         }
 

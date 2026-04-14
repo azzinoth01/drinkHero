@@ -36,12 +36,8 @@ public class GameDeck
         set {
 
             _deck = value;
-            //RecreateDeck();
-
         }
-
     }
-
 
     public void ScrapCard(DeckCardContainer card) {
         _scrappedCardList.Add(card);

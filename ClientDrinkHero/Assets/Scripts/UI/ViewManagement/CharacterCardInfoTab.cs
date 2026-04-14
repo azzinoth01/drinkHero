@@ -17,7 +17,7 @@ public class CharacterCardInfoTab : MonoBehaviour
             data.cost = hero.CardList[i].Cost;
             data.description = hero.CardList[i].Text;
             data.name = hero.CardList[i].Name;
-            data.spritePath = hero.SpritePath;
+            data.spritePath = hero.CardList[i].IconPath;
             cardPreview.SetData(data);
 
             i = i + 1;

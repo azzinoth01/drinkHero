@@ -388,6 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _idleAnimation: {fileID: 7634994259923663692}
+  _spawnAnimation: {fileID: 4728185756436725604}
   _curve:
     serializedVersion: 2
     m_Curve:

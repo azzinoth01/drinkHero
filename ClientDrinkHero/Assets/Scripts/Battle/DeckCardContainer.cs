@@ -40,12 +40,12 @@ public class DeckCardContainer : ICardDisplay
         return "";
     }
     public string GetSpritePath() {
-        return _card.SpritePath;
+        return _card.IconPath;
     }
     public string CardText() {
         return _card.Text;
     }
     public string CardName() {
-        return _card.name;
+        return _card.Name;
     }
 }

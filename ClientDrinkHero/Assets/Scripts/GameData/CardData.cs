@@ -15,7 +15,6 @@ public class CardData : ScriptableObject
     [SerializeField] private string _name;
     [SerializeField] private string _text;
     [SerializeField] private int _cost;
-    [SerializeField] private string _spritePath;
     [SerializeField] private string _iconPath;
     [SerializeField] private CardData _upgradeTo;
     [SerializeField] private List<CardEffectData> _cardEffectList;
@@ -52,12 +51,6 @@ public class CardData : ScriptableObject
     public int Cost {
         get {
             return _cost;
-        }
-    }
-
-    public string SpritePath {
-        get {
-            return _spritePath;
         }
     }
 

@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public class HitAnimation : MonoBehaviour, IAnimation {
+public class HitAnimation : MonoBehaviour, IAnimation
+{
 
     [SerializeField] private IdleAnimation _idleAnimation;
+    [SerializeField] private SpawnAnimation _spawnAnimation;
     [SerializeField] private AnimationCurve _curve;
     [SerializeField] private float _duration;
     [SerializeField] private Vector3 _range;
@@ -23,38 +25,31 @@ public class HitAnimation : MonoBehaviour, IAnimation {
     // Update is called once per frame
     void Update() {
 
-        if (_inExecution == false) {
+        if(_inExecution == false) {
             enabled = false;
             _idleAnimation.enabled = true;
             _time = 0;
             return;
         }
 
-
-
-
         _time = _time + Time.deltaTime;
 
-
-
         transform.localPosition = _startPosition + (_curve.Evaluate(_time / _duration) * _range);
-        if (_time >= _duration) {
+        if(_time >= _duration) {
             transform.localPosition = _startPosition;
 
             _inExecution = false;
-
-
         }
     }
 
     [ContextMenu("Play")]
     public void Play() {
-
-        if (_inExecution == false) {
+        if(_spawnAnimation != null && _spawnAnimation.enabled == true) {
+            return;
+        }
+        if(_inExecution == false) {
             ResetValues();
         }
-
-
 
     }
     private void ResetValues() {

@@ -6,9 +6,12 @@ public class PlayerObject : MonoBehaviour
     [SerializeField] private Player _player;
     public Player Player => _player;
 
-    private void Start() {
+    private void Awake() {
         _player = new Player();
         _player.Clear();
+    }
+
+    private void Start() {
 
         HerosLoaded();
     }

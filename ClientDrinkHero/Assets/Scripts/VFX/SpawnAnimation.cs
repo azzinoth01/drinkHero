@@ -30,7 +30,7 @@ public class SpawnAnimation : MonoBehaviour, IAnimation
             transform.localPosition = _startPosition;
             enabled = false;
             if(_idleAnimation != null) {
-                _idleAnimation.StartIdleAnimation();
+                //_idleAnimation.StartIdleAnimation();
             }
         }
 

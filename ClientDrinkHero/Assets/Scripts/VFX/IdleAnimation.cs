@@ -12,10 +12,12 @@ public class IdleAnimation : MonoBehaviour
     [SerializeField] private List<Vector3> _startPosition;
     [SerializeField] private List<bool> _positionReached;
 
-    // Start is called before the first frame update
-    void Start() {
+    private void Awake() {
         StartIdleAnimation();
     }
+
+    // Start is called before the first frame update
+
     public void StartIdleAnimation() {
         _startPosition = new List<Vector3>();
         _positionReached = new List<bool>();

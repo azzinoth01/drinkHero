@@ -49,7 +49,7 @@ public class CharacterUpgradeTab : MonoBehaviour
         data.cost = hero.CardList[_cardIndex].Cost;
         data.description = hero.CardList[_cardIndex].Text;
         data.name = hero.CardList[_cardIndex].Name;
-        data.spritePath = hero.SpritePath;
+        data.spritePath = hero.CardList[_cardIndex].IconPath;
 
         _currentCard.SetData(data);
 
@@ -63,7 +63,7 @@ public class CharacterUpgradeTab : MonoBehaviour
             data.cost = hero.CardList[_cardIndex].UpgradeTo.Cost;
             data.description = hero.CardList[_cardIndex].UpgradeTo.Text;
             data.name = hero.CardList[_cardIndex].UpgradeTo.Name;
-            data.spritePath = hero.SpritePath;
+            data.spritePath = hero.CardList[_cardIndex].IconPath;
 
             _upgradeButton.interactable = true;
 

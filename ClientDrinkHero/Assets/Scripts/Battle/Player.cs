@@ -27,15 +27,6 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction
 
     public int PlayerShield => _shield;
 
-    //public static Action onPlayerDeath;
-
-
-
-    //public static event Action<float, float> updatePlayerHealthUI;
-    //public static event Action<float, float> updatePlayerEnergyUI;
-    //public static event Action<int> updatePlayerShieldUI;
-    //public static event Action updateHandCardUI;
-
     public static event Action playerDamageReceived, playerDamageBlocked, playerHealed, playerShieldUp;
 
     public event Action<int> RessourceChange;
@@ -50,10 +41,8 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction
         }
 
         set {
-
             _gameDeck = value;
             ResetPlayer();
-
         }
     }
 
@@ -77,8 +66,7 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction
             _gameDeck.RecreateDeck();
 
             //define max handcards globaly
-            for(int i = 0; i < 4;) {
-
+            for(int i = 0; i < MaxHandCards;) {
                 _handCards.Add(_gameDeck.DrawCard());
 
                 i = i + 1;
@@ -126,42 +114,26 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction
             return false;
         }
 
-
-        //start Animation
-
         if(card.AnimationKey != null && card.AnimationKey != "") {
             VFXObjectContainer.Instance.PlayAnimation(card.AnimationKey);
 
         }
 
-
-        // do card effect
-
-
         _handCards.RemoveAt(index);
-
-
-
 
         _ressource = _ressource - card.Cost;
         RessourceChange?.Invoke(-card.Cost);
 
-
-        // Action Start
         CheckDebuffsAndBuffs(ActivationTimeEnum.actionStart);
 
-
         PlayerTeam.Instance.PlayAnimation("Attack");
-        // Action
         for(int i = 0; i < _buffMultihit;) {
             Action(card);
 
             i = i + 1;
         }
 
-        // Action End
         CheckDebuffsAndBuffs(ActivationTimeEnum.actionFinished,_dmgCausedThisAction);
-
 
         _dmgCausedThisAction = 0;
         _buffMultihit = 1;
@@ -197,24 +169,14 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction
 
         }
     }
-
-
-
-
-
     protected override void Death() {
         GameOverEvent?.Invoke();
     }
-
 
     public void UpdateUI(int deltaHealth = 0,int deltaShield = 0,int deltaEnergy = 0) {
         base.UpdateUI(deltaHealth,deltaShield);
         RessourceChange?.Invoke(deltaEnergy);
     }
-
-
-
-
     public int HandCardCount() {
         return _handCards.Count;
     }
@@ -243,22 +205,16 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction
 
         CheckDebuffsAndBuffs(ActivationTimeEnum.turnEnd);
 
-
     }
 
     public override void StartTurn() {
 
-
         CheckDebuffsAndBuffs(ActivationTimeEnum.turnStart);
-
-        //draw until 5 cards
-        //Debug.Log(_handCards.Count);
 
         DrawCardsFromDeck(MaxHandCards);
 
         UpdateHandCards?.Invoke();
         ResetRessource();
-
         UpdateUI();
 
         if(_skipTurn > 0) {
@@ -280,7 +236,6 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction
         }
 
     }
-
 
     public override void SwapShieldWithEnemy() {
 

@@ -108,18 +108,7 @@ public class BattleView : View
 
         PlayerPrefs.SetInt("MaxLevel",Mathf.Max(PlayerPrefs.GetInt("MaxLevel"),currentLevel + 1));
         ShowGameOverScreen();
-
-        string request;
-
-        //if (currentLevel == 1)
-        //{
-        //    request = ClientFunctions.UnlockHeroByID("20");
-        //    UserSingelton.Instance.UserObject.UpdateUserDataRequest(request);
-        //}
-
     }
-
-
 
     private void OnDisable() {
         UIDataContainer.Instance.Player.HealthChange -= UpdatePlayerHealthBar;
@@ -142,7 +131,6 @@ public class BattleView : View
 
         CardDragHandler.OnShowDropZone -= ShowDropZone;
         CardDragHandler.OnHideDropZone -= HideDropZone;
-
 
         CardDropHandler.OnHideDropZone -= HideDropZone;
     }
@@ -168,8 +156,7 @@ public class BattleView : View
 
 
     private void AddHandCard(ICardDisplay card,int index) {
-        GameObject newCard = Instantiate(playerCardObjectPrefab,playerHandContainer.transform.position,
-            Quaternion.identity,playerHandContainer.transform);
+        GameObject newCard = Instantiate(playerCardObjectPrefab,playerHandContainer.transform.position,Quaternion.identity,playerHandContainer.transform);
 
         Image image = newCard.GetComponent<Image>();
         Material materialPrefab = image.material;
@@ -283,9 +270,6 @@ public class BattleView : View
             DisolveCard disolveCard = playerDisolveCard.GetComponent<DisolveCard>();
             disolveCard.ResetEffect();
             disolveCard.enabled = true;
-
-
-
 
             UpdateHandCards();
         }
