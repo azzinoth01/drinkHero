@@ -14,18 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UserStartingData
   _id: dfb8fbb6e60d4a53969051114a551b91
   _name: User
-  _gold: 1215752191
+  _gold: 100
   _startingHeroes:
   - {fileID: 11400000, guid: 64305a5aee157404cb2ffd7a4d3df98a, type: 2}
   - {fileID: 11400000, guid: fbedf8e20c18f754d9c7894aa8a2f6fc, type: 2}
   - {fileID: 11400000, guid: e08064d7dc86fc1498b8f1247c8529aa, type: 2}
   - {fileID: 11400000, guid: 2e9a7a19dd7e2424b874a62bd428623e, type: 2}
-  _startingItems:
-  - _amount: 999
-    _upgradeItem: {fileID: 11400000, guid: eb3d1676c24a46c4481dd3bee3ebc125, type: 2}
-  - _amount: 999
-    _upgradeItem: {fileID: 11400000, guid: f620e2a15a3885445b26010a6472a82b, type: 2}
-  - _amount: 999
-    _upgradeItem: {fileID: 11400000, guid: 941ad9f1911ce5d4780dd8515d7c18ed, type: 2}
-  - _amount: 999
-    _upgradeItem: {fileID: 11400000, guid: 766319978cc932f49a57552c1a4f36ff, type: 2}
+  _startingItems: []

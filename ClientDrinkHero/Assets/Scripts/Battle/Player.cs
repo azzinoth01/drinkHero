@@ -8,9 +8,6 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction
 {
     const int MaxHandCards = 5;
 
-    [SerializeField] private string _name;
-
-    [SerializeField] private int _attack;
     [SerializeField] private int _maxRessource;
     [SerializeField] private int _ressource;
 
@@ -27,7 +24,10 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction
 
     public int PlayerShield => _shield;
 
-    public static event Action playerDamageReceived, playerDamageBlocked, playerHealed, playerShieldUp;
+    //public static event Action playerDamageReceived;
+    //public static event Action playerDamageBlocked;
+    //public static event Action playerHealed;
+    //public static event Action playerShieldUp;
 
     public event Action<int> RessourceChange;
     public event Action UpdateHandCards;
@@ -87,8 +87,6 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction
     public override void Clear() {
 
         base.Clear();
-        _name = null;
-        _attack = 0;
         _maxRessource = 10;
         _ressource = 0;
         _gameDeck = null;
@@ -96,13 +94,10 @@ public class Player : Character, IHandCards, IPlayer, IPlayerAction
 
     }
 
-
     public void ResetRessource() {
         _ressource = _maxRessource;
         RessourceChange?.Invoke(_ressource);
     }
-
-
 
     public bool PlayHandCard(int index) {
 

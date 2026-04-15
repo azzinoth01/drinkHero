@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GachaMenuView : View
@@ -29,7 +30,7 @@ public class GachaMenuView : View
             optionsMenuButton.image.sprite,() => ViewManager.Show<OptionsMenuView>()));
 
         backButton.onClick.AddListener(ViewTweener.ButtonClickTween(backButton,
-            backButtonClicked,() => SceneLoader.Load(GameSceneEnum.MainMenuScene)));
+            backButtonClicked,() => SceneManager.LoadScene(GameSceneEnum.MainMenuScene.ToString())));
 
         multiPullButton.onClick.AddListener(ViewTweener.ButtonClickTween(multiPullButton,
             multiPullButton.image.sprite,() => MultiPull()));

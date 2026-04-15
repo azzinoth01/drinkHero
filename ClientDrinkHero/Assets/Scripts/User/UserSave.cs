@@ -1,29 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEngine;
 
 [Serializable]
 public class UserSave
 {
-    [SerializeField] private int _id;
     [SerializeField] private string _name;
     [SerializeField] private int _gold;
     [SerializeField] private List<SavedHero> _collectedHeroes;
     [SerializeField] private List<SavedItem> _collectedItems;
 
-    private static string _savePath = Application.persistentDataPath + "/UserSave.json";
-
-
-    public int Id {
-        get {
-            return _id;
-        }
-
-        set {
-            _id = value;
-        }
-    }
+    private static string _savePath = Application.persistentDataPath + "/UserSave.sav";
+    private const string _encodingKey = "DrinkHeroEncodingKey";
 
     public int Gold {
         get {
@@ -58,7 +48,6 @@ public class UserSave
     }
 
     public UserSave() {
-        _id = -1;
         _collectedHeroes = new List<SavedHero>();
         _collectedItems = new List<SavedItem>();
     }
@@ -66,7 +55,8 @@ public class UserSave
     public void Save() {
 
         string json = JsonUtility.ToJson(this);
-
+        json = Encode(json,_encodingKey);
+        json = Convert.ToBase64String(Encoding.UTF8.GetBytes(json));
         File.WriteAllText(_savePath,json);
     }
 
@@ -77,6 +67,8 @@ public class UserSave
         UserSave save = new UserSave();
         if(File.Exists(_savePath)) {
             string json = File.ReadAllText(_savePath);
+            json = Encoding.UTF8.GetString(Convert.FromBase64String(json));
+            json = Encode(json,_encodingKey);
             JsonUtility.FromJsonOverwrite(json,save);
         }
         else {
@@ -115,6 +107,17 @@ public class UserSave
 
         return save;
 
+    }
+
+    private static string Encode(string input,string encodingKey) {
+
+        char[] encodedInput = new char[input.Length];
+
+        for(int i = 0; i < input.Length; i++) {
+            encodedInput[i] = (char) (input[i] ^ encodingKey[i % encodingKey.Length]);
+        }
+
+        return new string(encodedInput);
     }
 
     public void AddItem(UpgradeItemData item,int amount) {

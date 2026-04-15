@@ -125,7 +125,7 @@ public class EnemyBattle : ICharacter, ICharacterAction
 
         CheckDebuffsAndBuffs(ActivationTimeEnum.turnStart);
 
-        bool usedSkill = false;
+        //bool usedSkill = false;
 
         if(_skipTurn > 0) {
             _skipTurn = _skipTurn - 1;

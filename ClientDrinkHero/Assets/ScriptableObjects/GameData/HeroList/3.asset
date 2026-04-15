@@ -20,7 +20,7 @@ MonoBehaviour:
   _name: Molly
   _cardList:
   - {fileID: 11400000, guid: e266612db7ce6a744b828852667a201b, type: 2}
-  - {fileID: 11400000, guid: d4f6efc2f1825634abd56ff141b5019a, type: 2}
+  - {fileID: 11400000, guid: 0081687e5535f024fb6c86e9821bd5c9, type: 2}
   - {fileID: 11400000, guid: 39246b8a25c18ac488c672c951eed615, type: 2}
   - {fileID: 11400000, guid: f05c1af5c842d1240b02e7568cbfcf89, type: 2}
   - {fileID: 11400000, guid: 78a69c92ba0329f4585c1167cf30460b, type: 2}

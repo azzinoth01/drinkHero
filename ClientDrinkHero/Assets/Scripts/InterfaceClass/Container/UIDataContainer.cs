@@ -7,8 +7,6 @@ public class UIDataContainer
     private IPlayer _player;
     private ICharacter _enemy;
 
-    private IWaitingPanel _waitingPanel;
-
     private Dictionary<int,IAssetLoader> _characterSlots;
     private IAssetLoader _enemySlot;
 
@@ -19,6 +17,7 @@ public class UIDataContainer
     public static float SfxVolume = 0.5f;
 
     public static string[] TeamIds;
+
 
     public static UIDataContainer Instance {
         get {
@@ -49,15 +48,6 @@ public class UIDataContainer
         }
     }
 
-    public IWaitingPanel WaitingPanel {
-        get {
-            return _waitingPanel;
-        }
-        set {
-            _waitingPanel = value;
-        }
-
-    }
 
     public Dictionary<int,IAssetLoader> CharacterSlots {
         get {

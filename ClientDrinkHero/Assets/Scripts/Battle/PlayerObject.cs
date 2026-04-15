@@ -45,38 +45,38 @@ public class PlayerObject : MonoBehaviour
     }
 
 
-    private void OnEnable() {
-        Player.playerDamageReceived += PlayerDamageFeedback;
-        Player.playerDamageBlocked += PlayerDamageBlockedFeedback;
-        Player.playerHealed += PlayerHealedFeedback;
-        Player.playerShieldUp += PlayerShieldUpFeedback;
-    }
+    //private void OnEnable() {
+    //    Player.playerDamageReceived += PlayerDamageFeedback;
+    //    Player.playerDamageBlocked += PlayerDamageBlockedFeedback;
+    //    Player.playerHealed += PlayerHealedFeedback;
+    //    Player.playerShieldUp += PlayerShieldUpFeedback;
+    //}
 
-    private void OnDisable() {
-        Player.playerDamageReceived -= PlayerDamageFeedback;
-        Player.playerDamageBlocked -= PlayerDamageBlockedFeedback;
-        Player.playerHealed -= PlayerHealedFeedback;
-        Player.playerShieldUp -= PlayerShieldUpFeedback;
-    }
+    //private void OnDisable() {
+    //    Player.playerDamageReceived -= PlayerDamageFeedback;
+    //    Player.playerDamageBlocked -= PlayerDamageBlockedFeedback;
+    //    Player.playerHealed -= PlayerHealedFeedback;
+    //    Player.playerShieldUp -= PlayerShieldUpFeedback;
+    //}
 
-    // Start is called before the first frame update
-    //void Start() {
+    //// Start is called before the first frame update
+    ////void Start() {
 
-    //    Deck deck = testUserField.Users.DeckList[0];
+    ////    Deck deck = testUserField.Users.DeckList[0];
 
-    private void PlayerDamageFeedback() {
-        //GlobalAudioManager.Instance.Play(_playerDamageSound);
-    }
+    //private void PlayerDamageFeedback() {
+    //    //GlobalAudioManager.Instance.Play(_playerDamageSound);
+    //}
 
-    private void PlayerDamageBlockedFeedback() {
-        //GlobalAudioManager.Instance.Play(_playerDamageBlockedSound);
-    }
+    //private void PlayerDamageBlockedFeedback() {
+    //    //GlobalAudioManager.Instance.Play(_playerDamageBlockedSound);
+    //}
 
-    private void PlayerHealedFeedback() {
-        //GlobalAudioManager.Instance.Play(_playerhealedSound);
-    }
+    //private void PlayerHealedFeedback() {
+    //    //GlobalAudioManager.Instance.Play(_playerhealedSound);
+    //}
 
-    private void PlayerShieldUpFeedback() {
-        //GlobalAudioManager.Instance.Play(_playerShieldUpSound);
-    }
+    //private void PlayerShieldUpFeedback() {
+    //    //GlobalAudioManager.Instance.Play(_playerShieldUpSound);
+    //}
 }

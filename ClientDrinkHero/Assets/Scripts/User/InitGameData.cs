@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InitGameData : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class InitGameData : MonoBehaviour
         UserSave save = LoadUserSavefile();
         CreateOwnedHeroList(save);
         CreateEnemyList();
+    }
+    private void Start() {
+        SceneManager.LoadScene(GameSceneEnum.MainMenuScene.ToString());
     }
 
     private UserSave LoadUserSavefile() {

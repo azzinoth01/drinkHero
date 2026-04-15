@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
-    private bool _playerTurn;
-    private TurnStateEnum _turnState;
     [SerializeField] private Button endTurnButton;
 
     public static event Action<bool> togglePlayerUiControls;
@@ -19,7 +17,6 @@ public class TurnManager : MonoBehaviour
     }
 
     private void Start() {
-        _turnState = TurnStateEnum.Start;
         StartCoroutine(InitCombat());
 
         endTurnButton.onClick.AddListener(ViewTweener.ButtonClickTween(endTurnButton,endTurnButton.image.sprite,() => EndPlayerTurn()));
@@ -35,9 +32,6 @@ public class TurnManager : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         updateDebugText?.Invoke("FIGHT!");
         yield return new WaitForSeconds(2f);
-
-        _turnState = TurnStateEnum.PlayerTurn;
-        _playerTurn = true;
 
         yield return StartCoroutine(PlayerTurn());
     }
@@ -58,27 +52,17 @@ public class TurnManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         UIDataContainer.Instance.Enemy.StartTurn();
-
-        //GlobalGameInfos.Instance.EnemyObject.enemy.EnemyTurn();
-
         yield return StartCoroutine(PlayerTurn());
     }
 
     private void EndEnemyTurn() {
         updateDebugText?.Invoke("Enemy Turn Ended!");
-        _playerTurn = true;
-
-        _turnState = TurnStateEnum.PlayerTurn;
         StartCoroutine(PlayerTurn());
     }
 
     public void EndPlayerTurn() {
         updateDebugText?.Invoke("Player Turn Ended!");
-        // called by button in scene
-
         UIDataContainer.Instance.Player.EndTurn();
-        _playerTurn = false;
-        _turnState = TurnStateEnum.EnemyTurn;
 
         StartCoroutine(EnemyTurn());
     }

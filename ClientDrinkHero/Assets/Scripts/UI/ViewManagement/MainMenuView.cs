@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenuView : View
@@ -28,10 +29,10 @@ public class MainMenuView : View
 
     public override void Initialize() {
         battlePreparationMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(battlePreparationMenuButton,
-            battlePreparationClicked,() => SceneLoader.Load(GameSceneEnum.BattlePreparationMenu)));
+            battlePreparationClicked,() => SceneManager.LoadScene(GameSceneEnum.BattlePreparationMenu.ToString())));
 
         gachaMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(gachaMenuButton,
-            gachaMenuClicked,() => SceneLoader.Load(GameSceneEnum.GachaMenuScene)));
+            gachaMenuClicked,() => SceneManager.LoadScene(GameSceneEnum.GachaMenuScene.ToString())));
 
         optionsMenuButton.onClick.AddListener(ViewTweener.ButtonClickTween(optionsMenuButton,
             optionsMenuButton.image.sprite,() => ViewManager.Show<OptionsMenuView>()));

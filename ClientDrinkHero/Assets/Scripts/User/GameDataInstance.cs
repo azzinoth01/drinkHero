@@ -5,7 +5,6 @@ public class GameDataInstance
 {
 
     private static GameDataInstance _instance;
-    private UserObject _userObject;
     private UserSave _userSave;
     private Dictionary<string,ScriptableObject> _gameDatabase;
     private List<HeroObject> _ownedHeroes;
@@ -22,17 +21,6 @@ public class GameDataInstance
         }
 
     }
-
-    public UserObject UserObject {
-        get {
-            return _userObject;
-        }
-
-        set {
-            _userObject = value;
-        }
-    }
-
     public UserSave UserSave {
         get {
             return _userSave;

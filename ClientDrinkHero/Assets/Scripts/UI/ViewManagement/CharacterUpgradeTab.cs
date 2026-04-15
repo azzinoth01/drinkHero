@@ -15,14 +15,9 @@ public class CharacterUpgradeTab : MonoBehaviour
     [SerializeField] private Button _previousButton;
     [SerializeField] private Button _upgradeButton;
 
-
-
     [SerializeField] private List<LoadSprite> _upgradeItemList;
     [SerializeField] private TextMeshProUGUI _hasValue;
     [SerializeField] private TextMeshProUGUI _costValue;
-
-
-    private bool _isCardUpgrading;
 
 
     private void Awake() {
@@ -33,12 +28,9 @@ public class CharacterUpgradeTab : MonoBehaviour
 
     }
 
-
     private void OnEnable() {
 
         LoadCardData();
-
-        _isCardUpgrading = false;
     }
 
     private void LoadCardData() {
@@ -102,8 +94,7 @@ public class CharacterUpgradeTab : MonoBehaviour
     }
     private void UpgradeCard() {
         HeroObject hero = _tabView.Hero;
-        // add condition
-        int cost = hero.CardList[_cardIndex].Cost;
+        int cost = hero.CardList[_cardIndex].UpgradeItemAmount;
         UpgradeItemData upgradeItem = hero.CardList[_cardIndex].UpgradeItem;
         SavedItem ownedItem = null;
         foreach(SavedItem savedItem in GameDataInstance.Instance.UserSave.CollectedItems) {
