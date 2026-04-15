@@ -325,6 +325,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1af31f06e00afb146bc8d20c483b1c14
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_ACT_Hit.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1b10255e578129b4ea161d1a4e7908f2
     m_Address: Assets/Art/Character/Daniela/Daniela_Card.png
     m_ReadOnly: 0
@@ -540,6 +545,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2997a285f60a02f419f2e673b2e776f0
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_ACT_Shield.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 29b780d5d86e7904d9d94d67ce62eb4d
     m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/SigmaSprites/Shadow.png
     m_ReadOnly: 0
@@ -650,6 +660,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 311d3aadd1912ab429b94f87f958e4b5
+    m_Address: Assets/Audio/SFX/drawcards.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 315cce18a05725242997157e015463df
     m_Address: Assets/Art/Character/FR4N/FR4N_2.png
     m_ReadOnly: 0
@@ -750,6 +765,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 36e387f7563e0f649938ba9e2224a596
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_CARD_Draw.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 36ffed64ee17a4845a9ab3ea95284280
     m_Address: Assets/Art/Character/LadyScarlet/LadyScarlet_Chibi.png
     m_ReadOnly: 0
@@ -812,6 +832,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3923fcaa277eb654486096460fbc682b
     m_Address: Assets/Art/Character/Ceri/CeriAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 39344524e5b6aa8428340bf37bdfa152
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_GUI_ButtonNo.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1080,6 +1105,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 48e3e459448d42b4eae2d7e17bb6879a
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_ACT_Poison.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4909472e9192c8a4b8618077961df1ca
     m_Address: Assets/Art/Character/OJ/OJ_2.png
     m_ReadOnly: 0
@@ -1102,6 +1132,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4b4e89c10c3e8434fb64f92bfaae658b
     m_Address: Assets/Art/Character/Enemies/Slime/Slime_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4bd9558df176d6949b9e88c27537e144
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_ACT_ShieldBreak.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c405682ce69b714fb2fb30ab7d947dd
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_ACT_Buff.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1350,8 +1390,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5bf252d951cdd9a469cda27d4c29f548
+    m_Address: Assets/Audio
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5c24fde4401b1f342b26819892ba2781
     m_Address: Assets/Art/Character/Estefania/EstefaniaAnimation/EstefaniaSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5c81b6dfa81870041818192e9189efce
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_HEAL_Cleanse.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1392,6 +1442,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5f0ca1c9508c6334c8e0f09f7e9ac9d5
     m_Address: Assets/Art/UI/Cards/Icons/NO/WaveringFists_Card.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f276bfe180f40e489399d90e4d60844
+    m_Address: Assets/Audio/SFX/damage.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1460,6 +1515,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 645aa65ebf0234e458f7f3e21e4191fb
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_GACHA_Character.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 64841ac8f0e036b46bab3a873b6ba720
     m_Address: Assets/Art/Character/Melia/MeliaAnimation/MeliaSprites/LowerBody.png
     m_ReadOnly: 0
@@ -1507,6 +1567,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 68772b389eb1ad549b36a459c956fe04
     m_Address: Assets/Art/Character/Vlad/VladAnimation/VladSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 68b4d8c74523e964ebf06e062a61935f
+    m_Address: Assets/Audio/Music
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1670,6 +1735,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7914d280d5bfbf24a82276bb5fc92b63
+    m_Address: Assets/Audio/SFX/buttonno.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 79ebdb58d8b8dd74389a2efd2168c601
     m_Address: Assets/Art/Character/Ramon/RamonAnimation/Ramon.controller
     m_ReadOnly: 0
@@ -1700,6 +1770,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7abbbf1815a00b84d984fe3ad835ef5f
+    m_Address: Assets/Audio/Music/MainMenuMusic.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7b00984bd68fb9b439ddced07db8a425
     m_Address: Assets/Art/Character/Saki/SakiAnimation/SakiSprites/HeadDizzy.png
     m_ReadOnly: 0
@@ -1727,6 +1802,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7d0f744790a39c14b8f7a0d402774f2a
     m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/Shadow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7d1f974708981174a89b6c2e57a31413
+    m_Address: Assets/Audio/Music/20230619_GA_DH_MainMenuMusic.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1805,6 +1885,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 845840d247cdc7e46a5f049fb314c40c
+    m_Address: Assets/Audio/SFX/cardupgrade.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 84fdeddaab169ee49811c25eb7b34589
     m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/LowerBodyBack.png
     m_ReadOnly: 0
@@ -1822,6 +1907,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 86e2241ed3debae43a14dc41629d6d95
     m_Address: Assets/Art/Character/Laeticia/LaeticiaAnimation/LaeticiaSprites/HeadBlink.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 86f2549192ecf844aa814629f8c46c05
+    m_Address: Assets/Audio/SFX/shieldbreak.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1867,6 +1957,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8b266298ded31ca42b70ee58c009e8ba
     m_Address: Assets/Art/Character/Georg/GeorgAnimation/GeorgSprites/UpperBody.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b2de25edffbd8c488cb79d82abae9bd
+    m_Address: Assets/Audio/SFX/buttonyes.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1932,6 +2027,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8ebca5beff1d45b4f83492175e3529b0
     m_Address: Assets/Art/Character/Sigma_B/SigmaAnimation/SigmaSprites/LegR.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 90f8d5bc9445fce4a9c732368a535da0
+    m_Address: Assets/Audio/SFX/poison.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -2075,6 +2175,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e2bab99e27883345bdd45a07237926b
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_GACHA_Item.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9e968b8d388fdca439039342fa5c953d
     m_Address: Assets/Art/Character/Seraphine/Seraphine_Slot.png
     m_ReadOnly: 0
@@ -2152,6 +2257,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a3145ca37ceb2c043abd25575274f05b
     m_Address: Assets/Art/Character/Stella/StellaAnimation/StellaSprites/HeadBack.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a33a36600e0a4ef4495b1fd34dd49e7b
+    m_Address: Assets/Audio/SFX/gachapullanticipation.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -2252,6 +2362,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: aad5a2c709576cd44b9d3f49b3573e66
     m_Address: Assets/Art/Character/Enemies/Plant/Plant_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ab457285364aa35439621b1a38a18568
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_HEAL_HP.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -2390,6 +2505,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b16686e936f57144d83faa3f3436d9b7
+    m_Address: Assets/Audio/SFX/gacharesultitem.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b17f2570ad12fbc478b829533106eb67
     m_Address: Assets/Art/Character/Saki/Saki_Chibi.png
     m_ReadOnly: 0
@@ -2515,6 +2635,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9b8174449e70e24ea206f6888465b6b
+    m_Address: Assets/Audio/SFX/debuff.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b9b9de10aae206f41b0e22b081188540
     m_Address: Assets/Art/UI/Cards/Icons/SDI/IntimidatingBurp_Card.png
     m_ReadOnly: 0
@@ -2605,6 +2730,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c0ce74fc83910ea4caa54dec675000e9
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_CARD_Upgrade.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c0e4363ae85b3b24781a9afe8634b9f9
     m_Address: Assets/Art/Character/Devin/Devin_1.png
     m_ReadOnly: 0
@@ -2617,6 +2747,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c1506a75befacca40bad21ee7357778b
     m_Address: Assets/Art/Character/Vlad/Vlad_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c252463f949c7c5489fb88328a7178af
+    m_Address: Assets/Audio/Music/BattleMusic.mp3
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -2695,6 +2830,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c88369bd2ba4b3647b25806afbc5bb94
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_GACHA_Pull.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c8a2db81de4c11f4d9fba0dc0f08f600
     m_Address: Assets/Art/UI/Cards/Icons/TF/HeavyFermentation_Card.png
     m_ReadOnly: 0
@@ -2712,6 +2852,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ca1f1be62c313df408bd4ba9130a5d6c
     m_Address: Assets/Art/Character/Saki/Saki_2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ca2258a8a2c417f43a54a22862c1471e
+    m_Address: Assets/Audio/SFX/buff.mp3
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -2827,6 +2972,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d29d39e98a2a94c45861c965a92efbee
     m_Address: Assets/Art/Character/Laeticia/Laeticia_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d3b36865f6bc00d43ba40bc0bc6e8bf4
+    m_Address: Assets/Audio/SFX/hit.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -2955,8 +3105,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dbc938b67ce8a7345802c6e2f45f187e
+    m_Address: Assets/Audio/SFX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dc331a56b243e734495ae4f2864cc587
     m_Address: Assets/Art/Character/Sigma_B/Sigma_B_3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd348145b19214141af1c37abca88487
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_GUI_ButtonYes.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -3002,6 +3162,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e1260f99d0a8e0b47921099c8389f5f3
     m_Address: Assets/Art/Character/Georg/Georg_0.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e14ccd5cac805fb4592bd2638caa3833
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_ACT_Damage.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -3220,6 +3385,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed474ee187e456e48985a2d8188f06b4
+    m_Address: Assets/Audio/SFX/battleend.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ee2c5d3beee38bf4295de8a0c8a19134
     m_Address: Assets/Art/Character/Jackie/JacksonWalkersAnimation/JacksonWalkersSprites/HeadBlink.png
     m_ReadOnly: 0
@@ -3295,8 +3465,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f2f1800b7a325be48a3f04ad1f62a61d
+    m_Address: Assets/Audio/SFX/shield.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f34f80590ee383d4ca23cc7450b299b5
     m_Address: Assets/Art/Character/Stella/Stella_Chibi.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f3803b755e11ab24e9d9d3969f5bcec9
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_ACT_DeBuff.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f3c6efc3adafe194cad1f250bd6b0473
+    m_Address: Assets/Audio/SFX/hpheal.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -3385,6 +3570,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f72997ad8f1150549a6ec54173db5b17
+    m_Address: Assets/Audio/SFX/gacharesultcharacter.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f7d7f452ad032954fb7e7ec3ad32bf0b
     m_Address: Assets/Art/Character/Lady Scarlet/LadyScarlet_1.png
     m_ReadOnly: 0
@@ -3470,6 +3660,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fd3b23ad6c62ba24e8ed4187b749520b
+    m_Address: Assets/Audio/SFX/20230620_GA_DH_GUI_Loose.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fd86fa971350c184493b0474788fc2d2
     m_Address: Assets/Art/Character/Shiro/Shiro_Card.png
     m_ReadOnly: 0
@@ -3487,6 +3682,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ff12d5b3329a817408d87ea3e4b9f991
     m_Address: Assets/Art/Character/Rubia/Rubia_Slot.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff94f70f2592e4544b391e95bb25b4a8
+    m_Address: Assets/Audio/SFX/cleanse.wav
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -24,9 +24,11 @@ public class EnemyObject : MonoBehaviour
 
         _enemyData = new EnemyBattle();
 
-        LevelData = new LevelContainer(_enemyData);
-
         _enemyData.DiedEvent += StartAnimations;
+    }
+
+    private void Start() {
+        LevelData = new LevelContainer(_enemyData);
     }
 
     private IEnumerator SpawnDelay() {

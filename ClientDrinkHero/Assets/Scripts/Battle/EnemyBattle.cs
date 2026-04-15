@@ -72,10 +72,11 @@ public class EnemyBattle : ICharacter, ICharacterAction
         _shieldModifier = new ModifierStruct(0,0);
 
 
+
         VFXObjectContainer.Instance.PlayAnimation("enemySpawn");
-
+        Debug.Log("load sprite");
         UIDataContainer.Instance.EnemySlot.LoadNewSprite(enemyData.SpritePath);
-
+        Debug.Log("after load sprite");
 
     }
 
