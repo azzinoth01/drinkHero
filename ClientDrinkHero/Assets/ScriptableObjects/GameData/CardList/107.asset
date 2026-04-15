@@ -15,14 +15,13 @@ MonoBehaviour:
   _id: a8e20041071149389d7714ce34a287ac
   _externalID: 107
   _name: Juice Extractor
-  _text: Squeeze Enemy for 5 Damage
+  _text: Squeeze Enemy for 5 Damage, draw a card
   _cost: 7
-  _spritePath: Assets/Art/Character/Beatrice/Beatrice
   _iconPath: Assets/Art/UI/Cards/Icons/JC/JuiceExtractor
   _upgradeTo: {fileID: 11400000, guid: 18b86a940f500aa4bad8783eb59aab98, type: 2}
   _cardEffectList:
   - {fileID: 11400000, guid: 6c4e8049dc5da2244be383dd23f0fc1f, type: 2}
   - {fileID: 11400000, guid: e5eb78159293bc547b0e4457230f4d08, type: 2}
-  _upgradeItem: {fileID: 0}
-  _upgradeItemAmount: 4
-  _animationKey: 8
+  _upgradeItem: {fileID: 11400000, guid: 766319978cc932f49a57552c1a4f36ff, type: 2}
+  _upgradeItemAmount: 8
+  _animationKey: 27

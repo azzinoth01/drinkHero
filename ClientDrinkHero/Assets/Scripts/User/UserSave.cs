@@ -130,11 +130,15 @@ public class UserSave
 
     }
     public void UpgradeHeroCardLevel(HeroObject hero,int cardIndex) {
-        foreach(SavedHero savedHero in GameDataInstance.Instance.UserSave.CollectedHeroes) {
+        foreach(SavedHero savedHero in _collectedHeroes) {
             if(hero.Id == savedHero.Id) {
                 savedHero.UpgradeCardLevel(cardIndex);
                 break;
             }
         }
+    }
+    public void AddHero(HeroData heroData) {
+        SavedHero newHero = new SavedHero(heroData);
+        _collectedHeroes.Add(newHero);
     }
 }

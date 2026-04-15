@@ -18,7 +18,7 @@ public class WeightedGachaCategory
         }
     }
 
-    public ScriptableObject Category {
+    public GachaCategoryData Category {
         get {
             return _category;
         }

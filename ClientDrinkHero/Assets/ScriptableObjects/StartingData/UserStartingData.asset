@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UserStartingData
   _id: dfb8fbb6e60d4a53969051114a551b91
   _name: User
-  _gold: 100
+  _gold: 1215752191
   _startingHeroes:
   - {fileID: 11400000, guid: 64305a5aee157404cb2ffd7a4d3df98a, type: 2}
   - {fileID: 11400000, guid: fbedf8e20c18f754d9c7894aa8a2f6fc, type: 2}
